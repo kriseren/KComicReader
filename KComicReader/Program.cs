@@ -16,7 +16,7 @@ namespace KComicReader
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VistaPrincipal());
+            Application.Run(new FormVistaPrincipal());
         }
     }
 }

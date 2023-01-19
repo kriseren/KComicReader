@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace KComicReader
 {
-    public partial class VistaPrincipal : Form
+    public partial class FormVistaPrincipal : Form
     {
-        public VistaPrincipal()
+        public FormVistaPrincipal()
         {
             InitializeComponent();
+        }
+
+        private void comic1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
