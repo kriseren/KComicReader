@@ -1,7 +1,7 @@
 ﻿
 namespace KComicReader
 {
-    partial class comic
+    partial class Comic
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace KComicReader
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(comic));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Comic));
             this.pbPortada = new System.Windows.Forms.PictureBox();
             this.lblTitulo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbPortada)).BeginInit();
@@ -38,9 +38,10 @@ namespace KComicReader
             // pbPortada
             // 
             this.pbPortada.Image = ((System.Drawing.Image)(resources.GetObject("pbPortada.Image")));
-            this.pbPortada.Location = new System.Drawing.Point(3, 3);
+            this.pbPortada.Location = new System.Drawing.Point(4, 4);
+            this.pbPortada.Margin = new System.Windows.Forms.Padding(4);
             this.pbPortada.Name = "pbPortada";
-            this.pbPortada.Size = new System.Drawing.Size(156, 230);
+            this.pbPortada.Size = new System.Drawing.Size(208, 283);
             this.pbPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPortada.TabIndex = 0;
             this.pbPortada.TabStop = false;
@@ -48,26 +49,26 @@ namespace KComicReader
             // lblTitulo
             // 
             this.lblTitulo.AutoEllipsis = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Bahnschrift", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(3, 239);
-            this.lblTitulo.Margin = new System.Windows.Forms.Padding(3);
-            this.lblTitulo.MaximumSize = new System.Drawing.Size(500, 0);
+            this.lblTitulo.Font = new System.Drawing.Font("Miriam CLM", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(4, 290);
+            this.lblTitulo.Margin = new System.Windows.Forms.Padding(4);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(156, 24);
-            this.lblTitulo.TabIndex = 1;
-            this.lblTitulo.Text = "Lobezno: El viejo Logan";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitulo.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.lblTitulo.Size = new System.Drawing.Size(208, 52);
+            this.lblTitulo.TabIndex = 3;
+            this.lblTitulo.Text = "Título del cómic";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // comic
+            // Comic
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.pbPortada);
-            this.Name = "comic";
-            this.Size = new System.Drawing.Size(162, 266);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "Comic";
+            this.Size = new System.Drawing.Size(216, 346);
             ((System.ComponentModel.ISupportInitialize)(this.pbPortada)).EndInit();
             this.ResumeLayout(false);
 
