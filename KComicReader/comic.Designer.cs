@@ -66,6 +66,7 @@ namespace KComicReader
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.pbPortada);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Comic";
             this.Size = new System.Drawing.Size(216, 346);

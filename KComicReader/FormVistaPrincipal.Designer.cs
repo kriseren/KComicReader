@@ -32,16 +32,20 @@ namespace KComicReader
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVistaPrincipal));
             this.panelTop = new System.Windows.Forms.Panel();
             this.panelCenter = new System.Windows.Forms.Panel();
-            this.btnAgregar = new System.Windows.Forms.Button();
+            this.pbBtnAgregar = new System.Windows.Forms.PictureBox();
             this.fwpComics = new System.Windows.Forms.FlowLayoutPanel();
             this.twFolder = new System.Windows.Forms.TreeView();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.lblPanelTopTitle = new System.Windows.Forms.Label();
             this.panelRight = new System.Windows.Forms.Panel();
+            this.panelInfo = new System.Windows.Forms.Panel();
+            this.lblInfoTitulo = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panelCenter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBtnAgregar)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panelRight.SuspendLayout();
+            this.panelInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -52,7 +56,7 @@ namespace KComicReader
             this.panelTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTop.Location = new System.Drawing.Point(16, 15);
-            this.panelTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(4);
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1366, 52);
             this.panelTop.TabIndex = 0;
@@ -64,7 +68,7 @@ namespace KComicReader
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCenter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(140)))), ((int)(((byte)(217)))));
             this.panelCenter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelCenter.Controls.Add(this.btnAgregar);
+            this.panelCenter.Controls.Add(this.pbBtnAgregar);
             this.panelCenter.Controls.Add(this.fwpComics);
             this.panelCenter.Location = new System.Drawing.Point(227, 84);
             this.panelCenter.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
@@ -72,30 +76,31 @@ namespace KComicReader
             this.panelCenter.Size = new System.Drawing.Size(894, 609);
             this.panelCenter.TabIndex = 1;
             // 
-            // btnAgregar
+            // pbBtnAgregar
             // 
-            this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAgregar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregar.BackgroundImage")));
-            this.btnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAgregar.Location = new System.Drawing.Point(803, 2);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(84, 76);
-            this.btnAgregar.TabIndex = 1;
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.pbBtnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbBtnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbBtnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnAgregar.Image")));
+            this.pbBtnAgregar.Location = new System.Drawing.Point(826, 4);
+            this.pbBtnAgregar.Name = "pbBtnAgregar";
+            this.pbBtnAgregar.Size = new System.Drawing.Size(60, 60);
+            this.pbBtnAgregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbBtnAgregar.TabIndex = 1;
+            this.pbBtnAgregar.TabStop = false;
+            this.pbBtnAgregar.Click += new System.EventHandler(this.pbBtnAgregar_Click);
             // 
             // fwpComics
             // 
             this.fwpComics.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.fwpComics.AutoScroll = true;
             this.fwpComics.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.fwpComics.BackColor = System.Drawing.Color.White;
             this.fwpComics.Location = new System.Drawing.Point(4, 4);
-            this.fwpComics.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fwpComics.Margin = new System.Windows.Forms.Padding(4);
             this.fwpComics.Name = "fwpComics";
-            this.fwpComics.Size = new System.Drawing.Size(884, 599);
+            this.fwpComics.Size = new System.Drawing.Size(815, 599);
             this.fwpComics.TabIndex = 0;
             // 
             // twFolder
@@ -103,7 +108,7 @@ namespace KComicReader
             this.twFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.twFolder.Location = new System.Drawing.Point(4, 38);
-            this.twFolder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.twFolder.Margin = new System.Windows.Forms.Padding(4);
             this.twFolder.Name = "twFolder";
             this.twFolder.Size = new System.Drawing.Size(182, 564);
             this.twFolder.TabIndex = 2;
@@ -117,7 +122,7 @@ namespace KComicReader
             this.panelLeft.Controls.Add(this.lblPanelTopTitle);
             this.panelLeft.Controls.Add(this.twFolder);
             this.panelLeft.Location = new System.Drawing.Point(16, 84);
-            this.panelLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(4);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(193, 609);
             this.panelLeft.TabIndex = 1;
@@ -140,12 +145,31 @@ namespace KComicReader
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(140)))), ((int)(((byte)(217)))));
             this.panelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRight.Controls.Add(this.panelInfo);
             this.panelRight.Controls.Add(this.lblTitulo);
             this.panelRight.Location = new System.Drawing.Point(1139, 84);
-            this.panelRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelRight.Margin = new System.Windows.Forms.Padding(4);
             this.panelRight.Name = "panelRight";
             this.panelRight.Size = new System.Drawing.Size(243, 609);
             this.panelRight.TabIndex = 3;
+            // 
+            // panelInfo
+            // 
+            this.panelInfo.Controls.Add(this.lblInfoTitulo);
+            this.panelInfo.Location = new System.Drawing.Point(4, 39);
+            this.panelInfo.Name = "panelInfo";
+            this.panelInfo.Size = new System.Drawing.Size(233, 564);
+            this.panelInfo.TabIndex = 1;
+            // 
+            // lblInfoTitulo
+            // 
+            this.lblInfoTitulo.AutoEllipsis = true;
+            this.lblInfoTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoTitulo.Location = new System.Drawing.Point(3, 9);
+            this.lblInfoTitulo.Name = "lblInfoTitulo";
+            this.lblInfoTitulo.Size = new System.Drawing.Size(227, 74);
+            this.lblInfoTitulo.TabIndex = 0;
+            this.lblInfoTitulo.Text = "Aquí se mostrarán la información de tus cómics.";
             // 
             // lblTitulo
             // 
@@ -170,12 +194,14 @@ namespace KComicReader
             this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.panelTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormVistaPrincipal";
             this.Text = "KComicReader";
             this.panelCenter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbBtnAgregar)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.panelRight.ResumeLayout(false);
+            this.panelInfo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -190,7 +216,9 @@ namespace KComicReader
         private System.Windows.Forms.Label lblPanelTopTitle;
         private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.PictureBox pbBtnAgregar;
+        private System.Windows.Forms.Panel panelInfo;
+        private System.Windows.Forms.Label lblInfoTitulo;
     }
 }
 

@@ -18,18 +18,30 @@ namespace KComicReader
         }
 
         //Método que se ejecuta cuando el usuario pulsa el botón de agregar.
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void pbBtnAgregar_Click(object sender, EventArgs e)
         {
             FormAgregarComic formAgregar = new FormAgregarComic();
-            if(formAgregar.ShowDialog()==DialogResult.OK)
+            if (formAgregar.ShowDialog() == DialogResult.OK)
             {
-                //Obtengo el comic y lo agrego al flowLayout.
-                this.fwpComics.Controls.Add(formAgregar.comic);
+                //Obtengo el comic, defino un controlador de eventos click y lo agrego al flowLayout.
+                Comic comic = formAgregar.comic;
+                comic.Click += new EventHandler(Comic_Click);
+                this.fwpComics.Controls.Add(comic);
+
+                //Ordeno los cómics por título.
                 ordenaComicsPorTitulo();
             }
         }
 
-        //Método que ordena los cómics del FlowLayoutPanel por título, para ello almaceno .
+        // TODO: Controlar el click en los cómics para poder mostrar la información.
+        //Método que se ejecuta cuando el usuario pulsa encima de un cómic.
+        private void Comic_Click(object sender, EventArgs e)
+        {
+            Comic comic = (Comic)sender;
+            lblInfoTitulo.Text = comic.Titulo;
+        }
+
+        //Método que ordena los cómics del FlowLayoutPanel por título, para ello almaceno.
         private void ordenaComicsPorTitulo()
         {
             //Creo un array de controles y cargo en él los controles del fwp (en este caso óbjetos cómic)

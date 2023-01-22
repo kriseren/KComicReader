@@ -86,6 +86,7 @@ namespace KComicReader
             // btnAgregar
             // 
             this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.Location = new System.Drawing.Point(578, 348);
@@ -100,6 +101,7 @@ namespace KComicReader
             // btnArchivo
             // 
             this.btnArchivo.AllowDrop = true;
+            this.btnArchivo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnArchivo.Location = new System.Drawing.Point(146, 268);
             this.btnArchivo.Name = "btnArchivo";
             this.btnArchivo.Size = new System.Drawing.Size(247, 32);
@@ -195,6 +197,7 @@ namespace KComicReader
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Location = new System.Drawing.Point(453, 348);
