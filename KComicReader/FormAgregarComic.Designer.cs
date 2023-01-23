@@ -64,7 +64,7 @@ namespace KComicReader
             this.pbPortada.Image = ((System.Drawing.Image)(resources.GetObject("pbPortada.Image")));
             this.pbPortada.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbPortada.InitialImage")));
             this.pbPortada.Location = new System.Drawing.Point(521, 30);
-            this.pbPortada.Margin = new System.Windows.Forms.Padding(4);
+            this.pbPortada.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbPortada.Name = "pbPortada";
             this.pbPortada.Size = new System.Drawing.Size(176, 268);
             this.pbPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -79,7 +79,7 @@ namespace KComicReader
             this.lblPortada.Location = new System.Drawing.Point(517, 300);
             this.lblPortada.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPortada.Name = "lblPortada";
-            this.lblPortada.Size = new System.Drawing.Size(81, 44);
+            this.lblPortada.Size = new System.Drawing.Size(179, 44);
             this.lblPortada.TabIndex = 6;
             this.lblPortada.Text = "Portada";
             // 
@@ -89,8 +89,8 @@ namespace KComicReader
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(578, 348);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAgregar.Location = new System.Drawing.Point(579, 348);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(117, 33);
             this.btnAgregar.TabIndex = 8;
@@ -102,7 +102,8 @@ namespace KComicReader
             // 
             this.btnArchivo.AllowDrop = true;
             this.btnArchivo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnArchivo.Location = new System.Drawing.Point(146, 268);
+            this.btnArchivo.Location = new System.Drawing.Point(147, 268);
+            this.btnArchivo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnArchivo.Name = "btnArchivo";
             this.btnArchivo.Size = new System.Drawing.Size(247, 32);
             this.btnArchivo.TabIndex = 10;
@@ -135,7 +136,7 @@ namespace KComicReader
             // tbTitulo
             // 
             this.tbTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTitulo.Location = new System.Drawing.Point(146, 95);
+            this.tbTitulo.Location = new System.Drawing.Point(147, 95);
             this.tbTitulo.Margin = new System.Windows.Forms.Padding(4, 6, 4, 0);
             this.tbTitulo.Name = "tbTitulo";
             this.tbTitulo.Size = new System.Drawing.Size(247, 28);
@@ -157,7 +158,7 @@ namespace KComicReader
             // tbGuionista
             // 
             this.tbGuionista.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbGuionista.Location = new System.Drawing.Point(146, 177);
+            this.tbGuionista.Location = new System.Drawing.Point(147, 177);
             this.tbGuionista.Margin = new System.Windows.Forms.Padding(4, 12, 4, 0);
             this.tbGuionista.Name = "tbGuionista";
             this.tbGuionista.Size = new System.Drawing.Size(247, 28);
@@ -177,7 +178,7 @@ namespace KComicReader
             // tbDibujante
             // 
             this.tbDibujante.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDibujante.Location = new System.Drawing.Point(146, 219);
+            this.tbDibujante.Location = new System.Drawing.Point(147, 219);
             this.tbDibujante.Margin = new System.Windows.Forms.Padding(4, 12, 4, 0);
             this.tbDibujante.Name = "tbDibujante";
             this.tbDibujante.Size = new System.Drawing.Size(247, 28);
@@ -201,7 +202,7 @@ namespace KComicReader
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Location = new System.Drawing.Point(453, 348);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(117, 33);
             this.btnCancelar.TabIndex = 19;
@@ -215,7 +216,8 @@ namespace KComicReader
             this.cbEditorial.Items.AddRange(new object[] {
             "Marvel Comics",
             "Detective Comics (DC)"});
-            this.cbEditorial.Location = new System.Drawing.Point(146, 135);
+            this.cbEditorial.Location = new System.Drawing.Point(147, 135);
+            this.cbEditorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbEditorial.Name = "cbEditorial";
             this.cbEditorial.Size = new System.Drawing.Size(247, 30);
             this.cbEditorial.TabIndex = 20;
@@ -241,7 +243,7 @@ namespace KComicReader
             this.Controls.Add(this.pbPortada);
             this.Controls.Add(this.lblTituloFormulario);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormAgregarComic";
             this.Text = "Agregar un nuevo cómic";
             ((System.ComponentModel.ISupportInitialize)(this.pbPortada)).EndInit();

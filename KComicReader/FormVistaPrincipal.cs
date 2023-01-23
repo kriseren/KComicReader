@@ -12,6 +12,9 @@ namespace KComicReader
 {
     public partial class FormVistaPrincipal : Form
     {
+        //Definición de atributos.
+        Comic comicSeleccionado;
+
         public FormVistaPrincipal()
         {
             InitializeComponent();
@@ -37,8 +40,20 @@ namespace KComicReader
         //Método que se ejecuta cuando el usuario pulsa encima de un cómic.
         private void Comic_Click(object sender, EventArgs e)
         {
-            Comic comic = (Comic)sender;
-            lblInfoTitulo.Text = comic.Titulo;
+            //Creo el objeto cómic y defino todas las etiquetas de información.
+            comicSeleccionado = (Comic)sender;
+            lblInfoTitulo.Text = "[TÍTULO]";
+            lblInfoTituloValue.Text = comicSeleccionado.Titulo;
+            lblInfoEditorial.Text = "[EDITORIAL]";
+            lblInfoEditorialValue.Text = comicSeleccionado.Editorial;
+            lblInfoGuionista.Text = "[GUIONISTA]";
+            lblInfoGuionistaValue.Text = comicSeleccionado.Guionista;
+            lblInfoDibujante.Text = "[DIBUJANTE]";
+            lblInfoDibujanteValue.Text = comicSeleccionado.Dibujante;
+
+            //Muevo el panel al frente para ocultar el de vista vacía.
+            panelRightVacia.Visible = false;
+            panelRightInfo.BringToFront();
         }
 
         //Método que ordena los cómics del FlowLayoutPanel por título, para ello almaceno.
@@ -62,6 +77,22 @@ namespace KComicReader
             {
                 fwpComics.Controls.Add(c);
             }
+        }
+
+        //Método que se ejecuta cuando se carga el formulario.
+        private void FormVistaPrincipal_Load(object sender, EventArgs e)
+        {
+            //Muestro la vista vacía.
+            panelRightVacia.BringToFront();
+            panelRightVacia.Visible = true;
+        }
+
+        //Método que se ejecuta cuando el usuario pulsa el botón de leer cómic.
+        private void btnLeer_Click(object sender, EventArgs e)
+        {
+            //Creo un formulario con el cómic seleccionado.
+            FormLeer formLeer = new FormLeer(comicSeleccionado);
+            formLeer.ShowDialog();
         }
     }
 }

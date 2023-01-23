@@ -62,6 +62,7 @@ namespace KComicReader
 
             //Defino las propiedades del cómic.
             comic.Titulo = tbTitulo.Text;
+            comic.Editorial = cbEditorial.Text;
             comic.Portada = pbPortada.Image;
             comic.Guionista = tbGuionista.Text;
             comic.Dibujante = tbDibujante.Text;
@@ -69,7 +70,7 @@ namespace KComicReader
         }
 
         //Método que extrae la primera imagen de un archivo .CBR y la devuelve.
-        private System.Drawing.Image extraePortada( string archivoURL)
+        private Image extraePortada( string archivoURL)
         {
             Image imagen = null;
             try
@@ -80,7 +81,7 @@ namespace KComicReader
                 IArchiveEntry portada = archive.Entries.First();
                 imagen = Image.FromStream(portada.OpenEntryStream());
             }
-            catch (InvalidOperationException ioe)
+            catch (InvalidOperationException)
             {
                 MessageBox.Show("Ha ocurrido un error al abrir el archivo. Por favor, selecciona otro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
