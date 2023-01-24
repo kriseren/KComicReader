@@ -1,7 +1,7 @@
 ﻿
 namespace KComicReader
 {
-    partial class Comic
+    partial class AgregarComicBtn
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace KComicReader
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Comic));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarComicBtn));
             this.pbPortada = new System.Windows.Forms.PictureBox();
             this.lblTitulo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbPortada)).BeginInit();
@@ -46,7 +46,6 @@ namespace KComicReader
             this.pbPortada.TabIndex = 0;
             this.pbPortada.TabStop = false;
             this.pbPortada.Click += new System.EventHandler(this.Control_Click);
-            this.pbPortada.DoubleClick += new System.EventHandler(this.Control_DobleClick);
             // 
             // lblTitulo
             // 
@@ -58,24 +57,22 @@ namespace KComicReader
             this.lblTitulo.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this.lblTitulo.Size = new System.Drawing.Size(187, 52);
             this.lblTitulo.TabIndex = 3;
-            this.lblTitulo.Text = "Título del cómic";
+            this.lblTitulo.Text = "Agrega un nuevo cómic";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblTitulo.Click += new System.EventHandler(this.Control_Click);
-            this.lblTitulo.DoubleClick += new System.EventHandler(this.Control_DobleClick);
             // 
-            // Comic
+            // AgregarComicBtn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.pbPortada);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Comic";
+            this.Name = "AgregarComicBtn";
             this.Size = new System.Drawing.Size(204, 346);
-            this.DoubleClick += new System.EventHandler(this.Control_DobleClick);
             ((System.ComponentModel.ISupportInitialize)(this.pbPortada)).EndInit();
             this.ResumeLayout(false);
 

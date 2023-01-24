@@ -65,6 +65,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarComicBtn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AgregarComicBtn.Designer.cs">
+      <DependentUpon>AgregarComicBtn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comic.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AgregarComicBtn.resx">
+      <DependentUpon>AgregarComicBtn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comic.resx">
       <DependentUpon>Comic.cs</DependentUpon>
     </EmbeddedResource>

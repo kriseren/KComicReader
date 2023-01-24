@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace KComicReader
 {
-    public partial class Comic : UserControl
+    public partial class AgregarComicBtn : UserControl
     {
         //Definición de propiedades.
         public int Id { get; set; }
@@ -29,10 +29,9 @@ namespace KComicReader
         }
         public String PortadaURL { get; set; }
         public String ArchivoURL { get; set; }
-        public EventHandler eventoClick{ get; set; }
-        public EventHandler eventoDobleClick{ get; set; }
+        public EventHandler eventoClick{ get; set;}
 
-        public Comic()
+        public AgregarComicBtn()
         {
             InitializeComponent();
         }
@@ -42,13 +41,6 @@ namespace KComicReader
         private void Control_Click(object sender, EventArgs e)
         {
             eventoClick.Invoke(this, e);
-        }
-
-        //Método que se ejecuta cuando el usuario hace doble click en cualquiera de los componentes del control.
-        //Se invoca el EventHandler eventoDobleClick.
-        private void Control_DobleClick(object sender, EventArgs e)
-        {
-            eventoDobleClick.Invoke(this, e);
         }
     }
 }

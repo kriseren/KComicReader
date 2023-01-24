@@ -29,6 +29,7 @@ namespace KComicReader
                 //Obtengo el comic, defino un controlador de eventos click y lo agrego al flowLayout.
                 Comic comic = formAgregar.comic;
                 comic.eventoClick += new EventHandler(Comic_Click);
+                comic.eventoDobleClick += new EventHandler(btnLeer_Click);
                 this.fwpComics.Controls.Add(comic);
 
                 //Ordeno los cómics por título.
@@ -67,24 +68,15 @@ namespace KComicReader
         //Método que ordena los cómics del FlowLayoutPanel por título, para ello almaceno.
         private void ordenaComicsPorTitulo()
         {
-            //Creo un array de controles y cargo en él los controles del fwp (en este caso óbjetos cómic)
-            Control[] controls = new Control[fwpComics.Controls.Count];
-            fwpComics.Controls.CopyTo(controls, 0);
+            //Creo una variable que almacena los cómics ordenados por título.
+            var comics = fwpComics.Controls.OfType<Comic>().OrderBy(x => x.Titulo).ToList();
 
-            //Creo un array de objetos cómic, para almacenar los controles convertidos a cómics.
-            Comic[] comics = controls.Select(c => c as Comic).ToArray();
+            //Elimino únicamente los controles del fwp que sean cómics.
+            foreach (Comic comic in fwpComics.Controls.OfType<Comic>().ToList())
+                fwpComics.Controls.Remove(comic);
 
-            //Ordeno los cómics por título.
-            Array.Sort(comics, (c1, c2) => c1.Titulo.CompareTo(c2.Titulo));
-
-            //Elimino el contenido actual del fwp.
-            fwpComics.Controls.Clear();
-
-            //Agrego de nuevo cada cómic ordenado por título.
-            foreach (Comic c in comics)
-            {
-                fwpComics.Controls.Add(c);
-            }
+            //Agrego de nuevo todos los cómics ordenados por título.
+            fwpComics.Controls.AddRange(comics.ToArray());
         }
 
         //Método que se ejecuta cuando se carga el formulario.
@@ -93,6 +85,9 @@ namespace KComicReader
             //Muestro la vista vacía.
             panelRightVacia.BringToFront();
             panelRightVacia.Visible = true;
+
+            //Agrego un eventHandler al botón de agregar cómic dentro del fwp.
+            agregarComicBtn.eventoClick += pbBtnAgregar_Click;
         }
 
         //Método que se ejecuta cuando el usuario pulsa el botón de leer cómic.
@@ -100,7 +95,7 @@ namespace KComicReader
         {
             //Creo un formulario con el cómic seleccionado.
             FormLeer formLeer = new FormLeer(comicSeleccionado);
-            formLeer.ShowDialog();
+            formLeer.Show();
         }
     }
 }
