@@ -29,10 +29,18 @@ namespace KComicReader
         }
         public String PortadaURL { get; set; }
         public String ArchivoURL { get; set; }
+        public EventHandler eventoClick{ get; set; }
 
         public Comic()
         {
             InitializeComponent();
+        }
+
+        //Método que se ejecuta cuando el usuario hace click en cualquiera de los componentes del control.
+        //Se invoca el EventHandler eventoClick.
+        private void Control_Click(object sender, EventArgs e)
+        {
+            eventoClick.Invoke(this, e);
         }
     }
 }

@@ -15,13 +15,13 @@ namespace KComicReader
     public partial class FormAgregarComic : Form
     {
 
-        //Definición de propiedades.
+        //Definición de atributos.
         public Comic comic = new Comic();
 
         public FormAgregarComic()
         {
             InitializeComponent();
-            CenterToParent();
+            this.CenterToParent();
         }
 
         //Método que se activa cuando se pulsa el botón de seleccionar archivo.

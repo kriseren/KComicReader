@@ -1,14 +1,7 @@
 ﻿using SharpCompress.Archives;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 using Image = System.Drawing.Image;
 
 namespace KComicReader
@@ -17,13 +10,14 @@ namespace KComicReader
     {
         //Definición de atributos.
         public Comic comic;
-        private int numPag=0;
-        private IArchive archive;
+        private int numPag = 0;
+        private IArchive archive; //Contiene el archivo descomprimido.
 
         //Constructor general de la clase.
         public FormLeer(Comic comic)
         {
             InitializeComponent();
+            this.CenterToParent();
             this.comic = comic;
             archive = ArchiveFactory.Open(comic.ArchivoURL);
             this.Text = comic.Titulo;
@@ -47,21 +41,48 @@ namespace KComicReader
         //Método que se ejecuta cuando el usuario pulsa el botón de "Siguiente página".
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            //Si el número de página no es el último, se carga.
-            if(numPag < archive.Entries.Count())
-            {
-                numPag++;
-                definePagina();
-            }
+            siguientePagina();
         }
 
         //Método que se ejecuta cuando el usuario pulsa el botón de "Anterior página".
         private void btnAnterior_Click(object sender, EventArgs e)
         {
+            anteriorPagina();
+        }
+
+        //Método que se ejecuta cuando el usuario pulsa cualquier tecla dentro del formulario.
+        private void key_Down(object sender, KeyEventArgs e)
+        {
+            //Si la tecla es la flecha derecha.
+            if (e.KeyCode == Keys.D)
+            {
+                siguientePagina();
+            }
+            else
+                if (e.KeyCode == Keys.A)
+            {
+                anteriorPagina();
+            }
+        }
+
+        //Método que carga la página anterior.
+        private void anteriorPagina()
+        {
             //Si el número de página es distinto de 0, se carga.
-            if(numPag > 0)
+            if (numPag > 0)
             {
                 numPag--;
+                definePagina();
+            }
+        }
+
+        //Método que carga la página siguiente.
+        private void siguientePagina()
+        {
+            //Si el número de página no es el último, se carga.
+            if (numPag < archive.Entries.Count()-1)
+            {
+                numPag++;
                 definePagina();
             }
         }

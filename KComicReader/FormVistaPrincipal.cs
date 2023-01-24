@@ -28,7 +28,7 @@ namespace KComicReader
             {
                 //Obtengo el comic, defino un controlador de eventos click y lo agrego al flowLayout.
                 Comic comic = formAgregar.comic;
-                comic.Click += new EventHandler(Comic_Click);
+                comic.eventoClick += new EventHandler(Comic_Click);
                 this.fwpComics.Controls.Add(comic);
 
                 //Ordeno los cómics por título.
@@ -54,6 +54,14 @@ namespace KComicReader
             //Muevo el panel al frente para ocultar el de vista vacía.
             panelRightVacia.Visible = false;
             panelRightInfo.BringToFront();
+
+            //Cambio el color del fondo para todos los cómics.
+            foreach( Control c in fwpComics.Controls)
+            {
+                c.BackColor = Color.Transparent;
+            }
+            //Defino el color del fondo para el cómic seleccionado.
+            comicSeleccionado.BackColor = Color.FromArgb(177, 140, 217);
         }
 
         //Método que ordena los cómics del FlowLayoutPanel por título, para ello almaceno.
