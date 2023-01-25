@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,14 +44,11 @@ namespace KComicReader
         {
             //Creo el objeto cómic y defino todas las etiquetas de información.
             comicSeleccionado = (Comic)sender;
-            lblInfoTitulo.Text = "[TÍTULO]";
             lblInfoTituloValue.Text = comicSeleccionado.Titulo;
-            lblInfoEditorial.Text = "[EDITORIAL]";
             lblInfoEditorialValue.Text = comicSeleccionado.Editorial;
-            lblInfoGuionista.Text = "[GUIONISTA]";
             lblInfoGuionistaValue.Text = comicSeleccionado.Guionista;
-            lblInfoDibujante.Text = "[DIBUJANTE]";
             lblInfoDibujanteValue.Text = comicSeleccionado.Dibujante;
+            lblInfoCategoriaValue.Text = comicSeleccionado.Categoria;
 
             //Muevo el panel al frente para ocultar el de vista vacía.
             panelRightVacia.Visible = false;
@@ -94,8 +92,15 @@ namespace KComicReader
         private void btnLeer_Click(object sender, EventArgs e)
         {
             //Creo un formulario con el cómic seleccionado.
-            FormLeer formLeer = new FormLeer(comicSeleccionado);
-            formLeer.Show();
+            if(File.Exists(comicSeleccionado.ArchivoURL))
+            {
+                FormLeer formLeer = new FormLeer(comicSeleccionado);
+                formLeer.Show();
+            }
+            else
+            {
+                MessageBox.Show("No se encuentra el archivo del cómic.\nPrueba a eliminar el cómic y agregarlo de nuevo a la colección", "Error al abrir el archivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

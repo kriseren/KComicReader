@@ -22,6 +22,7 @@ namespace KComicReader
         public String Editorial { get; set; }
         public String Dibujante { get; set; }
         public String Guionista { get; set; }
+        public String Categoria { get; set; }
         public Image Portada
         {
             get { return pbPortada.Image; }

@@ -35,7 +35,6 @@ namespace KComicReader
             if (ofd_FicheroComic.ShowDialog() == DialogResult.OK)
             {
                 //Almaceno la url del fichero en las variables.
-                lblPortada.Text = ofd_FicheroComic.SafeFileName;
                 comic.ArchivoURL = ofd_FicheroComic.FileName;
 
                 //Extraigo la portada y la muestro. 
@@ -66,6 +65,7 @@ namespace KComicReader
             comic.Portada = pbPortada.Image;
             comic.Guionista = tbGuionista.Text;
             comic.Dibujante = tbDibujante.Text;
+            comic.Categoria = cbCategoria.Text;
             comic.ArchivoURL = Path.Combine(rutaDirectorio, Path.GetFileName(comic.ArchivoURL));
         }
 
@@ -89,11 +89,6 @@ namespace KComicReader
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
