@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace KComicReader
 
         //Definición de atributos.
         public Comic comic = new Comic();
+        private OpenFileDialog ofd_FicheroComic;
 
         public FormAgregarComic()
         {
@@ -28,7 +30,7 @@ namespace KComicReader
         private void btnArchivo_Click(object sender, EventArgs e)
         {
             //Creo un OpenFileDialog y le defino las propiedades.
-            OpenFileDialog ofd_FicheroComic = new OpenFileDialog();
+            ofd_FicheroComic = new OpenFileDialog();
             ofd_FicheroComic.Filter = "Fichero CBR (*.cbr)|*.cbr";
             ofd_FicheroComic.Title = "Selecciona el archivo del cómic a importar.";
 
@@ -48,26 +50,46 @@ namespace KComicReader
         //Método que se activa cuando el usuario pulsa el botón de agregar el cómic.    
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //Ruta del directorio donde se guardará el cómic.
-            string rutaDirectorio = @"C:\KComicReader\Comics";
+            //Si todos los campos obligatorios han sido rellenados, sino se informa al usuario y se cambia su color para mayor claridad.
+            if (tbTitulo.Text !="" && cbIdioma.Text !="" && ofd_FicheroComic.FileName != "")
+            {
+                //Ruta del directorio donde se guardará el cómic.
+                string rutaDirectorio = @"C:\KComicReader\Comics";
 
-            //Crea el directorio si no existe.
-            if (!Directory.Exists(rutaDirectorio))
-                Directory.CreateDirectory(rutaDirectorio);
+                //Crea el directorio si no existe.
+                if (!Directory.Exists(rutaDirectorio))
+                    Directory.CreateDirectory(rutaDirectorio);
 
-            //Copio el archivo de cómic al directorio especificado si no existe ya.
-            if(!File.Exists(Path.Combine(rutaDirectorio, Path.GetFileName(comic.ArchivoURL))))
-                File.Copy(comic.ArchivoURL, Path.Combine(rutaDirectorio, Path.GetFileName(comic.ArchivoURL)));
+                //Copio el archivo de cómic al directorio especificado si no existe ya.
+                if (!File.Exists(Path.Combine(rutaDirectorio, Path.GetFileName(comic.ArchivoURL))))
+                    File.Copy(comic.ArchivoURL, Path.Combine(rutaDirectorio, Path.GetFileName(comic.ArchivoURL)));
 
-            //Defino las propiedades del cómic.
-            comic.Titulo = tbTitulo.Text;
-            comic.Editorial = cbEditorial.Text;
-            comic.Portada = pbPortada.Image;
-            comic.Guionista = tbGuionista.Text;
-            comic.Dibujante = tbDibujante.Text;
-            comic.Categoria = cbCategoria.Text;
-            comic.ArchivoURL = Path.Combine(rutaDirectorio, Path.GetFileName(comic.ArchivoURL));
-            comic.NumPaginasTotales = (uint)ArchiveFactory.Open(comic.ArchivoURL).Entries.Count();
+                //Defino las propiedades del cómic.
+                comic.Titulo = tbTitulo.Text;
+                comic.Editorial = cbEditorial.Text;
+                comic.Portada = pbPortada.Image;
+                comic.Guionista = tbGuionista.Text;
+                comic.Dibujante = tbDibujante.Text;
+                comic.Categoria = cbCategoria.Text;
+                comic.ArchivoURL = Path.Combine(rutaDirectorio, Path.GetFileName(comic.ArchivoURL));
+                comic.NumPaginasTotales = (uint)ArchiveFactory.Open(comic.ArchivoURL).Entries.Count();
+
+                //Defino el dialogresult del botón.
+                btnAgregar.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                //Se cambia el color de la fuente y se vuelve negrita.
+                lblTitulo.ForeColor = Color.DarkRed;
+                //lblTitulo.Font = new Font(lblTitulo.Font, FontStyle.Bold);
+                lblIdioma.ForeColor = Color.DarkRed;
+                //lblIdioma.Font = new Font(lblIdioma.Font, FontStyle.Bold);
+                lblArchivo.ForeColor = Color.DarkRed;
+                //lblArchivo.Font = new Font(lblArchivo.Font, FontStyle.Bold);
+                MessageBox.Show(this, "Los campos marcados en rojo son obligatorios.\nPor favor rellénalos antes de agregar un nuevo cómic.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.None;
+            }
+            
         }
 
         //Método que extrae la primera imagen de un archivo .CBR y la devuelve.

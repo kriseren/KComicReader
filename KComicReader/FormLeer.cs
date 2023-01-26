@@ -14,8 +14,8 @@ namespace KComicReader
         private uint numPag = 0;
         private IArchive archive; //Contiene el archivo descomprimido.
         private bool zoomOn = false;
-        private double aspectRatio;
         private Image imgOriginal;
+
         //Constructor general de la clase.
         public FormLeer(Comic comic)
         {
@@ -25,15 +25,13 @@ namespace KComicReader
             this.numPag = comic.NumPaginaActual;
             archive = ArchiveFactory.Open(comic.ArchivoURL);
             this.Text = comic.Titulo;
-
-            aspectRatio = (double)pbPagina.Image.Height / (double)pbPagina.Image.Width;
         }
 
         //Método que se ejecuta cuando el formulario es cargado.
         private void FormLeer_Load(object sender, EventArgs e)
         {
             definePagina();
-            lblNumPaginas.Text = "Página " + numPag + " de " + comic.NumPaginasTotales;
+            lblNumPaginas.Text = "Página " + (numPag + 1) + " de " + comic.NumPaginasTotales;
         }
 
         //Método que define la página que se está visualizando.
@@ -58,21 +56,21 @@ namespace KComicReader
             anteriorPagina();
         }
 
+
         //Método que se ejecuta cuando el usuario pulsa cualquier tecla dentro del formulario.
         private void key_Down(object sender, KeyEventArgs e)
         {
             //Dependiendo de la tecla pulsada.
             switch(e.KeyCode)
             {
-                case Keys.Right: siguientePagina() ;break;
-                case Keys.Left: anteriorPagina();break;
-                case Keys.Up:
-                    pbPagina.AutoScrollOffset = new Point(pbPagina.AutoScrollOffset.X, pbPagina.AutoScrollOffset.Y + 10);
-                    break;
-                case Keys.Down:
-                    pbPagina.AutoScrollOffset = new Point(pbPagina.AutoScrollOffset.X, pbPagina.AutoScrollOffset.Y - 10);
-                    break;
+                case Keys.Right:
+                case Keys.D: siguientePagina() ;break;
+
+                case Keys.Left:
+                case Keys.A:anteriorPagina();break;
+
                 case Keys.Z: zoom();break;
+                case Keys.M: marcar();break;
             }
         }
 
@@ -85,13 +83,7 @@ namespace KComicReader
                 numPag--;
                 definePagina();
             }
-
-            //Cambio el texto.
-            lblNumPaginas.Text = "Página " + numPag + " de " + comic.NumPaginasTotales;
-
-            //Si el zoom está activo, se define el zoom.
-            if (zoomOn)
-                defineZoom();
+            cambiaPaginaComun();
         }
 
         //Método que carga la página siguiente.
@@ -103,12 +95,21 @@ namespace KComicReader
                 numPag++;
                 definePagina();
             }
-            //Cambio el texto.
-            lblNumPaginas.Text = "Página " + numPag + " de " + comic.NumPaginasTotales;
+            cambiaPaginaComun();
+        }
+
+        //Método que realiza las líneas de código comunes cuando se cambia de página.
+        private void cambiaPaginaComun()
+        {
+            //Cambio el texto que indica las páginas.
+            lblNumPaginas.Text = "Página " + (numPag + 1) + " de " + comic.NumPaginasTotales;
 
             //Si el zoom está activo, se define el zoom.
-            if(zoomOn)
-                defineZoom();
+            if (zoomOn)
+                zoomIn();
+
+            //Defino la imagen del botón del marcador.
+            btnMarcador.Image = Image.FromFile(@"..\..\imgs\icons\mark.png");
         }
 
         //Método que se ejecuta cuando el usuario pulsa en el botón de zoom.
@@ -127,36 +128,55 @@ namespace KComicReader
             if (zoomOn)
             {
                 btnZoom.Image = Image.FromFile(@"..\..\imgs\icons\zoomOut.png");
-                defineZoom();
+                zoomIn();
             }
             else
             {
-                pbPagina.Image = imgOriginal;
                 btnZoom.Image = Image.FromFile(@"..\..\imgs\icons\zoomIn.png");
-                pbPagina.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
-                pbPagina.Dock = DockStyle.Fill;
-                pbPagina.SizeMode = PictureBoxSizeMode.Zoom;
+                zoomOut();
             }
         }
 
-        //Método que redimensiona la imagen dependiendo del tamaño del formulario.
-        private void defineZoom()
+        //Método que redimensiona la imagen dependiendo del ancho del panel tamaño del formulario.
+        private void zoomIn()
         {
-            pbPagina.Dock = DockStyle.None;
             pbPagina.Anchor = AnchorStyles.Top;
             pbPagina.SizeMode = PictureBoxSizeMode.AutoSize;
             int anchoNuevo = panelImage.Width;
             int altoOriginal = imgOriginal.Height;
+
+            //Defino un nuevo tamaño calculando el alto con la proporción original.
             Size newSize = new Size((int)(anchoNuevo), (int)((altoOriginal * anchoNuevo) / imgOriginal.Width));
             pbPagina.Image = new Bitmap(pbPagina.Image, newSize);
         }
 
+        //Método que devuelve la imagen al estado inicial, sin el zoom.
+        private void zoomOut()
+        {
+            pbPagina.Image = imgOriginal;
+            pbPagina.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+            pbPagina.Dock = DockStyle.Fill;
+            pbPagina.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
         //Método que se ejecuta cuando el usuario redimensiona el formulario.
         private void Form_Resize(object sender, EventArgs e)
+        { 
+            zoomOut();
+        }
+
+        //Método que se ejecuta cuando el usuario pulsa el botón de marcar página.
+        private void btnMarcador_Click(object sender, EventArgs e)
         {
-            //Si el zoom está activado, se define el zoom.
-            if(zoomOn)
-                defineZoom();
+            marcar();
+        }
+
+        //Método que marca la página actual y la almacena.
+        private void marcar()
+        {
+            //Defino la imagen.
+            btnMarcador.Image = Image.FromFile(@"..\..\imgs\icons\marked.png");
+            comic.NumPaginaActual = numPag;
         }
     }
 }

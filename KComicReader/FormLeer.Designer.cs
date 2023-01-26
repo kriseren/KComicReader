@@ -94,6 +94,7 @@
             this.btnMarcador.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMarcador.TabIndex = 2;
             this.btnMarcador.TabStop = false;
+            this.btnMarcador.Click += new System.EventHandler(this.btnMarcador_Click);
             // 
             // btnAnteriorPagina
             // 
