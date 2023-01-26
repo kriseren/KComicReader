@@ -32,10 +32,15 @@ namespace KComicReader
         public String ArchivoURL { get; set; }
         public EventHandler eventoClick{ get; set; }
         public EventHandler eventoDobleClick{ get; set; }
+        public uint NumPaginaActual { get; set; }
+        public uint NumPaginasTotales { get; set; }
 
         public Comic()
         {
             InitializeComponent();
+
+            //Se inicializa el número de página actual.
+            NumPaginaActual = 0;
         }
 
         //Método que se ejecuta cuando el usuario hace click en cualquiera de los componentes del control.

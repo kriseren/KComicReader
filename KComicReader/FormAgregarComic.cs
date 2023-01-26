@@ -67,6 +67,7 @@ namespace KComicReader
             comic.Dibujante = tbDibujante.Text;
             comic.Categoria = cbCategoria.Text;
             comic.ArchivoURL = Path.Combine(rutaDirectorio, Path.GetFileName(comic.ArchivoURL));
+            comic.NumPaginasTotales = (uint)ArchiveFactory.Open(comic.ArchivoURL).Entries.Count();
         }
 
         //Método que extrae la primera imagen de un archivo .CBR y la devuelve.
@@ -79,7 +80,16 @@ namespace KComicReader
                 IArchive archive = ArchiveFactory.Open(archivoURL);
                 //Obtengo el primer elemento y lo almaceno en la variable imagen.
                 IArchiveEntry portada = archive.Entries.First();
-                imagen = Image.FromStream(portada.OpenEntryStream());
+                //Intento definir la imagen, si da error se informa al usuario.
+                try
+                {
+                    imagen = Image.FromStream(portada.OpenEntryStream());
+                }
+                catch(ArgumentException)
+                {
+                    imagen = Image.FromFile(@"..\..\imgs\icons\comicCover.jpg");
+                    MessageBox.Show("Ha ocurrido un error al abrir el archivo. Por favor, selecciona otro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (InvalidOperationException)
             {

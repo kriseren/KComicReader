@@ -165,7 +165,10 @@
   <ItemGroup>
     <Content Include="imgs\bg\comic zoom speed.jpg" />
     <Content Include="imgs\icons\add.png" />
+    <Content Include="imgs\icons\comicCover.jpg" />
     <Content Include="imgs\icons\readingComic.ico" />
+    <Content Include="imgs\icons\zoomIn.png" />
+    <Content Include="imgs\icons\zoomOut.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

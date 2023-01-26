@@ -38,7 +38,6 @@ namespace KComicReader
             }
         }
 
-        // TODO: Controlar el click en los cómics para poder mostrar la información.
         //Método que se ejecuta cuando el usuario pulsa encima de un cómic.
         private void Comic_Click(object sender, EventArgs e)
         {
@@ -86,6 +85,8 @@ namespace KComicReader
 
             //Agrego un eventHandler al botón de agregar cómic dentro del fwp.
             agregarComicBtn.eventoClick += pbBtnAgregar_Click;
+
+
         }
 
         //Método que se ejecuta cuando el usuario pulsa el botón de leer cómic.
