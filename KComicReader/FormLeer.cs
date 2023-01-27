@@ -106,7 +106,9 @@ namespace KComicReader
 
             //Si el zoom está activo, se define el zoom.
             if (zoomOn)
+            {
                 zoomIn();
+            }
 
             //Defino la imagen del botón del marcador.
             btnMarcador.Image = Image.FromFile(@"..\..\imgs\icons\mark.png");

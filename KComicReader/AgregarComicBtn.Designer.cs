@@ -51,7 +51,7 @@ namespace KComicReader
             this.lblTitulo.AutoEllipsis = true;
             this.lblTitulo.Font = new System.Drawing.Font("Miriam CLM", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(6, 236);
-            this.lblTitulo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblTitulo.Margin = new System.Windows.Forms.Padding(3);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.lblTitulo.Size = new System.Drawing.Size(140, 42);

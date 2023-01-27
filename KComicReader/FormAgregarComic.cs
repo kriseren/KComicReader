@@ -1,4 +1,5 @@
-﻿using SharpCompress.Archives;
+﻿using MySqlConnector;
+using SharpCompress.Archives;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,18 +20,27 @@ namespace KComicReader
         //Definición de atributos.
         public Comic comic = new Comic();
         private OpenFileDialog ofd_FicheroComic;
+        
 
         public FormAgregarComic()
         {
             InitializeComponent();
             this.CenterToParent();
+            ofd_FicheroComic = new OpenFileDialog();
+        }
+
+        public FormAgregarComic(Comic c)
+        {
+            InitializeComponent();
+            this.CenterToParent();
+            this.comic = c;
+            ofd_FicheroComic = new OpenFileDialog();
         }
 
         //Método que se activa cuando se pulsa el botón de seleccionar archivo.
         private void btnArchivo_Click(object sender, EventArgs e)
         {
             //Creo un OpenFileDialog y le defino las propiedades.
-            ofd_FicheroComic = new OpenFileDialog();
             ofd_FicheroComic.Filter = "Fichero CBR (*.cbr)|*.cbr";
             ofd_FicheroComic.Title = "Selecciona el archivo del cómic a importar.";
 
@@ -67,10 +77,14 @@ namespace KComicReader
                 //Defino las propiedades del cómic.
                 comic.Titulo = tbTitulo.Text;
                 comic.Editorial = cbEditorial.Text;
+                comic.EditorialID = (int)cbEditorial.SelectedValue;
                 comic.Portada = pbPortada.Image;
                 comic.Guionista = tbGuionista.Text;
                 comic.Dibujante = tbDibujante.Text;
                 comic.Categoria = cbCategoria.Text;
+                comic.CategoriaID = (int)cbCategoria.SelectedValue;
+                comic.Idioma = cbIdioma.Text;
+                comic.IdiomaID = (int)cbIdioma.SelectedValue;
                 comic.ArchivoURL = Path.Combine(rutaDirectorio, Path.GetFileName(comic.ArchivoURL));
                 comic.NumPaginasTotales = (uint)ArchiveFactory.Open(comic.ArchivoURL).Entries.Count();
 
@@ -89,7 +103,6 @@ namespace KComicReader
                 MessageBox.Show(this, "Los campos marcados en rojo son obligatorios.\nPor favor rellénalos antes de agregar un nuevo cómic.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.None;
             }
-            
         }
 
         //Método que extrae la primera imagen de un archivo .CBR y la devuelve.
@@ -128,6 +141,62 @@ namespace KComicReader
         private void tbTitulo_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        //Método que se ejecuta cuando se carga el formulario.
+        private void FormAgregarComic_Load(object sender, EventArgs e)
+        {
+            //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
+            try
+            {
+                //Obtengo la conexión y los objetos necesarios.
+                MySqlConnection con = DataBaseConnectivity.getConnection();
+                con.Open();
+
+                //Editorial.
+                string query = "SELECT id, nombre FROM EDITORIALES";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                cbEditorial.DataSource = ds.Tables[0];
+                cbEditorial.DisplayMember = "nombre";
+                cbEditorial.ValueMember = "id";
+
+                //Categoría.
+                query = "SELECT id, nombre FROM CATEGORIAS";
+                adapter = new MySqlDataAdapter(query, con);
+                ds = new DataSet();
+                adapter.Fill(ds);
+                cbCategoria.DataSource = ds.Tables[0];
+                cbCategoria.DisplayMember = "nombre";
+                cbCategoria.ValueMember = "id";
+
+                //Idioma.
+                query = "SELECT id, nombre FROM IDIOMAS";
+                adapter = new MySqlDataAdapter(query, con);
+                ds = new DataSet();
+                adapter.Fill(ds);
+                cbIdioma.DataSource = ds.Tables[0];
+                cbIdioma.DisplayMember = "nombre";
+                cbIdioma.ValueMember = "id";
+
+                //Cierro la conexión.
+                con.Close();
+            }
+            catch(MySqlException)
+            {
+                MessageBox.Show("Ha ocurrido un error al conectar a la base de datos. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //Defino todas las propiedades según los datos del cómic.
+            tbTitulo.Text = comic.Titulo;
+            cbEditorial.Text = comic.Editorial;
+            tbGuionista.Text = comic.Guionista;
+            tbDibujante.Text = comic.Dibujante;
+            cbCategoria.Text = comic.Categoria;
+            cbIdioma.Text = comic.Idioma;
+            pbPortada.Image = comic.Portada;
+            ofd_FicheroComic.FileName = comic.ArchivoURL;
         }
     }
 }
