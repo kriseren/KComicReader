@@ -1,13 +1,9 @@
 ﻿using MySqlConnector;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KComicReader
@@ -81,11 +77,29 @@ namespace KComicReader
             fwpComics.Controls.AddRange(comics.ToArray());
         }
 
+
         //Método que se ejecuta cuando se carga el formulario.
         private void FormVistaPrincipal_Load(object sender, EventArgs e)
         {
-            //Obtengo todos los comics dados de alta en la base de datos.
-            cargaTodosComics();
+            //Se comprueba que la base de datos exista En caso contrario se cr.
+            if(existeDB())
+            {
+                //Obtengo todos los comics dados de alta en la base de datos.
+                cargaTodosComics();
+            }
+            /*else
+            {
+                string connectionString = "server=localhost;user=root;password=;";
+                MySqlConnection connection = new MySqlConnection(connectionString);
+
+                // Crea una instancia de MySqlScript y establece el script a ejecutar
+                MySqlScript script = new MySqlScript(connection, "path/to/script.sql");
+
+                // Abre la conexión a la base de datos y ejecuta el script
+                connection.Open();
+                script.Execute();
+                connection.Close();
+            }*/
 
             //Muestro la vista vacía.
             panelRightVacia.BringToFront();
@@ -93,6 +107,29 @@ namespace KComicReader
 
             //Agrego un eventHandler al botón de agregar cómic dentro del fwp.
             agregarComicBtn.eventoClick += pbBtnAgregar_Click;
+        }
+
+        //Método que comprueba si la base de datos existe, de lo contrario se crea.
+        private bool existeDB()
+        {
+            bool existe = false;
+            string connectionString = "Server=localhost;Database=information_schema;Uid=root;Pwd=;";
+            string db = "kcomicreader";
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand($"SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name = '{db}'", connection);
+                    existe = Convert.ToInt32(command.ExecuteScalar()) > 0;
+                    connection.Close();
+                }
+            }
+            catch(MySqlException)
+            {
+                MessageBox.Show("Ha ocurrido un error al conectar con la base de datos.\nPrueba a iniciar el servidor de MYSQL.", "Error al conectar a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return existe;
         }
 
         //Método que se ejecuta cuando el usuario pulsa el botón de leer cómic.

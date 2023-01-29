@@ -23,6 +23,5 @@ namespace KComicReader
             }
             return connection;
         }
-        
     }
 }
