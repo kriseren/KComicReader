@@ -17,7 +17,6 @@ namespace KComicReader
         [STAThread]
         static void Main()
         {
-            //TODO Preguntar si se puede iniciar mySQL desde C#.
             //Inicia el servidor de MYSQL.
             try
             {

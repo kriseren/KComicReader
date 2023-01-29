@@ -37,8 +37,8 @@ namespace KComicReader
             set { pbPortada.Image = value; }
         }
         public String ArchivoURL { get; set; }
-        public EventHandler eventoClick{ get; set; }
-        public EventHandler eventoDobleClick{ get; set; }
+        public EventHandler eventoClick { get; set; }
+        public EventHandler eventoDobleClick { get; set; }
         public uint NumPaginaActual { get; set; }
         public uint NumPaginasTotales { get; set; }
 
@@ -103,9 +103,52 @@ namespace KComicReader
                 //Cierro la conexión.
                 con.Close();
             }
-            catch(MySqlException)
+            catch (MySqlException)
             {
-                MessageBox.Show("Ha ocurrido un error al conectar a la base de datos. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se ha podido dar de alta el cómic. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //Método que recibe un cómic se actualiza en la base de datos obteniendo las nuevas propiedades.
+        public void actualiza(Comic c)
+        {
+            try
+            {
+                //Obtengo la conexión y los objetos necesarios.
+                MySqlConnection con = DataBaseConnectivity.getConnection();
+                con.Open();
+                MySqlCommand cmd = con.CreateCommand();
+
+                //Actualizo el comic.
+                cmd.CommandText = "UPDATE comics SET titulo = @titulo, dibujante = @dibujante, guionista = @guionista, portada = @portada, archivoURL = @archivoURL, numPagina = @numPagina, numPaginasTotales = @numPaginasTotales, categoria_id = @categoria_id, idioma_id = @idioma_id, editorial_id = @editorial_id WHERE id = @id";
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@titulo", c.Titulo);
+                cmd.Parameters.AddWithValue("@dibujante", c.Dibujante);
+                cmd.Parameters.AddWithValue("@guionista", c.Guionista);
+                cmd.Parameters.AddWithValue("@archivoURL", c.ArchivoURL);
+                cmd.Parameters.AddWithValue("@numPagina", c.NumPaginaActual);
+                cmd.Parameters.AddWithValue("@numPaginasTotales", c.NumPaginasTotales);
+                cmd.Parameters.AddWithValue("@categoria_id", c.CategoriaID);
+                cmd.Parameters.AddWithValue("@idioma_id", c.IdiomaID);
+                cmd.Parameters.AddWithValue("@editorial_id", c.EditorialID);
+                cmd.Parameters.AddWithValue("@id",this.Id);
+                //Defino la portada.
+                using (var memoryStream = new MemoryStream())
+                {
+                    Portada.Save(memoryStream, ImageFormat.Jpeg);
+                    byte[] imageBytes = memoryStream.ToArray();
+                    cmd.Parameters.AddWithValue("@portada", imageBytes);
+                }
+
+                //Realizo la actualización.
+                int res = cmd.ExecuteNonQuery();
+
+                //Cierro la conexión.
+                con.Close();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("No se ha podido actualizar el cómic. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -17,26 +17,35 @@ CREATE TABLE EDITORIALES (
   nombre VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE SERIES (
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(255) NOT NULL,
+  editorial_id INT(11) NOT NULL,
+  FOREIGN KEY (editorial_id) REFERENCES EDITORIALES(id)
+);
+
 
 CREATE TABLE COMICS (
   id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   titulo VARCHAR(255) NOT NULL,
   dibujante VARCHAR(255),
   guionista VARCHAR(255),
-  portada BLOB,
+  portada LONGBLOB,
   archivoURL VARCHAR(255) NOT NULL,
   numPagina INT(11) NOT NULL,
   numPaginasTotales INT(11) NOT NULL,
   categoria_id INT(11) NOT NULL,
   idioma_id INT(11) NOT NULL,
   editorial_id INT(11) NOT NULL,
+  serie_id INT(11) NOT NULL,
   FOREIGN KEY (categoria_id) REFERENCES CATEGORIAS(id),
   FOREIGN KEY (idioma_id) REFERENCES IDIOMAS(id),
-  FOREIGN KEY (editorial_id) REFERENCES EDITORIALES(id)
+  FOREIGN KEY (editorial_id) REFERENCES EDITORIALES(id),
+  FOREIGN KEY (serie_id) REFERENCES SERIES(id)
 );
 
 /*INSERCIÓN DE LAS EDITORIALES*/
-INSERT INTO EDITORIALES (nombre) VALUES ('Marvel Comics'), ('Detective Comics (DC)'), ('IDW Publishing'), ('Image Comics'), ('Dark Horse Comics'), ('Boom'), ('Norma Editorial');
+INSERT INTO EDITORIALES (nombre) VALUES ('Sin asignar'),('Marvel Comics'), ('Detective Comics (DC)'), ('IDW Publishing'), ('Image Comics'), ('Dark Horse Comics'), ('Boom'), ('Norma Editorial');
 
 /*INSERCIÓN DE LOS IDIOMAS*/
 INSERT INTO IDIOMAS (nombre) VALUES
@@ -79,7 +88,6 @@ INSERT INTO IDIOMAS (nombre) VALUES
 ('Xhosa'),
 ('Yidis'),
 ('Zulú');
-
 
 /*INSERCIÓN DE CATEGORÍAS*/
 INSERT INTO CATEGORIAS (nombre) VALUES ('Sin asignar'),('Superhéroes'),('Manga'),('Novela gráfica'),('Humor'),('Otros');

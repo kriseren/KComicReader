@@ -95,6 +95,18 @@
     <Compile Include="FormAgregarComic.Designer.cs">
       <DependentUpon>FormAgregarComic.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAgregarSerie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAgregarSerie.Designer.cs">
+      <DependentUpon>FormAgregarSerie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAgregarEditorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAgregarEditorial.Designer.cs">
+      <DependentUpon>FormAgregarEditorial.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormBienvenida.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +135,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAgregarComic.resx">
       <DependentUpon>FormAgregarComic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAgregarSerie.resx">
+      <DependentUpon>FormAgregarSerie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAgregarEditorial.resx">
+      <DependentUpon>FormAgregarEditorial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBienvenida.resx">
       <DependentUpon>FormBienvenida.cs</DependentUpon>

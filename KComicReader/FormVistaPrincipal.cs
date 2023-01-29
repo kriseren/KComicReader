@@ -32,7 +32,6 @@ namespace KComicReader
                 comic.guarda();
                 //Agrego el cómic al fwp.
                 this.fwpComics.Controls.Add(comic);
-
                 //Ordeno los cómics por título.
                 ordenaComicsPorTitulo();
             }
@@ -174,9 +173,12 @@ namespace KComicReader
 
             if (formEditar.ShowDialog() == DialogResult.OK)
             {
-                //Obtengo el comic, defino un controlador de eventos click y lo agrego al flowLayout.
-                comicSeleccionado.Titulo = formEditar.comic.Titulo;
-                comicSeleccionado.Dibujante = formEditar.comic.Dibujante;
+                //Obtengo el comic con los nuevos atributos y lo actualizo en la base de datos.
+                comicSeleccionado.actualiza(formEditar.comic);
+
+                //Elimino el cómic seleccionado del fwp y agrego el nuevo.
+                fwpComics.Controls.Remove(comicSeleccionado);
+                fwpComics.Controls.Add(formEditar.comic);
 
                 //Ordeno los cómics por título.
                 ordenaComicsPorTitulo();
@@ -203,6 +205,7 @@ namespace KComicReader
                     //Creo el cómic.
                     c = new Comic();
                     //Defino las propiedades.
+                    c.Id = reader.GetInt32("id");
                     c.Titulo = reader.GetString("titulo");
                     c.Dibujante = reader.GetString("dibujante");
                     c.Guionista = reader.GetString("guionista");
@@ -227,7 +230,7 @@ namespace KComicReader
             }
             catch (MySqlException)
             {
-                MessageBox.Show("Ha ocurrido un error al conectar a la base de datos. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se han podido recuperar los cómcis dados de alta. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
