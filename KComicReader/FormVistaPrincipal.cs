@@ -216,6 +216,8 @@ namespace KComicReader
                     c.CategoriaID = reader.GetInt32("categoria_id");
                     c.IdiomaID = reader.GetInt32("idioma_id");
                     c.EditorialID = reader.GetInt32("editorial_id");
+                    c.SerieID = reader.GetInt32("serie_id");
+                    c.Numero = (uint)reader.GetInt32("numero");
 
                     //Defino los controladores de los eventos.
                     c.eventoClick += new EventHandler(Comic_Click);

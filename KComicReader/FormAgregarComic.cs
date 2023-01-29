@@ -79,6 +79,8 @@ namespace KComicReader
                 comic.Titulo = tbTitulo.Text;
                 comic.Editorial = cbEditorial.Text;
                 comic.EditorialID = (int)cbEditorial.SelectedValue;
+                comic.Serie = cbSerie.Text;
+                comic.SerieID = (int)cbSerie.SelectedValue;
                 comic.Portada = pbPortada.Image;
                 comic.Guionista = tbGuionista.Text;
                 comic.Dibujante = tbDibujante.Text;
@@ -88,6 +90,7 @@ namespace KComicReader
                 comic.IdiomaID = (int)cbIdioma.SelectedValue;
                 comic.ArchivoURL = Path.Combine(rutaDirectorio, Path.GetFileName(comic.ArchivoURL));
                 comic.NumPaginasTotales = (uint)ArchiveFactory.Open(comic.ArchivoURL).Entries.Count();
+                comic.Numero = (uint)nbNumero.Value;
 
                 //Defino el dialogresult del botón.
                 btnAgregar.DialogResult = DialogResult.OK;
@@ -139,7 +142,9 @@ namespace KComicReader
 
             //Defino todas las propiedades según los datos del cómic.
             tbTitulo.Text = comic.Titulo;
-            cbEditorial.Text = comic.Editorial;
+            cbEditorial.SelectedValue = comic.EditorialID;
+            nbNumero.Value = comic.Numero;
+            cbSerie.SelectedValue = comic.SerieID;
             tbGuionista.Text = comic.Guionista;
             tbDibujante.Text = comic.Dibujante;
             cbCategoria.Text = comic.Categoria;

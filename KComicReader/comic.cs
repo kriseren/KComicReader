@@ -31,6 +31,9 @@ namespace KComicReader
         public int CategoriaID { get; set; }
         public String Idioma { get; set; }
         public int IdiomaID { get; set; }
+        public String Serie { get; set; }
+        public int SerieID { get; set; }
+        public uint Numero { get; set; }
         public System.Drawing.Image Portada
         {
             get { return pbPortada.Image; }
@@ -78,7 +81,7 @@ namespace KComicReader
                 MySqlCommand cmd = con.CreateCommand();
 
                 //Inserto el comic
-                cmd.CommandText = "INSERT INTO COMICS (titulo, dibujante, guionista,portada, archivoURL, numPagina, numPaginasTotales, categoria_id, idioma_id, editorial_id) VALUES (@titulo, @dibujante, @guionista,@portada, @archivoURL, @numPagina, @numPaginasTotales, @categoria_id, @idioma_id, @editorial_id)";
+                cmd.CommandText = "INSERT INTO COMICS (titulo, dibujante, guionista,portada, archivoURL, numPagina, numPaginasTotales, categoria_id, idioma_id, editorial_id,serie_id,numero) VALUES (@titulo, @dibujante, @guionista,@portada, @archivoURL, @numPagina, @numPaginasTotales, @categoria_id, @idioma_id, @editorial_id, @serie_id,@numero)";
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@titulo", Titulo);
                 cmd.Parameters.AddWithValue("@dibujante", Dibujante);
@@ -89,6 +92,8 @@ namespace KComicReader
                 cmd.Parameters.AddWithValue("@categoria_id", CategoriaID);
                 cmd.Parameters.AddWithValue("@idioma_id", IdiomaID);
                 cmd.Parameters.AddWithValue("@editorial_id", EditorialID);
+                cmd.Parameters.AddWithValue("@serie_id", SerieID);
+                cmd.Parameters.AddWithValue("@numero", Numero);
                 //Defino la portada.
                 using (var memoryStream = new MemoryStream())
                 {
@@ -120,7 +125,7 @@ namespace KComicReader
                 MySqlCommand cmd = con.CreateCommand();
 
                 //Actualizo el comic.
-                cmd.CommandText = "UPDATE comics SET titulo = @titulo, dibujante = @dibujante, guionista = @guionista, portada = @portada, archivoURL = @archivoURL, numPagina = @numPagina, numPaginasTotales = @numPaginasTotales, categoria_id = @categoria_id, idioma_id = @idioma_id, editorial_id = @editorial_id WHERE id = @id";
+                cmd.CommandText = "UPDATE comics SET titulo = @titulo, dibujante = @dibujante, guionista = @guionista, portada = @portada, archivoURL = @archivoURL, numPagina = @numPagina, numPaginasTotales = @numPaginasTotales, categoria_id = @categoria_id, idioma_id = @idioma_id, editorial_id = @editorial_id, serie_id = @serie_id, numero = @numero WHERE id = @id";
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@titulo", c.Titulo);
                 cmd.Parameters.AddWithValue("@dibujante", c.Dibujante);
@@ -131,7 +136,10 @@ namespace KComicReader
                 cmd.Parameters.AddWithValue("@categoria_id", c.CategoriaID);
                 cmd.Parameters.AddWithValue("@idioma_id", c.IdiomaID);
                 cmd.Parameters.AddWithValue("@editorial_id", c.EditorialID);
+                cmd.Parameters.AddWithValue("@serie_id", c.SerieID);
+                cmd.Parameters.AddWithValue("@numero", c.Numero);
                 cmd.Parameters.AddWithValue("@id",this.Id);
+
                 //Defino la portada.
                 using (var memoryStream = new MemoryStream())
                 {
