@@ -72,6 +72,8 @@
             this.btnZoom.TabIndex = 4;
             this.btnZoom.TabStop = false;
             this.btnZoom.Click += new System.EventHandler(this.Zoom_Click);
+            this.btnZoom.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
+            this.btnZoom.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
             // lblNumPaginas
             // 
@@ -95,6 +97,8 @@
             this.btnMarcador.TabIndex = 2;
             this.btnMarcador.TabStop = false;
             this.btnMarcador.Click += new System.EventHandler(this.btnMarcador_Click);
+            this.btnMarcador.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
+            this.btnMarcador.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
             // btnAnteriorPagina
             // 
@@ -108,6 +112,8 @@
             this.btnAnteriorPagina.TabIndex = 1;
             this.btnAnteriorPagina.TabStop = false;
             this.btnAnteriorPagina.Click += new System.EventHandler(this.btnAnterior_Click);
+            this.btnAnteriorPagina.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
+            this.btnAnteriorPagina.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
             // btnSiguientePagina
             // 
@@ -121,6 +127,8 @@
             this.btnSiguientePagina.TabIndex = 0;
             this.btnSiguientePagina.TabStop = false;
             this.btnSiguientePagina.Click += new System.EventHandler(this.btnSiguiente_Click);
+            this.btnSiguientePagina.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
+            this.btnSiguientePagina.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
             // panelImage
             // 

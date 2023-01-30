@@ -152,13 +152,13 @@ namespace KComicReader
             //Si el número de cómics es mayor de 0, se activa el botón de editar.
             if (fwpComics.Controls.OfType<Comic>().Count() > 0)
             {
-                btnEditar.Visible = true;
-                btnEditar.Enabled = true;
+                pbBtnEditar.Visible = true;
+                pbBtnEditar.Enabled = true;
             }
             else
             {
-                btnEditar.Visible = false;
-                btnEditar.Enabled = false;
+                pbBtnEditar.Visible = false;
+                pbBtnEditar.Enabled = false;
             }
         }
 
@@ -234,6 +234,20 @@ namespace KComicReader
             {
                 MessageBox.Show("No se han podido recuperar los cómcis dados de alta. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        //Método que se ejecuta cuando el ratón entra en el área visible del botón.
+        private void Btn_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BackColor = Color.FromArgb(120,160, 101, 224);
+        }
+
+        //Método que se ejecuta cuando el ratón sale del área visible del botón.
+        private void Btn_MouseLeave(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BackColor = Color.Transparent;
         }
     }
 }

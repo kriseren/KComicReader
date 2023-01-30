@@ -349,17 +349,25 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando la editorial seleccionada cambia.
-        private void cbEditorial_SelectedValueChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         //Método que se ejecuta cuando el usuario escoge una opción del comboBox de Editorial.
         private void cbEditorial_SelectionChangeCommitted(object sender, EventArgs e)
         {
             defineSeries();
             cbSerie.Text = "";
+        }
+
+        //Método que se ejecuta cuando el mouse entra en el área visible del botón.
+        private void btn_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BackColor = Color.FromArgb(120, 160, 101, 224);
+        }
+
+        //Método que se ejecuta cuando el ratón sale del área visible del botón.
+        private void btn_MouseLeave(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BackColor = Color.Transparent;
         }
     }
 }

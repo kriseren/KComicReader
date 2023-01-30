@@ -174,11 +174,26 @@ namespace KComicReader
         }
 
         //Método que marca la página actual y la almacena.
+        //TODO Almacenar la página actual en la base de datos.
         private void marcar()
         {
             //Defino la imagen.
             btnMarcador.Image = Image.FromFile(@"..\..\imgs\icons\marked.png");
             comic.NumPaginaActual = numPag;
+        }
+
+        //Método que se ejecuta cuando el ratón entra en el área visible del botón.
+        private void Btn_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BackColor = Color.FromArgb(120, 160, 101, 224);
+        }
+
+        //Método que se ejecuta cuando el ratón sale del área visible del botón.
+        private void Btn_MouseLeave(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            pb.BackColor = Color.Transparent;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace KComicReader
             this.elemento = elemento;
 
             //Defino el título del formulario.
-            this.Text = "AGREGAR UNA NUEVA " + elemento.ToUpper();
+            this.lblTituloFormulario.Text = "AGREGAR UNA NUEVA " + elemento.ToUpper();
         }
 
         //Método que se ejecuta cuando el usuario pulsa el botón de agregar.
@@ -41,7 +41,6 @@ namespace KComicReader
         private bool existe()
         {
             bool existe = false;
-            string tabla="";
 
             //Se comprueba que no exista.
             try
