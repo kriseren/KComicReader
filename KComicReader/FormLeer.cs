@@ -186,14 +186,14 @@ namespace KComicReader
         private void Btn_MouseEnter(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
-            pb.BackColor = Color.FromArgb(120, 160, 101, 224);
+            pb.BackgroundImage = Image.FromFile(@"..\..\imgs\icons\hover.png");
         }
 
         //Método que se ejecuta cuando el ratón sale del área visible del botón.
         private void Btn_MouseLeave(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
-            pb.BackColor = Color.Transparent;
+            pb.BackgroundImage = null;
         }
     }
 }

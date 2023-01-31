@@ -32,6 +32,8 @@ namespace KComicReader
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVistaPrincipal));
             this.panelTop = new System.Windows.Forms.Panel();
             this.panelCenter = new System.Windows.Forms.Panel();
+            this.pbBtnEliminar = new System.Windows.Forms.PictureBox();
+            this.pbBtnLeer = new System.Windows.Forms.PictureBox();
             this.pbBtnEditar = new System.Windows.Forms.PictureBox();
             this.pbBtnAgregar = new System.Windows.Forms.PictureBox();
             this.fwpComics = new System.Windows.Forms.FlowLayoutPanel();
@@ -44,8 +46,6 @@ namespace KComicReader
             this.lblInfoIdioma = new System.Windows.Forms.Label();
             this.lblInfoCategoriaValue = new System.Windows.Forms.Label();
             this.lblInfoCategoria = new System.Windows.Forms.Label();
-            this.btnLeer = new System.Windows.Forms.Button();
-            this.lblAcciones = new System.Windows.Forms.Label();
             this.lblInfoGuionista = new System.Windows.Forms.Label();
             this.lblInfoGuionistaValue = new System.Windows.Forms.Label();
             this.lblInfoDibujanteValue = new System.Windows.Forms.Label();
@@ -60,8 +60,12 @@ namespace KComicReader
             this.panelLeftSeries = new System.Windows.Forms.Panel();
             this.lblPanelLeftSeriesTitle = new System.Windows.Forms.Label();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.lblInfoSerie = new System.Windows.Forms.Label();
+            this.lblInfoSerieValue = new System.Windows.Forms.Label();
             this.agregarComicBtn = new KComicReader.AgregarComicBtn();
             this.panelCenter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBtnEliminar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBtnLeer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnEditar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnAgregar)).BeginInit();
             this.fwpComics.SuspendLayout();
@@ -92,25 +96,66 @@ namespace KComicReader
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCenter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(140)))), ((int)(((byte)(217)))));
             this.panelCenter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelCenter.Controls.Add(this.pbBtnEliminar);
+            this.panelCenter.Controls.Add(this.pbBtnLeer);
             this.panelCenter.Controls.Add(this.pbBtnEditar);
             this.panelCenter.Controls.Add(this.pbBtnAgregar);
             this.panelCenter.Controls.Add(this.fwpComics);
             this.panelCenter.Location = new System.Drawing.Point(187, 68);
-            this.panelCenter.Margin = new System.Windows.Forms.Padding(10);
+            this.panelCenter.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(633, 495);
+            this.panelCenter.Size = new System.Drawing.Size(633, 540);
             this.panelCenter.TabIndex = 1;
             this.panelCenter.Tag = "Agregar producto";
+            // 
+            // pbBtnEliminar
+            // 
+            this.pbBtnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbBtnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbBtnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbBtnEliminar.Enabled = false;
+            this.pbBtnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnEliminar.Image")));
+            this.pbBtnEliminar.Location = new System.Drawing.Point(582, 153);
+            this.pbBtnEliminar.Margin = new System.Windows.Forms.Padding(2, 24, 2, 2);
+            this.pbBtnEliminar.Name = "pbBtnEliminar";
+            this.pbBtnEliminar.Size = new System.Drawing.Size(45, 49);
+            this.pbBtnEliminar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbBtnEliminar.TabIndex = 4;
+            this.pbBtnEliminar.TabStop = false;
+            this.pbBtnEliminar.Tag = "Editar comic";
+            this.pbBtnEliminar.Visible = false;
+            this.pbBtnEliminar.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
+            this.pbBtnEliminar.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
+            // 
+            // pbBtnLeer
+            // 
+            this.pbBtnLeer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbBtnLeer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbBtnLeer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbBtnLeer.Enabled = false;
+            this.pbBtnLeer.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnLeer.Image")));
+            this.pbBtnLeer.Location = new System.Drawing.Point(582, 228);
+            this.pbBtnLeer.Margin = new System.Windows.Forms.Padding(2, 24, 2, 2);
+            this.pbBtnLeer.Name = "pbBtnLeer";
+            this.pbBtnLeer.Size = new System.Drawing.Size(45, 49);
+            this.pbBtnLeer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbBtnLeer.TabIndex = 3;
+            this.pbBtnLeer.TabStop = false;
+            this.pbBtnLeer.Tag = "Editar comic";
+            this.pbBtnLeer.Visible = false;
+            this.pbBtnLeer.Click += new System.EventHandler(this.btnLeer_Click);
+            this.pbBtnLeer.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
+            this.pbBtnLeer.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
             // pbBtnEditar
             // 
             this.pbBtnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbBtnEditar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbBtnEditar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbBtnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbBtnEditar.Enabled = false;
             this.pbBtnEditar.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnEditar.Image")));
-            this.pbBtnEditar.Location = new System.Drawing.Point(582, 72);
-            this.pbBtnEditar.Margin = new System.Windows.Forms.Padding(2);
+            this.pbBtnEditar.Location = new System.Drawing.Point(582, 78);
+            this.pbBtnEditar.Margin = new System.Windows.Forms.Padding(2, 24, 2, 2);
             this.pbBtnEditar.Name = "pbBtnEditar";
             this.pbBtnEditar.Size = new System.Drawing.Size(45, 49);
             this.pbBtnEditar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -125,11 +170,11 @@ namespace KComicReader
             // pbBtnAgregar
             // 
             this.pbBtnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbBtnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbBtnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbBtnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbBtnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnAgregar.Image")));
             this.pbBtnAgregar.Location = new System.Drawing.Point(582, 3);
-            this.pbBtnAgregar.Margin = new System.Windows.Forms.Padding(2);
+            this.pbBtnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbBtnAgregar.Name = "pbBtnAgregar";
             this.pbBtnAgregar.Size = new System.Drawing.Size(45, 49);
             this.pbBtnAgregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -150,9 +195,8 @@ namespace KComicReader
             this.fwpComics.Controls.Add(this.agregarComicBtn);
             this.fwpComics.Location = new System.Drawing.Point(3, 3);
             this.fwpComics.Name = "fwpComics";
-            this.fwpComics.Size = new System.Drawing.Size(574, 487);
+            this.fwpComics.Size = new System.Drawing.Size(574, 531);
             this.fwpComics.TabIndex = 0;
-            this.fwpComics.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.fwpComics_ControlAdded);
             // 
             // panelLeftCategorias
             // 
@@ -178,7 +222,7 @@ namespace KComicReader
             "Novelas Gráficas"});
             this.checkedListBox1.Location = new System.Drawing.Point(3, 32);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(158, 184);
+            this.checkedListBox1.Size = new System.Drawing.Size(158, 202);
             this.checkedListBox1.TabIndex = 1;
             // 
             // lblPanelLeftCategoriasTitle
@@ -203,17 +247,17 @@ namespace KComicReader
             this.panelRight.Controls.Add(this.lblTitulo);
             this.panelRight.Location = new System.Drawing.Point(832, 68);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(204, 495);
+            this.panelRight.Size = new System.Drawing.Size(204, 540);
             this.panelRight.TabIndex = 3;
             // 
             // panelRightInfo
             // 
+            this.panelRightInfo.Controls.Add(this.lblInfoSerie);
+            this.panelRightInfo.Controls.Add(this.lblInfoSerieValue);
             this.panelRightInfo.Controls.Add(this.lblInfoIdiomaValue);
             this.panelRightInfo.Controls.Add(this.lblInfoIdioma);
             this.panelRightInfo.Controls.Add(this.lblInfoCategoriaValue);
             this.panelRightInfo.Controls.Add(this.lblInfoCategoria);
-            this.panelRightInfo.Controls.Add(this.btnLeer);
-            this.panelRightInfo.Controls.Add(this.lblAcciones);
             this.panelRightInfo.Controls.Add(this.lblInfoGuionista);
             this.panelRightInfo.Controls.Add(this.lblInfoGuionistaValue);
             this.panelRightInfo.Controls.Add(this.lblInfoDibujanteValue);
@@ -223,16 +267,16 @@ namespace KComicReader
             this.panelRightInfo.Controls.Add(this.lblInfoEditorialValue);
             this.panelRightInfo.Controls.Add(this.lblInfoEditorial);
             this.panelRightInfo.Location = new System.Drawing.Point(3, 31);
-            this.panelRightInfo.Margin = new System.Windows.Forms.Padding(2);
+            this.panelRightInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelRightInfo.Name = "panelRightInfo";
-            this.panelRightInfo.Size = new System.Drawing.Size(196, 461);
+            this.panelRightInfo.Size = new System.Drawing.Size(196, 503);
             this.panelRightInfo.TabIndex = 1;
             // 
             // lblInfoIdiomaValue
             // 
             this.lblInfoIdiomaValue.AutoEllipsis = true;
             this.lblInfoIdiomaValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoIdiomaValue.Location = new System.Drawing.Point(-3, 326);
+            this.lblInfoIdiomaValue.Location = new System.Drawing.Point(-4, 375);
             this.lblInfoIdiomaValue.Margin = new System.Windows.Forms.Padding(2, 4, 2, 0);
             this.lblInfoIdiomaValue.Name = "lblInfoIdiomaValue";
             this.lblInfoIdiomaValue.Size = new System.Drawing.Size(200, 22);
@@ -244,7 +288,7 @@ namespace KComicReader
             // 
             this.lblInfoIdioma.AutoEllipsis = true;
             this.lblInfoIdioma.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoIdioma.Location = new System.Drawing.Point(-3, 300);
+            this.lblInfoIdioma.Location = new System.Drawing.Point(-4, 349);
             this.lblInfoIdioma.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
             this.lblInfoIdioma.Name = "lblInfoIdioma";
             this.lblInfoIdioma.Size = new System.Drawing.Size(200, 22);
@@ -256,7 +300,7 @@ namespace KComicReader
             // 
             this.lblInfoCategoriaValue.AutoEllipsis = true;
             this.lblInfoCategoriaValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoCategoriaValue.Location = new System.Drawing.Point(-3, 270);
+            this.lblInfoCategoriaValue.Location = new System.Drawing.Point(-4, 319);
             this.lblInfoCategoriaValue.Margin = new System.Windows.Forms.Padding(2, 4, 2, 0);
             this.lblInfoCategoriaValue.Name = "lblInfoCategoriaValue";
             this.lblInfoCategoriaValue.Size = new System.Drawing.Size(200, 22);
@@ -268,7 +312,7 @@ namespace KComicReader
             // 
             this.lblInfoCategoria.AutoEllipsis = true;
             this.lblInfoCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoCategoria.Location = new System.Drawing.Point(-3, 244);
+            this.lblInfoCategoria.Location = new System.Drawing.Point(-4, 293);
             this.lblInfoCategoria.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
             this.lblInfoCategoria.Name = "lblInfoCategoria";
             this.lblInfoCategoria.Size = new System.Drawing.Size(200, 22);
@@ -276,38 +320,11 @@ namespace KComicReader
             this.lblInfoCategoria.Text = "[CATEGORÍA]";
             this.lblInfoCategoria.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // btnLeer
-            // 
-            this.btnLeer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnLeer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLeer.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLeer.Location = new System.Drawing.Point(0, 406);
-            this.btnLeer.Margin = new System.Windows.Forms.Padding(2);
-            this.btnLeer.Name = "btnLeer";
-            this.btnLeer.Size = new System.Drawing.Size(196, 28);
-            this.btnLeer.TabIndex = 20;
-            this.btnLeer.Text = "Leer cómic";
-            this.btnLeer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnLeer.UseVisualStyleBackColor = true;
-            this.btnLeer.Click += new System.EventHandler(this.btnLeer_Click);
-            // 
-            // lblAcciones
-            // 
-            this.lblAcciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(214)))), ((int)(((byte)(255)))));
-            this.lblAcciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblAcciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAcciones.Location = new System.Drawing.Point(0, 361);
-            this.lblAcciones.Name = "lblAcciones";
-            this.lblAcciones.Size = new System.Drawing.Size(197, 26);
-            this.lblAcciones.TabIndex = 19;
-            this.lblAcciones.Text = "ACCIONES";
-            this.lblAcciones.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // lblInfoGuionista
             // 
             this.lblInfoGuionista.AutoEllipsis = true;
             this.lblInfoGuionista.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoGuionista.Location = new System.Drawing.Point(-5, 128);
+            this.lblInfoGuionista.Location = new System.Drawing.Point(-6, 177);
             this.lblInfoGuionista.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
             this.lblInfoGuionista.Name = "lblInfoGuionista";
             this.lblInfoGuionista.Size = new System.Drawing.Size(200, 22);
@@ -319,19 +336,19 @@ namespace KComicReader
             // 
             this.lblInfoGuionistaValue.AutoEllipsis = true;
             this.lblInfoGuionistaValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoGuionistaValue.Location = new System.Drawing.Point(-2, 154);
+            this.lblInfoGuionistaValue.Location = new System.Drawing.Point(-3, 203);
             this.lblInfoGuionistaValue.Margin = new System.Windows.Forms.Padding(2, 4, 2, 0);
             this.lblInfoGuionistaValue.Name = "lblInfoGuionistaValue";
             this.lblInfoGuionistaValue.Size = new System.Drawing.Size(200, 22);
             this.lblInfoGuionistaValue.TabIndex = 17;
-            this.lblInfoGuionistaValue.Text = "El viejo Logan";
+            this.lblInfoGuionistaValue.Text = "Guionista del cómic";
             this.lblInfoGuionistaValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblInfoDibujanteValue
             // 
             this.lblInfoDibujanteValue.AutoEllipsis = true;
             this.lblInfoDibujanteValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoDibujanteValue.Location = new System.Drawing.Point(-2, 214);
+            this.lblInfoDibujanteValue.Location = new System.Drawing.Point(-3, 263);
             this.lblInfoDibujanteValue.Margin = new System.Windows.Forms.Padding(2, 4, 2, 0);
             this.lblInfoDibujanteValue.Name = "lblInfoDibujanteValue";
             this.lblInfoDibujanteValue.Size = new System.Drawing.Size(200, 22);
@@ -343,7 +360,7 @@ namespace KComicReader
             // 
             this.lblInfoDibujante.AutoEllipsis = true;
             this.lblInfoDibujante.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoDibujante.Location = new System.Drawing.Point(-2, 188);
+            this.lblInfoDibujante.Location = new System.Drawing.Point(-3, 237);
             this.lblInfoDibujante.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
             this.lblInfoDibujante.Name = "lblInfoDibujante";
             this.lblInfoDibujante.Size = new System.Drawing.Size(200, 22);
@@ -355,7 +372,7 @@ namespace KComicReader
             // 
             this.lblInfoTitulo.AutoEllipsis = true;
             this.lblInfoTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoTitulo.Location = new System.Drawing.Point(-2, 8);
+            this.lblInfoTitulo.Location = new System.Drawing.Point(-3, 57);
             this.lblInfoTitulo.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
             this.lblInfoTitulo.Name = "lblInfoTitulo";
             this.lblInfoTitulo.Size = new System.Drawing.Size(200, 22);
@@ -367,31 +384,31 @@ namespace KComicReader
             // 
             this.lblInfoTituloValue.AutoEllipsis = true;
             this.lblInfoTituloValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoTituloValue.Location = new System.Drawing.Point(-2, 34);
+            this.lblInfoTituloValue.Location = new System.Drawing.Point(-3, 83);
             this.lblInfoTituloValue.Margin = new System.Windows.Forms.Padding(2, 4, 2, 0);
             this.lblInfoTituloValue.Name = "lblInfoTituloValue";
             this.lblInfoTituloValue.Size = new System.Drawing.Size(200, 22);
             this.lblInfoTituloValue.TabIndex = 13;
-            this.lblInfoTituloValue.Text = "El viejo Logan";
+            this.lblInfoTituloValue.Text = "Título del cómic";
             this.lblInfoTituloValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblInfoEditorialValue
             // 
             this.lblInfoEditorialValue.AutoEllipsis = true;
             this.lblInfoEditorialValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoEditorialValue.Location = new System.Drawing.Point(-2, 94);
+            this.lblInfoEditorialValue.Location = new System.Drawing.Point(-3, 143);
             this.lblInfoEditorialValue.Margin = new System.Windows.Forms.Padding(2, 4, 2, 0);
             this.lblInfoEditorialValue.Name = "lblInfoEditorialValue";
             this.lblInfoEditorialValue.Size = new System.Drawing.Size(200, 22);
             this.lblInfoEditorialValue.TabIndex = 12;
-            this.lblInfoEditorialValue.Text = "Marvel Cómics";
+            this.lblInfoEditorialValue.Text = "Editorial del cómic";
             this.lblInfoEditorialValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblInfoEditorial
             // 
             this.lblInfoEditorial.AutoEllipsis = true;
             this.lblInfoEditorial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoEditorial.Location = new System.Drawing.Point(-2, 68);
+            this.lblInfoEditorial.Location = new System.Drawing.Point(-3, 117);
             this.lblInfoEditorial.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
             this.lblInfoEditorial.Name = "lblInfoEditorial";
             this.lblInfoEditorial.Size = new System.Drawing.Size(200, 22);
@@ -403,7 +420,7 @@ namespace KComicReader
             // 
             this.panelRightVacia.Controls.Add(this.lblInfo);
             this.panelRightVacia.Location = new System.Drawing.Point(3, 31);
-            this.panelRightVacia.Margin = new System.Windows.Forms.Padding(2);
+            this.panelRightVacia.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelRightVacia.Name = "panelRightVacia";
             this.panelRightVacia.Size = new System.Drawing.Size(196, 461);
             this.panelRightVacia.TabIndex = 11;
@@ -441,7 +458,7 @@ namespace KComicReader
             this.panelLeftSeries.Controls.Add(this.treeView1);
             this.panelLeftSeries.Location = new System.Drawing.Point(12, 329);
             this.panelLeftSeries.Name = "panelLeftSeries";
-            this.panelLeftSeries.Size = new System.Drawing.Size(166, 234);
+            this.panelLeftSeries.Size = new System.Drawing.Size(166, 279);
             this.panelLeftSeries.TabIndex = 4;
             // 
             // lblPanelLeftSeriesTitle
@@ -462,8 +479,32 @@ namespace KComicReader
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.Location = new System.Drawing.Point(3, 31);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(158, 198);
+            this.treeView1.Size = new System.Drawing.Size(158, 243);
             this.treeView1.TabIndex = 2;
+            // 
+            // lblInfoSerie
+            // 
+            this.lblInfoSerie.AutoEllipsis = true;
+            this.lblInfoSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoSerie.Location = new System.Drawing.Point(-3, 1);
+            this.lblInfoSerie.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
+            this.lblInfoSerie.Name = "lblInfoSerie";
+            this.lblInfoSerie.Size = new System.Drawing.Size(200, 22);
+            this.lblInfoSerie.TabIndex = 26;
+            this.lblInfoSerie.Text = "[SERIE]";
+            this.lblInfoSerie.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblInfoSerieValue
+            // 
+            this.lblInfoSerieValue.AutoEllipsis = true;
+            this.lblInfoSerieValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoSerieValue.Location = new System.Drawing.Point(-3, 27);
+            this.lblInfoSerieValue.Margin = new System.Windows.Forms.Padding(2, 4, 2, 0);
+            this.lblInfoSerieValue.Name = "lblInfoSerieValue";
+            this.lblInfoSerieValue.Size = new System.Drawing.Size(200, 22);
+            this.lblInfoSerieValue.TabIndex = 25;
+            this.lblInfoSerieValue.Text = "Serie del cómic";
+            this.lblInfoSerieValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // agregarComicBtn
             // 
@@ -476,8 +517,7 @@ namespace KComicReader
             this.agregarComicBtn.eventoClick = null;
             this.agregarComicBtn.Guionista = null;
             this.agregarComicBtn.Id = 0;
-            this.agregarComicBtn.Location = new System.Drawing.Point(4, 4);
-            this.agregarComicBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.agregarComicBtn.Location = new System.Drawing.Point(3, 3);
             this.agregarComicBtn.Name = "agregarComicBtn";
             this.agregarComicBtn.Portada = ((System.Drawing.Image)(resources.GetObject("agregarComicBtn.Portada")));
             this.agregarComicBtn.PortadaURL = null;
@@ -491,7 +531,7 @@ namespace KComicReader
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1049, 575);
+            this.ClientSize = new System.Drawing.Size(1049, 620);
             this.Controls.Add(this.panelLeftSeries);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelLeftCategorias);
@@ -503,6 +543,8 @@ namespace KComicReader
             this.Text = "KComicReader";
             this.Load += new System.EventHandler(this.FormVistaPrincipal_Load);
             this.panelCenter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbBtnEliminar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBtnLeer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnEditar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnAgregar)).EndInit();
             this.fwpComics.ResumeLayout(false);
@@ -528,7 +570,6 @@ namespace KComicReader
         private System.Windows.Forms.Panel panelRightVacia;
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.Panel panelRightInfo;
-        private System.Windows.Forms.Label lblAcciones;
         private System.Windows.Forms.Label lblInfoGuionista;
         private System.Windows.Forms.Label lblInfoGuionistaValue;
         private System.Windows.Forms.Label lblInfoDibujanteValue;
@@ -537,7 +578,6 @@ namespace KComicReader
         private System.Windows.Forms.Label lblInfoTituloValue;
         private System.Windows.Forms.Label lblInfoEditorialValue;
         private System.Windows.Forms.Label lblInfoEditorial;
-        private System.Windows.Forms.Button btnLeer;
         private System.Windows.Forms.Panel panelLeftSeries;
         private System.Windows.Forms.Label lblPanelLeftSeriesTitle;
         private System.Windows.Forms.TreeView treeView1;
@@ -545,9 +585,13 @@ namespace KComicReader
         private System.Windows.Forms.Label lblInfoCategoriaValue;
         private System.Windows.Forms.Label lblInfoCategoria;
         private System.Windows.Forms.PictureBox pbBtnEditar;
-        private AgregarComicBtn agregarComicBtn;
         private System.Windows.Forms.Label lblInfoIdiomaValue;
         private System.Windows.Forms.Label lblInfoIdioma;
+        private System.Windows.Forms.PictureBox pbBtnLeer;
+        private System.Windows.Forms.PictureBox pbBtnEliminar;
+        private AgregarComicBtn agregarComicBtn;
+        private System.Windows.Forms.Label lblInfoSerie;
+        private System.Windows.Forms.Label lblInfoSerieValue;
     }
 }
 

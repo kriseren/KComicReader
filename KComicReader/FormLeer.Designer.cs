@@ -62,6 +62,7 @@
             // 
             // btnZoom
             // 
+            this.btnZoom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnZoom.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnZoom.Image = ((System.Drawing.Image)(resources.GetObject("btnZoom.Image")));
             this.btnZoom.Location = new System.Drawing.Point(93, 10);
@@ -87,6 +88,7 @@
             // 
             // btnMarcador
             // 
+            this.btnMarcador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnMarcador.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMarcador.Image = ((System.Drawing.Image)(resources.GetObject("btnMarcador.Image")));
             this.btnMarcador.Location = new System.Drawing.Point(399, 11);
@@ -102,6 +104,7 @@
             // 
             // btnAnteriorPagina
             // 
+            this.btnAnteriorPagina.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnAnteriorPagina.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAnteriorPagina.Image = ((System.Drawing.Image)(resources.GetObject("btnAnteriorPagina.Image")));
             this.btnAnteriorPagina.Location = new System.Drawing.Point(10, 10);
@@ -117,6 +120,7 @@
             // 
             // btnSiguientePagina
             // 
+            this.btnSiguientePagina.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSiguientePagina.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSiguientePagina.Image = ((System.Drawing.Image)(resources.GetObject("btnSiguientePagina.Image")));
             this.btnSiguientePagina.Location = new System.Drawing.Point(482, 10);
