@@ -31,6 +31,9 @@ namespace KComicReader
                 MessageBox.Show("Ha ocurrido un error al iniciar MySQL.\nSeguramente sea debido a que la ruta de instalación de XAMPP no es la correcta.","Error al iniciar MySQL",MessageBoxButtons.OK);
             }
 
+            //Carga la configuración de la base de datos.
+            Config.DefineConfiguracion();
+
             //Inicia el formulario.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -87,12 +87,19 @@
     <Compile Include="Comic.Designer.cs">
       <DependentUpon>Comic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Config.cs" />
     <Compile Include="DataBaseConnectivity.cs" />
     <Compile Include="FormAgregarComic.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAgregarComic.Designer.cs">
       <DependentUpon>FormAgregarComic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfig.Designer.cs">
+      <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="FormAgregarSerie.cs">
       <SubType>Form</SubType>
@@ -134,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAgregarComic.resx">
       <DependentUpon>FormAgregarComic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfig.resx">
+      <DependentUpon>FormConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAgregarSerie.resx">
       <DependentUpon>FormAgregarSerie.cs</DependentUpon>

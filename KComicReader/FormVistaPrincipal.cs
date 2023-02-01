@@ -451,5 +451,18 @@ namespace KComicReader
                 }
             }
         }
+
+        //Método que se ejecuta cuando el usuario pulsa el botón de Ajustes.
+        private void pbBtnConfig_Click(object sender, EventArgs e)
+        {
+            //Creo un nuevo formulario Config.
+            FormConfig formConfig = new FormConfig();
+            //Si el usuario acepta, se actualiza la información en la base de datos.
+            if(formConfig.ShowDialog()==DialogResult.OK)
+            {
+                Config.DirectorioInstalacion = formConfig.DirectorioInstalacion;
+                Config.GuardaConfiguracion();
+            }
+        }
     }
 }

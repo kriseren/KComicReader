@@ -45,6 +45,12 @@ CREATE TABLE COMICS (
   FOREIGN KEY (serie_id) REFERENCES SERIES(id)
 );
 
+CREATE TABLE AJUSTES (
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  propiedad VARCHAR(255) NOT NULL,
+  valor VARCHAR(255) NOT NULL
+);
+
 /*INSERCIÓN DE LAS EDITORIALES*/
 INSERT INTO EDITORIALES (nombre) VALUES ('Sin asignar'),('Marvel Comics'), ('Detective Comics (DC)'), ('IDW Publishing'), ('Image Comics'), ('Dark Horse Comics'), ('Boom'), ('Norma Editorial');
 
@@ -92,3 +98,6 @@ INSERT INTO IDIOMAS (nombre) VALUES
 
 /*INSERCIÓN DE CATEGORÍAS*/
 INSERT INTO CATEGORIAS (nombre) VALUES ('Sin asignar'),('Superhéroes'),('Manga'),('Novela gráfica'),('Humor'),('Otros');
+
+/*INSERCIÓN DE LOS AJUSTES*/
+INSERT INTO AJUSTES (propiedad,valor) VALUES('directorio_instalacion','C:\KComicReader\Comics');

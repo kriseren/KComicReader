@@ -66,7 +66,7 @@ namespace KComicReader
             if (tbTitulo.Text !="" && cbIdioma.Text !="" && ofd_FicheroComic.FileName != "" && cbEditorial.Text!="" && cbSerie.Text != "")
             {
                 //Ruta del directorio donde se guardará el cómic.
-                string rutaDirectorio = @"C:\KComicReader\Comics";
+                string rutaDirectorio = Config.DirectorioInstalacion;
 
                 //Crea el directorio si no existe.
                 if (!Directory.Exists(rutaDirectorio))
@@ -174,8 +174,8 @@ namespace KComicReader
 
                         //Defino la consulta para insertar la editorial.
                         cmd.CommandText = "INSERT INTO EDITORIALES (nombre) VALUES (@nombre)";
-                        cmd.Prepare();
                         cmd.Parameters.AddWithValue("@nombre", formAgregarEditorial.tbNombre.Text);
+                        cmd.Prepare();
                         cmd.ExecuteNonQuery();
                     }
                     catch (MySqlException)
