@@ -165,7 +165,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(140)))), ((int)(((byte)(217)))));
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(579, 804);
             this.Controls.Add(this.panelImage);
@@ -175,6 +175,7 @@
             this.Name = "FormLeer";
             this.Text = "FormLeer";
             this.Load += new System.EventHandler(this.FormLeer_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormLeer_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.key_Down);
             this.Resize += new System.EventHandler(this.Form_Resize);
             this.panelButtons.ResumeLayout(false);

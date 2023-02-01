@@ -128,7 +128,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(597, 237);
             this.Controls.Add(this.lblEditorialValue);
@@ -143,6 +142,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Agregar una nueva editorial";
             this.Load += new System.EventHandler(this.FormAgregarSerie_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormAgregarSerie_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 

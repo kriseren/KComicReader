@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,6 +92,15 @@ namespace KComicReader
             {
                 MessageBox.Show("No se ha podido recuperar el nombre de la editorial asociada.","Error en la base de datos",MessageBoxButtons.OK);
             }
+        }
+
+        private void FormAgregarSerie_Paint(object sender, PaintEventArgs e)
+        {
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(
+               this.ClientRectangle,
+               ColorTranslator.FromHtml(Config.ColorFondo1),
+               ColorTranslator.FromHtml(Config.ColorFondo2), 90f);
+            e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
         }
     }
 }

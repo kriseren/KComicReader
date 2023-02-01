@@ -358,7 +358,6 @@ namespace KComicReader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(770, 555);
             this.Controls.Add(this.btnAgregarSerie);
@@ -392,6 +391,7 @@ namespace KComicReader
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Agregar un nuevo cómic";
             this.Load += new System.EventHandler(this.FormAgregarComic_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormAgregarComic_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pbPortada)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbNumero)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarEditorial)).EndInit();

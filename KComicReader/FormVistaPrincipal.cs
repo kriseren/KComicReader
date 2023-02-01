@@ -3,6 +3,7 @@
 using System;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -138,6 +139,8 @@ namespace KComicReader
             //Se comprueba que la base de datos exista En caso contrario se crea mediante un script.
             if(existeDB())
             {
+                //Carga la configuración de la base de datos.
+                Config.DefineConfiguracion();
                 //Obtengo todos los comics dados de alta en la base de datos.
                 cargaTodosComics();
                 //Los ordeno por título.
@@ -400,6 +403,7 @@ namespace KComicReader
             }
         }
 
+        //Método que se ejecuta cuando el usuario hace doble click en el listBox de Series.
         private void lbSeries_DoubleClick(object sender, EventArgs e)
         {
             using (MySqlConnection con = DataBaseConnectivity.getConnection())
@@ -460,9 +464,24 @@ namespace KComicReader
             //Si el usuario acepta, se actualiza la información en la base de datos.
             if(formConfig.ShowDialog()==DialogResult.OK)
             {
+                //Si e directorio no es nulo se define.
                 Config.DirectorioInstalacion = formConfig.DirectorioInstalacion;
+                Config.ColorFondo1 = formConfig.ColorFondo1;
+                Config.ColorFondo2 = formConfig.ColorFondo2;
                 Config.GuardaConfiguracion();
+                //Defino los colores de nuevo.
+                this.Refresh();
             }
+        }
+
+        //Método que se ejecuta cuando se pinta el formulario.
+        private void FormVistaPrincipal_Paint(object sender, PaintEventArgs e)
+        {
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(
+                this.ClientRectangle,
+                ColorTranslator.FromHtml(Config.ColorFondo1),
+                ColorTranslator.FromHtml(Config.ColorFondo2), 90f);
+            e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
         }
     }
 }

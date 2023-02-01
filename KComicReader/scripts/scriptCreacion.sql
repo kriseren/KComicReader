@@ -100,4 +100,4 @@ INSERT INTO IDIOMAS (nombre) VALUES
 INSERT INTO CATEGORIAS (nombre) VALUES ('Sin asignar'),('Superhéroes'),('Manga'),('Novela gráfica'),('Humor'),('Otros');
 
 /*INSERCIÓN DE LOS AJUSTES*/
-INSERT INTO AJUSTES (propiedad,valor) VALUES('directorio_instalacion','C:\KComicReader\Comics');
+INSERT INTO AJUSTES (propiedad,valor) VALUES('directorio_instalacion','C:\KComicReader\Comics'),('color_fondo1','#C6B8D9'),('color_fondo1','#9F88BF');

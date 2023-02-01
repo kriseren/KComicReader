@@ -2,6 +2,7 @@
 using SharpCompress.Archives;
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
 using Image = System.Drawing.Image;
@@ -212,6 +213,15 @@ namespace KComicReader
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackgroundImage = null;
+        }
+
+        private void FormLeer_Paint(object sender, PaintEventArgs e)
+        {
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(
+               this.ClientRectangle,
+               ColorTranslator.FromHtml(Config.ColorFondo1),
+               ColorTranslator.FromHtml(Config.ColorFondo2), 90f);
+            e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
         }
     }
 }

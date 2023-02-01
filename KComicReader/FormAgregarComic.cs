@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
@@ -373,6 +374,15 @@ namespace KComicReader
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackgroundImage = null;
+        }
+
+        private void FormAgregarComic_Paint(object sender, PaintEventArgs e)
+        {
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(
+               this.ClientRectangle,
+               ColorTranslator.FromHtml(Config.ColorFondo1),
+               ColorTranslator.FromHtml(Config.ColorFondo2), 90f);
+            e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
         }
     }
 }
