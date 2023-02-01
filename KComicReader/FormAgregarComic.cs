@@ -254,6 +254,10 @@ namespace KComicReader
                     cbEditorial.DataSource = ds.Tables[0];
                     cbEditorial.DisplayMember = "nombre";
                     cbEditorial.ValueMember = "id";
+
+                    //Defino el valor seleccionado de la Editorial para que el campo Serie pueda seleccionar su valor.
+                    if(comic.EditorialID!=0)
+                        cbEditorial.SelectedValue = comic.EditorialID;
                 }
                 catch (MySqlException)
                 {

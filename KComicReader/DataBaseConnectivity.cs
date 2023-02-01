@@ -16,6 +16,7 @@ namespace KComicReader
         private static string user = "root";
         private static string pass = "";
 
+        //Método que controla que se cree una única instancia de Connection haciendo uso del patrón de diseño del software Singleton..
         public static MySqlConnection getConnection()
         {
             if(connection==null)

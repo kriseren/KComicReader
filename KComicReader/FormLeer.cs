@@ -1,4 +1,5 @@
-﻿using SharpCompress.Archives;
+﻿using MySql.Data.MySqlClient;
+using SharpCompress.Archives;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -174,12 +175,29 @@ namespace KComicReader
         }
 
         //Método que marca la página actual y la almacena.
-        //TODO Almacenar la página actual en la base de datos.
         private void marcar()
         {
             //Defino la imagen.
             btnMarcador.Image = Image.FromFile(@"..\..\imgs\icons\marked.png");
+            //Defino la página actual y la almaceno en la base de datos.
             comic.NumPaginaActual = numPag;
+            using (MySqlConnection connection = DataBaseConnectivity.getConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand cmd = connection.CreateCommand();
+                    cmd.CommandText = "UPDATE comics SET numPagina = @numPagina WHERE id = @id";
+                    cmd.Parameters.AddWithValue("@numPagina",comic.NumPaginaActual);
+                    cmd.Parameters.AddWithValue("@id", comic.Id);
+                    cmd.Prepare();
+                    cmd.ExecuteNonQuery();
+                }
+                catch(MySqlException)
+                {
+                    MessageBox.Show("Ha ocurrido un error al marcar la página.","Error en la base de datos",MessageBoxButtons.OK);
+                }
+            }
         }
 
         //Método que se ejecuta cuando el ratón entra en el área visible del botón.
