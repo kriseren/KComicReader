@@ -43,7 +43,9 @@ namespace KComicReader
             Tema_id = Config.Tema_id;
 
             //Se definen las opciones del combobox de temas.
-            DefineTemas();  
+            DefineTemas();
+            //Se define el tema seleccionado.
+            cbTema.SelectedValue = Tema_id;
         }
 
         private void DefineTemas()
@@ -57,7 +59,7 @@ namespace KComicReader
                     con.Open();
                     MySqlCommand cmd = con.CreateCommand();
                     //Serie.
-                    cmd.CommandText = "SELECT id, nombre FROM TEMAS";
+                    cmd.CommandText = "SELECT id, nombre FROM TEMAS ORDER BY nombre";
                     cmd.Prepare();
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataSet ds = new DataSet();

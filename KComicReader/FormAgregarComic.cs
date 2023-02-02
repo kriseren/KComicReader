@@ -213,7 +213,7 @@ namespace KComicReader
                     con.Open();
                     MySqlCommand cmd = con.CreateCommand();
                     //Serie.
-                    cmd.CommandText = "SELECT id, nombre FROM SERIES WHERE editorial_id = @editorial_id";
+                    cmd.CommandText = "SELECT id, nombre FROM SERIES WHERE editorial_id = @editorial_id ORDER BY nombre";
                     cmd.Parameters.AddWithValue("@editorial_id", (int)cbEditorial.SelectedValue);
                     cmd.Prepare();
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -242,7 +242,7 @@ namespace KComicReader
                     con.Open();
                     MySqlCommand cmd = con.CreateCommand();
                     //Editoriales.
-                    string query = "SELECT id, nombre FROM EDITORIALES";
+                    string query = "SELECT id, nombre FROM EDITORIALES ORDER BY nombre";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds);
@@ -273,7 +273,7 @@ namespace KComicReader
                     con.Open();
                     MySqlCommand cmd = con.CreateCommand();
                     //Categoría.
-                    string query = "SELECT id, nombre FROM CATEGORIAS";
+                    string query = "SELECT id, nombre FROM CATEGORIAS ORDER BY nombre";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds);
@@ -300,7 +300,7 @@ namespace KComicReader
                     con.Open();
                     MySqlCommand cmd = con.CreateCommand();
                     //Idiomas.
-                    string query = "SELECT id, nombre FROM IDIOMAS";
+                    string query = "SELECT id, nombre FROM IDIOMAS ORDER BY nombre";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds);
@@ -370,6 +370,7 @@ namespace KComicReader
             pb.BackgroundImage = null;
         }
 
+        //Método que se ejecuta cuando se pinta el formulario.
         private void FormAgregarComic_Paint(object sender, PaintEventArgs e)
         {
             Config.DefineTema();

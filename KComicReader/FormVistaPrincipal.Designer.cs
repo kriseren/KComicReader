@@ -323,6 +323,7 @@ namespace KComicReader
             this.fwpComics.AutoScroll = true;
             this.fwpComics.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.fwpComics.BackColor = System.Drawing.Color.White;
+            this.fwpComics.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fwpComics.Controls.Add(this.agregarComicBtn);
             this.fwpComics.Location = new System.Drawing.Point(4, 4);
             this.fwpComics.Margin = new System.Windows.Forms.Padding(4);
