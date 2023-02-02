@@ -240,6 +240,10 @@ namespace KComicReader
         //Método que carga en el fwp todos los cómics dados de alta en la base de datos.
         private void cargaTodosComics()
         {
+            //Elimino los comics que haya en el fwp.
+            foreach (Control c in fwpComics.Controls.OfType<Comic>().ToList())
+                fwpComics.Controls.Remove(c);
+
             using (MySqlConnection con = DataBaseConnectivity.getConnection())
             {
                 try
@@ -353,52 +357,61 @@ namespace KComicReader
         //Método que se ejecuta cuando se hace doble click encima del ListBox de categorías.
         private void lbCategorias_Click(object sender, EventArgs e)
         {
-            using (MySqlConnection con = DataBaseConnectivity.getConnection())
+            //Si la categoría seleccionada es igual a 1 se muestran todos los cómics.
+            if((int)lbCategorias.SelectedValue == 1)
             {
-                try
+                cargaTodosComics();
+            }
+            else
+            {
+                using (MySqlConnection con = DataBaseConnectivity.getConnection())
                 {
-                    //Elimino los cómics actuales del fwp.
-                    fwpComics.Controls.Clear();
-                    //Obtengo todos los cómics con esa categoría.
-                    con.Open();
-                    MySqlCommand cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT * FROM COMICS WHERE categoria_id = @categoria_id";
-                    cmd.Parameters.AddWithValue("@categoria_id", lbCategorias.SelectedValue);
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    Comic c;
-                    while (reader.Read())
+                    try
                     {
-                        //Creo el cómic.
-                        c = new Comic();
-                        //Defino las propiedades.
-                        c.Id = reader.GetInt32("id");
-                        c.Titulo = reader.GetString("titulo");
-                        c.Dibujante = reader.GetString("dibujante");
-                        c.Guionista = reader.GetString("guionista");
-                        c.Portada = Image.FromStream(reader.GetStream(4));
-                        c.ArchivoURL = reader.GetString("archivoURL");
-                        c.NumPaginaActual = (uint)reader.GetInt32("numPagina");
-                        c.NumPaginasTotales = (uint)reader.GetInt32("numPaginasTotales");
-                        c.CategoriaID = reader.GetInt32("categoria_id");
-                        c.IdiomaID = reader.GetInt32("idioma_id");
-                        c.EditorialID = reader.GetInt32("editorial_id");
-                        c.SerieID = reader.GetInt32("serie_id");
-                        c.Numero = (uint)reader.GetInt32("numero");
+                        //Elimino únicamente los cómics actuales del fwp.
+                        foreach (Control co in fwpComics.Controls.OfType<Comic>().ToList())
+                            fwpComics.Controls.Remove(co);
+                        //Obtengo todos los cómics con esa categoría.
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM COMICS WHERE categoria_id = @categoria_id";
+                        cmd.Parameters.AddWithValue("@categoria_id", lbCategorias.SelectedValue);
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        Comic c;
+                        while (reader.Read())
+                        {
+                            //Creo el cómic.
+                            c = new Comic();
+                            //Defino las propiedades.
+                            c.Id = reader.GetInt32("id");
+                            c.Titulo = reader.GetString("titulo");
+                            c.Dibujante = reader.GetString("dibujante");
+                            c.Guionista = reader.GetString("guionista");
+                            c.Portada = Image.FromStream(reader.GetStream(4));
+                            c.ArchivoURL = reader.GetString("archivoURL");
+                            c.NumPaginaActual = (uint)reader.GetInt32("numPagina");
+                            c.NumPaginasTotales = (uint)reader.GetInt32("numPaginasTotales");
+                            c.CategoriaID = reader.GetInt32("categoria_id");
+                            c.IdiomaID = reader.GetInt32("idioma_id");
+                            c.EditorialID = reader.GetInt32("editorial_id");
+                            c.SerieID = reader.GetInt32("serie_id");
+                            c.Numero = (uint)reader.GetInt32("numero");
 
-                        //Defino los controladores de los eventos.
-                        c.eventoClick += new EventHandler(Comic_Click);
-                        c.eventoDobleClick += new EventHandler(btnLeer_Click);
+                            //Defino los controladores de los eventos.
+                            c.eventoClick += new EventHandler(Comic_Click);
+                            c.eventoDobleClick += new EventHandler(btnLeer_Click);
 
-                        //Lo agrego al fwp.
-                        fwpComics.Controls.Add(c);
+                            //Lo agrego al fwp.
+                            fwpComics.Controls.Add(c);
+                        }
+
+                        //Ordeno los cómics agregados por título.
+                        ordenaComicsPorTitulo();
                     }
-
-                    //Ordeno los cómics agregados por título.
-                    ordenaComicsPorTitulo();
-                }
-                catch (MySqlException)
-                {
-                    MessageBox.Show("No se han podido recuperar las series dadas de alta. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    catch (MySqlException)
+                    {
+                        MessageBox.Show("No se han podido recuperar las series dadas de alta. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -406,52 +419,61 @@ namespace KComicReader
         //Método que se ejecuta cuando el usuario hace doble click en el listBox de Series.
         private void lbSeries_Click(object sender, EventArgs e)
         {
-            using (MySqlConnection con = DataBaseConnectivity.getConnection())
+            //Si la serie seleccionada es igual a 1 se muestran todos los cómics.
+            if ((int)lbSeries.SelectedValue == 1)
             {
-                try
+                cargaTodosComics();
+            }
+            else
+            {
+                using (MySqlConnection con = DataBaseConnectivity.getConnection())
                 {
-                    //Elimino los cómics actuales del fwp.
-                    fwpComics.Controls.Clear();
-                    //Obtengo todos los cómics con esa categoría.
-                    con.Open();
-                    MySqlCommand cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT * FROM COMICS WHERE serie_id = @serie_id";
-                    cmd.Parameters.AddWithValue("@serie_id", lbSeries.SelectedValue);
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    Comic c;
-                    while (reader.Read())
+                    try
                     {
-                        //Creo el cómic.
-                        c = new Comic();
-                        //Defino las propiedades.
-                        c.Id = reader.GetInt32("id");
-                        c.Titulo = reader.GetString("titulo");
-                        c.Dibujante = reader.GetString("dibujante");
-                        c.Guionista = reader.GetString("guionista");
-                        c.Portada = Image.FromStream(reader.GetStream(4));
-                        c.ArchivoURL = reader.GetString("archivoURL");
-                        c.NumPaginaActual = (uint)reader.GetInt32("numPagina");
-                        c.NumPaginasTotales = (uint)reader.GetInt32("numPaginasTotales");
-                        c.CategoriaID = reader.GetInt32("categoria_id");
-                        c.IdiomaID = reader.GetInt32("idioma_id");
-                        c.EditorialID = reader.GetInt32("editorial_id");
-                        c.SerieID = reader.GetInt32("serie_id");
-                        c.Numero = (uint)reader.GetInt32("numero");
+                        //Elimino únicamente los cómics actuales del fwp.
+                        foreach (Control co in fwpComics.Controls.OfType<Comic>().ToList())
+                            fwpComics.Controls.Remove(co);
+                        //Obtengo todos los cómics con esa categoría.
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM COMICS WHERE serie_id = @serie_id";
+                        cmd.Parameters.AddWithValue("@serie_id", lbSeries.SelectedValue);
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        Comic c;
+                        while (reader.Read())
+                        {
+                            //Creo el cómic.
+                            c = new Comic();
+                            //Defino las propiedades.
+                            c.Id = reader.GetInt32("id");
+                            c.Titulo = reader.GetString("titulo");
+                            c.Dibujante = reader.GetString("dibujante");
+                            c.Guionista = reader.GetString("guionista");
+                            c.Portada = Image.FromStream(reader.GetStream(4));
+                            c.ArchivoURL = reader.GetString("archivoURL");
+                            c.NumPaginaActual = (uint)reader.GetInt32("numPagina");
+                            c.NumPaginasTotales = (uint)reader.GetInt32("numPaginasTotales");
+                            c.CategoriaID = reader.GetInt32("categoria_id");
+                            c.IdiomaID = reader.GetInt32("idioma_id");
+                            c.EditorialID = reader.GetInt32("editorial_id");
+                            c.SerieID = reader.GetInt32("serie_id");
+                            c.Numero = (uint)reader.GetInt32("numero");
 
-                        //Defino los controladores de los eventos.
-                        c.eventoClick += new EventHandler(Comic_Click);
-                        c.eventoDobleClick += new EventHandler(btnLeer_Click);
+                            //Defino los controladores de los eventos.
+                            c.eventoClick += new EventHandler(Comic_Click);
+                            c.eventoDobleClick += new EventHandler(btnLeer_Click);
 
-                        //Lo agrego al fwp.
-                        fwpComics.Controls.Add(c);
+                            //Lo agrego al fwp.
+                            fwpComics.Controls.Add(c);
+                        }
+
+                        //Ordeno los cómics agregados por título.
+                        ordenaComicsPorTitulo();
                     }
-
-                    //Ordeno los cómics agregados por título.
-                    ordenaComicsPorTitulo();
-                }
-                catch (MySqlException)
-                {
-                    MessageBox.Show("No se han podido recuperar las series dadas de alta. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    catch (MySqlException)
+                    {
+                        MessageBox.Show("No se han podido recuperar las series dadas de alta. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -505,6 +527,33 @@ namespace KComicReader
             //Defino el color del fondo para el cómic seleccionado si éste no es nulo.
             if(comicSeleccionado!=null)
                 comicSeleccionado.BackColor = ColorTranslator.FromHtml(Config.Tema[1]);
+        }
+
+        //Método que se ejecuta cuando el usuaro pulsa el botón de eliminar cómic.
+        private void pbBtnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Estás segurx de querer eliminar el cómic " + comicSeleccionado.Titulo + "?", "Confirmación de eliminación", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                {
+                    try
+                    {
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "DELETE FROM comics WHERE id = @id";
+                        cmd.Parameters.AddWithValue("@id", comicSeleccionado.Id);
+                        cmd.Prepare();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (MySqlException)
+                    {
+                        MessageBox.Show("No se ha podido eliminar el producto. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                //Elimino el cómic del fwp.
+                fwpComics.Controls.Remove(comicSeleccionado);
+            }
         }
     }
 }

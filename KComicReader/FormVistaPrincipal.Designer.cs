@@ -272,6 +272,7 @@ namespace KComicReader
             this.pbBtnEliminar.TabStop = false;
             this.pbBtnEliminar.Tag = "Editar comic";
             this.pbBtnEliminar.Visible = false;
+            this.pbBtnEliminar.Click += new System.EventHandler(this.pbBtnEliminar_Click);
             this.pbBtnEliminar.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.pbBtnEliminar.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 

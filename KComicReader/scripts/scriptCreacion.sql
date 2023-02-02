@@ -108,14 +108,19 @@ INSERT INTO IDIOMAS (nombre) VALUES
 ('Zulú');
 
 /*INSERCIÓN DE CATEGORÍAS*/
-INSERT INTO CATEGORIAS (nombre) VALUES ('Sin asignar'),('Superhéroes'),('Manga'),('Novela gráfica'),('Humor'),('Otros');
+INSERT INTO CATEGORIAS (nombre) VALUES ('Todas las categorías'),('Sin asignar'),('Superhéroes'),('Manga'),('Novela gráfica'),('Humor'),('Otros');
+
+/*INSERCIÓN DE LAS SERIES*/
+INSERT INTO series (nombre, editorial_id) VALUES ('Todas las series', 1);
+
 
 /*INSERCIÓN DE LOS TEMAS*/
 INSERT INTO TEMAS (id, nombre, color1, color2, color3) VALUES
 (1, 'Predeterminado', '#b18cd9', '#E2C6FF', '#ece0f8'),
 (2, 'Marvel', '#EE2128', '#F1484E', '#FFFFFF'),
 (3, 'Detective Comics', '#263EB6', '#7F8FE2', '#FFFDFA'),
-(4, 'Manga', '#5F5F5F', '#B3B3B2', '#FEFFFE');
+(4, 'Manga', '#5F5F5F', '#B3B3B2', '#FEFFFE'),
+(5, 'Dragon Ball', '#FB7130', '#FCAB50', '#FFFFCF');
 
 
 /*INSERCIÓN DE LOS AJUSTES*/

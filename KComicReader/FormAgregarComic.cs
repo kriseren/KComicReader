@@ -212,8 +212,7 @@ namespace KComicReader
                 {
                     con.Open();
                     MySqlCommand cmd = con.CreateCommand();
-                    //Serie.
-                    cmd.CommandText = "SELECT id, nombre FROM SERIES WHERE editorial_id = @editorial_id ORDER BY nombre";
+                    cmd.CommandText = "SELECT id, nombre FROM SERIES WHERE editorial_id = @editorial_id AND id>1 ORDER BY nombre";
                     cmd.Parameters.AddWithValue("@editorial_id", (int)cbEditorial.SelectedValue);
                     cmd.Prepare();
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -273,7 +272,7 @@ namespace KComicReader
                     con.Open();
                     MySqlCommand cmd = con.CreateCommand();
                     //Categoría.
-                    string query = "SELECT id, nombre FROM CATEGORIAS ORDER BY nombre";
+                    string query = "SELECT id, nombre FROM CATEGORIAS WHERE id>1 ORDER BY nombre";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds);
