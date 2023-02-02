@@ -1,14 +1,10 @@
 ﻿
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KComicReader
@@ -17,8 +13,7 @@ namespace KComicReader
     {
         //Definición de propiedades.
         public string DirectorioInstalacion {get;set;}
-        public string ColorFondo1 { get; set; }
-        public string ColorFondo2 { get; set; }
+        public int Tema_id { get; set; }
         public FormConfig()
         {
             InitializeComponent();
@@ -44,11 +39,38 @@ namespace KComicReader
             //Se define la configuración y el valor del campo.
             Config.DefineConfiguracion();
             DirectorioInstalacion = Config.DirectorioInstalacion;
-            ColorFondo1 = Config.ColorFondo1;
-            ColorFondo2 = Config.ColorFondo2;
             tbDirectorioValue.Text = Config.DirectorioInstalacion;
-            pbBtnColor1.BackColor = ColorTranslator.FromHtml(Config.ColorFondo1);
-            pbBtnColor2.BackColor = ColorTranslator.FromHtml(Config.ColorFondo2);
+            Tema_id = Config.Tema_id;
+
+            //Se definen las opciones del combobox de temas.
+            DefineTemas();  
+        }
+
+        private void DefineTemas()
+        {
+            //Obtengo la conexión y los objetos necesarios.
+            using (MySqlConnection con = DataBaseConnectivity.getConnection())
+            {
+                //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
+                try
+                {
+                    con.Open();
+                    MySqlCommand cmd = con.CreateCommand();
+                    //Serie.
+                    cmd.CommandText = "SELECT id, nombre FROM TEMAS";
+                    cmd.Prepare();
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    cbTema.DataSource = ds.Tables[0];
+                    cbTema.DisplayMember = "nombre";
+                    cbTema.ValueMember = "id";
+                }
+                catch (MySqlException)
+                {
+                    MessageBox.Show("No se han podido obtener los temas. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         //Método que se ejecuta cuando el usuario pulsa en el botón de seleccionar carpeta.
@@ -66,35 +88,33 @@ namespace KComicReader
 
         private void FormConfig_Paint(object sender, PaintEventArgs e)
         {
-            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(
-               this.ClientRectangle,
-               ColorTranslator.FromHtml(Config.ColorFondo1),
-               ColorTranslator.FromHtml(Config.ColorFondo2), 90f);
+            Config.DefineTema();
+            String[] Tema = Config.Tema;
+
+            //El fondo se establece como un degradado entre el color 1 y el color 2.
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
+                ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
             e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
-        }
-
-        //Método que se ejecuta cuando el usuario hace click en el botón de seleccionar color 1.
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            ColorDialog cd = new ColorDialog();
-            if(cd.ShowDialog()==DialogResult.OK)
+            //Por cada control de tipo panel se define el color 2.
+            foreach (Control c in this.Controls.OfType<Panel>().ToList())
             {
-                ColorFondo1 = ColorTranslator.ToHtml(cd.Color);
-                pbBtnColor1.BackColor = cd.Color;
-                lblColorSeleccionado1.Text = ColorFondo1;
+                c.BackColor = ColorTranslator.FromHtml(Tema[2]);
+                //Si el panel contiene elementos label dentro, se define el color 1.
+                if (c.Controls.OfType<Label>().ToList().Count > 0)
+                {
+                    //Por cada control que su nombre comience por lblSpec, su color de fondo es el 4.
+                    foreach (Control co in c.Controls.OfType<Label>().Where(co => co.Name.StartsWith("lblSpec")))
+                    {
+                        co.BackColor = ColorTranslator.FromHtml(Tema[1]);
+                    }
+                }
             }
         }
 
-        //Método que se ejecuta cuando el usuario hace click en el botón de seleccionar color 2.
-        private void pbBtnColor2_Click(object sender, EventArgs e)
+        //Método que se ejecuta cuando el usuario pulsa el botón de guardar.
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
-            ColorDialog cd = new ColorDialog();
-            if (cd.ShowDialog() == DialogResult.OK)
-            {
-                ColorFondo2 = ColorTranslator.ToHtml(cd.Color);
-                pbBtnColor2.BackColor = cd.Color;
-                lblColorSeleccionado2.Text = ColorFondo2;
-            }
+            Tema_id = (int)cbTema.SelectedValue;
         }
     }
 }

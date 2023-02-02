@@ -15,8 +15,8 @@ namespace KComicReader
     {
         //Definición de propiedades.
         public static string DirectorioInstalacion { get; set; }
-        public static string ColorFondo1 { get; set; }
-        public static string ColorFondo2 { get; set; }
+        public static int Tema_id { get; set; }
+        public static string[] Tema { get; set; }
 
         public Config() { DefineConfiguracion(); }
 
@@ -29,20 +29,46 @@ namespace KComicReader
                 {
                     connection.Open();
                     MySqlCommand cmd = connection.CreateCommand();
-                    cmd.CommandText = "SELECT propiedad,valor FROM AJUSTES ORDER BY id";
-                    cmd.Parameters.AddWithValue("@propiedad", "directorio_instalacion");
+                    cmd.CommandText = "SELECT directorio_instalacion,tema_id FROM AJUSTES WHERE id = @id";
+                    cmd.Parameters.AddWithValue("@id", 1);
                     cmd.Prepare();
                     MySqlDataReader reader = cmd.ExecuteReader();
                     reader.Read();
-                    DirectorioInstalacion = reader.GetString("valor");
+                    DirectorioInstalacion = reader.GetString("directorio_instalacion");
                     reader.Read();
-                    ColorFondo1 = reader.GetString("valor");
-                    reader.Read();
-                    ColorFondo2 = reader.GetString("valor");
+                    Tema_id = reader.GetInt32("tema_id");
                 }
                 catch(MySqlException)
                 {
                     MessageBox.Show("No se ha podido obtener la configuración.\nPrueba a reiniciar el programa y el servidor de MySQL.","Error en la base de datos",MessageBoxButtons.OK);
+                }
+            }
+            //Defino el tema escogido.
+            DefineTema();
+        }
+
+        //Método que se conecta a la base de datos y carga en el array los colores del tema.
+        public static void DefineTema()
+        {
+            using (MySqlConnection connection = DataBaseConnectivity.getConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand cmd = connection.CreateCommand();
+                    cmd.CommandText = "SELECT color1,color2,color3 FROM TEMAS WHERE id = @id";
+                    cmd.Parameters.AddWithValue("@id", Tema_id);
+                    cmd.Prepare();
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    reader.Read();
+                    Tema = new string[3];
+                    Tema[0] = reader.GetString("color1");
+                    Tema[1] = reader.GetString("color2");
+                    Tema[2] = reader.GetString("color3");
+                }
+                catch (MySqlException)
+                {
+                    MessageBox.Show("No se ha podido obtener el tema.\nPrueba a reiniciar el programa y el servidor de MySQL.", "Error en la base de datos", MessageBoxButtons.OK);
                 }
             }
         }
@@ -57,18 +83,9 @@ namespace KComicReader
                     connection.Open();
                     MySqlCommand cmd = connection.CreateCommand();
                     cmd.CommandText = @"UPDATE AJUSTES 
-                                        SET valor = 
-                                            CASE 
-                                            WHEN propiedad = @directorio THEN @valorDirectorio
-                                            WHEN propiedad = @color1 THEN @valorColor1
-                                            WHEN propiedad = @color2 THEN @valorColor2
-                                            END";
-                    cmd.Parameters.AddWithValue("@directorio", "directorio_instalacion");
+                                        SET directorio_instalacion = @valorDirectorio, tema_id = @tema";
                     cmd.Parameters.AddWithValue("@valorDirectorio", DirectorioInstalacion);
-                    cmd.Parameters.AddWithValue("@color1", "color_fondo1");
-                    cmd.Parameters.AddWithValue("@valorColor1", ColorFondo1);
-                    cmd.Parameters.AddWithValue("@color2", "color_fondo2");
-                    cmd.Parameters.AddWithValue("@valorColor2", ColorFondo2);
+                    cmd.Parameters.AddWithValue("@tema", Tema_id);
                     cmd.Prepare();
                     cmd.ExecuteNonQuery();
                 }
@@ -78,6 +95,5 @@ namespace KComicReader
                 }
             }
         }
-
     }
 }

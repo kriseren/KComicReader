@@ -96,11 +96,27 @@ namespace KComicReader
 
         private void FormAgregarSerie_Paint(object sender, PaintEventArgs e)
         {
-            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(
-               this.ClientRectangle,
-               ColorTranslator.FromHtml(Config.ColorFondo1),
-               ColorTranslator.FromHtml(Config.ColorFondo2), 90f);
+            Config.DefineTema();
+            String[] Tema = Config.Tema;
+
+            //El fondo se establece como un degradado entre el color 1 y el color 2.
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
+                ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
             e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
+            //Por cada control de tipo panel se define el color 2.
+            foreach (Control c in this.Controls.OfType<Panel>().ToList())
+            {
+                c.BackColor = ColorTranslator.FromHtml(Tema[2]);
+                //Si el panel contiene elementos label dentro, se define el color 1.
+                if (c.Controls.OfType<Label>().ToList().Count > 0)
+                {
+                    //Por cada control que su nombre comience por lblSpec, su color de fondo es el 4.
+                    foreach (Control co in c.Controls.OfType<Label>().Where(co => co.Name.StartsWith("lblSpec")))
+                    {
+                        co.BackColor = ColorTranslator.FromHtml(Tema[1]);
+                    }
+                }
+            }
         }
     }
 }

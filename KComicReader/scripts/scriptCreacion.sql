@@ -45,11 +45,22 @@ CREATE TABLE COMICS (
   FOREIGN KEY (serie_id) REFERENCES SERIES(id)
 );
 
+CREATE TABLE TEMAS(
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(255) NOT NULL,
+  color1 VARCHAR(255) NOT NULL,
+  color2 VARCHAR(255) NOT NULL,
+  color3 VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE AJUSTES (
   id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  propiedad VARCHAR(255) NOT NULL,
-  valor VARCHAR(255) NOT NULL
+  directorio_instalacion VARCHAR(255) NOT NULL,
+  tema_id INT(11) NOT NULL,
+  FOREIGN KEY (tema_id) REFERENCES TEMAS(id)
 );
+
+
 
 /*INSERCIÓN DE LAS EDITORIALES*/
 INSERT INTO EDITORIALES (nombre) VALUES ('Sin asignar'),('Marvel Comics'), ('Detective Comics (DC)'), ('IDW Publishing'), ('Image Comics'), ('Dark Horse Comics'), ('Boom'), ('Norma Editorial');
@@ -99,5 +110,15 @@ INSERT INTO IDIOMAS (nombre) VALUES
 /*INSERCIÓN DE CATEGORÍAS*/
 INSERT INTO CATEGORIAS (nombre) VALUES ('Sin asignar'),('Superhéroes'),('Manga'),('Novela gráfica'),('Humor'),('Otros');
 
+/*INSERCIÓN DE LOS TEMAS*/
+INSERT INTO TEMAS (id, nombre, color1, color2, color3) VALUES
+(1, 'Predeterminado', '#b18cd9', '#E2C6FF', '#ece0f8'),
+(2, 'Marvel', '#EE2128', '#F1484E', '#FFFFFF'),
+(3, 'Detective Comics', '#263EB6', '#7F8FE2', '#FFFDFA'),
+(4, 'Manga', '#5F5F5F', '#B3B3B2', '#FEFFFE');
+
+
 /*INSERCIÓN DE LOS AJUSTES*/
-INSERT INTO AJUSTES (propiedad,valor) VALUES('directorio_instalacion','C:\KComicReader\Comics'),('color_fondo1','#C6B8D9'),('color_fondo1','#9F88BF');
+INSERT INTO AJUSTES (directorio_instalacion,tema_id) VALUES ('C:\\KComicReader\\Comics',1);
+
+

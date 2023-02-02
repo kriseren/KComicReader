@@ -99,7 +99,7 @@ namespace KComicReader
                 c.BackColor = Color.Transparent;
             }
             //Defino el color del fondo para el cómic seleccionado.
-            comicSeleccionado.BackColor = Color.FromArgb(177, 140, 217);
+            comicSeleccionado.BackColor = ColorTranslator.FromHtml(Config.Tema[1]);
 
             //Activo los botones de acciones.
             pbBtnEditar.Visible = true;
@@ -351,7 +351,7 @@ namespace KComicReader
         }
 
         //Método que se ejecuta cuando se hace doble click encima del ListBox de categorías.
-        private void lbCategorias_DoubleClick(object sender, EventArgs e)
+        private void lbCategorias_Click(object sender, EventArgs e)
         {
             using (MySqlConnection con = DataBaseConnectivity.getConnection())
             {
@@ -404,7 +404,7 @@ namespace KComicReader
         }
 
         //Método que se ejecuta cuando el usuario hace doble click en el listBox de Series.
-        private void lbSeries_DoubleClick(object sender, EventArgs e)
+        private void lbSeries_Click(object sender, EventArgs e)
         {
             using (MySqlConnection con = DataBaseConnectivity.getConnection())
             {
@@ -466,8 +466,7 @@ namespace KComicReader
             {
                 //Si e directorio no es nulo se define.
                 Config.DirectorioInstalacion = formConfig.DirectorioInstalacion;
-                Config.ColorFondo1 = formConfig.ColorFondo1;
-                Config.ColorFondo2 = formConfig.ColorFondo2;
+                Config.Tema_id = formConfig.Tema_id;
                 Config.GuardaConfiguracion();
                 //Defino los colores de nuevo.
                 this.Refresh();
@@ -477,11 +476,35 @@ namespace KComicReader
         //Método que se ejecuta cuando se pinta el formulario.
         private void FormVistaPrincipal_Paint(object sender, PaintEventArgs e)
         {
-            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(
-                this.ClientRectangle,
-                ColorTranslator.FromHtml(Config.ColorFondo1),
-                ColorTranslator.FromHtml(Config.ColorFondo2), 90f);
+            Config.DefineTema();
+            String[] Tema = Config.Tema;
+
+            //El fondo se establece como un degradado entre el color 1 y el color 2.
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
+                ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
             e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
+            //Por cada control de tipo panel se define el color 2.
+            foreach (Control c in this.Controls.OfType<Panel>().ToList())
+            {
+                c.BackColor = ColorTranslator.FromHtml(Tema[2]);
+                //Si el panel contiene elementos label dentro, se define el color 1.
+                if(c.Controls.OfType<Label>().ToList().Count>0)
+                {
+                    //Por cada control que su nombre comience por lblSpec, su color de fondo es el 4.
+                    foreach (Control co in c.Controls.OfType<Label>().Where(co => co.Name.StartsWith("lblSpec")))
+                    {
+                        co.BackColor = ColorTranslator.FromHtml(Tema[1]);
+                    }
+                }
+            }
+            //Cambio el color del fondo para todos los cómics.
+            foreach (Control c in fwpComics.Controls)
+            {
+                c.BackColor = Color.Transparent;
+            }
+            //Defino el color del fondo para el cómic seleccionado si éste no es nulo.
+            if(comicSeleccionado!=null)
+                comicSeleccionado.BackColor = ColorTranslator.FromHtml(Config.Tema[1]);
         }
     }
 }
