@@ -50,7 +50,8 @@ CREATE TABLE TEMAS(
   nombre VARCHAR(255) NOT NULL,
   color1 VARCHAR(255) NOT NULL,
   color2 VARCHAR(255) NOT NULL,
-  color3 VARCHAR(255) NOT NULL
+  color3 VARCHAR(255) NOT NULL,
+  seleccionador varchar(50) NOT NULL
 );
 
 CREATE TABLE AJUSTES (
@@ -115,12 +116,17 @@ INSERT INTO series (nombre, editorial_id) VALUES ('Todas las series', 1);
 
 
 /*INSERCIÓN DE LOS TEMAS*/
-INSERT INTO TEMAS (id, nombre, color1, color2, color3) VALUES
-(1, 'Predeterminado', '#b18cd9', '#E2C6FF', '#ece0f8'),
-(2, 'Marvel', '#EE2128', '#F1484E', '#FFFFFF'),
-(3, 'Detective Comics', '#263EB6', '#7F8FE2', '#FFFDFA'),
-(4, 'Manga', '#5F5F5F', '#B3B3B2', '#FEFFFE'),
-(5, 'Dragon Ball', '#FB7130', '#FCAB50', '#FFFFCF');
+INSERT INTO TEMAS (nombre, color1, color2, color3,seleccionador) VALUES
+('Predeterminado', '#b18cd9', '#E2C6FF', '#ece0f8', '1.png'),
+('Marvel', '#EE2128', '#F1484E', '#FFFFFF', '2.png'),
+('Detective Comics', '#263EB6', '#7F8FE2', '#FFFDFA', '3.png'),
+('Manga', '#5F5F5F', '#B3B3B2', '#FEFFFE', '4.png'),
+('Dragon Ball', '#FB7130', '#FCAB50', '#FFFFCF', '5.png'),
+('Groot', '#779BDC', '#9DBBEB', '#AB8F69', '6.png'),
+('Lobezno', '#074562', '#1985AD', '#FBC543', '7.png'),
+('Batman', '#000000', '#200D08', '#FBF0A3', '8.png'),
+('One Piece', '#0563B1', '#00B6EE', '#DC7B47', '9.png'),
+('Joker', '#554278', '#9E66B1', '#95CE60', '10.png');
 
 
 /*INSERCIÓN DE LOS AJUSTES*/

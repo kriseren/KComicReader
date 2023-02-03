@@ -23,7 +23,7 @@ namespace KComicReader
         private void Btn_MouseEnter(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
-            pb.BackgroundImage = Image.FromFile(@"..\..\imgs\icons\hover.png");
+            pb.BackgroundImage = Config.Hover;
         }
 
         //Método que se ejecuta cuando el ratón sale del área visible del botón.
@@ -97,18 +97,19 @@ namespace KComicReader
             LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
                 ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
             e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
-            //Por cada control de tipo panel se define el color 2.
-            foreach (Control c in this.Controls.OfType<Panel>().ToList())
+            //Si el tema es oscuro se cambia el color de la fuente.
+            if (Config.Tema_id == 8)
             {
-                c.BackColor = ColorTranslator.FromHtml(Tema[2]);
-                //Si el panel contiene elementos label dentro, se define el color 1.
-                if (c.Controls.OfType<Label>().ToList().Count > 0)
+                foreach(Control c in this.Controls.OfType<Label>().ToList())
                 {
-                    //Por cada control que su nombre comience por lblSpec, su color de fondo es el 4.
-                    foreach (Control co in c.Controls.OfType<Label>().Where(co => co.Name.StartsWith("lblSpec")))
-                    {
-                        co.BackColor = ColorTranslator.FromHtml(Tema[1]);
-                    }
+                    c.ForeColor = ColorTranslator.FromHtml(Tema[2]);
+                }
+            }
+            else
+            {
+                foreach (Control c in this.Controls.OfType<Label>().ToList())
+                {
+                    c.ForeColor = Color.Black;
                 }
             }
         }

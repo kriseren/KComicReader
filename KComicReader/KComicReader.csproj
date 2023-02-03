@@ -185,6 +185,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="imgs\bg\comic zoom speed.jpg" />
+    <Content Include="imgs\hover\1.png" />
+    <Content Include="imgs\hover\10.png" />
+    <Content Include="imgs\hover\2.png" />
+    <Content Include="imgs\hover\3.png" />
+    <Content Include="imgs\hover\4.png" />
+    <Content Include="imgs\hover\5.png" />
+    <Content Include="imgs\hover\6.png" />
+    <Content Include="imgs\hover\7.png" />
+    <Content Include="imgs\hover\8.png" />
+    <Content Include="imgs\hover\9.png" />
     <Content Include="imgs\icons\comicCover.jpg" />
     <Content Include="imgs\icons\hover.png" />
     <Content Include="imgs\icons\mark.png" />
@@ -197,5 +207,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

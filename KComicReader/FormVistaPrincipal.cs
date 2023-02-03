@@ -136,38 +136,16 @@ namespace KComicReader
         //Método que se ejecuta cuando se carga el formulario.
         private void FormVistaPrincipal_Load(object sender, EventArgs e)
         {
-            //Se comprueba que la base de datos exista En caso contrario se crea mediante un script.
-            if(existeDB())
-            {
-                //Carga la configuración de la base de datos.
-                Config.DefineConfiguracion();
-                //Obtengo todos los comics dados de alta en la base de datos.
-                cargaTodosComics();
-                //Los ordeno por título.
-                ordenaComicsPorTitulo();
-                //Cargo todas las categorías.
-                cargaCategorias();
-                //Cargo todas las series.
-                cargaSeries();
-            }
-            else
-            {
-                string connectionString = "server=localhost;user=root;password=;";
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    try
-                    {
-                        connection.Open();
-                        //Creo el script cargando el fichero y lo ejecuto.
-                        MySqlScript script = new MySqlScript(connection, File.ReadAllText(@"..\..\scripts\scriptCreacion.sql"));
-                        script.Execute();
-                    }
-                    catch(MySqlException)
-                    {
-                        MessageBox.Show("No se ha podido crear la base de datos","Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
+            //Defino la configuración.
+            Config.DefineConfiguracion();
+            //Obtengo todos los comics dados de alta en la base de datos.
+            cargaTodosComics();
+            //Los ordeno por título.
+            ordenaComicsPorTitulo();
+            //Cargo todas las categorías.
+            cargaCategorias();
+            //Cargo todas las series.
+            cargaSeries();
 
             //Muestro la vista vacía.
             panelRightVacia.BringToFront();
@@ -344,7 +322,7 @@ namespace KComicReader
         private void Btn_MouseEnter(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
-            pb.BackgroundImage = Image.FromFile(@"..\..\imgs\icons\hover.png");
+            pb.BackgroundImage = Config.Hover;
         }
 
         //Método que se ejecuta cuando el ratón sale del área visible del botón.
@@ -380,7 +358,6 @@ namespace KComicReader
                         Comic c;
                         while (reader.Read())
                         {
-                            //Creo el cómic.
                             c = new Comic();
                             //Defino las propiedades.
                             c.Id = reader.GetInt32("id");
@@ -516,6 +493,16 @@ namespace KComicReader
                     foreach (Control co in c.Controls.OfType<Label>().Where(co => co.Name.StartsWith("lblSpec")))
                     {
                         co.BackColor = ColorTranslator.FromHtml(Tema[1]);
+
+                        //Si el tema es alguno oscuro.
+                        if(Config.Tema_id==8)
+                        {
+                            co.ForeColor = ColorTranslator.FromHtml(Tema[2]);
+                        }
+                        else
+                        {
+                            co.ForeColor = Color.Black;
+                        }
                     }
                 }
             }

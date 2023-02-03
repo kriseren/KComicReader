@@ -103,19 +103,16 @@ namespace KComicReader
             LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
                 ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
             e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
-            //Por cada control de tipo panel se define el color 2.
-            foreach (Control c in this.Controls.OfType<Panel>().ToList())
+            //Si el tema es oscuro se cambia el color de la fuente.
+            if (Config.Tema_id == 8)
             {
-                c.BackColor = ColorTranslator.FromHtml(Tema[2]);
-                //Si el panel contiene elementos label dentro, se define el color 1.
-                if (c.Controls.OfType<Label>().ToList().Count > 0)
-                {
-                    //Por cada control que su nombre comience por lblSpec, su color de fondo es el 4.
-                    foreach (Control co in c.Controls.OfType<Label>().Where(co => co.Name.StartsWith("lblSpec")))
-                    {
-                        co.BackColor = ColorTranslator.FromHtml(Tema[1]);
-                    }
-                }
+                foreach (Control c in this.Controls.OfType<Label>().ToList())
+                    c.ForeColor = ColorTranslator.FromHtml(Tema[2]);
+            }
+            else
+            {
+                foreach (Control c in this.Controls.OfType<Label>().ToList())
+                    c.ForeColor = Color.Black;
             }
         }
     }

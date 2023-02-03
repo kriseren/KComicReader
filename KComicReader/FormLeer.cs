@@ -205,7 +205,7 @@ namespace KComicReader
         private void Btn_MouseEnter(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
-            pb.BackgroundImage = Image.FromFile(@"..\..\imgs\icons\hover.png");
+            pb.BackgroundImage = Config.Hover;
         }
 
         //Método que se ejecuta cuando el ratón sale del área visible del botón.

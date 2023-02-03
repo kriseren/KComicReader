@@ -1,12 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace KComicReader
@@ -17,6 +11,7 @@ namespace KComicReader
         public static string DirectorioInstalacion { get; set; }
         public static int Tema_id { get; set; }
         public static string[] Tema { get; set; }
+        public static Image Hover { get; set; }
 
         public Config() { DefineConfiguracion(); }
 
@@ -56,7 +51,7 @@ namespace KComicReader
                 {
                     connection.Open();
                     MySqlCommand cmd = connection.CreateCommand();
-                    cmd.CommandText = "SELECT color1,color2,color3 FROM TEMAS WHERE id = @id";
+                    cmd.CommandText = "SELECT color1,color2,color3,seleccionador FROM TEMAS WHERE id = @id";
                     cmd.Parameters.AddWithValue("@id", Tema_id);
                     cmd.Prepare();
                     MySqlDataReader reader = cmd.ExecuteReader();
@@ -65,6 +60,15 @@ namespace KComicReader
                     Tema[0] = reader.GetString("color1");
                     Tema[1] = reader.GetString("color2");
                     Tema[2] = reader.GetString("color3");
+                    try
+                    {
+                        Hover = Image.FromFile("..\\..\\imgs\\hover\\" + reader.GetString("seleccionador"));
+
+                    }
+                    catch(IOException)
+                    {
+                        Hover = Image.FromFile("..\\..\\imgs\\hover\\1.png");
+                    }
                 }
                 catch (MySqlException)
                 {
