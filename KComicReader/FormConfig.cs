@@ -93,23 +93,27 @@ namespace KComicReader
             Config.DefineTema();
             String[] Tema = Config.Tema;
 
-            //El fondo se establece como un degradado entre el color 1 y el color 2.
-            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
-                ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
-            e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
-            //Si el tema es oscuro se cambia el color de la fuente.
-            if (Config.Tema_id == 8)
+            if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
             {
-                foreach(Control c in this.Controls.OfType<Label>().ToList())
+                //El fondo se establece como un degradado entre el color 1 y el color 2.
+                
+                LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
+                    ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
+                e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
+                //Si el tema es oscuro se cambia el color de la fuente.
+                if (Config.Tema_id == 8)
                 {
-                    c.ForeColor = ColorTranslator.FromHtml(Tema[2]);
+                    foreach (Control c in this.Controls.OfType<Label>().ToList())
+                    {
+                        c.ForeColor = ColorTranslator.FromHtml(Tema[2]);
+                    }
                 }
-            }
-            else
-            {
-                foreach (Control c in this.Controls.OfType<Label>().ToList())
+                else
                 {
-                    c.ForeColor = Color.Black;
+                    foreach (Control c in this.Controls.OfType<Label>().ToList())
+                    {
+                        c.ForeColor = Color.Black;
+                    }
                 }
             }
         }

@@ -220,10 +220,19 @@ namespace KComicReader
             Config.DefineTema();
             String[] Tema = Config.Tema;
 
-            //El fondo se establece como un degradado entre el color 1 y el color 2.
-            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
-                ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
-            e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
+            if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
+            {
+                //El fondo se establece como un degradado entre el color 1 y el color 2.
+                LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
+                    ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
+                e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
+
+                //Si el tema es oscuro se define un color de fondo para el panel de los botones.
+                if (Config.Tema_id == 8)
+                {
+                    panelButtons.BackColor = ColorTranslator.FromHtml(Tema[2]);
+                }
+            }
         }
     }
 }

@@ -34,9 +34,8 @@ namespace KComicReader
             if (existe())
             {
                 MessageBox.Show("La " + elemento + " que intentas crear ya existe.", "Error al crear la " + elemento, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-                btnAgregar.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.None;
+            }   
         }
 
         //Método que comprueba si la editorial o la serie existen.
@@ -86,20 +85,24 @@ namespace KComicReader
             Config.DefineTema();
             String[] Tema = Config.Tema;
 
-            //El fondo se establece como un degradado entre el color 1 y el color 2.
-            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
+            
+            if(this.ClientRectangle.Width !=0 || this.ClientRectangle.Height != 0)
+            {
+                //El fondo se establece como un degradado entre el color 1 y el color 2.
+                LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
                 ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
-            e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
-            //Si el tema es oscuro se cambia el color de la fuente.
-            if (Config.Tema_id == 8)
-            {
-                foreach (Control c in this.Controls.OfType<Label>().ToList())
-                    c.ForeColor = ColorTranslator.FromHtml(Tema[2]);
-            }
-            else
-            {
-                foreach (Control c in this.Controls.OfType<Label>().ToList())
-                    c.ForeColor = Color.Black;
+                e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
+                //Si el tema es oscuro se cambia el color de la fuente.
+                if (Config.Tema_id == 8)
+                {
+                    foreach (Control c in this.Controls.OfType<Label>().ToList())
+                        c.ForeColor = ColorTranslator.FromHtml(Tema[2]);
+                }
+                else
+                {
+                    foreach (Control c in this.Controls.OfType<Label>().ToList())
+                        c.ForeColor = Color.Black;
+                }
             }
         }
     }

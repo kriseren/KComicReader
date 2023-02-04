@@ -97,9 +97,12 @@ namespace KComicReader
             foreach( Control c in fwpComics.Controls)
             {
                 c.BackColor = Color.Transparent;
+                c.ForeColor = Color.Black;
             }
-            //Defino el color del fondo para el cómic seleccionado.
+            //Defino el color del fondo para el cómic seleccionado dependiendo del tema.
             comicSeleccionado.BackColor = ColorTranslator.FromHtml(Config.Tema[1]);
+            if (Config.Tema_id == 8)
+                comicSeleccionado.ForeColor = ColorTranslator.FromHtml(Config.Tema[2]);
 
             //Activo los botones de acciones.
             pbBtnEditar.Visible = true;
@@ -478,42 +481,45 @@ namespace KComicReader
             Config.DefineTema();
             String[] Tema = Config.Tema;
 
-            //El fondo se establece como un degradado entre el color 1 y el color 2.
-            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
-                ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
-            e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
-            //Por cada control de tipo panel se define el color 2.
-            foreach (Control c in this.Controls.OfType<Panel>().ToList())
+            if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
             {
-                c.BackColor = ColorTranslator.FromHtml(Tema[2]);
-                //Si el panel contiene elementos label dentro, se define el color 1.
-                if(c.Controls.OfType<Label>().ToList().Count>0)
+                //El fondo se establece como un degradado entre el color 1 y el color 2.
+                LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
+                    ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
+                e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
+                //Por cada control de tipo panel se define el color 2.
+                foreach (Control c in this.Controls.OfType<Panel>().ToList())
                 {
-                    //Por cada control que su nombre comience por lblSpec, su color de fondo es el 4.
-                    foreach (Control co in c.Controls.OfType<Label>().Where(co => co.Name.StartsWith("lblSpec")))
+                    c.BackColor = ColorTranslator.FromHtml(Tema[2]);
+                    //Si el panel contiene elementos label dentro, se define el color 1.
+                    if (c.Controls.OfType<Label>().ToList().Count > 0)
                     {
-                        co.BackColor = ColorTranslator.FromHtml(Tema[1]);
+                        //Por cada control que su nombre comience por lblSpec, su color de fondo es el 4.
+                        foreach (Control co in c.Controls.OfType<Label>().Where(co => co.Name.StartsWith("lblSpec")))
+                        {
+                            co.BackColor = ColorTranslator.FromHtml(Tema[1]);
 
-                        //Si el tema es alguno oscuro.
-                        if(Config.Tema_id==8)
-                        {
-                            co.ForeColor = ColorTranslator.FromHtml(Tema[2]);
-                        }
-                        else
-                        {
-                            co.ForeColor = Color.Black;
+                            //Si el tema es alguno oscuro.
+                            if (Config.Tema_id == 8)
+                            {
+                                co.ForeColor = ColorTranslator.FromHtml(Tema[2]);
+                            }
+                            else
+                            {
+                                co.ForeColor = Color.Black;
+                            }
                         }
                     }
                 }
+                //Cambio el color del fondo para todos los cómics.
+                foreach (Control c in fwpComics.Controls)
+                {
+                    c.BackColor = Color.Transparent;
+                }
+                //Defino el color del fondo para el cómic seleccionado si éste no es nulo.
+                if (comicSeleccionado != null)
+                    comicSeleccionado.BackColor = ColorTranslator.FromHtml(Config.Tema[1]);
             }
-            //Cambio el color del fondo para todos los cómics.
-            foreach (Control c in fwpComics.Controls)
-            {
-                c.BackColor = Color.Transparent;
-            }
-            //Defino el color del fondo para el cómic seleccionado si éste no es nulo.
-            if(comicSeleccionado!=null)
-                comicSeleccionado.BackColor = ColorTranslator.FromHtml(Config.Tema[1]);
         }
 
         //Método que se ejecuta cuando el usuaro pulsa el botón de eliminar cómic.
@@ -531,15 +537,19 @@ namespace KComicReader
                         cmd.Parameters.AddWithValue("@id", comicSeleccionado.Id);
                         cmd.Prepare();
                         cmd.ExecuteNonQuery();
+
+                        //Elimino el cómic del fwp.
+                        fwpComics.Controls.Remove(comicSeleccionado);
+
+                        //Elimino el fichero del cómic.
+                        if(comicSeleccionado.ArchivoURL != "")
+                            File.Delete(comicSeleccionado.ArchivoURL);
                     }
                     catch (MySqlException)
                     {
                         MessageBox.Show("No se ha podido eliminar el producto. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
-                //Elimino el cómic del fwp.
-                fwpComics.Controls.Remove(comicSeleccionado);
             }
         }
     }
