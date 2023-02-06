@@ -10,8 +10,10 @@ namespace KComicReader
         //Definición de propiedades.
         public static string DirectorioInstalacion { get; set; }
         public static int Tema_id { get; set; }
+        public static string Tema_Nombre { get; set; }
         public static string[] Tema { get; set; }
         public static Image Hover { get; set; }
+        public static Image ThemeIcon { get; set; }
         public static bool MostrarBienvenida { get; set; }
 
         public Config() { DefineConfiguracion(); }
@@ -52,23 +54,26 @@ namespace KComicReader
                 {
                     connection.Open();
                     MySqlCommand cmd = connection.CreateCommand();
-                    cmd.CommandText = "SELECT color1,color2,color3,seleccionador FROM TEMAS WHERE id = @id";
+                    cmd.CommandText = "SELECT nombre,color1,color2,color3,seleccionador,icono FROM TEMAS WHERE id = @id";
                     cmd.Parameters.AddWithValue("@id", Tema_id);
                     cmd.Prepare();
                     MySqlDataReader reader = cmd.ExecuteReader();
                     reader.Read();
                     Tema = new string[3];
+                    Tema_Nombre = reader.GetString("nombre");
                     Tema[0] = reader.GetString("color1");
                     Tema[1] = reader.GetString("color2");
                     Tema[2] = reader.GetString("color3");
                     try
                     {
                         Hover = Image.FromFile("..\\..\\imgs\\hover\\" + reader.GetString("seleccionador"));
+                        ThemeIcon = Image.FromFile("..\\..\\imgs\\themeIcons\\" + reader.GetString("seleccionador"));
 
                     }
                     catch(IOException)
                     {
                         Hover = Image.FromFile("..\\..\\imgs\\hover\\1.png");
+                        ThemeIcon = Image.FromFile("..\\..\\imgs\\themeicons\\1.png");
                     }
                 }
                 catch (MySqlException)

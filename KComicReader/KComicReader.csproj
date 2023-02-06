@@ -184,7 +184,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="imgs\bg\comic zoom speed.jpg" />
     <Content Include="imgs\hover\1.png" />
     <Content Include="imgs\hover\10.png" />
     <Content Include="imgs\hover\2.png" />
@@ -202,6 +201,15 @@
     <Content Include="imgs\icons\readingComic.ico" />
     <Content Include="imgs\icons\zoomIn.png" />
     <Content Include="imgs\icons\zoomOut.png" />
+    <Content Include="imgs\themeIcons\1.png" />
+    <Content Include="imgs\themeIcons\10.png" />
+    <Content Include="imgs\themeIcons\2.png" />
+    <Content Include="imgs\themeIcons\3.png" />
+    <Content Include="imgs\themeIcons\5.png" />
+    <Content Include="imgs\themeIcons\6.png" />
+    <Content Include="imgs\themeIcons\7.png" />
+    <Content Include="imgs\themeIcons\8.png" />
+    <Content Include="imgs\themeIcons\9.png" />
     <Content Include="scripts\scriptCreacion.sql" />
   </ItemGroup>
   <ItemGroup>

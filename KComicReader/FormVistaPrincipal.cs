@@ -491,6 +491,10 @@ namespace KComicReader
 
             if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
             {
+                //Defino el icono del tema y el nombre.
+                pbThemeIcon.Image = Config.ThemeIcon;
+                lblThemeIcon.Text = Config.Tema_Nombre;
+
                 //El fondo se establece como un degradado entre el color 1 y el color 2.
                 LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
                     ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);

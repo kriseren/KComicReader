@@ -90,9 +90,9 @@
             this.btnSeleccionarCarpeta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeleccionarCarpeta.Image = ((System.Drawing.Image)(resources.GetObject("btnSeleccionarCarpeta.Image")));
             this.btnSeleccionarCarpeta.Location = new System.Drawing.Point(416, 106);
-            this.btnSeleccionarCarpeta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSeleccionarCarpeta.Margin = new System.Windows.Forms.Padding(2);
             this.btnSeleccionarCarpeta.Name = "btnSeleccionarCarpeta";
-            this.btnSeleccionarCarpeta.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSeleccionarCarpeta.Padding = new System.Windows.Forms.Padding(2);
             this.btnSeleccionarCarpeta.Size = new System.Drawing.Size(21, 23);
             this.btnSeleccionarCarpeta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnSeleccionarCarpeta.TabIndex = 29;
@@ -119,7 +119,7 @@
             this.tbDirectorioValue.Enabled = false;
             this.tbDirectorioValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDirectorioValue.Location = new System.Drawing.Point(195, 106);
-            this.tbDirectorioValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbDirectorioValue.Margin = new System.Windows.Forms.Padding(2);
             this.tbDirectorioValue.Name = "tbDirectorioValue";
             this.tbDirectorioValue.Size = new System.Drawing.Size(217, 24);
             this.tbDirectorioValue.TabIndex = 30;
@@ -186,7 +186,7 @@
             this.checkBoxMostrarInicio.BackColor = System.Drawing.Color.Transparent;
             this.checkBoxMostrarInicio.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBoxMostrarInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxMostrarInicio.Location = new System.Drawing.Point(22, 269);
+            this.checkBoxMostrarInicio.Location = new System.Drawing.Point(18, 269);
             this.checkBoxMostrarInicio.Name = "checkBoxMostrarInicio";
             this.checkBoxMostrarInicio.Size = new System.Drawing.Size(295, 22);
             this.checkBoxMostrarInicio.TabIndex = 38;
@@ -213,7 +213,7 @@
             this.Controls.Add(this.lblTituloFormulario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Configuración de KComicReader";
