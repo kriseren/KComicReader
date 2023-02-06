@@ -58,6 +58,7 @@ CREATE TABLE AJUSTES (
   id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   directorio_instalacion VARCHAR(255) NOT NULL,
   tema_id INT(11) NOT NULL,
+  mostrar_bienvenida BOOLEAN NOT NULL,
   FOREIGN KEY (tema_id) REFERENCES TEMAS(id)
 );
 
@@ -130,6 +131,6 @@ INSERT INTO TEMAS (nombre, color1, color2, color3,seleccionador) VALUES
 
 
 /*INSERCIÓN DE LOS AJUSTES*/
-INSERT INTO AJUSTES (directorio_instalacion,tema_id) VALUES ('C:\\KComicReader\\Comics',1);
+INSERT INTO AJUSTES (directorio_instalacion,tema_id) VALUES ('C:\\KComicReader\\Comics',1,1);
 
 

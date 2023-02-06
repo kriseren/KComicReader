@@ -156,6 +156,13 @@ namespace KComicReader
 
             //Agrego un eventHandler al botón de agregar cómic dentro del fwp.
             agregarComicBtn.eventoClick += pbBtnAgregar_Click;
+
+            //Muestro la ventana de bienvenida.
+            if(Config.MostrarBienvenida)
+            {
+                FormBienvenida formBienvenida = new FormBienvenida();
+                formBienvenida.ShowDialog();
+            }
         }
 
         //Método que comprueba si la base de datos existe, de lo contrario se crea.
@@ -469,6 +476,7 @@ namespace KComicReader
                 //Si e directorio no es nulo se define.
                 Config.DirectorioInstalacion = formConfig.DirectorioInstalacion;
                 Config.Tema_id = formConfig.Tema_id;
+                Config.MostrarBienvenida = formConfig.MostrarBienvenida;
                 Config.GuardaConfiguracion();
                 //Defino los colores de nuevo.
                 this.Refresh();

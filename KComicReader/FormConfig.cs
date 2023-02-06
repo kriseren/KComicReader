@@ -14,6 +14,7 @@ namespace KComicReader
         //Definición de propiedades.
         public string DirectorioInstalacion {get;set;}
         public int Tema_id { get; set; }
+        public bool MostrarBienvenida { get; set; }
         public FormConfig()
         {
             InitializeComponent();
@@ -41,11 +42,14 @@ namespace KComicReader
             DirectorioInstalacion = Config.DirectorioInstalacion;
             tbDirectorioValue.Text = Config.DirectorioInstalacion;
             Tema_id = Config.Tema_id;
+            MostrarBienvenida = Config.MostrarBienvenida;
+            
 
             //Se definen las opciones del combobox de temas.
             DefineTemas();
-            //Se define el tema seleccionado.
+            //Se define el tema seleccionado y la bienvenida.
             cbTema.SelectedValue = Tema_id;
+            checkBoxMostrarInicio.Checked = MostrarBienvenida;
         }
 
         private void DefineTemas()
@@ -58,7 +62,6 @@ namespace KComicReader
                 {
                     con.Open();
                     MySqlCommand cmd = con.CreateCommand();
-                    //Serie.
                     cmd.CommandText = "SELECT id, nombre FROM TEMAS ORDER BY nombre";
                     cmd.Prepare();
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -122,6 +125,7 @@ namespace KComicReader
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Tema_id = (int)cbTema.SelectedValue;
+            MostrarBienvenida = checkBoxMostrarInicio.Checked;
         }
     }
 }

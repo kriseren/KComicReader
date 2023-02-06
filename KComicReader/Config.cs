@@ -12,6 +12,7 @@ namespace KComicReader
         public static int Tema_id { get; set; }
         public static string[] Tema { get; set; }
         public static Image Hover { get; set; }
+        public static bool MostrarBienvenida { get; set; }
 
         public Config() { DefineConfiguracion(); }
 
@@ -24,14 +25,14 @@ namespace KComicReader
                 {
                     connection.Open();
                     MySqlCommand cmd = connection.CreateCommand();
-                    cmd.CommandText = "SELECT directorio_instalacion,tema_id FROM AJUSTES WHERE id = @id";
+                    cmd.CommandText = "SELECT directorio_instalacion,tema_id,mostrar_bienvenida FROM AJUSTES WHERE id = @id";
                     cmd.Parameters.AddWithValue("@id", 1);
                     cmd.Prepare();
                     MySqlDataReader reader = cmd.ExecuteReader();
                     reader.Read();
                     DirectorioInstalacion = reader.GetString("directorio_instalacion");
-                    reader.Read();
                     Tema_id = reader.GetInt32("tema_id");
+                    MostrarBienvenida = reader.GetBoolean("mostrar_bienvenida");
                 }
                 catch(MySqlException)
                 {
@@ -87,9 +88,10 @@ namespace KComicReader
                     connection.Open();
                     MySqlCommand cmd = connection.CreateCommand();
                     cmd.CommandText = @"UPDATE AJUSTES 
-                                        SET directorio_instalacion = @valorDirectorio, tema_id = @tema";
+                                        SET directorio_instalacion = @valorDirectorio, tema_id = @tema, mostrar_bienvenida = @bienvenida";
                     cmd.Parameters.AddWithValue("@valorDirectorio", DirectorioInstalacion);
                     cmd.Parameters.AddWithValue("@tema", Tema_id);
+                    cmd.Parameters.AddWithValue("@bienvenida", MostrarBienvenida);
                     cmd.Prepare();
                     cmd.ExecuteNonQuery();
                 }
