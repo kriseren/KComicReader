@@ -38,15 +38,17 @@ namespace KComicReader
         private void FormConfig_Load(object sender, EventArgs e)
         {
             //Se define la configuración y el valor del campo.
-            Config.DefineConfiguracion();
+            if(Config.Conexion)
+            {
+                Config.DefineConfiguracion();
+                DefineTemas();
+            }
+                
             DirectorioInstalacion = Config.DirectorioInstalacion;
             tbDirectorioValue.Text = Config.DirectorioInstalacion;
             Tema_id = Config.Tema_id;
             MostrarBienvenida = Config.MostrarBienvenida;
-            
-
-            //Se definen las opciones del combobox de temas.
-            DefineTemas();
+                
             //Se define el tema seleccionado y la bienvenida.
             cbTema.SelectedValue = Tema_id;
             checkBoxMostrarInicio.Checked = MostrarBienvenida;
@@ -93,7 +95,9 @@ namespace KComicReader
 
         private void FormConfig_Paint(object sender, PaintEventArgs e)
         {
-            Config.DefineTema();
+            if(Config.Conexion)
+                Config.DefineTema();
+
             String[] Tema = Config.Tema;
 
             if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
@@ -124,8 +128,11 @@ namespace KComicReader
         //Método que se ejecuta cuando el usuario pulsa el botón de guardar.
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Tema_id = (int)cbTema.SelectedValue;
-            MostrarBienvenida = checkBoxMostrarInicio.Checked;
+            if(Config.Conexion)
+            {
+                Tema_id = (int)cbTema.SelectedValue;
+                MostrarBienvenida = checkBoxMostrarInicio.Checked;
+            }
         }
     }
 }

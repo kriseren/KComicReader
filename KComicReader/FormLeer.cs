@@ -217,7 +217,10 @@ namespace KComicReader
 
         private void FormLeer_Paint(object sender, PaintEventArgs e)
         {
-            Config.DefineTema();
+            //Si tiene conexión, se define el tema.
+            if (Config.Conexion)
+                Config.DefineTema();
+
             String[] Tema = Config.Tema;
 
             if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)

@@ -13,7 +13,6 @@ namespace KComicReader
 {
     public partial class FormAgregarComic : Form
     {
-
         //Definición de atributos.
         public Comic comic = new Comic();
         private OpenFileDialog ofd_FicheroComic;
@@ -149,11 +148,10 @@ namespace KComicReader
             pbPortada.Image = comic.Portada;
             ofd_FicheroComic.FileName = comic.ArchivoURL;
 
-            //Defino las opciones seleccionadas de los combo Box.
-            if(comic.CategoriaID == 0)
-                cbCategoria.Text = "Sin asignar";
-            if(comic.EditorialID == 0)
-                cbEditorial.Text = "Sin asignar";
+            if (!Config.Conexion)
+            {
+                cbCategoria.SelectedItem = "Sin asignar";
+            }
         }
 
         //Método que se ejecuta cuando se pulsa el botón de agregar una nueva editorial.
@@ -192,17 +190,20 @@ namespace KComicReader
         //Método que se conecta a la base de datos para definir las diferentes opciones de los comboBox.
         private void defineOpciones()
         {
-            //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
-            try
+            if(Config.Conexion)
             {
-                defineEditoriales();
-                defineSeries();
-                defineCategorias();
-                defineIdiomas();
-            }
-            catch (MySqlException)
-            {
-                MessageBox.Show("Ha ocurrido un error al conectar a la base de datos y obtener las categorías, editoriales e idiomas. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
+                try
+                {
+                    defineEditoriales();
+                    defineSeries();
+                    defineCategorias();
+                    defineIdiomas();
+                }
+                catch (MySqlException)
+                {
+                    MessageBox.Show("Ha ocurrido un error al conectar a la base de datos y obtener las categorías, editoriales e idiomas. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -295,27 +296,34 @@ namespace KComicReader
         //Método que define las opciones del comboBox de idiomas.
         private void defineIdiomas()
         {
-            //Obtengo la conexión y los objetos necesarios.
-            using (MySqlConnection con = DataBaseConnectivity.getConnection())
+            if(Config.Conexion)
             {
-                //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
-                try
+                //Obtengo la conexión y los objetos necesarios.
+                using (MySqlConnection con = DataBaseConnectivity.getConnection())
                 {
-                    con.Open();
-                    MySqlCommand cmd = con.CreateCommand();
-                    //Idiomas.
-                    string query = "SELECT id, nombre FROM IDIOMAS ORDER BY nombre";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds);
-                    cbIdioma.DataSource = ds.Tables[0];
-                    cbIdioma.DisplayMember = "nombre";
-                    cbIdioma.ValueMember = "id";
+                    //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
+                    try
+                    {
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        //Idiomas.
+                        string query = "SELECT id, nombre FROM IDIOMAS ORDER BY nombre";
+                        MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        cbIdioma.DataSource = ds.Tables[0];
+                        cbIdioma.DisplayMember = "nombre";
+                        cbIdioma.ValueMember = "id";
+                    }
+                    catch (MySqlException)
+                    {
+                        MessageBox.Show("No se han podido obtener los idiomas. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch (MySqlException)
-                {
-                    MessageBox.Show("No se han podido obtener los idiomas. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                cbIdioma.Text = "Sin conexión";
             }
         }
 
@@ -389,7 +397,10 @@ namespace KComicReader
         //Método que se ejecuta cuando se pinta el formulario.
         private void FormAgregarComic_Paint(object sender, PaintEventArgs e)
         {
-            Config.DefineTema();
+            //Si tiene conexión, se define el tema.
+            if (Config.Conexion)
+                Config.DefineTema();
+
             String[] Tema = Config.Tema;
 
             if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)

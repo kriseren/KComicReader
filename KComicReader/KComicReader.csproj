@@ -199,6 +199,7 @@
     <Content Include="imgs\icons\mark.png" />
     <Content Include="imgs\icons\marked.png" />
     <Content Include="imgs\icons\readingComic.ico" />
+    <Content Include="imgs\icons\sinConexion.png" />
     <Content Include="imgs\icons\zoomIn.png" />
     <Content Include="imgs\icons\zoomOut.png" />
     <Content Include="imgs\themeIcons\1.png" />
