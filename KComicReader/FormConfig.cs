@@ -20,6 +20,58 @@ namespace KComicReader
             InitializeComponent();
         }
 
+        //Método que se ejecuta cuando se carga el formulario.
+        private void FormConfig_Load(object sender, EventArgs e)
+        {
+            //Se define la configuración y el valor del campo.
+            if (Config.Conexion)
+            {
+                Config.DefineConfiguracion();
+                DefineTemas();
+            }
+
+            DirectorioInstalacion = Config.DirectorioInstalacion;
+            tbDirectorioValue.Text = Config.DirectorioInstalacion;
+            Tema_id = Config.Tema_id;
+            MostrarBienvenida = Config.MostrarBienvenida;
+
+            //Se define el tema seleccionado y la bienvenida.
+            cbTema.SelectedValue = Tema_id;
+            checkBoxMostrarInicio.Checked = MostrarBienvenida;
+        }
+
+        private void FormConfig_Paint(object sender, PaintEventArgs e)
+        {
+            if (Config.Conexion)
+                Config.DefineTema();
+
+            String[] Tema = Config.Tema;
+
+            if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
+            {
+                //El fondo se establece como un degradado entre el color 1 y el color 2.
+
+                LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
+                    ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
+                e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
+                //Si el tema es oscuro se cambia el color de la fuente.
+                if (Config.Tema_id == 8)
+                {
+                    foreach (Control c in this.Controls.OfType<Label>().ToList())
+                    {
+                        c.ForeColor = ColorTranslator.FromHtml(Tema[2]);
+                    }
+                }
+                else
+                {
+                    foreach (Control c in this.Controls.OfType<Label>().ToList())
+                    {
+                        c.ForeColor = Color.Black;
+                    }
+                }
+            }
+        }
+
         //Método que se ejecuta cuando el ratón entra en el área visible del botón.
         private void Btn_MouseEnter(object sender, EventArgs e)
         {
@@ -34,25 +86,6 @@ namespace KComicReader
             pb.BackgroundImage = null;
         }
 
-        //Método que se ejecuta cuando se carga el formulario.
-        private void FormConfig_Load(object sender, EventArgs e)
-        {
-            //Se define la configuración y el valor del campo.
-            if(Config.Conexion)
-            {
-                Config.DefineConfiguracion();
-                DefineTemas();
-            }
-                
-            DirectorioInstalacion = Config.DirectorioInstalacion;
-            tbDirectorioValue.Text = Config.DirectorioInstalacion;
-            Tema_id = Config.Tema_id;
-            MostrarBienvenida = Config.MostrarBienvenida;
-                
-            //Se define el tema seleccionado y la bienvenida.
-            cbTema.SelectedValue = Tema_id;
-            checkBoxMostrarInicio.Checked = MostrarBienvenida;
-        }
 
         private void DefineTemas()
         {
@@ -90,38 +123,6 @@ namespace KComicReader
             {
                 tbDirectorioValue.Text = fbd.SelectedPath;
                 DirectorioInstalacion = fbd.SelectedPath;
-            }
-        }
-
-        private void FormConfig_Paint(object sender, PaintEventArgs e)
-        {
-            if(Config.Conexion)
-                Config.DefineTema();
-
-            String[] Tema = Config.Tema;
-
-            if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
-            {
-                //El fondo se establece como un degradado entre el color 1 y el color 2.
-                
-                LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
-                    ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
-                e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
-                //Si el tema es oscuro se cambia el color de la fuente.
-                if (Config.Tema_id == 8)
-                {
-                    foreach (Control c in this.Controls.OfType<Label>().ToList())
-                    {
-                        c.ForeColor = ColorTranslator.FromHtml(Tema[2]);
-                    }
-                }
-                else
-                {
-                    foreach (Control c in this.Controls.OfType<Label>().ToList())
-                    {
-                        c.ForeColor = Color.Black;
-                    }
-                }
             }
         }
 

@@ -32,6 +32,32 @@ namespace KComicReader
             ofd_FicheroComic = new OpenFileDialog();
         }
 
+        //Método que se ejecuta cuando se carga el formulario.
+        private void FormAgregarComic_Load(object sender, EventArgs e)
+        {
+            Config.CompruebaConexion();
+
+            //Defino las opciones de todos los campos de combo Box.
+            defineOpciones();
+
+            //Defino todas las propiedades según los datos del cómic.
+            tbTitulo.Text = comic.Titulo;
+            cbEditorial.SelectedValue = comic.EditorialID;
+            nbNumero.Value = comic.Numero;
+            cbSerie.SelectedValue = comic.SerieID;
+            tbGuionista.Text = comic.Guionista;
+            tbDibujante.Text = comic.Dibujante;
+            cbCategoria.Text = comic.Categoria;
+            cbIdioma.Text = comic.Idioma;
+            pbPortada.Image = comic.Portada;
+            ofd_FicheroComic.FileName = comic.ArchivoURL;
+
+            if (Config.Conexion)
+            {
+                cbCategoria.SelectedItem = "Sin asignar";
+            }
+        }
+
         //Método que se activa cuando se pulsa el botón de seleccionar archivo.
         private void btnArchivo_Click(object sender, EventArgs e)
         {
@@ -130,30 +156,7 @@ namespace KComicReader
             return imagen;
         }
 
-        //Método que se ejecuta cuando se carga el formulario.
-        private void FormAgregarComic_Load(object sender, EventArgs e)
-        {
-            Config.CompruebaConexion();
-            //Defino las opciones de todos los campos de combo Box.
-            defineOpciones();
-
-            //Defino todas las propiedades según los datos del cómic.
-            tbTitulo.Text = comic.Titulo;
-            cbEditorial.SelectedValue = comic.EditorialID;
-            nbNumero.Value = comic.Numero;
-            cbSerie.SelectedValue = comic.SerieID;
-            tbGuionista.Text = comic.Guionista;
-            tbDibujante.Text = comic.Dibujante;
-            cbCategoria.Text = comic.Categoria;
-            cbIdioma.Text = comic.Idioma;
-            pbPortada.Image = comic.Portada;
-            ofd_FicheroComic.FileName = comic.ArchivoURL;
-
-            if (!Config.Conexion)
-            {
-                cbCategoria.SelectedItem = "Sin asignar";
-            }
-        }
+        
 
         //Método que se ejecuta cuando se pulsa el botón de agregar una nueva editorial.
         private void btnAgregarEditorial_Click(object sender, EventArgs e)
@@ -205,6 +208,31 @@ namespace KComicReader
                 {
                     MessageBox.Show("Ha ocurrido un error al conectar a la base de datos y obtener las categorías, editoriales e idiomas. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            else
+            {
+                //Creo un dataset común para todos los comboBox.
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Value", typeof(string));
+                dt.Columns.Add("Key", typeof(int));
+                dt.Rows.Add("Sin conexión", 1);
+                ds.Tables.Add(dt);
+
+                //Defino los campos y valores para los 3 comboBox.
+                foreach(Control c in this.Controls.OfType<ComboBox>().ToList())
+                {
+                    ComboBox cb = (ComboBox)c;
+                    cb.DisplayMember = "Value";
+                    cb.ValueMember = "Key";
+                    cb.DataSource = ds.Tables[0];
+                    cb.SelectedValue = 1;
+                }
+
+                //Oculto los botones de agregar series y editoriales.
+                btnAgregarEditorial.Visible = false;
+                btnAgregarSerie.Visible = false;
+
             }
         }
 
@@ -322,10 +350,6 @@ namespace KComicReader
                     }
                 }
             }
-            else
-            {
-                cbIdioma.Text = "Sin conexión";
-            }
         }
 
         //Método que se ejecuta cuando el usuario pulsa el botón de agregar Serie.
@@ -365,11 +389,11 @@ namespace KComicReader
         //Método que se ejecuta cuando el usuario escoge una opción del comboBox de Editorial.
         private void cbEditorial_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            defineSeries();
-            cbSerie.Text = "Sin asignar";
+            if(Config.Conexion)
+                defineSeries(); 
 
             //Si el valor es distinto a "Sin asignar", se activan los botones de Serie.
-            if((int)cbEditorial.SelectedValue != 1)
+            if(cbEditorial.SelectedValue !=null && (int)cbEditorial.SelectedValue != 1)
             {
                 btnAgregarSerie.Enabled = true;
                 btnAgregarSerie.Visible = true;
