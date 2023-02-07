@@ -39,6 +39,7 @@ namespace KComicReader
         //Método que define la configuración sin conexión.
         public static void DefineConfiguracionSinConexion()
         {
+            MessageBox.Show("Estás sin conexión. A partir de ahora podrás seguir utilizando el programa, pero ten en cuenta que los cambios que realices pueden no guardarse.","Sin conexión",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             Conexion = false;
             Tema_id = 1;
             Tema = new string[] { "#b18cd9", "#E2C6FF", "#ece0f8" };

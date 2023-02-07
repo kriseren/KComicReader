@@ -14,7 +14,8 @@ namespace KComicReader
     {
         //Definición de atributos.
         private Comic comicSeleccionado;
-        private bool eventHandlerAsignado = false;
+        //Booleano que indica si el eventHandler del pbBtnThemeIcon ha sido asignado.
+        private bool eventHandlerThemeIconAsignado = true;
 
         public FormVistaPrincipal()
         {
@@ -336,8 +337,8 @@ namespace KComicReader
         //Método que se ejecuta cuando se hace doble click encima del ListBox de categorías.
         private void lbCategorias_Click(object sender, EventArgs e)
         {
-            //Si la categoría seleccionada es igual a 1 se muestran todos los cómics.
-            if((int)lbCategorias.SelectedValue == 1)
+            //Si la categoría seleccionada no es nula y es igual a 1 se muestran todos los cómics.
+            if(lbCategorias.SelectedValue!=null && (int)lbCategorias.SelectedValue == 1)
             {
                 cargaTodosComics();
             }
@@ -349,40 +350,16 @@ namespace KComicReader
                     {
                         try
                         {
-                            //Elimino únicamente los cómics actuales del fwp.
+                            //Hago no visibles todos los comics del fwp.
                             foreach (Control co in fwpComics.Controls.OfType<Comic>().ToList())
-                                fwpComics.Controls.Remove(co);
-                            //Obtengo todos los cómics con esa categoría.
-                            con.Open();
-                            MySqlCommand cmd = con.CreateCommand();
-                            cmd.CommandText = "SELECT * FROM COMICS WHERE categoria_id = @categoria_id";
-                            cmd.Parameters.AddWithValue("@categoria_id", lbCategorias.SelectedValue);
-                            MySqlDataReader reader = cmd.ExecuteReader();
-                            Comic c;
-                            while (reader.Read())
+                                co.Visible = false;
+                            //Obtengo todos los cómics con esa categoría y los muestro.
+                            foreach (Control co in fwpComics.Controls.OfType<Comic>().ToList())
                             {
-                                c = new Comic();
-                                //Defino las propiedades.
-                                c.Id = reader.GetInt32("id");
-                                c.Titulo = reader.GetString("titulo");
-                                c.Dibujante = reader.GetString("dibujante");
-                                c.Guionista = reader.GetString("guionista");
-                                c.Portada = Image.FromStream(reader.GetStream(4));
-                                c.ArchivoURL = reader.GetString("archivoURL");
-                                c.NumPaginaActual = (uint)reader.GetInt32("numPagina");
-                                c.NumPaginasTotales = (uint)reader.GetInt32("numPaginasTotales");
-                                c.CategoriaID = reader.GetInt32("categoria_id");
-                                c.IdiomaID = reader.GetInt32("idioma_id");
-                                c.EditorialID = reader.GetInt32("editorial_id");
-                                c.SerieID = reader.GetInt32("serie_id");
-                                c.Numero = (uint)reader.GetInt32("numero");
+                                Comic c = (Comic)co;
+                                if (c.CategoriaID == (int)lbCategorias.SelectedValue)
+                                    c.Visible = true;
 
-                                //Defino los controladores de los eventos.
-                                c.eventoClick += new EventHandler(Comic_Click);
-                                c.eventoDobleClick += new EventHandler(btnLeer_Click);
-
-                                //Lo agrego al fwp.
-                                fwpComics.Controls.Add(c);
                             }
 
                             //Ordeno los cómics agregados por título.
@@ -401,7 +378,7 @@ namespace KComicReader
         private void lbSeries_Click(object sender, EventArgs e)
         {
             //Si la serie seleccionada es igual a 1 se muestran todos los cómics.
-            if ((int)lbSeries.SelectedValue == 1)
+            if (lbSeries.SelectedValue!=null && (int)lbSeries.SelectedValue == 1)
             {
                 cargaTodosComics();
             }
@@ -413,41 +390,15 @@ namespace KComicReader
                     {
                         try
                         {
-                            //Elimino únicamente los cómics actuales del fwp.
+                            //Hago no visibles todos los comics del fwp.
                             foreach (Control co in fwpComics.Controls.OfType<Comic>().ToList())
-                                fwpComics.Controls.Remove(co);
-                            //Obtengo todos los cómics con esa categoría.
-                            con.Open();
-                            MySqlCommand cmd = con.CreateCommand();
-                            cmd.CommandText = "SELECT * FROM COMICS WHERE serie_id = @serie_id";
-                            cmd.Parameters.AddWithValue("@serie_id", lbSeries.SelectedValue);
-                            MySqlDataReader reader = cmd.ExecuteReader();
-                            Comic c;
-                            while (reader.Read())
+                                co.Visible = false;
+                            //Obtengo todos los cómics con esa categoría y los muestro.
+                            foreach (Control co in fwpComics.Controls.OfType<Comic>().ToList())
                             {
-                                //Creo el cómic.
-                                c = new Comic();
-                                //Defino las propiedades.
-                                c.Id = reader.GetInt32("id");
-                                c.Titulo = reader.GetString("titulo");
-                                c.Dibujante = reader.GetString("dibujante");
-                                c.Guionista = reader.GetString("guionista");
-                                c.Portada = Image.FromStream(reader.GetStream(4));
-                                c.ArchivoURL = reader.GetString("archivoURL");
-                                c.NumPaginaActual = (uint)reader.GetInt32("numPagina");
-                                c.NumPaginasTotales = (uint)reader.GetInt32("numPaginasTotales");
-                                c.CategoriaID = reader.GetInt32("categoria_id");
-                                c.IdiomaID = reader.GetInt32("idioma_id");
-                                c.EditorialID = reader.GetInt32("editorial_id");
-                                c.SerieID = reader.GetInt32("serie_id");
-                                c.Numero = (uint)reader.GetInt32("numero");
-
-                                //Defino los controladores de los eventos.
-                                c.eventoClick += new EventHandler(Comic_Click);
-                                c.eventoDobleClick += new EventHandler(btnLeer_Click);
-
-                                //Lo agrego al fwp.
-                                fwpComics.Controls.Add(c);
+                                Comic c = (Comic)co;
+                                if (c.SerieID == (int)lbSeries.SelectedValue)
+                                    c.Visible = true;
                             }
 
                             //Ordeno los cómics agregados por título.
@@ -483,36 +434,14 @@ namespace KComicReader
         //Método que se ejecuta cuando se pinta el formulario.
         private void FormVistaPrincipal_Paint(object sender, PaintEventArgs e)
         {
-            //Si tiene conexión, se define el tema.
+            //Si tiene conexión, se define el tema y la configuración correspondiente, sino se activa el modo sin conexión.
             if (Config.Conexion)
             {
-                Config.DefineTema();
-                pbThemeIcon.Image = Config.ThemeIcon;
-                pbThemeIcon.Enabled = false;
-                pbThemeIcon.BackgroundImage = null;
-                if (eventHandlerAsignado)
-                {
-                    pbThemeIcon.MouseEnter -= Btn_MouseEnter;
-                    pbThemeIcon.MouseLeave -= Btn_MouseLeave;
-                    eventHandlerAsignado = false;
-                }
-                pbThemeIcon.Cursor = Cursors.Default;
-                pbThemeIcon.Click -= pbThemeIcon_Click;
-                lblThemeIcon.Text = Config.Tema_Nombre;
+                ModoConexion();
             }
             else
             {
-                pbThemeIcon.Image = Image.FromFile(@"..\..\imgs\icons\sinConexion.png");
-                pbThemeIcon.Enabled = true;
-                if (!eventHandlerAsignado)
-                {
-                    pbThemeIcon.MouseEnter += Btn_MouseEnter;
-                    pbThemeIcon.MouseLeave += Btn_MouseLeave;
-                    eventHandlerAsignado = true;
-                }
-                pbThemeIcon.Cursor = Cursors.Hand;
-                pbThemeIcon.Click += pbThemeIcon_Click;
-                lblThemeIcon.Text = "Sin Conexión";
+                ModoSinConexion();
             }
 
 
@@ -611,6 +540,40 @@ namespace KComicReader
                     this.Refresh();
                 }
             }
+        }
+
+        //Define la configuración básica de un modo de funcionamiento con conexión.
+        private void ModoConexion()
+        {
+            Config.DefineTema();
+            pbThemeIcon.Image = Config.ThemeIcon;
+            pbThemeIcon.Enabled = false;
+            pbThemeIcon.BackgroundImage = null;
+            if (eventHandlerThemeIconAsignado)
+            {
+                pbThemeIcon.MouseEnter -= Btn_MouseEnter;
+                pbThemeIcon.MouseLeave -= Btn_MouseLeave;
+                pbThemeIcon.Click -= pbThemeIcon_Click;
+                eventHandlerThemeIconAsignado = false;
+            }
+            pbThemeIcon.Cursor = Cursors.Default;
+            lblThemeIcon.Text = Config.Tema_Nombre;
+        }
+
+        //Define la configuración básica de un modo de funcionamiento sin conexión.
+        private void ModoSinConexion()
+        {
+            pbThemeIcon.Image = Image.FromFile(@"..\..\imgs\icons\sinConexion.png");
+            pbThemeIcon.Enabled = true;
+            if (!eventHandlerThemeIconAsignado)
+            {
+                pbThemeIcon.MouseEnter += Btn_MouseEnter;
+                pbThemeIcon.MouseLeave += Btn_MouseLeave;
+                pbThemeIcon.Click += pbThemeIcon_Click;
+                eventHandlerThemeIconAsignado = true;
+            }
+            pbThemeIcon.Cursor = Cursors.Hand;
+            lblThemeIcon.Text = "Conexión";
         }
     }
 }

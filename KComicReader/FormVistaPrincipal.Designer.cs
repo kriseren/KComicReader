@@ -47,6 +47,7 @@ namespace KComicReader
             this.pbBtnLeer = new System.Windows.Forms.PictureBox();
             this.pbBtnEditar = new System.Windows.Forms.PictureBox();
             this.fwpComics = new System.Windows.Forms.FlowLayoutPanel();
+            this.agregarComicBtn = new KComicReader.AgregarComicBtn();
             this.panelLeftCategorias = new System.Windows.Forms.Panel();
             this.lbCategorias = new System.Windows.Forms.ListBox();
             this.lblSpecCategorias = new System.Windows.Forms.Label();
@@ -83,7 +84,6 @@ namespace KComicReader
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAcciones = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAtajos = new System.Windows.Forms.ToolStripMenuItem();
-            this.agregarComicBtn = new KComicReader.AgregarComicBtn();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbThemeIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnAyuda)).BeginInit();
@@ -378,6 +378,26 @@ namespace KComicReader
             this.fwpComics.Size = new System.Drawing.Size(693, 676);
             this.fwpComics.TabIndex = 0;
             // 
+            // agregarComicBtn
+            // 
+            this.agregarComicBtn.ArchivoURL = null;
+            this.agregarComicBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.agregarComicBtn.BackColor = System.Drawing.Color.Transparent;
+            this.agregarComicBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.agregarComicBtn.Dibujante = null;
+            this.agregarComicBtn.Editorial = null;
+            this.agregarComicBtn.eventoClick = null;
+            this.agregarComicBtn.Guionista = null;
+            this.agregarComicBtn.Id = 0;
+            this.agregarComicBtn.Location = new System.Drawing.Point(5, 5);
+            this.agregarComicBtn.Margin = new System.Windows.Forms.Padding(5);
+            this.agregarComicBtn.Name = "agregarComicBtn";
+            this.agregarComicBtn.Portada = ((System.Drawing.Image)(resources.GetObject("agregarComicBtn.Portada")));
+            this.agregarComicBtn.PortadaURL = null;
+            this.agregarComicBtn.Size = new System.Drawing.Size(204, 346);
+            this.agregarComicBtn.TabIndex = 0;
+            this.agregarComicBtn.Titulo = "Agregar un nuevo cómic";
+            // 
             // panelLeftCategorias
             // 
             this.panelLeftCategorias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(140)))), ((int)(((byte)(217)))));
@@ -401,9 +421,6 @@ namespace KComicReader
             this.lbCategorias.HorizontalExtent = 20;
             this.lbCategorias.HorizontalScrollbar = true;
             this.lbCategorias.ItemHeight = 20;
-            this.lbCategorias.Items.AddRange(new object[] {
-            "Negro, blanco y sangre",
-            "Old Man Logan"});
             this.lbCategorias.Location = new System.Drawing.Point(4, 39);
             this.lbCategorias.Margin = new System.Windows.Forms.Padding(4);
             this.lbCategorias.Name = "lbCategorias";
@@ -686,9 +703,6 @@ namespace KComicReader
             this.lbSeries.HorizontalScrollbar = true;
             this.lbSeries.ImeMode = System.Windows.Forms.ImeMode.On;
             this.lbSeries.ItemHeight = 20;
-            this.lbSeries.Items.AddRange(new object[] {
-            "Negro, blanco y sangre",
-            "Old Man Logan"});
             this.lbSeries.Location = new System.Drawing.Point(4, 38);
             this.lbSeries.Margin = new System.Windows.Forms.Padding(4);
             this.lbSeries.Name = "lbSeries";
@@ -817,26 +831,6 @@ namespace KComicReader
             | System.Windows.Forms.Keys.T)));
             this.toolStripMenuItemAtajos.Size = new System.Drawing.Size(314, 26);
             this.toolStripMenuItemAtajos.Text = "A&tajos de teclado";
-            // 
-            // agregarComicBtn
-            // 
-            this.agregarComicBtn.ArchivoURL = null;
-            this.agregarComicBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.agregarComicBtn.BackColor = System.Drawing.Color.Transparent;
-            this.agregarComicBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.agregarComicBtn.Dibujante = null;
-            this.agregarComicBtn.Editorial = null;
-            this.agregarComicBtn.eventoClick = null;
-            this.agregarComicBtn.Guionista = null;
-            this.agregarComicBtn.Id = 0;
-            this.agregarComicBtn.Location = new System.Drawing.Point(5, 5);
-            this.agregarComicBtn.Margin = new System.Windows.Forms.Padding(5);
-            this.agregarComicBtn.Name = "agregarComicBtn";
-            this.agregarComicBtn.Portada = ((System.Drawing.Image)(resources.GetObject("agregarComicBtn.Portada")));
-            this.agregarComicBtn.PortadaURL = null;
-            this.agregarComicBtn.Size = new System.Drawing.Size(204, 346);
-            this.agregarComicBtn.TabIndex = 0;
-            this.agregarComicBtn.Titulo = "Agregar un nuevo cómic";
             // 
             // FormVistaPrincipal
             // 

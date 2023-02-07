@@ -133,6 +133,7 @@ namespace KComicReader
         //Método que se ejecuta cuando se carga el formulario.
         private void FormAgregarComic_Load(object sender, EventArgs e)
         {
+            Config.CompruebaConexion();
             //Defino las opciones de todos los campos de combo Box.
             defineOpciones();
 
