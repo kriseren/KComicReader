@@ -533,7 +533,6 @@ namespace KComicReader
         {
             if (MessageBox.Show("Actualmente estás sin conexión. Esto significa que los cambios que realices no se guardarán en la base de datos.\nPulsa el botón de reintentar para intentar reconectar con la base de datos.", "Sin conexión", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation) == DialogResult.Retry)
             {
-                Config.CompruebaConexion();
                 if (Config.Conexion)
                 {
                     Config.DefineConfiguracion();

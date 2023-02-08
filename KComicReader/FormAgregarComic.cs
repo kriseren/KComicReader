@@ -16,6 +16,7 @@ namespace KComicReader
         //Definición de atributos.
         public Comic comic = new Comic();
         private OpenFileDialog ofd_FicheroComic;
+        private static bool Comprobando = false;
         
         public FormAgregarComic()
         {
@@ -35,8 +36,6 @@ namespace KComicReader
         //Método que se ejecuta cuando se carga el formulario.
         private void FormAgregarComic_Load(object sender, EventArgs e)
         {
-            Config.CompruebaConexion();
-
             //Defino las opciones de todos los campos de combo Box.
             defineOpciones();
 
@@ -81,6 +80,7 @@ namespace KComicReader
         //Método que se activa cuando el usuario pulsa el botón de agregar el cómic.    
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            Comprobando = true;
             //Si todos los campos obligatorios han sido rellenados, sino se informa al usuario y se cambia su color para mayor claridad.
             if (tbTitulo.Text !="" && cbIdioma.Text !="" && ofd_FicheroComic.FileName != "" && cbEditorial.Text!="" && cbSerie.Text != "")
             {
@@ -114,6 +114,8 @@ namespace KComicReader
 
                 //Defino el dialogresult del botón.
                 btnAgregar.DialogResult = DialogResult.OK;
+                //Dejo de comprobar.
+                Comprobando = false;
             }
             else
             {
@@ -428,6 +430,7 @@ namespace KComicReader
 
             String[] Tema = Config.Tema;
 
+            
             if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
             {
                 //El fondo se establece como un degradado entre el color 1 y el color 2.
@@ -442,7 +445,8 @@ namespace KComicReader
                 }
                 else
                 {
-                    foreach (Control c in this.Controls.OfType<Label>().ToList())
+                    if (!Comprobando)
+                        foreach (Control c in this.Controls.OfType<Label>().ToList())
                         c.ForeColor = Color.Black;
                 }
             }

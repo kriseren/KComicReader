@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace KComicReader
@@ -10,6 +11,7 @@ namespace KComicReader
         //Definición de propiedades.
         public static string DirectorioInstalacion { get; set; }
         public static bool Conexion { get; set; }
+        private static bool PrimeraLlamada = true; //Define si es la primera vez que se define la conexión.
         public static int Tema_id { get; set; }
         public static string Tema_Nombre { get; set; }
         public static string[] Tema { get; set; }
@@ -19,19 +21,57 @@ namespace KComicReader
 
         public Config() { DefineConfiguracion(); }
 
+        private static Thread hilo;
+
+        //Método que inicia el hilo.
+        public static void IniciarHilo()
+        {
+            hilo = new Thread(new ThreadStart(ComprobarConexion));
+            hilo.Start();
+        }
+
+        //Método que comprueba la conexión cada 10 segundos.
+        private static void ComprobarConexion()
+        {
+            while (true)
+            {
+                CompruebaConexion();
+                Thread.Sleep(10000);
+            }
+        }
+
+
         //Método que comprueba la conectividad.
         public static void CompruebaConexion()
         {
-            using (MySqlConnection connection = DataBaseConnectivity.getConnection())
+            using (MySqlConnection connection = DataBaseConnectivity.getConnectionHilo())
             {
                 try
                 {
                     connection.Open();
                     Conexion = true;
+                    //Si anteriormente no había conexión.
+                    if (!Conexion)
+                    {
+                        DefineConfiguracion();
+                        if (!PrimeraLlamada)
+                            MessageBox.Show("Vuelves a tener conexión :)", "Conectado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            PrimeraLlamada = false;
+                    }
+                    
                 }
                 catch (MySqlException)
                 {
-                    DefineConfiguracionSinConexion();
+                    //Si había conexión anteriormente se define sin conexión.
+
+                    if(Conexion)
+                    {
+                        DefineConfiguracionSinConexion();
+                        MessageBox.Show("Se ha perdido la conexión :(.\nLos cambios que realices pueden no guardarse.", "Sin conexión", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        PrimeraLlamada = false;
+                    }
+                    Conexion = false;
                 }
             }
         }
@@ -39,8 +79,6 @@ namespace KComicReader
         //Método que define la configuración sin conexión.
         public static void DefineConfiguracionSinConexion()
         {
-            MessageBox.Show("Estás sin conexión. A partir de ahora podrás seguir utilizando el programa, pero ten en cuenta que los cambios que realices pueden no guardarse.","Sin conexión",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
-            Conexion = false;
             Tema_id = 1;
             Tema = new string[] { "#b18cd9", "#E2C6FF", "#ece0f8" };
             Hover = Image.FromFile("..\\..\\imgs\\hover\\1.png");
@@ -68,7 +106,6 @@ namespace KComicReader
                         DirectorioInstalacion = reader.GetString("directorio_instalacion");
                         Tema_id = reader.GetInt32("tema_id");
                         MostrarBienvenida = reader.GetBoolean("mostrar_bienvenida");
-                        Conexion = true;
                     }
                     catch (MySqlException)
                     {
@@ -117,7 +154,6 @@ namespace KComicReader
                     catch (MySqlException)
                     {
                         MessageBox.Show("No se ha podido obtener el tema.\nPrueba a reiniciar el programa y el servidor de MySQL.", "Error en la base de datos", MessageBoxButtons.OK,MessageBoxIcon.Error);
-                        Conexion = false;
                     }
                 }
             }

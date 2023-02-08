@@ -33,11 +33,12 @@ namespace KComicReader
                 MessageBox.Show("Ha ocurrido un error al iniciar MySQL.\nSeguramente sea debido a que la ruta de instalación de XAMPP no es la correcta.","Error al iniciar MySQL",MessageBoxButtons.OK);
             }
 
+            //Inicia el hilo de comprobación de la conexión.
+            Config.IniciarHilo();
             //Se comprueba que la base de datos exista En caso contrario se crea mediante un script.
             if (existeDB())
             {
                 //Carga la configuración de la base de datos.
-                Config.CompruebaConexion();
                 Config.DefineConfiguracion();
             }
             else
@@ -57,7 +58,6 @@ namespace KComicReader
                         catch (MySqlException)
                         {
                             MessageBox.Show("No se ha podido crear la base de datos", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            Config.Conexion = false;
                         }
                     }
                 }
