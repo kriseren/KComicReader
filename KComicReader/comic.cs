@@ -73,7 +73,7 @@ namespace KComicReader
         //Método que inserta el comic en la base de datos.
         public void guarda()
         {
-            if(Config.Conexion)
+            if(Config.CompruebaConexion())
             {
                 //Obtengo la conexión y los objetos necesarios.
                 using (MySqlConnection con = DataBaseConnectivity.getConnection())
@@ -119,7 +119,7 @@ namespace KComicReader
         //Método que recibe un cómic se actualiza en la base de datos obteniendo las nuevas propiedades.
         public void actualiza(Comic c)
         {
-            if(Config.Conexion)
+            if (Config.CompruebaConexion())
             {
                 //Obtengo la conexión y los objetos necesarios.
                 using (MySqlConnection con = DataBaseConnectivity.getConnection())

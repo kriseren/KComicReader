@@ -17,7 +17,7 @@ namespace KComicReader
         public Comic comic = new Comic();
         private OpenFileDialog ofd_FicheroComic;
         private static bool Comprobando = false;
-        
+
         public FormAgregarComic()
         {
             InitializeComponent();
@@ -50,11 +50,6 @@ namespace KComicReader
             cbIdioma.Text = comic.Idioma;
             pbPortada.Image = comic.Portada;
             ofd_FicheroComic.FileName = comic.ArchivoURL;
-
-            if (Config.Conexion)
-            {
-                cbCategoria.SelectedItem = "Sin asignar";
-            }
         }
 
         //Método que se activa cuando se pulsa el botón de seleccionar archivo.
@@ -82,7 +77,7 @@ namespace KComicReader
         {
             Comprobando = true;
             //Si todos los campos obligatorios han sido rellenados, sino se informa al usuario y se cambia su color para mayor claridad.
-            if (tbTitulo.Text !="" && cbIdioma.Text !="" && ofd_FicheroComic.FileName != "" && cbEditorial.Text!="" && cbSerie.Text != "")
+            if (tbTitulo.Text != "" && cbIdioma.Text != "" && ofd_FicheroComic.FileName != "" && cbEditorial.Text != "" && cbSerie.Text != "")
             {
                 //Ruta del directorio donde se guardará el cómic.
                 string rutaDirectorio = Config.DirectorioInstalacion;
@@ -131,7 +126,7 @@ namespace KComicReader
         }
 
         //Método que extrae la primera imagen de un archivo .CBR y la devuelve.
-        private Image extraePortada( string archivoURL)
+        private Image extraePortada(string archivoURL)
         {
             Image imagen = null;
             try
@@ -145,7 +140,7 @@ namespace KComicReader
                 {
                     imagen = Image.FromStream(portada.OpenEntryStream());
                 }
-                catch(ArgumentException)
+                catch (ArgumentException)
                 {
                     imagen = Image.FromFile(@"..\..\imgs\icons\comicCover.jpg");
                     MessageBox.Show("Ha ocurrido un error al abrir el archivo. Por favor, selecciona otro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -158,7 +153,7 @@ namespace KComicReader
             return imagen;
         }
 
-        
+
 
         //Método que se ejecuta cuando se pulsa el botón de agregar una nueva editorial.
         private void btnAgregarEditorial_Click(object sender, EventArgs e)
@@ -166,25 +161,28 @@ namespace KComicReader
             //Creo el formulario en modo agregar una editorial.
             FormAgregarEditorial formAgregarEditorial = new FormAgregarEditorial("editorial");
             //Si el usuario acepta, se inserta la editorial.
-            if(formAgregarEditorial.ShowDialog()==DialogResult.OK)
+            if (formAgregarEditorial.ShowDialog() == DialogResult.OK)
             {
-                //Creo la conexión y los objetos necesarios.
-                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                if (Config.CompruebaConexion())
                 {
-                    try
+                    //Creo la conexión y los objetos necesarios.
+                    using (MySqlConnection con = DataBaseConnectivity.getConnection())
                     {
-                        con.Open();
-                        MySqlCommand cmd = con.CreateCommand();
+                        try
+                        {
+                            con.Open();
+                            MySqlCommand cmd = con.CreateCommand();
 
-                        //Defino la consulta para insertar la editorial.
-                        cmd.CommandText = "INSERT INTO EDITORIALES (nombre) VALUES (@nombre)";
-                        cmd.Parameters.AddWithValue("@nombre", formAgregarEditorial.tbNombre.Text);
-                        cmd.Prepare();
-                        cmd.ExecuteNonQuery();
-                    }
-                    catch (MySqlException)
-                    {
-                        MessageBox.Show("No se ha podido insertar la nueva editorial.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //Defino la consulta para insertar la editorial.
+                            cmd.CommandText = "INSERT INTO EDITORIALES (nombre) VALUES (@nombre)";
+                            cmd.Parameters.AddWithValue("@nombre", formAgregarEditorial.tbNombre.Text);
+                            cmd.Prepare();
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (MySqlException)
+                        {
+                            MessageBox.Show("No se ha podido insertar la nueva editorial.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
 
@@ -196,7 +194,7 @@ namespace KComicReader
         //Método que se conecta a la base de datos para definir las diferentes opciones de los comboBox.
         private void defineOpciones()
         {
-            if(Config.Conexion)
+            if (Config.CompruebaConexion())
             {
                 //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
                 try
@@ -211,57 +209,35 @@ namespace KComicReader
                     MessageBox.Show("Ha ocurrido un error al conectar a la base de datos y obtener las categorías, editoriales e idiomas. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
-            {
-                //Creo un dataset común para todos los comboBox.
-                DataSet ds = new DataSet();
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Value", typeof(string));
-                dt.Columns.Add("Key", typeof(int));
-                dt.Rows.Add("Sin conexión", 1);
-                ds.Tables.Add(dt);
-
-                //Defino los campos y valores para los 3 comboBox.
-                foreach(Control c in this.Controls.OfType<ComboBox>().ToList())
-                {
-                    ComboBox cb = (ComboBox)c;
-                    cb.DisplayMember = "Value";
-                    cb.ValueMember = "Key";
-                    cb.DataSource = ds.Tables[0];
-                    cb.SelectedValue = 1;
-                }
-
-                //Oculto los botones de agregar series y editoriales.
-                btnAgregarEditorial.Visible = false;
-                btnAgregarSerie.Visible = false;
-
-            }
         }
 
         //Método que define las opciones del comboBox de series.
         private void defineSeries()
         {
-            //Obtengo la conexión y los objetos necesarios.
-            using (MySqlConnection con = DataBaseConnectivity.getConnection())
+            if(Config.CompruebaConexion())
             {
-                //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
-                try
+                //Obtengo la conexión y los objetos necesarios.
+                using (MySqlConnection con = DataBaseConnectivity.getConnection())
                 {
-                    con.Open();
-                    MySqlCommand cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT id, nombre FROM SERIES WHERE editorial_id = @editorial_id AND id>1 ORDER BY nombre";
-                    cmd.Parameters.AddWithValue("@editorial_id", (int)cbEditorial.SelectedValue);
-                    cmd.Prepare();
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds);
-                    cbSerie.DataSource = ds.Tables[0];
-                    cbSerie.DisplayMember = "nombre";
-                    cbSerie.ValueMember = "id";
-                }
-                catch (MySqlException)
-                {
-                    MessageBox.Show("No se han podido obtener las series. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
+                    try
+                    {
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT id, nombre FROM SERIES WHERE editorial_id = @editorial_id AND id>1 ORDER BY nombre";
+                        cmd.Parameters.AddWithValue("@editorial_id", (int)cbEditorial.SelectedValue);
+                        cmd.Prepare();
+                        MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        cbSerie.DataSource = ds.Tables[0];
+                        cbSerie.DisplayMember = "nombre";
+                        cbSerie.ValueMember = "id";
+                    }
+                    catch (MySqlException)
+                    {
+                        MessageBox.Show("No se han podido obtener las series. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -269,30 +245,33 @@ namespace KComicReader
         //Método que define las opciones del comboBox de editoriales.
         private void defineEditoriales()
         {
-            //Obtengo la conexión y los objetos necesarios.
-            using (MySqlConnection con = DataBaseConnectivity.getConnection())
+            if(Config.CompruebaConexion())
             {
-                //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
-                try
+                //Obtengo la conexión y los objetos necesarios.
+                using (MySqlConnection con = DataBaseConnectivity.getConnection())
                 {
-                    con.Open();
-                    MySqlCommand cmd = con.CreateCommand();
-                    //Editoriales.
-                    string query = "SELECT id, nombre FROM EDITORIALES ORDER BY nombre";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds);
-                    cbEditorial.DataSource = ds.Tables[0];
-                    cbEditorial.DisplayMember = "nombre";
-                    cbEditorial.ValueMember = "id";
+                    //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
+                    try
+                    {
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        //Editoriales.
+                        string query = "SELECT id, nombre FROM EDITORIALES ORDER BY nombre";
+                        MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        cbEditorial.DataSource = ds.Tables[0];
+                        cbEditorial.DisplayMember = "nombre";
+                        cbEditorial.ValueMember = "id";
 
-                    //Defino el valor seleccionado de la Editorial para que el campo Serie pueda seleccionar su valor.
-                    if(comic.EditorialID!=0)
-                        cbEditorial.SelectedValue = comic.EditorialID;
-                }
-                catch (MySqlException)
-                {
-                    MessageBox.Show("No se han podido obtener las editoriales. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //Defino el valor seleccionado de la Editorial para que el campo Serie pueda seleccionar su valor.
+                        if (comic.EditorialID != 0)
+                            cbEditorial.SelectedValue = comic.EditorialID;
+                    }
+                    catch (MySqlException)
+                    {
+                        MessageBox.Show("No se han podido obtener las editoriales. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -300,26 +279,29 @@ namespace KComicReader
         //Método que define las opciones del comboBox de categorías.
         private void defineCategorias()
         {
-            //Obtengo la conexión y los objetos necesarios.
-            using (MySqlConnection con = DataBaseConnectivity.getConnection())
+            if(Config.CompruebaConexion())
             {
-                //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
-                try
+                //Obtengo la conexión y los objetos necesarios.
+                using (MySqlConnection con = DataBaseConnectivity.getConnection())
                 {
-                    con.Open();
-                    MySqlCommand cmd = con.CreateCommand();
-                    //Categoría.
-                    string query = "SELECT id, nombre FROM CATEGORIAS WHERE id>1 ORDER BY nombre";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds);
-                    cbCategoria.DataSource = ds.Tables[0];
-                    cbCategoria.DisplayMember = "nombre";
-                    cbCategoria.ValueMember = "id";
-                }
-                catch (MySqlException)
-                {
-                    MessageBox.Show("No se han podido obtener las categorías. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
+                    try
+                    {
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        //Categoría.
+                        string query = "SELECT id, nombre FROM CATEGORIAS WHERE id>1 ORDER BY nombre";
+                        MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        cbCategoria.DataSource = ds.Tables[0];
+                        cbCategoria.DisplayMember = "nombre";
+                        cbCategoria.ValueMember = "id";
+                    }
+                    catch (MySqlException)
+                    {
+                        MessageBox.Show("No se han podido obtener las categorías. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -327,7 +309,7 @@ namespace KComicReader
         //Método que define las opciones del comboBox de idiomas.
         private void defineIdiomas()
         {
-            if(Config.Conexion)
+            if (Config.CompruebaConexion())
             {
                 //Obtengo la conexión y los objetos necesarios.
                 using (MySqlConnection con = DataBaseConnectivity.getConnection())
@@ -362,27 +344,29 @@ namespace KComicReader
             //Si el usuario acepta, se inserta la serie.
             if (formAgregarSerie.ShowDialog() == DialogResult.OK)
             {
-                //Creo la conexión y los objetos necesarios.
-                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                if(Config.CompruebaConexion())
                 {
-                    try
+                    //Creo la conexión y los objetos necesarios.
+                    using (MySqlConnection con = DataBaseConnectivity.getConnection())
                     {
-                        con.Open();
-                        MySqlCommand cmd = con.CreateCommand();
+                        try
+                        {
+                            con.Open();
+                            MySqlCommand cmd = con.CreateCommand();
 
-                        //Defino la consulta para insertar la serie.
-                        cmd.CommandText = "INSERT INTO SERIES (nombre,editorial_id) VALUES (@nombre,@editorial_id)";
-                        cmd.Parameters.AddWithValue("@nombre", formAgregarSerie.tbNombre.Text);
-                        cmd.Parameters.AddWithValue("@editorial_id", (int)cbEditorial.SelectedValue);
-                        cmd.Prepare();
-                        cmd.ExecuteNonQuery();
-                    }
-                    catch (MySqlException)
-                    {
-                        MessageBox.Show("No se ha podido insertar la nueva serie.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //Defino la consulta para insertar la serie.
+                            cmd.CommandText = "INSERT INTO SERIES (nombre,editorial_id) VALUES (@nombre,@editorial_id)";
+                            cmd.Parameters.AddWithValue("@nombre", formAgregarSerie.tbNombre.Text);
+                            cmd.Parameters.AddWithValue("@editorial_id", (int)cbEditorial.SelectedValue);
+                            cmd.Prepare();
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (MySqlException)
+                        {
+                            MessageBox.Show("No se ha podido insertar la nueva serie.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
-
                 //Actualizo los campos del combobox de las series.
                 defineSeries();
             }
@@ -391,7 +375,7 @@ namespace KComicReader
         //Método que se ejecuta cuando el usuario escoge una opción del comboBox de Editorial.
         private void cbEditorial_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if(Config.Conexion)
+            if(Config.CompruebaConexion())
                 defineSeries(); 
 
             //Si el valor es distinto a "Sin asignar", se activan los botones de Serie.
@@ -425,8 +409,7 @@ namespace KComicReader
         private void FormAgregarComic_Paint(object sender, PaintEventArgs e)
         {
             //Si tiene conexión, se define el tema.
-            if (Config.Conexion)
-                Config.DefineTema();
+            Config.DefineTema();
 
             String[] Tema = Config.Tema;
 

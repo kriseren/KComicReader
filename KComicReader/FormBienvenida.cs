@@ -13,9 +13,6 @@ namespace KComicReader
 {
     public partial class FormBienvenida : Form
     {
-        //Definición de variables.
-
-
         public FormBienvenida()
         {
             InitializeComponent();
@@ -31,8 +28,7 @@ namespace KComicReader
         private void FormBienvenida_Paint(object sender, PaintEventArgs e)
         {
             //Si tiene conexión, se define el tema.
-            if (Config.Conexion)
-                Config.DefineTema();
+            Config.DefineTema();
 
             String[] Tema = Config.Tema;
             //El fondo se establece como un degradado entre el color 1 y el color 2.

@@ -24,7 +24,7 @@ namespace KComicReader
         private void FormConfig_Load(object sender, EventArgs e)
         {
             //Se define la configuración y el valor del campo.
-            if (Config.Conexion)
+            if (Config.CompruebaConexion())
             {
                 Config.DefineConfiguracion();
                 DefineTemas();
@@ -42,8 +42,7 @@ namespace KComicReader
 
         private void FormConfig_Paint(object sender, PaintEventArgs e)
         {
-            if (Config.Conexion)
-                Config.DefineTema();
+            Config.DefineTema();
 
             String[] Tema = Config.Tema;
 
@@ -129,9 +128,10 @@ namespace KComicReader
         //Método que se ejecuta cuando el usuario pulsa el botón de guardar.
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if(Config.Conexion)
+            if(Config.CompruebaConexion())
             {
-                Tema_id = (int)cbTema.SelectedValue;
+                if(cbTema.SelectedValue!=null)
+                    Tema_id = (int)cbTema.SelectedValue;
                 MostrarBienvenida = checkBoxMostrarInicio.Checked;
             }
         }

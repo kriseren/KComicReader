@@ -14,8 +14,6 @@ namespace KComicReader
     {
         //Definición de atributos.
         private Comic comicSeleccionado;
-        //Booleano que indica si el eventHandler del pbBtnThemeIcon ha sido asignado.
-        private bool eventHandlerThemeIconAsignado = true;
 
         public FormVistaPrincipal()
         {
@@ -52,7 +50,7 @@ namespace KComicReader
             comicSeleccionado = (Comic)sender;
 
             //Obtengo los valores del nombre de las claves ajenas.
-            if(Config.Conexion)
+            if(Config.CompruebaConexion())
             {
                 using (MySqlConnection connection = DataBaseConnectivity.getConnection())
                 {
@@ -144,7 +142,7 @@ namespace KComicReader
         //Método que se ejecuta cuando se carga el formulario.
         private void FormVistaPrincipal_Load(object sender, EventArgs e)
         {
-            //Defino la configuración.
+            //Defino la configuración y el eventHandler.
             Config.DefineConfiguracion();
             //Obtengo todos los comics dados de alta en la base de datos.
             cargaTodosComics();
@@ -215,7 +213,7 @@ namespace KComicReader
             foreach (Control c in fwpComics.Controls.OfType<Comic>().ToList())
                 fwpComics.Controls.Remove(c);
 
-            if(Config.Conexion)
+            if(Config.CompruebaConexion())
             {
                 using (MySqlConnection con = DataBaseConnectivity.getConnection())
                 {
@@ -268,7 +266,7 @@ namespace KComicReader
         //Método que carga en el listBox todas las categorías dadas de alta.
         private void cargaCategorias()
         {
-            if(Config.Conexion)
+            if(Config.CompruebaConexion())
             {
                 using (MySqlConnection con = DataBaseConnectivity.getConnection())
                 {
@@ -296,7 +294,7 @@ namespace KComicReader
         //Método que carga en el listBox todas las series dadas de alta.
         private void cargaSeries()
         {
-            if(Config.Conexion)
+            if(Config.CompruebaConexion())
             {
                 using (MySqlConnection con = DataBaseConnectivity.getConnection())
                 {
@@ -344,7 +342,7 @@ namespace KComicReader
             }
             else
             {
-                if(Config.Conexion)
+                if(Config.CompruebaConexion())
                 {
                     using (MySqlConnection con = DataBaseConnectivity.getConnection())
                     {
@@ -384,7 +382,7 @@ namespace KComicReader
             }
             else
             {
-                if(Config.Conexion)
+                if(Config.CompruebaConexion())
                 {
                     using (MySqlConnection con = DataBaseConnectivity.getConnection())
                     {
@@ -434,22 +432,14 @@ namespace KComicReader
         //Método que se ejecuta cuando se pinta el formulario.
         private void FormVistaPrincipal_Paint(object sender, PaintEventArgs e)
         {
-            //Si tiene conexión, se define el tema y la configuración correspondiente, sino se activa el modo sin conexión.
-            if (Config.Conexion)
-            {
-                ModoConexion();
-            }
-            else
-            {
-                ModoSinConexion();
-            }
-
+            Config.DefineTema();
+            pbThemeIcon.Image = Config.ThemeIcon;
+            pbThemeIcon.Enabled = false;
 
             String[] Tema = Config.Tema;
 
             if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
             { 
-            
                 //El fondo se establece como un degradado entre el color 1 y el color 2.
                 LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
                     ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
@@ -500,7 +490,7 @@ namespace KComicReader
         {
             if (MessageBox.Show("¿Estás segurx de querer eliminar el cómic " + comicSeleccionado.Titulo + "?", "Confirmación de eliminación", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                if(Config.Conexion)
+                if(Config.CompruebaConexion())
                 {
                     using (MySqlConnection con = DataBaseConnectivity.getConnection())
                     {
@@ -526,53 +516,6 @@ namespace KComicReader
                 if (comicSeleccionado.ArchivoURL != "")
                     File.Delete(comicSeleccionado.ArchivoURL);
             }
-        }
-
-        //Método que se ejecuta cuando el usuario hace click en el botón de Sin Conexión.
-        private void pbThemeIcon_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Actualmente estás sin conexión. Esto significa que los cambios que realices no se guardarán en la base de datos.\nPulsa el botón de reintentar para intentar reconectar con la base de datos.", "Sin conexión", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation) == DialogResult.Retry)
-            {
-                if (Config.Conexion)
-                {
-                    Config.DefineConfiguracion();
-                    this.Refresh();
-                }
-            }
-        }
-
-        //Define la configuración básica de un modo de funcionamiento con conexión.
-        private void ModoConexion()
-        {
-            Config.DefineTema();
-            pbThemeIcon.Image = Config.ThemeIcon;
-            pbThemeIcon.Enabled = false;
-            pbThemeIcon.BackgroundImage = null;
-            if (eventHandlerThemeIconAsignado)
-            {
-                pbThemeIcon.MouseEnter -= Btn_MouseEnter;
-                pbThemeIcon.MouseLeave -= Btn_MouseLeave;
-                pbThemeIcon.Click -= pbThemeIcon_Click;
-                eventHandlerThemeIconAsignado = false;
-            }
-            pbThemeIcon.Cursor = Cursors.Default;
-            lblThemeIcon.Text = Config.Tema_Nombre;
-        }
-
-        //Define la configuración básica de un modo de funcionamiento sin conexión.
-        private void ModoSinConexion()
-        {
-            pbThemeIcon.Image = Image.FromFile(@"..\..\imgs\icons\sinConexion.png");
-            pbThemeIcon.Enabled = true;
-            if (!eventHandlerThemeIconAsignado)
-            {
-                pbThemeIcon.MouseEnter += Btn_MouseEnter;
-                pbThemeIcon.MouseLeave += Btn_MouseLeave;
-                pbThemeIcon.Click += pbThemeIcon_Click;
-                eventHandlerThemeIconAsignado = true;
-            }
-            pbThemeIcon.Cursor = Cursors.Hand;
-            lblThemeIcon.Text = "Conexión";
         }
     }
 }

@@ -145,7 +145,6 @@ namespace KComicReader
             this.pbThemeIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbThemeIcon.TabIndex = 13;
             this.pbThemeIcon.TabStop = false;
-            this.pbThemeIcon.Click += new System.EventHandler(this.pbThemeIcon_Click);
             // 
             // lblAyuda
             // 

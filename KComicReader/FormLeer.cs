@@ -72,7 +72,8 @@ namespace KComicReader
                 case Keys.A:anteriorPagina();break;
 
                 case Keys.Z: zoom();break;
-                case Keys.M: marcar();break;
+
+                case Keys.M:marcar();break;
             }
         }
 
@@ -218,8 +219,7 @@ namespace KComicReader
         private void FormLeer_Paint(object sender, PaintEventArgs e)
         {
             //Si tiene conexión, se define el tema.
-            if (Config.Conexion)
-                Config.DefineTema();
+            Config.DefineTema();
 
             String[] Tema = Config.Tema;
 

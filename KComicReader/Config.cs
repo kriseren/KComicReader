@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Threading;
@@ -21,58 +22,35 @@ namespace KComicReader
 
         public Config() { DefineConfiguracion(); }
 
-        private static Thread hilo;
-
-        //Método que inicia el hilo.
-        public static void IniciarHilo()
-        {
-            hilo = new Thread(new ThreadStart(ComprobarConexion));
-            hilo.Start();
-        }
-
-        //Método que comprueba la conexión cada 10 segundos.
-        private static void ComprobarConexion()
-        {
-            while (true)
-            {
-                CompruebaConexion();
-                Thread.Sleep(10000);
-            }
-        }
-
-
         //Método que comprueba la conectividad.
-        public static void CompruebaConexion()
+        public static bool CompruebaConexion()
         {
-            using (MySqlConnection connection = DataBaseConnectivity.getConnectionHilo())
+            bool conexion = false;
+            using (MySqlConnection connection = DataBaseConnectivity.getConnection())
             {
                 try
                 {
                     connection.Open();
-                    Conexion = true;
-                    //Si anteriormente no había conexión.
-                    if (!Conexion)
+                   /* if (!conexion)
                     {
-                        DefineConfiguracion();
                         if (!PrimeraLlamada)
+                        {
                             MessageBox.Show("Vuelves a tener conexión :)", "Conectado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                         else
                             PrimeraLlamada = false;
-                    }
-                    
+                    }*/
+                    conexion = true;
                 }
                 catch (MySqlException)
                 {
-                    //Si había conexión anteriormente se define sin conexión.
-
-                    if(Conexion)
+                    conexion = false;
+                    if (MessageBox.Show("Se ha perdido la conexión :(\nPulsa el botón de 'reintentar'.\nSi el error persiste, reinicia la aplicación y el servidor de MySQL.", "Sin conexión", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation)==DialogResult.Retry)
                     {
-                        DefineConfiguracionSinConexion();
-                        MessageBox.Show("Se ha perdido la conexión :(.\nLos cambios que realices pueden no guardarse.", "Sin conexión", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        PrimeraLlamada = false;
+                        CompruebaConexion();
                     }
-                    Conexion = false;
                 }
+                return conexion;
             }
         }
 
@@ -90,7 +68,7 @@ namespace KComicReader
         //Método que se conecta a la base de datos para cargar la configuración establecida.
         public static void DefineConfiguracion()
         {
-            if(Conexion)
+            if (Config.CompruebaConexion())
             {
                 using (MySqlConnection connection = DataBaseConnectivity.getConnection())
                 {
@@ -121,7 +99,7 @@ namespace KComicReader
         public static void DefineTema()
         {
             //Si hay conexión se define el tema.
-            if(Conexion)
+            if (Config.CompruebaConexion())
             {
                 using (MySqlConnection connection = DataBaseConnectivity.getConnection())
                 {
@@ -163,7 +141,7 @@ namespace KComicReader
         public static void GuardaConfiguracion()
         {
             //Si hay conexión se guarda la configuración.
-            if(Conexion)
+            if (Config.CompruebaConexion())
             {
                 using (MySqlConnection connection = DataBaseConnectivity.getConnection())
                 {
