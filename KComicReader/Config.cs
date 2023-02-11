@@ -12,7 +12,6 @@ namespace KComicReader
         //Definición de propiedades.
         public static string DirectorioInstalacion { get; set; }
         public static bool Conexion { get; set; }
-        private static bool PrimeraLlamada = true; //Define si es la primera vez que se define la conexión.
         public static int Tema_id { get; set; }
         public static string Tema_Nombre { get; set; }
         public static string[] Tema { get; set; }
@@ -28,28 +27,26 @@ namespace KComicReader
             bool conexion = false;
             using (MySqlConnection connection = DataBaseConnectivity.getConnection())
             {
-                try
+                //Se repite mientras que no haya conexión.
+                do
                 {
-                    connection.Open();
-                   /* if (!conexion)
+                    try
                     {
-                        if (!PrimeraLlamada)
+                        connection.Open();
+                        conexion = true;
+                    }
+                    catch (MySqlException)
+                    {
+                        conexion = false;
+                        
+                        if (MessageBox.Show("Se ha perdido la conexión :(\nPulsa el botón de 'reintentar'.\nSi el error persiste, reinicia la aplicación y el servidor de MySQL.", "Sin conexión", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation) == DialogResult.Retry)
                         {
-                            MessageBox.Show("Vuelves a tener conexión :)", "Conectado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CompruebaConexion();
                         }
-                        else
-                            PrimeraLlamada = false;
-                    }*/
-                    conexion = true;
-                }
-                catch (MySqlException)
-                {
-                    conexion = false;
-                    if (MessageBox.Show("Se ha perdido la conexión :(\nPulsa el botón de 'reintentar'.\nSi el error persiste, reinicia la aplicación y el servidor de MySQL.", "Sin conexión", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation)==DialogResult.Retry)
-                    {
-                        CompruebaConexion();
                     }
                 }
+                while (!conexion);
+                
                 return conexion;
             }
         }

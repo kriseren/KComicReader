@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace KComicReader
@@ -91,6 +92,8 @@ namespace KComicReader
             lblInfoCategoriaValue.Text = comicSeleccionado.Categoria;
             lblInfoIdiomaValue.Text = comicSeleccionado.Idioma;
             lblInfoSerieValue.Text = comicSeleccionado.Serie;
+            lblInfoNumeroValue.Text = comicSeleccionado.Numero.ToString();
+            lblInfoNumPaginasValue.Text = comicSeleccionado.NumPaginasTotales.ToString();
 
             //Muevo el panel al frente para ocultar el de vista vacía.
             panelRightVacia.Visible = false;
@@ -512,9 +515,26 @@ namespace KComicReader
                 //Elimino el cómic del fwp.
                 fwpComics.Controls.Remove(comicSeleccionado);
 
-                //Elimino el fichero del cómic.
+                //Elimino el fichero del cómic relizando 5 intentos de medio segundo cada uno.
                 if (comicSeleccionado.ArchivoURL != "")
-                    File.Delete(comicSeleccionado.ArchivoURL);
+                {
+                    int intentos = 0;
+                    bool exito = false;
+                    while (!exito && intentos < 5)
+                    {
+                        try
+                        {
+                            File.Delete(comicSeleccionado.ArchivoURL);
+                            exito = true;
+                        }
+                        catch (Exception)
+                        {
+                            intentos++;
+                            Thread.Sleep(500);
+                        }
+                    }
+
+                }
             }
         }
     }
