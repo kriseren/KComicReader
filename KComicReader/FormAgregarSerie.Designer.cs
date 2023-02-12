@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAgregarSerie));
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
@@ -36,6 +37,7 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.lblEditorial = new System.Windows.Forms.Label();
             this.lblEditorialValue = new System.Windows.Forms.Label();
+            this.toolTipGeneral = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // tbNombre
@@ -77,7 +79,7 @@
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(467, 191);
+            this.btnCancelar.Location = new System.Drawing.Point(453, 191);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(117, 33);
@@ -91,7 +93,7 @@
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(342, 191);
+            this.btnAgregar.Location = new System.Drawing.Point(328, 191);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(117, 33);
@@ -124,12 +126,17 @@
             this.lblEditorialValue.Text = "Editorial";
             this.lblEditorialValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // toolTipGeneral
+            // 
+            this.toolTipGeneral.AutomaticDelay = 700;
+            this.toolTipGeneral.IsBalloon = true;
+            // 
             // FormAgregarSerie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(597, 237);
+            this.ClientSize = new System.Drawing.Size(583, 237);
             this.Controls.Add(this.lblEditorialValue);
             this.Controls.Add(this.lblEditorial);
             this.Controls.Add(this.btnCancelar);
@@ -137,6 +144,7 @@
             this.Controls.Add(this.tbNombre);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblTituloFormulario);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAgregarSerie";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -156,5 +164,6 @@
         public System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.Label lblEditorial;
         private System.Windows.Forms.Label lblEditorialValue;
+        private System.Windows.Forms.ToolTip toolTipGeneral;
     }
 }

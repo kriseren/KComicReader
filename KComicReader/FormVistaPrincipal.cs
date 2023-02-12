@@ -32,7 +32,7 @@ namespace KComicReader
                 comic.eventoClick += new EventHandler(Comic_Click);
                 comic.eventoDobleClick += new EventHandler(btnLeer_Click);
                 //Almaceno el comic en la base de datos.
-                comic.guarda();
+                comic.Guarda();
                 //Agrego el cómic al fwp.
                 this.fwpComics.Controls.Add(comic);
                 //Ordeno los cómics por título.
@@ -198,14 +198,17 @@ namespace KComicReader
             if (formEditar.ShowDialog() == DialogResult.OK)
             {
                 //Obtengo el comic con los nuevos atributos y lo actualizo en la base de datos.
-                comicSeleccionado.actualiza(formEditar.comic);
+                comicSeleccionado.Actualiza(formEditar.comic);
 
                 //Elimino el cómic seleccionado del fwp y agrego el nuevo.
                 fwpComics.Controls.Remove(comicSeleccionado);
                 fwpComics.Controls.Add(formEditar.comic);
 
                 //Ordeno los cómics por título.
-                ordenaComicsPorTitulo();
+                //ordenaComicsPorTitulo();
+
+                //Recargo los valores del filtro de categorías o series.
+                lbCategorias_Click(sender, e);
             }
         }
 
@@ -533,6 +536,8 @@ namespace KComicReader
                             Thread.Sleep(500);
                         }
                     }
+                    if (intentos == 5)
+                        MessageBox.Show("No se ha podido eliminar el archivo del cómic. Prueba a eliminarlo a mano desde el directorio de instalación", "Error al eliminar el archivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
             }

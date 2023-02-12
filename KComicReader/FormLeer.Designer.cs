@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLeer));
             this.panelButtons = new System.Windows.Forms.Panel();
             this.btnZoom = new System.Windows.Forms.PictureBox();
@@ -37,6 +38,7 @@
             this.btnSiguientePagina = new System.Windows.Forms.PictureBox();
             this.panelImage = new System.Windows.Forms.Panel();
             this.pbPagina = new System.Windows.Forms.PictureBox();
+            this.toolTipGeneral = new System.Windows.Forms.ToolTip(this.components);
             this.panelButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnZoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMarcador)).BeginInit();
@@ -72,6 +74,7 @@
             this.btnZoom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnZoom.TabIndex = 4;
             this.btnZoom.TabStop = false;
+            this.toolTipGeneral.SetToolTip(this.btnZoom, "Haz click para hacer zoom ajustado al ancho de la ventana..");
             this.btnZoom.Click += new System.EventHandler(this.Zoom_Click);
             this.btnZoom.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.btnZoom.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
@@ -98,6 +101,7 @@
             this.btnMarcador.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMarcador.TabIndex = 2;
             this.btnMarcador.TabStop = false;
+            this.toolTipGeneral.SetToolTip(this.btnMarcador, "Haz click para marcar la página.");
             this.btnMarcador.Click += new System.EventHandler(this.btnMarcador_Click);
             this.btnMarcador.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.btnMarcador.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
@@ -114,6 +118,7 @@
             this.btnAnteriorPagina.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnAnteriorPagina.TabIndex = 1;
             this.btnAnteriorPagina.TabStop = false;
+            this.toolTipGeneral.SetToolTip(this.btnAnteriorPagina, "Haz click para pasar a la página anterior.");
             this.btnAnteriorPagina.Click += new System.EventHandler(this.btnAnterior_Click);
             this.btnAnteriorPagina.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.btnAnteriorPagina.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
@@ -130,6 +135,7 @@
             this.btnSiguientePagina.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnSiguientePagina.TabIndex = 0;
             this.btnSiguientePagina.TabStop = false;
+            this.toolTipGeneral.SetToolTip(this.btnSiguientePagina, "Haz click para pasar a la página siguiente.");
             this.btnSiguientePagina.Click += new System.EventHandler(this.btnSiguiente_Click);
             this.btnSiguientePagina.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.btnSiguientePagina.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
@@ -160,6 +166,11 @@
             this.pbPagina.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPagina.TabIndex = 0;
             this.pbPagina.TabStop = false;
+            // 
+            // toolTipGeneral
+            // 
+            this.toolTipGeneral.AutomaticDelay = 700;
+            this.toolTipGeneral.IsBalloon = true;
             // 
             // FormLeer
             // 
@@ -198,5 +209,6 @@
         private System.Windows.Forms.PictureBox btnZoom;
         private System.Windows.Forms.Panel panelImage;
         private System.Windows.Forms.PictureBox pbPagina;
+        private System.Windows.Forms.ToolTip toolTipGeneral;
     }
 }

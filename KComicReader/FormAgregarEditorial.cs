@@ -16,16 +16,9 @@ namespace KComicReader
     public partial class FormAgregarEditorial : Form
     {
         //Definición de variables.
-        private string elemento;
         public FormAgregarEditorial(string elemento)
         {
             InitializeComponent();
-
-            //Defino el elemento que se va a agregar. (Categoría, Serie o Editorial)
-            this.elemento = elemento;
-
-            //Defino el título del formulario.
-            this.lblTituloFormulario.Text = "AGREGAR UNA NUEVA " + elemento.ToUpper();
         }
 
         //Método que se ejecuta cuando el usuario pulsa el botón de agregar.
@@ -33,7 +26,7 @@ namespace KComicReader
         {
             if (existe())
             {
-                MessageBox.Show("La " + elemento + " que intentas crear ya existe.", "Error al crear la " + elemento, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La editorial que intentas crear ya existe.", "Error al crear la editorial", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
             }   
         }
@@ -44,28 +37,15 @@ namespace KComicReader
             bool existe = false;
 
             //Se comprueba que no exista.
-            //Obtengo la conexión y los objetos necesarios.
             using (MySqlConnection con = DataBaseConnectivity.getConnection())
             {
                 try
                 {
                     con.Open();
                     MySqlCommand cmd = con.CreateCommand();
-
-                    //Dependiendo del elemento a agregar, se ejecuta un comando u otro.
-                    switch (elemento)
-                    {
-                        case "categoria":
-                            cmd.CommandText = $"SELECT COUNT(*) FROM CATEGORIAS WHERE nombre LIKE @nombre";
-                            cmd.Parameters.AddWithValue("@nombre", tbNombre.Text);
-                            cmd.Prepare();
-                            break;
-                        case "editorial":
-                            cmd.CommandText = $"SELECT COUNT(*) FROM EDITORIALES WHERE nombre LIKE @nombre";
-                            cmd.Parameters.AddWithValue("@nombre", tbNombre.Text);
-                            cmd.Prepare();
-                            break;
-                    }
+                    cmd.CommandText = $"SELECT COUNT(*) FROM EDITORIALES WHERE nombre LIKE @nombre";
+                    cmd.Parameters.AddWithValue("@nombre", tbNombre.Text);
+                    cmd.Prepare();
 
                     //Verifico si la editorial o la categoria existe.
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
@@ -74,7 +54,7 @@ namespace KComicReader
                 }
                 catch (MySqlException)
                 {
-                    MessageBox.Show("Ha ocurrido un error al comprobar la existencia de la " + elemento + ".\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ha ocurrido un error al comprobar la existencia de la editorial.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             return existe;       

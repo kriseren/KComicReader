@@ -19,19 +19,8 @@ namespace KComicReader
         [STAThread]
         static void Main()
         {
-            //Inicia el servidor de MYSQL.
-            try
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.FileName = "cmd.exe";
-                startInfo.Arguments = "/C C:\\xampp\\mysql\\bin\\mysqld";
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                Process.Start(startInfo);
-            }
-            catch(Win32Exception)
-            {
-                MessageBox.Show("Ha ocurrido un error al iniciar MySQL.\nSeguramente sea debido a que la ruta de instalación de XAMPP no es la correcta.","Error al iniciar MySQL",MessageBoxButtons.OK);
-            }
+            //Inicio el servidor de MySQL.
+            Config.IniciaMySQL();
 
             //Se comprueba que la base de datos exista En caso contrario se crea mediante un script.
             if (existeDB())
@@ -83,7 +72,6 @@ namespace KComicReader
                     {
                         MessageBox.Show("Ha ocurrido un error al conectar con la base de datos.\nPrueba a iniciar el servidor de MYSQL.", "Error al conectar a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-        
             }
             return existe;
         }

@@ -29,6 +29,7 @@ namespace KComicReader
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVistaPrincipal));
             this.panelTop = new System.Windows.Forms.Panel();
             this.lblThemeIcon = new System.Windows.Forms.Label();
@@ -47,12 +48,17 @@ namespace KComicReader
             this.pbBtnLeer = new System.Windows.Forms.PictureBox();
             this.pbBtnEditar = new System.Windows.Forms.PictureBox();
             this.fwpComics = new System.Windows.Forms.FlowLayoutPanel();
-            this.agregarComicBtn = new KComicReader.AgregarComicBtn();
             this.panelLeftCategorias = new System.Windows.Forms.Panel();
             this.lbCategorias = new System.Windows.Forms.ListBox();
             this.lblSpecCategorias = new System.Windows.Forms.Label();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelRightInfo = new System.Windows.Forms.Panel();
+            this.lblInfoNumero = new System.Windows.Forms.Label();
+            this.lblInfoNumeroValue = new System.Windows.Forms.Label();
+            this.lblInfoSerie = new System.Windows.Forms.Label();
+            this.lblInfoSerieValue = new System.Windows.Forms.Label();
+            this.lblInfoNumPaginasValue = new System.Windows.Forms.Label();
+            this.lblInfoNumPaginas = new System.Windows.Forms.Label();
             this.lblInfoIdiomaValue = new System.Windows.Forms.Label();
             this.lblInfoIdioma = new System.Windows.Forms.Label();
             this.lblInfoCategoriaValue = new System.Windows.Forms.Label();
@@ -82,12 +88,8 @@ namespace KComicReader
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAcciones = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAtajos = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblInfoNumPaginasValue = new System.Windows.Forms.Label();
-            this.lblInfoNumPaginas = new System.Windows.Forms.Label();
-            this.lblInfoSerie = new System.Windows.Forms.Label();
-            this.lblInfoSerieValue = new System.Windows.Forms.Label();
-            this.lblInfoNumero = new System.Windows.Forms.Label();
-            this.lblInfoNumeroValue = new System.Windows.Forms.Label();
+            this.toolTipGeneral = new System.Windows.Forms.ToolTip(this.components);
+            this.agregarComicBtn = new KComicReader.AgregarComicBtn();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbThemeIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnAyuda)).BeginInit();
@@ -149,6 +151,7 @@ namespace KComicReader
             this.pbThemeIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbThemeIcon.TabIndex = 13;
             this.pbThemeIcon.TabStop = false;
+            this.toolTipGeneral.SetToolTip(this.pbThemeIcon, "Icono del tema de la interfaz.");
             // 
             // lblAyuda
             // 
@@ -175,6 +178,7 @@ namespace KComicReader
             this.pbBtnAyuda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbBtnAyuda.TabIndex = 11;
             this.pbBtnAyuda.TabStop = false;
+            this.toolTipGeneral.SetToolTip(this.pbBtnAyuda, "Haz click para abrir la ventana de ayuda.");
             this.pbBtnAyuda.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.pbBtnAyuda.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
@@ -203,6 +207,7 @@ namespace KComicReader
             this.pbBtnConfig.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbBtnConfig.TabIndex = 9;
             this.pbBtnConfig.TabStop = false;
+            this.toolTipGeneral.SetToolTip(this.pbBtnConfig, "Haz click para abrir la ventana de ajustes.");
             this.pbBtnConfig.Click += new System.EventHandler(this.pbBtnConfig_Click);
             this.pbBtnConfig.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.pbBtnConfig.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
@@ -237,7 +242,7 @@ namespace KComicReader
             this.lblLeer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblLeer.Enabled = false;
             this.lblLeer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLeer.Location = new System.Drawing.Point(703, 396);
+            this.lblLeer.Location = new System.Drawing.Point(703, 382);
             this.lblLeer.Name = "lblLeer";
             this.lblLeer.Size = new System.Drawing.Size(69, 23);
             this.lblLeer.TabIndex = 8;
@@ -273,6 +278,7 @@ namespace KComicReader
             this.pbBtnAgregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbBtnAgregar.TabIndex = 1;
             this.pbBtnAgregar.TabStop = false;
+            this.toolTipGeneral.SetToolTip(this.pbBtnAgregar, "Haz click para agregar un nuevo cómic.");
             this.pbBtnAgregar.Click += new System.EventHandler(this.pbBtnAgregar_Click);
             this.pbBtnAgregar.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.pbBtnAgregar.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
@@ -320,6 +326,7 @@ namespace KComicReader
             this.pbBtnEliminar.TabIndex = 4;
             this.pbBtnEliminar.TabStop = false;
             this.pbBtnEliminar.Tag = "Editar comic";
+            this.toolTipGeneral.SetToolTip(this.pbBtnEliminar, "Haz click para eliminar el cómic seleccionado.");
             this.pbBtnEliminar.Visible = false;
             this.pbBtnEliminar.Click += new System.EventHandler(this.pbBtnEliminar_Click);
             this.pbBtnEliminar.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
@@ -340,6 +347,7 @@ namespace KComicReader
             this.pbBtnLeer.TabIndex = 3;
             this.pbBtnLeer.TabStop = false;
             this.pbBtnLeer.Tag = "Editar comic";
+            this.toolTipGeneral.SetToolTip(this.pbBtnLeer, "Haz click para leer el cómic seleccionado.");
             this.pbBtnLeer.Visible = false;
             this.pbBtnLeer.Click += new System.EventHandler(this.btnLeer_Click);
             this.pbBtnLeer.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
@@ -360,6 +368,7 @@ namespace KComicReader
             this.pbBtnEditar.TabIndex = 2;
             this.pbBtnEditar.TabStop = false;
             this.pbBtnEditar.Tag = "Editar comic";
+            this.toolTipGeneral.SetToolTip(this.pbBtnEditar, "Haz click para editar el cómic seleccionado.");
             this.pbBtnEditar.Visible = false;
             this.pbBtnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             this.pbBtnEditar.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
@@ -380,26 +389,6 @@ namespace KComicReader
             this.fwpComics.Name = "fwpComics";
             this.fwpComics.Size = new System.Drawing.Size(693, 644);
             this.fwpComics.TabIndex = 0;
-            // 
-            // agregarComicBtn
-            // 
-            this.agregarComicBtn.ArchivoURL = null;
-            this.agregarComicBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.agregarComicBtn.BackColor = System.Drawing.Color.Transparent;
-            this.agregarComicBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.agregarComicBtn.Dibujante = null;
-            this.agregarComicBtn.Editorial = null;
-            this.agregarComicBtn.eventoClick = null;
-            this.agregarComicBtn.Guionista = null;
-            this.agregarComicBtn.Id = 0;
-            this.agregarComicBtn.Location = new System.Drawing.Point(5, 5);
-            this.agregarComicBtn.Margin = new System.Windows.Forms.Padding(5);
-            this.agregarComicBtn.Name = "agregarComicBtn";
-            this.agregarComicBtn.Portada = ((System.Drawing.Image)(resources.GetObject("agregarComicBtn.Portada")));
-            this.agregarComicBtn.PortadaURL = null;
-            this.agregarComicBtn.Size = new System.Drawing.Size(204, 346);
-            this.agregarComicBtn.TabIndex = 0;
-            this.agregarComicBtn.Titulo = "Agregar un nuevo cómic";
             // 
             // panelLeftCategorias
             // 
@@ -428,7 +417,9 @@ namespace KComicReader
             this.lbCategorias.Margin = new System.Windows.Forms.Padding(4);
             this.lbCategorias.Name = "lbCategorias";
             this.lbCategorias.Size = new System.Drawing.Size(261, 224);
+            this.lbCategorias.Sorted = true;
             this.lbCategorias.TabIndex = 4;
+            this.toolTipGeneral.SetToolTip(this.lbCategorias, "Haz click para filtrar los cómics por categoría.");
             this.lbCategorias.Click += new System.EventHandler(this.lbCategorias_Click);
             // 
             // lblSpecCategorias
@@ -456,7 +447,7 @@ namespace KComicReader
             this.panelRight.Location = new System.Drawing.Point(1101, 151);
             this.panelRight.Margin = new System.Windows.Forms.Padding(4);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(271, 548);
+            this.panelRight.Size = new System.Drawing.Size(271, 550);
             this.panelRight.TabIndex = 3;
             // 
             // panelRightInfo
@@ -484,6 +475,78 @@ namespace KComicReader
             this.panelRightInfo.Name = "panelRightInfo";
             this.panelRightInfo.Size = new System.Drawing.Size(263, 650);
             this.panelRightInfo.TabIndex = 1;
+            // 
+            // lblInfoNumero
+            // 
+            this.lblInfoNumero.AutoEllipsis = true;
+            this.lblInfoNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoNumero.Location = new System.Drawing.Point(5, 574);
+            this.lblInfoNumero.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+            this.lblInfoNumero.Name = "lblInfoNumero";
+            this.lblInfoNumero.Size = new System.Drawing.Size(256, 27);
+            this.lblInfoNumero.TabIndex = 32;
+            this.lblInfoNumero.Text = "[NÚMERO]";
+            this.lblInfoNumero.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblInfoNumeroValue
+            // 
+            this.lblInfoNumeroValue.AutoEllipsis = true;
+            this.lblInfoNumeroValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoNumeroValue.Location = new System.Drawing.Point(3, 606);
+            this.lblInfoNumeroValue.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.lblInfoNumeroValue.Name = "lblInfoNumeroValue";
+            this.lblInfoNumeroValue.Size = new System.Drawing.Size(260, 27);
+            this.lblInfoNumeroValue.TabIndex = 31;
+            this.lblInfoNumeroValue.Text = "Número del cómic";
+            this.lblInfoNumeroValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblInfoSerie
+            // 
+            this.lblInfoSerie.AutoEllipsis = true;
+            this.lblInfoSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoSerie.Location = new System.Drawing.Point(6, 505);
+            this.lblInfoSerie.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+            this.lblInfoSerie.Name = "lblInfoSerie";
+            this.lblInfoSerie.Size = new System.Drawing.Size(256, 27);
+            this.lblInfoSerie.TabIndex = 30;
+            this.lblInfoSerie.Text = "[SERIE]";
+            this.lblInfoSerie.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblInfoSerieValue
+            // 
+            this.lblInfoSerieValue.AutoEllipsis = true;
+            this.lblInfoSerieValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoSerieValue.Location = new System.Drawing.Point(4, 537);
+            this.lblInfoSerieValue.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.lblInfoSerieValue.Name = "lblInfoSerieValue";
+            this.lblInfoSerieValue.Size = new System.Drawing.Size(260, 27);
+            this.lblInfoSerieValue.TabIndex = 29;
+            this.lblInfoSerieValue.Text = "Serie del cómic";
+            this.lblInfoSerieValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblInfoNumPaginasValue
+            // 
+            this.lblInfoNumPaginasValue.AutoEllipsis = true;
+            this.lblInfoNumPaginasValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoNumPaginasValue.Location = new System.Drawing.Point(2, 468);
+            this.lblInfoNumPaginasValue.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.lblInfoNumPaginasValue.Name = "lblInfoNumPaginasValue";
+            this.lblInfoNumPaginasValue.Size = new System.Drawing.Size(259, 27);
+            this.lblInfoNumPaginasValue.TabIndex = 28;
+            this.lblInfoNumPaginasValue.Text = "Categoría del cómic";
+            this.lblInfoNumPaginasValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblInfoNumPaginas
+            // 
+            this.lblInfoNumPaginas.AutoEllipsis = true;
+            this.lblInfoNumPaginas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoNumPaginas.Location = new System.Drawing.Point(2, 436);
+            this.lblInfoNumPaginas.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+            this.lblInfoNumPaginas.Name = "lblInfoNumPaginas";
+            this.lblInfoNumPaginas.Size = new System.Drawing.Size(259, 27);
+            this.lblInfoNumPaginas.TabIndex = 27;
+            this.lblInfoNumPaginas.Text = "[Nº PÁGINAS]";
+            this.lblInfoNumPaginas.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblInfoIdiomaValue
             // 
@@ -635,7 +698,7 @@ namespace KComicReader
             this.panelRightVacia.Location = new System.Drawing.Point(4, 38);
             this.panelRightVacia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelRightVacia.Name = "panelRightVacia";
-            this.panelRightVacia.Size = new System.Drawing.Size(261, 538);
+            this.panelRightVacia.Size = new System.Drawing.Size(261, 709);
             this.panelRightVacia.TabIndex = 11;
             this.panelRightVacia.Visible = false;
             // 
@@ -691,6 +754,7 @@ namespace KComicReader
             this.lbSeries.Name = "lbSeries";
             this.lbSeries.Size = new System.Drawing.Size(261, 324);
             this.lbSeries.TabIndex = 3;
+            this.toolTipGeneral.SetToolTip(this.lbSeries, "Haz click para filtrar los cómics por serie.");
             this.lbSeries.Click += new System.EventHandler(this.lbSeries_Click);
             // 
             // lblSpecSeries
@@ -815,77 +879,31 @@ namespace KComicReader
             this.toolStripMenuItemAtajos.Size = new System.Drawing.Size(314, 26);
             this.toolStripMenuItemAtajos.Text = "A&tajos de teclado";
             // 
-            // lblInfoNumPaginasValue
+            // toolTipGeneral
             // 
-            this.lblInfoNumPaginasValue.AutoEllipsis = true;
-            this.lblInfoNumPaginasValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoNumPaginasValue.Location = new System.Drawing.Point(2, 468);
-            this.lblInfoNumPaginasValue.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
-            this.lblInfoNumPaginasValue.Name = "lblInfoNumPaginasValue";
-            this.lblInfoNumPaginasValue.Size = new System.Drawing.Size(259, 27);
-            this.lblInfoNumPaginasValue.TabIndex = 28;
-            this.lblInfoNumPaginasValue.Text = "Categoría del cómic";
-            this.lblInfoNumPaginasValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTipGeneral.AutomaticDelay = 700;
+            this.toolTipGeneral.IsBalloon = true;
             // 
-            // lblInfoNumPaginas
+            // agregarComicBtn
             // 
-            this.lblInfoNumPaginas.AutoEllipsis = true;
-            this.lblInfoNumPaginas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoNumPaginas.Location = new System.Drawing.Point(2, 436);
-            this.lblInfoNumPaginas.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
-            this.lblInfoNumPaginas.Name = "lblInfoNumPaginas";
-            this.lblInfoNumPaginas.Size = new System.Drawing.Size(259, 27);
-            this.lblInfoNumPaginas.TabIndex = 27;
-            this.lblInfoNumPaginas.Text = "[Nº PÁGINAS]";
-            this.lblInfoNumPaginas.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblInfoSerie
-            // 
-            this.lblInfoSerie.AutoEllipsis = true;
-            this.lblInfoSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoSerie.Location = new System.Drawing.Point(6, 505);
-            this.lblInfoSerie.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
-            this.lblInfoSerie.Name = "lblInfoSerie";
-            this.lblInfoSerie.Size = new System.Drawing.Size(256, 27);
-            this.lblInfoSerie.TabIndex = 30;
-            this.lblInfoSerie.Text = "[SERIE]";
-            this.lblInfoSerie.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblInfoSerieValue
-            // 
-            this.lblInfoSerieValue.AutoEllipsis = true;
-            this.lblInfoSerieValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoSerieValue.Location = new System.Drawing.Point(4, 537);
-            this.lblInfoSerieValue.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
-            this.lblInfoSerieValue.Name = "lblInfoSerieValue";
-            this.lblInfoSerieValue.Size = new System.Drawing.Size(260, 27);
-            this.lblInfoSerieValue.TabIndex = 29;
-            this.lblInfoSerieValue.Text = "Serie del cómic";
-            this.lblInfoSerieValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblInfoNumero
-            // 
-            this.lblInfoNumero.AutoEllipsis = true;
-            this.lblInfoNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoNumero.Location = new System.Drawing.Point(5, 574);
-            this.lblInfoNumero.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
-            this.lblInfoNumero.Name = "lblInfoNumero";
-            this.lblInfoNumero.Size = new System.Drawing.Size(256, 27);
-            this.lblInfoNumero.TabIndex = 32;
-            this.lblInfoNumero.Text = "[NÚMERO]";
-            this.lblInfoNumero.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblInfoNumeroValue
-            // 
-            this.lblInfoNumeroValue.AutoEllipsis = true;
-            this.lblInfoNumeroValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoNumeroValue.Location = new System.Drawing.Point(3, 606);
-            this.lblInfoNumeroValue.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
-            this.lblInfoNumeroValue.Name = "lblInfoNumeroValue";
-            this.lblInfoNumeroValue.Size = new System.Drawing.Size(260, 27);
-            this.lblInfoNumeroValue.TabIndex = 31;
-            this.lblInfoNumeroValue.Text = "Número del cómic";
-            this.lblInfoNumeroValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.agregarComicBtn.ArchivoURL = null;
+            this.agregarComicBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.agregarComicBtn.BackColor = System.Drawing.Color.Transparent;
+            this.agregarComicBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.agregarComicBtn.Dibujante = null;
+            this.agregarComicBtn.Editorial = null;
+            this.agregarComicBtn.eventoClick = null;
+            this.agregarComicBtn.Guionista = null;
+            this.agregarComicBtn.Id = 0;
+            this.agregarComicBtn.Location = new System.Drawing.Point(5, 5);
+            this.agregarComicBtn.Margin = new System.Windows.Forms.Padding(5);
+            this.agregarComicBtn.Name = "agregarComicBtn";
+            this.agregarComicBtn.Portada = ((System.Drawing.Image)(resources.GetObject("agregarComicBtn.Portada")));
+            this.agregarComicBtn.PortadaURL = null;
+            this.agregarComicBtn.Size = new System.Drawing.Size(204, 346);
+            this.agregarComicBtn.TabIndex = 0;
+            this.agregarComicBtn.Titulo = "Agregar un nuevo cómic";
+            this.toolTipGeneral.SetToolTip(this.agregarComicBtn, "Haz click para agregar un nuevo cómic.");
             // 
             // FormVistaPrincipal
             // 
@@ -991,6 +1009,7 @@ namespace KComicReader
         private System.Windows.Forms.Label lblInfoSerieValue;
         private System.Windows.Forms.Label lblInfoNumPaginasValue;
         private System.Windows.Forms.Label lblInfoNumPaginas;
+        private System.Windows.Forms.ToolTip toolTipGeneral;
     }
 }
 

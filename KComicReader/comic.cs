@@ -1,16 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace KComicReader
 {
@@ -71,7 +63,7 @@ namespace KComicReader
         }
 
         //Método que inserta el comic en la base de datos.
-        public void guarda()
+        public void Guarda()
         {
             if(Config.CompruebaConexion())
             {
@@ -117,7 +109,7 @@ namespace KComicReader
         }
 
         //Método que recibe un cómic se actualiza en la base de datos obteniendo las nuevas propiedades.
-        public void actualiza(Comic c)
+        public void Actualiza(Comic c)
         {
             if (Config.CompruebaConexion())
             {

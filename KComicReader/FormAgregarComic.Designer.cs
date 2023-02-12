@@ -29,6 +29,7 @@ namespace KComicReader
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAgregarComic));
             this.lblTituloFormulario = new System.Windows.Forms.Label();
             this.pbPortada = new System.Windows.Forms.PictureBox();
@@ -54,6 +55,7 @@ namespace KComicReader
             this.nbNumero = new System.Windows.Forms.NumericUpDown();
             this.btnAgregarEditorial = new System.Windows.Forms.PictureBox();
             this.btnAgregarSerie = new System.Windows.Forms.PictureBox();
+            this.toolTipGeneral = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbPortada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbNumero)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregarEditorial)).BeginInit();
@@ -84,6 +86,7 @@ namespace KComicReader
             this.pbPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPortada.TabIndex = 5;
             this.pbPortada.TabStop = false;
+            this.toolTipGeneral.SetToolTip(this.pbPortada, "Haz doble click para seleccionar el archivo CBR del cómic.");
             this.pbPortada.DoubleClick += new System.EventHandler(this.btnArchivo_Click);
             // 
             // btnAgregar
@@ -110,6 +113,7 @@ namespace KComicReader
             this.btnArchivo.Size = new System.Drawing.Size(247, 32);
             this.btnArchivo.TabIndex = 9;
             this.btnArchivo.Text = "Seleccionar archivo";
+            this.toolTipGeneral.SetToolTip(this.btnArchivo, "Selecciona el archivo CBR del cómic.");
             this.btnArchivo.UseVisualStyleBackColor = true;
             this.btnArchivo.DockChanged += new System.EventHandler(this.btnArchivo_Click);
             this.btnArchivo.Click += new System.EventHandler(this.btnArchivo_Click);
@@ -146,6 +150,7 @@ namespace KComicReader
             this.tbTitulo.Name = "tbTitulo";
             this.tbTitulo.Size = new System.Drawing.Size(283, 28);
             this.tbTitulo.TabIndex = 1;
+            this.toolTipGeneral.SetToolTip(this.tbTitulo, "Escribe aquí el título del cómic.");
             // 
             // lblEditorial
             // 
@@ -167,6 +172,7 @@ namespace KComicReader
             this.tbGuionista.Name = "tbGuionista";
             this.tbGuionista.Size = new System.Drawing.Size(281, 28);
             this.tbGuionista.TabIndex = 3;
+            this.toolTipGeneral.SetToolTip(this.tbGuionista, "Escribe aquí el/la guionista del cómic.");
             // 
             // lblGuionista
             // 
@@ -188,6 +194,7 @@ namespace KComicReader
             this.tbDibujante.Name = "tbDibujante";
             this.tbDibujante.Size = new System.Drawing.Size(281, 28);
             this.tbDibujante.TabIndex = 4;
+            this.toolTipGeneral.SetToolTip(this.tbDibujante, "Escribe aquí el/la dibujante del cómic.");
             // 
             // lblDibujante
             // 
@@ -225,6 +232,7 @@ namespace KComicReader
             this.cbEditorial.Name = "cbEditorial";
             this.cbEditorial.Size = new System.Drawing.Size(281, 30);
             this.cbEditorial.TabIndex = 2;
+            this.toolTipGeneral.SetToolTip(this.cbEditorial, "Selecciona la editorial del cómic.");
             this.cbEditorial.SelectionChangeCommitted += new System.EventHandler(this.cbEditorial_SelectionChangeCommitted);
             // 
             // lblCategoria
@@ -249,6 +257,7 @@ namespace KComicReader
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(281, 30);
             this.cbCategoria.TabIndex = 5;
+            this.toolTipGeneral.SetToolTip(this.cbCategoria, "Selecciona la categoría del cómic.");
             // 
             // cbIdioma
             // 
@@ -260,6 +269,7 @@ namespace KComicReader
             this.cbIdioma.Name = "cbIdioma";
             this.cbIdioma.Size = new System.Drawing.Size(281, 30);
             this.cbIdioma.TabIndex = 6;
+            this.toolTipGeneral.SetToolTip(this.cbIdioma, "Selecciona el idioma del cómic.");
             // 
             // lblIdioma
             // 
@@ -283,6 +293,7 @@ namespace KComicReader
             this.cbSerie.Name = "cbSerie";
             this.cbSerie.Size = new System.Drawing.Size(281, 30);
             this.cbSerie.TabIndex = 7;
+            this.toolTipGeneral.SetToolTip(this.cbSerie, "Selecciona la serie del cómic asociada a la editorial.");
             // 
             // lblSerie
             // 
@@ -316,6 +327,7 @@ namespace KComicReader
             this.nbNumero.Name = "nbNumero";
             this.nbNumero.Size = new System.Drawing.Size(80, 28);
             this.nbNumero.TabIndex = 8;
+            this.toolTipGeneral.SetToolTip(this.nbNumero, "Define el número o tomo de la serie.");
             // 
             // btnAgregarEditorial
             // 
@@ -332,6 +344,7 @@ namespace KComicReader
             this.btnAgregarEditorial.TabIndex = 26;
             this.btnAgregarEditorial.TabStop = false;
             this.btnAgregarEditorial.Tag = "Agregar Editorial";
+            this.toolTipGeneral.SetToolTip(this.btnAgregarEditorial, "Haz click para agregar una nueva editorial.");
             this.btnAgregarEditorial.Click += new System.EventHandler(this.btnAgregarEditorial_Click);
             this.btnAgregarEditorial.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.btnAgregarEditorial.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
@@ -352,10 +365,16 @@ namespace KComicReader
             this.btnAgregarSerie.TabIndex = 27;
             this.btnAgregarSerie.TabStop = false;
             this.btnAgregarSerie.Tag = "Agregar Editorial";
+            this.toolTipGeneral.SetToolTip(this.btnAgregarSerie, "Haz click para agregar una nueva serie.");
             this.btnAgregarSerie.Visible = false;
             this.btnAgregarSerie.Click += new System.EventHandler(this.btnAgregarSerie_Click);
             this.btnAgregarSerie.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.btnAgregarSerie.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
+            // 
+            // toolTipGeneral
+            // 
+            this.toolTipGeneral.AutomaticDelay = 700;
+            this.toolTipGeneral.IsBalloon = true;
             // 
             // FormAgregarComic
             // 
@@ -429,5 +448,6 @@ namespace KComicReader
         private System.Windows.Forms.NumericUpDown nbNumero;
         private System.Windows.Forms.PictureBox btnAgregarEditorial;
         private System.Windows.Forms.PictureBox btnAgregarSerie;
+        private System.Windows.Forms.ToolTip toolTipGeneral;
     }
 }

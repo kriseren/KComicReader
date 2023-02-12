@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAgregarEditorial));
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblTituloFormulario = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.toolTipGeneral = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // tbNombre
@@ -44,6 +46,7 @@
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(247, 28);
             this.tbNombre.TabIndex = 13;
+            this.toolTipGeneral.SetToolTip(this.tbNombre, "Escribe aquí el nombre de la nueva editorial.");
             // 
             // lblNombre
             // 
@@ -64,7 +67,7 @@
             this.lblTituloFormulario.Location = new System.Drawing.Point(13, 9);
             this.lblTituloFormulario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTituloFormulario.Name = "lblTituloFormulario";
-            this.lblTituloFormulario.Size = new System.Drawing.Size(571, 71);
+            this.lblTituloFormulario.Size = new System.Drawing.Size(605, 71);
             this.lblTituloFormulario.TabIndex = 12;
             this.lblTituloFormulario.Text = "AGREGAR UNA NUEVA EDITORIAL";
             this.lblTituloFormulario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -75,7 +78,7 @@
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(467, 144);
+            this.btnCancelar.Location = new System.Drawing.Point(462, 144);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(117, 33);
@@ -89,7 +92,7 @@
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(341, 144);
+            this.btnAgregar.Location = new System.Drawing.Point(336, 144);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(117, 33);
@@ -98,17 +101,23 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // toolTipGeneral
+            // 
+            this.toolTipGeneral.AutomaticDelay = 700;
+            this.toolTipGeneral.IsBalloon = true;
+            // 
             // FormAgregarEditorial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(597, 190);
+            this.ClientSize = new System.Drawing.Size(592, 190);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.tbNombre);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblTituloFormulario);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormAgregarEditorial";
@@ -126,5 +135,6 @@
         private System.Windows.Forms.Button btnCancelar;
         public System.Windows.Forms.Button btnAgregar;
         public System.Windows.Forms.TextBox tbNombre;
+        private System.Windows.Forms.ToolTip toolTipGeneral;
     }
 }
