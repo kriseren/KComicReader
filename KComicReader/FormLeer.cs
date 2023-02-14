@@ -63,17 +63,17 @@ namespace KComicReader
         private void key_Down(object sender, KeyEventArgs e)
         {
             //Dependiendo de la tecla pulsada.
-            switch(e.KeyCode)
+            switch (e.KeyCode)
             {
                 case Keys.Right:
-                case Keys.D: siguientePagina() ;break;
+                case Keys.D: siguientePagina(); break;
 
                 case Keys.Left:
-                case Keys.A:anteriorPagina();break;
+                case Keys.A: anteriorPagina(); break;
 
-                case Keys.Z: zoom();break;
+                case Keys.Z: zoom(); break;
 
-                case Keys.M:marcar();break;
+                case Keys.M: marcar(); break;
             }
         }
 
@@ -93,7 +93,7 @@ namespace KComicReader
         private void siguientePagina()
         {
             //Si el número de página no es el último, se carga.
-            if (numPag < archive.Entries.Count()-1)
+            if (numPag < archive.Entries.Count() - 1)
             {
                 numPag++;
                 definePagina();
@@ -166,7 +166,7 @@ namespace KComicReader
 
         //Método que se ejecuta cuando el usuario redimensiona el formulario.
         private void Form_Resize(object sender, EventArgs e)
-        { 
+        {
             zoomOut();
         }
 
@@ -183,21 +183,21 @@ namespace KComicReader
             btnMarcador.Image = Image.FromFile(@"..\..\imgs\icons\marked.png");
             //Defino la página actual y la almaceno en la base de datos.
             comic.NumPaginaActual = numPag;
-            using (MySqlConnection connection = DataBaseConnectivity.getConnection())
+            using (MySqlConnection connection = DataBaseConnectivity.GetConnection())
             {
                 try
                 {
                     connection.Open();
                     MySqlCommand cmd = connection.CreateCommand();
                     cmd.CommandText = "UPDATE comics SET numPagina = @numPagina WHERE id = @id";
-                    cmd.Parameters.AddWithValue("@numPagina",comic.NumPaginaActual);
+                    cmd.Parameters.AddWithValue("@numPagina", comic.NumPaginaActual);
                     cmd.Parameters.AddWithValue("@id", comic.Id);
                     cmd.Prepare();
                     cmd.ExecuteNonQuery();
                 }
-                catch(MySqlException)
+                catch (MySqlException)
                 {
-                    MessageBox.Show("Ha ocurrido un error al marcar la página.","Error en la base de datos",MessageBoxButtons.OK);
+                    MessageBox.Show("Ha ocurrido un error al marcar la página.", "Error en la base de datos", MessageBoxButtons.OK);
                 }
             }
         }

@@ -12,7 +12,7 @@ namespace KComicReader
     public partial class FormConfig : Form
     {
         //Definición de propiedades.
-        public string DirectorioInstalacion {get;set;}
+        public string DirectorioInstalacion { get; set; }
         public int Tema_id { get; set; }
         public bool MostrarBienvenida { get; set; }
         public FormConfig()
@@ -89,7 +89,7 @@ namespace KComicReader
         private void DefineTemas()
         {
             //Obtengo la conexión y los objetos necesarios.
-            using (MySqlConnection con = DataBaseConnectivity.getConnection())
+            using (MySqlConnection con = DataBaseConnectivity.GetConnection())
             {
                 //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
                 try
@@ -118,7 +118,7 @@ namespace KComicReader
             //Creo un OpenDirectoryDialog.
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             //Si el usuario selecciona una carpeta, se define la propiedad.
-            if(fbd.ShowDialog()==DialogResult.OK)
+            if (fbd.ShowDialog() == DialogResult.OK)
             {
                 tbDirectorioValue.Text = fbd.SelectedPath;
                 DirectorioInstalacion = fbd.SelectedPath;
@@ -128,9 +128,9 @@ namespace KComicReader
         //Método que se ejecuta cuando el usuario pulsa el botón de guardar.
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if(Config.CompruebaConexion())
+            if (Config.CompruebaConexion())
             {
-                if(cbTema.SelectedValue!=null)
+                if (cbTema.SelectedValue != null)
                     Tema_id = (int)cbTema.SelectedValue;
                 MostrarBienvenida = checkBoxMostrarInicio.Checked;
             }

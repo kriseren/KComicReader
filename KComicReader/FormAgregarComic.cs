@@ -11,13 +11,25 @@ using System.Windows.Forms;
 
 namespace KComicReader
 {
+    /// <summary>
+    /// Formulario que permite agregar un cómic a la base de datos.
+    /// </summary>
     public partial class FormAgregarComic : Form
     {
-        //Definición de atributos.
+        /// <summary>
+        /// Es un control personalizad de tipo cómic.
+        /// </summary>
         public Comic comic = new Comic();
+
+        /// <summary>
+        /// El control que permite abrir el diálogo de selección de fichero.
+        /// </summary>
         private OpenFileDialog ofd_FicheroComic;
         private static bool Comprobando = false;
 
+        /// <summary>
+        /// Constructor sin parámetros que inicializa el componente.
+        /// </summary>
         public FormAgregarComic()
         {
             InitializeComponent();
@@ -25,6 +37,10 @@ namespace KComicReader
             ofd_FicheroComic = new OpenFileDialog();
         }
 
+        /// <summary>
+        /// Constructor con parámetros que carga los valores de un cómic.
+        /// </summary>
+        /// <param name="c">El objeto cómic del cual se extraerán los datos para rellenar el formulario.</param>
         public FormAgregarComic(Comic c)
         {
             InitializeComponent();
@@ -33,11 +49,15 @@ namespace KComicReader
             ofd_FicheroComic = new OpenFileDialog();
         }
 
-        //Método que se ejecuta cuando se carga el formulario.
+        /// <summary>
+        /// Método que se ejecuta cuando se carga el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormAgregarComic_Load(object sender, EventArgs e)
         {
             //Defino las opciones de todos los campos de combo Box.
-            defineOpciones();
+            DefineOpciones();
 
             //Defino todas las propiedades según los datos del cómic.
             tbTitulo.Text = comic.Titulo;
@@ -52,8 +72,12 @@ namespace KComicReader
             ofd_FicheroComic.FileName = comic.ArchivoURL;
         }
 
-        //Método que se activa cuando se pulsa el botón de seleccionar archivo.
-        private void btnArchivo_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se activa cuando se pulsa el botón de seleccionar archivo.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void BtnArchivo_Click(object sender, EventArgs e)
         {
             //Creo un OpenFileDialog y le defino las propiedades.
             ofd_FicheroComic.Filter = "Fichero CBR (*.cbr)|*.cbr";
@@ -65,15 +89,19 @@ namespace KComicReader
                 comic.ArchivoURL = ofd_FicheroComic.FileName;
 
                 //Extraigo la portada y la muestro. 
-                pbPortada.Image = extraePortada(comic.ArchivoURL);
+                pbPortada.Image = ExtraePortada(comic.ArchivoURL);
 
                 //Defino el título del cómic para ayudar al usuario.
                 tbTitulo.Text = ofd_FicheroComic.SafeFileName.Split('.')[0];
             }
         }
 
-        //Método que se activa cuando el usuario pulsa el botón de agregar el cómic.    
-        private void btnAgregar_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se activa cuando el usuario pulsa el botón de agregar el cómic.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>        
+        private void BtnAgregar_Click(object sender, EventArgs e)
         {
             Comprobando = true;
             //Si todos los campos obligatorios han sido rellenados, sino se informa al usuario y se cambia su color para mayor claridad.
@@ -125,8 +153,12 @@ namespace KComicReader
             }
         }
 
-        //Método que extrae la primera imagen de un archivo .CBR y la devuelve.
-        private Image extraePortada(string archivoURL)
+        /// <summary>
+        /// Método que extrae la primera imagen de un archivo .CBR y la devuelve.
+        /// </summary>
+        /// <param name="archivoURL">La ruta al archivo CBR del que se va a extraer la portada.</param>
+        /// <returns>La imagen de la portada.</returns>
+        private Image ExtraePortada(string archivoURL)
         {
             Image imagen = null;
             try
@@ -155,18 +187,22 @@ namespace KComicReader
 
 
 
-        //Método que se ejecuta cuando se pulsa el botón de agregar una nueva editorial.
-        private void btnAgregarEditorial_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se ejecuta cuando se pulsa el botón de agregar una nueva editorial.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void BtnAgregarEditorial_Click(object sender, EventArgs e)
         {
             //Creo el formulario en modo agregar una editorial.
-            FormAgregarEditorial formAgregarEditorial = new FormAgregarEditorial("editorial");
+            FormAgregarEditorial formAgregarEditorial = new FormAgregarEditorial();
             //Si el usuario acepta, se inserta la editorial.
             if (formAgregarEditorial.ShowDialog() == DialogResult.OK)
             {
                 if (Config.CompruebaConexion())
                 {
                     //Creo la conexión y los objetos necesarios.
-                    using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                    using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                     {
                         try
                         {
@@ -187,22 +223,24 @@ namespace KComicReader
                 }
 
                 //Actualizo los campos del comboBox de las editoriales.
-                defineOpciones();
+                DefineOpciones();
             }
         }
 
-        //Método que se conecta a la base de datos para definir las diferentes opciones de los comboBox.
-        private void defineOpciones()
+        /// <summary>
+        /// Método que se conecta a la base de datos para definir las diferentes opciones de los comboBox.
+        /// </summary>
+        private void DefineOpciones()
         {
             if (Config.CompruebaConexion())
             {
                 //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
                 try
                 {
-                    defineEditoriales();
-                    defineSeries();
-                    defineCategorias();
-                    defineIdiomas();
+                    DefineEditoriales();
+                    DefineSeries();
+                    DefineCategorias();
+                    DefineIdiomas();
                 }
                 catch (MySqlException)
                 {
@@ -211,13 +249,15 @@ namespace KComicReader
             }
         }
 
-        //Método que define las opciones del comboBox de series.
-        private void defineSeries()
+        /// <summary>
+        /// Método que define las opciones del comboBox de series.
+        /// </summary>
+        private void DefineSeries()
         {
-            if(Config.CompruebaConexion())
+            if (Config.CompruebaConexion())
             {
                 //Obtengo la conexión y los objetos necesarios.
-                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                 {
                     //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
                     try
@@ -242,13 +282,15 @@ namespace KComicReader
             }
         }
 
-        //Método que define las opciones del comboBox de editoriales.
-        private void defineEditoriales()
+        /// <summary>
+        /// Método que define las opciones del comboBox de editoriales.
+        /// </summary>
+        private void DefineEditoriales()
         {
-            if(Config.CompruebaConexion())
+            if (Config.CompruebaConexion())
             {
                 //Obtengo la conexión y los objetos necesarios.
-                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                 {
                     //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
                     try
@@ -276,13 +318,15 @@ namespace KComicReader
             }
         }
 
-        //Método que define las opciones del comboBox de categorías.
-        private void defineCategorias()
+        /// <summary>
+        /// Método que define las opciones del comboBox de categorías.
+        /// </summary>
+        private void DefineCategorias()
         {
-            if(Config.CompruebaConexion())
+            if (Config.CompruebaConexion())
             {
                 //Obtengo la conexión y los objetos necesarios.
-                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                 {
                     //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
                     try
@@ -306,13 +350,15 @@ namespace KComicReader
             }
         }
 
-        //Método que define las opciones del comboBox de idiomas.
-        private void defineIdiomas()
+        /// <summary>
+        /// Método que define las opciones del comboBox de idiomas.
+        /// </summary>
+        private void DefineIdiomas()
         {
             if (Config.CompruebaConexion())
             {
                 //Obtengo la conexión y los objetos necesarios.
-                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                 {
                     //Defino las opciones de los comboBox haciendo una consulta a la base de datos.
                     try
@@ -336,7 +382,11 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el usuario pulsa el botón de agregar Serie.
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de agregar Serie.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void btnAgregarSerie_Click(object sender, EventArgs e)
         {
             //Creo el formulario en modo agregar una serie.
@@ -344,10 +394,10 @@ namespace KComicReader
             //Si el usuario acepta, se inserta la serie.
             if (formAgregarSerie.ShowDialog() == DialogResult.OK)
             {
-                if(Config.CompruebaConexion())
+                if (Config.CompruebaConexion())
                 {
                     //Creo la conexión y los objetos necesarios.
-                    using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                    using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                     {
                         try
                         {
@@ -368,18 +418,22 @@ namespace KComicReader
                     }
                 }
                 //Actualizo los campos del combobox de las series.
-                defineSeries();
+                DefineSeries();
             }
         }
 
-        //Método que se ejecuta cuando el usuario escoge una opción del comboBox de Editorial.
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario escoge una opción del comboBox de Editorial.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void cbEditorial_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if(Config.CompruebaConexion())
-                defineSeries(); 
+            if (Config.CompruebaConexion())
+                DefineSeries();
 
             //Si el valor es distinto a "Sin asignar", se activan los botones de Serie.
-            if(cbEditorial.SelectedValue !=null && (int)cbEditorial.SelectedValue != 1)
+            if (cbEditorial.SelectedValue != null && (int)cbEditorial.SelectedValue != 1)
             {
                 btnAgregarSerie.Enabled = true;
                 btnAgregarSerie.Visible = true;
@@ -391,21 +445,33 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el ratón entra en el área visible del botón.
+        /// <summary>
+        /// Método que se ejecuta cuando el ratón entra en el área visible del botón.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Btn_MouseEnter(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackgroundImage = Config.Hover;
         }
 
-        //Método que se ejecuta cuando el ratón sale del área visible del botón.
+        /// <summary>
+        /// Método que se ejecuta cuando el ratón sale del área visible del botón.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Btn_MouseLeave(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackgroundImage = null;
         }
 
-        //Método que se ejecuta cuando se pinta el formulario.
+        /// <summary>
+        /// Método que se ejecuta cuando se pinta el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormAgregarComic_Paint(object sender, PaintEventArgs e)
         {
             //Si tiene conexión, se define el tema.
@@ -413,7 +479,7 @@ namespace KComicReader
 
             String[] Tema = Config.Tema;
 
-            
+
             if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
             {
                 //El fondo se establece como un degradado entre el color 1 y el color 2.
@@ -430,7 +496,7 @@ namespace KComicReader
                 {
                     if (!Comprobando)
                         foreach (Control c in this.Controls.OfType<Label>().ToList())
-                        c.ForeColor = Color.Black;
+                            c.ForeColor = Color.Black;
                 }
             }
         }

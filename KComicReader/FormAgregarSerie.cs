@@ -1,14 +1,9 @@
 ﻿
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KComicReader
@@ -20,7 +15,7 @@ namespace KComicReader
         public FormAgregarSerie(int editorial_id)
         {
             InitializeComponent();
-            this.editorial_id=editorial_id;
+            this.editorial_id = editorial_id;
         }
 
         //Método que se ejecuta cuando el usuario pulsa el botón de agregar.
@@ -38,7 +33,7 @@ namespace KComicReader
         {
             bool existe = false;
             //Obtengo la conexión y los objetos necesarios.
-            using (MySqlConnection con = DataBaseConnectivity.getConnection())
+            using (MySqlConnection con = DataBaseConnectivity.GetConnection())
             {
                 //Se comprueba que exista.
                 try
@@ -61,7 +56,7 @@ namespace KComicReader
                     MessageBox.Show("Ha ocurrido un error al comprobar la existencia de la serie.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            return existe;       
+            return existe;
         }
 
         //Método que se ejecuta cuando se carga el formulario.
@@ -71,13 +66,13 @@ namespace KComicReader
             try
             {
                 //Obtengo la conexión y los objetos necesarios.
-                MySqlConnection con = DataBaseConnectivity.getConnection();
+                MySqlConnection con = DataBaseConnectivity.GetConnection();
                 con.Open();
                 MySqlCommand cmd = con.CreateCommand();
 
                 //Realizo la consulta.
                 cmd.CommandText = $"SELECT NOMBRE FROM EDITORIALES WHERE id = @editorial_id";
-                cmd.Parameters.AddWithValue("@editorial_id",editorial_id);
+                cmd.Parameters.AddWithValue("@editorial_id", editorial_id);
                 cmd.Prepare();
                 var reader = cmd.ExecuteReader();
                 reader.Read();
@@ -86,9 +81,9 @@ namespace KComicReader
                 //Cierro la conexión.
                 con.Close();
             }
-            catch(MySqlException)
+            catch (MySqlException)
             {
-                MessageBox.Show("No se ha podido recuperar el nombre de la editorial asociada.","Error en la base de datos",MessageBoxButtons.OK);
+                MessageBox.Show("No se ha podido recuperar el nombre de la editorial asociada.", "Error en la base de datos", MessageBoxButtons.OK);
             }
         }
 

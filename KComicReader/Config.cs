@@ -4,26 +4,54 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace KComicReader
 {
+    /// <summary>
+    /// Clase que define las propiedades de configuración del programa.
+    /// </summary>
     internal class Config
     {
-        //Definición de propiedades.
+        /// <summary>
+        /// La ruta del directorio donde se almacenarán los archivos CBR de los cómics dados de alta.
+        /// </summary>
         public static string DirectorioInstalacion { get; set; }
-        public static bool Conexion { get; set; }
-        public static int Tema_id { get; set; }
+
+        /// <summary>
+        /// El nombre del esquema de colores definido en la configuración.
+        /// </summary>
         public static string Tema_Nombre { get; set; }
+
+        /// <summary>
+        /// El identificador correspondiente al esquema de colores definido en la configuración.
+        /// </summary>
+        public static int Tema_id { get; set; }
+
+        /// <summary>
+        /// El conjunto de los valores correspondientes a los colores del tema definido en la configuración.
+        /// </summary>
         public static string[] Tema { get; set; }
+
+        /// <summary>
+        /// La imagen que se mostrará como seleccionador cuando el usuario pase el ratón por encima de los botones.
+        /// </summary>
         public static Image Hover { get; set; }
+
+        /// <summary>
+        /// La imagen de icono del tema correspondiente al esquema de colores definido en la configuración.
+        /// </summary>
         public static Image ThemeIcon { get; set; }
+
+        /// <summary>
+        /// Define si se mostrará o no el formulario de bienvenida al inicio del programa.
+        /// </summary>
         public static bool MostrarBienvenida { get; set; }
 
-        public Config() { DefineConfiguracion(); }
 
-        //Método que inicia el servidor de MySQL.
+        /// <summary>
+        /// Método que inicia el servidor de MySQL dentro de XAMPP.
+        /// </summary>
         public static void IniciaMySQL()
         {
             //Inicia el servidor de MYSQL.
@@ -41,11 +69,14 @@ namespace KComicReader
             }
         }
 
-        //Método que comprueba la conectividad.
+        /// <summary>
+        /// Método que comprueba la conectividad con la base de datos.
+        /// </summary>
+        /// <returns>Devuelve 'true' si existe conectividad y 'false' si no existe conectividad.</returns>
         public static bool CompruebaConexion()
         {
             bool conexion = false;
-            using (MySqlConnection connection = DataBaseConnectivity.getConnection())
+            using (MySqlConnection connection = DataBaseConnectivity.GetConnection())
             {
                 //Se repite mientras que no haya conexión.
                 do
@@ -58,36 +89,27 @@ namespace KComicReader
                     catch (MySqlException)
                     {
                         conexion = false;
-                        
-                        if (MessageBox.Show("Se ha perdido la conexión :(\nPulsa el botón de 'reintentar'.\nSi el error persiste, reinicia la aplicación y el servidor de MySQL.", "Sin conexión", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation) == DialogResult.Retry)
-                        {
-                            CompruebaConexion();
-                        }
+
+                        if (MessageBox.Show("Se ha perdido la conexión :(\nPulsa el botón de 'reintentar'.\nSi el error persiste, reinicia la aplicación y el servidor de MySQL.", "Sin conexión", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                            Environment.Exit(0);
+                        else
+                            Config.IniciaMySQL();
                     }
                 }
                 while (!conexion);
-                
+
                 return conexion;
             }
         }
 
-        //Método que define la configuración sin conexión.
-        public static void DefineConfiguracionSinConexion()
-        {
-            Tema_id = 1;
-            Tema = new string[] { "#b18cd9", "#E2C6FF", "#ece0f8" };
-            Hover = Image.FromFile("..\\..\\imgs\\hover\\1.png");
-            ThemeIcon = Image.FromFile("..\\..\\imgs\\themeicons\\1.png");
-            DirectorioInstalacion = @"C:\KComicReader\Comics";
-            ThemeIcon = Image.FromFile(@"..\..\imgs\icons\sinConexion.png");
-        }
-
-        //Método que se conecta a la base de datos para cargar la configuración establecida.
+        /// <summary>
+        /// Método que se conecta a la base de datos para cargar la configuración establecida.
+        /// </summary>
         public static void DefineConfiguracion()
         {
             if (Config.CompruebaConexion())
             {
-                using (MySqlConnection connection = DataBaseConnectivity.getConnection())
+                using (MySqlConnection connection = DataBaseConnectivity.GetConnection())
                 {
                     try
                     {
@@ -112,13 +134,15 @@ namespace KComicReader
             }
         }
 
-        //Método que se conecta a la base de datos y carga en el array los colores del tema.
+        /// <summary>
+        /// Método que se conecta a la base de datos y carga en el array de Tema los valores de los colores del tema.
+        /// </summary>
         public static void DefineTema()
         {
             //Si hay conexión se define el tema.
             if (Config.CompruebaConexion())
             {
-                using (MySqlConnection connection = DataBaseConnectivity.getConnection())
+                using (MySqlConnection connection = DataBaseConnectivity.GetConnection())
                 {
                     try
                     {
@@ -148,19 +172,21 @@ namespace KComicReader
                     }
                     catch (MySqlException)
                     {
-                        MessageBox.Show("No se ha podido obtener el tema.\nPrueba a reiniciar el programa y el servidor de MySQL.", "Error en la base de datos", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBox.Show("No se ha podido obtener el tema.\nPrueba a reiniciar el programa y el servidor de MySQL.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
         }
 
-        //Método que se conecta a la base de datos para actualizar la configuración establecida.
+        /// <summary>
+        /// Método que se conecta a la base de datos para actualizar la configuración establecida
+        /// </summary>
         public static void GuardaConfiguracion()
         {
             //Si hay conexión se guarda la configuración.
             if (Config.CompruebaConexion())
             {
-                using (MySqlConnection connection = DataBaseConnectivity.getConnection())
+                using (MySqlConnection connection = DataBaseConnectivity.GetConnection())
                 {
                     try
                     {

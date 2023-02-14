@@ -1,43 +1,50 @@
 ﻿
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KComicReader
 {
+    /// <summary>
+    /// Formulario que permite agregar una editorial a la base de datos.
+    /// </summary>
     public partial class FormAgregarEditorial : Form
     {
-        //Definición de variables.
-        public FormAgregarEditorial(string elemento)
+        /// <summary>
+        /// Constructor sin parámetros que inicializa el componente.
+        /// </summary>
+        public FormAgregarEditorial()
         {
             InitializeComponent();
         }
 
-        //Método que se ejecuta cuando el usuario pulsa el botón de agregar.
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de agregar.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (existe())
+            if (Existe())
             {
                 MessageBox.Show("La editorial que intentas crear ya existe.", "Error al crear la editorial", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
-            }   
+            }
         }
 
-        //Método que comprueba si la editorial o la serie existen.
-        private bool existe()
+        /// <summary>
+        /// Método que comprueba si la editorial o la serie existen.
+        /// </summary>
+        /// <returns>Devuelve 'true' si existe y 'false' si no existe.</returns>
+        private bool Existe()
         {
             bool existe = false;
 
             //Se comprueba que no exista.
-            using (MySqlConnection con = DataBaseConnectivity.getConnection())
+            using (MySqlConnection con = DataBaseConnectivity.GetConnection())
             {
                 try
                 {
@@ -57,16 +64,21 @@ namespace KComicReader
                     MessageBox.Show("Ha ocurrido un error al comprobar la existencia de la editorial.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            return existe;       
+            return existe;
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se pinta el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormAgregarEditorial_Paint(object sender, PaintEventArgs e)
         {
             Config.DefineTema();
             String[] Tema = Config.Tema;
 
-            
-            if(this.ClientRectangle.Width !=0 || this.ClientRectangle.Height != 0)
+
+            if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
             {
                 //El fondo se establece como un degradado entre el color 1 y el color 2.
                 LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,

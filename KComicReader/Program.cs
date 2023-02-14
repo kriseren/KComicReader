@@ -1,12 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.ServiceProcess;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KComicReader
@@ -59,19 +53,19 @@ namespace KComicReader
             bool existe = false;
             string connectionString = "Server=localhost;Database=information_schema;Uid=root;Pwd=;";
             string db = "kcomicreader";
-     
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
                 {
-                    try
-                    {
-                        connection.Open();
-                        MySqlCommand command = new MySqlCommand($"SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name = '{db}'", connection);
-                        existe = Convert.ToInt32(command.ExecuteScalar()) > 0;
-                    }
-                    catch (MySqlException)
-                    {
-                        MessageBox.Show("Ha ocurrido un error al conectar con la base de datos.\nPrueba a iniciar el servidor de MYSQL.", "Error al conectar a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand($"SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name = '{db}'", connection);
+                    existe = Convert.ToInt32(command.ExecuteScalar()) > 0;
+                }
+                catch (MySqlException)
+                {
+                    MessageBox.Show("Ha ocurrido un error al conectar con la base de datos.\nPrueba a iniciar el servidor de MYSQL.", "Error al conectar a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             return existe;
         }

@@ -6,69 +6,157 @@ using System.Windows.Forms;
 
 namespace KComicReader
 {
+    /// <summary>
+    /// Control personalizado que representa un objeto cómic.
+    /// </summary>
     public partial class Comic : UserControl
     {
-        //Definición de propiedades.
+        /// <summary>
+        /// El identificador del cómic.
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// El título del cómic.
+        /// </summary>
         public String Titulo
         {
             get { return lblTitulo.Text; }
             set { lblTitulo.Text = value; }
         }
+
+        /// <summary>
+        /// El nombre de la editorial del cómic.
+        /// </summary>
         public String Editorial { get; set; }
+
+        /// <summary>
+        /// El identificador correspondiente a la editorial del cómic.
+        /// </summary>
         public int EditorialID { get; set; }
+
+        /// <summary>
+        /// El nombre del/la dibujante del cómic.
+        /// </summary>
         public String Dibujante { get; set; }
+
+        /// <summary>
+        /// El nombre del/la guionista del cómic.
+        /// </summary>
         public String Guionista { get; set; }
+
+        /// <summary>
+        /// El nombre de la categoría del cómic.
+        /// </summary>
         public String Categoria { get; set; }
+
+        /// <summary>
+        /// El identificador correspondiente a la categoría del cómic.
+        /// </summary>
         public int CategoriaID { get; set; }
+
+        /// <summary>
+        /// El nombre del idioma del cómic.
+        /// </summary>
         public String Idioma { get; set; }
+
+        /// <summary>
+        /// El identificador correspondiente al idioma del cómic.
+        /// </summary>
         public int IdiomaID { get; set; }
+
+        /// <summary>
+        /// El nombre de la serie del cómic asociada a la editorial.
+        /// </summary>
         public String Serie { get; set; }
+
+        /// <summary>
+        /// El identificador correspondiente a la serie del cómic asociada a la editorial.
+        /// </summary>
         public int SerieID { get; set; }
+
+        /// <summary>
+        /// El número del cómic asociado a la serie.
+        /// </summary>
         public uint Numero { get; set; }
+
+        /// <summary>
+        /// La imagen de la portada del cómic.
+        /// </summary>
         public System.Drawing.Image Portada
         {
             get { return pbPortada.Image; }
             set { pbPortada.Image = value; }
         }
+
+        /// <summary>
+        /// La ruta de acceso al archivo CBR del cómic.
+        /// </summary>
         public String ArchivoURL { get; set; }
+
+        /// <summary>
+        /// El evento invocado cuando se hace click en cualquier parte del control.
+        /// </summary>
         public EventHandler eventoClick { get; set; }
+
+        /// <summary>
+        /// El evento invocado cuando se hace doble click en cualquier parte del control.
+        /// </summary>
         public EventHandler eventoDobleClick { get; set; }
+
+        /// <summary>
+        /// El número que indica la página por la que se está leyendo.
+        /// </summary>
         public uint NumPaginaActual { get; set; }
+
+        /// <summary>
+        /// El número de páginas totales del cómic.
+        /// </summary>
         public uint NumPaginasTotales { get; set; }
 
+        /// <summary>
+        /// Constructor sin parámetros que inicializa el componente y varias propiedades.
+        /// </summary>
         public Comic()
         {
             InitializeComponent();
 
-            //Se inicializa el número de página actual.
+            //Se inicializan varias propiedades.
             NumPaginaActual = 0;
             Categoria = "Sin asignar";
             Idioma = "Español";
             ArchivoURL = "";
         }
 
-        //Método que se ejecuta cuando el usuario hace click en cualquiera de los componentes del control.
-        //Se invoca el EventHandler eventoClick.
+        /// <summary>
+        /// Método que ejecuta el evento click cuando el usuario hace click en cualquiera de los componentes del control.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Control_Click(object sender, EventArgs e)
         {
             eventoClick.Invoke(this, e);
         }
 
-        //Método que se ejecuta cuando el usuario hace doble click en cualquiera de los componentes del control.
-        //Se invoca el EventHandler eventoDobleClick.
+        /// <summary>
+        /// Método que ejecuta el evento doble click cuando el usuario hace doble click en cualquiera de los componentes del control.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Control_DobleClick(object sender, EventArgs e)
         {
             eventoDobleClick.Invoke(this, e);
         }
 
-        //Método que inserta el comic en la base de datos.
+        /// <summary>
+        /// Método que inserta el cómic en la base de datos.
+        /// </summary>
         public void Guarda()
         {
-            if(Config.CompruebaConexion())
+            if (Config.CompruebaConexion())
             {
                 //Obtengo la conexión y los objetos necesarios.
-                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                 {
                     try
                     {
@@ -108,13 +196,16 @@ namespace KComicReader
             }
         }
 
-        //Método que recibe un cómic se actualiza en la base de datos obteniendo las nuevas propiedades.
+        /// <summary>
+        /// Método que actualiza un cómic en la base de datos.
+        /// </summary>
+        /// <param name="c">El cómic que contiene las propiedades del cómic a actualizar.</param>
         public void Actualiza(Comic c)
         {
             if (Config.CompruebaConexion())
             {
                 //Obtengo la conexión y los objetos necesarios.
-                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                 {
                     try
                     {

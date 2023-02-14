@@ -1,46 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KComicReader
 {
+    /// <summary>
+    /// Control personalizado que representa el botón de agregar un cómic.
+    /// </summary>
     public partial class AgregarComicBtn : UserControl
     {
-        //Definición de propiedades.
+        /// <summary>
+        /// El número identificador del botón de agregar cómic.
+        /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// El título del botón de agregar cómic.
+        /// </summary>
         public String Titulo
         {
             get { return lblTitulo.Text; }
             set { lblTitulo.Text = value; }
         }
-        public String Editorial { get; set; }
-        public String Dibujante { get; set; }
-        public String Guionista { get; set; }
+        /// <summary>
+        /// La imagen de portada del botón de agregar cómic.
+        /// </summary>
         public Image Portada
         {
             get { return pbPortada.Image; }
             set { pbPortada.Image = value; }
         }
-        public String PortadaURL { get; set; }
-        public String ArchivoURL { get; set; }
-        public EventHandler eventoClick{ get; set;}
+        /// <summary>
+        /// El evento invocado cuando se hace click en cualquier parte del control.
+        /// </summary>
+        public EventHandler EventoClick { get; set; }
 
+        /// <summary>
+        /// Constructor sin parámetros que inicializa el componente.
+        /// </summary>
         public AgregarComicBtn()
         {
             InitializeComponent();
         }
 
-        //Método que se ejecuta cuando el usuario hace click en cualquiera de los componentes del control.
-        //Se invoca el EventHandler eventoClick.
+        /// <summary>
+        /// Método que ejecuta el evento click cuando el usuario hace click en cualquiera de los componentes del control.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Control_Click(object sender, EventArgs e)
         {
-            eventoClick.Invoke(this, e);
+            EventoClick.Invoke(this, e);
         }
     }
 }

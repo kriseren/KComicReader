@@ -87,7 +87,7 @@ namespace KComicReader
             this.pbPortada.TabIndex = 5;
             this.pbPortada.TabStop = false;
             this.toolTipGeneral.SetToolTip(this.pbPortada, "Haz doble click para seleccionar el archivo CBR del cómic.");
-            this.pbPortada.DoubleClick += new System.EventHandler(this.btnArchivo_Click);
+            this.pbPortada.DoubleClick += new System.EventHandler(this.BtnArchivo_Click);
             // 
             // btnAgregar
             // 
@@ -102,7 +102,7 @@ namespace KComicReader
             this.btnAgregar.TabIndex = 10;
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.btnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
             // btnArchivo
             // 
@@ -115,8 +115,8 @@ namespace KComicReader
             this.btnArchivo.Text = "Seleccionar archivo";
             this.toolTipGeneral.SetToolTip(this.btnArchivo, "Selecciona el archivo CBR del cómic.");
             this.btnArchivo.UseVisualStyleBackColor = true;
-            this.btnArchivo.DockChanged += new System.EventHandler(this.btnArchivo_Click);
-            this.btnArchivo.Click += new System.EventHandler(this.btnArchivo_Click);
+            this.btnArchivo.DockChanged += new System.EventHandler(this.BtnArchivo_Click);
+            this.btnArchivo.Click += new System.EventHandler(this.BtnArchivo_Click);
             // 
             // lblArchivo
             // 
@@ -345,7 +345,7 @@ namespace KComicReader
             this.btnAgregarEditorial.TabStop = false;
             this.btnAgregarEditorial.Tag = "Agregar Editorial";
             this.toolTipGeneral.SetToolTip(this.btnAgregarEditorial, "Haz click para agregar una nueva editorial.");
-            this.btnAgregarEditorial.Click += new System.EventHandler(this.btnAgregarEditorial_Click);
+            this.btnAgregarEditorial.Click += new System.EventHandler(this.BtnAgregarEditorial_Click);
             this.btnAgregarEditorial.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.btnAgregarEditorial.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 

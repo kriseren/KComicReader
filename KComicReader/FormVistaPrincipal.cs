@@ -1,5 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-//using MySqlConnector;
 using System;
 using System.Data;
 using System.Drawing;
@@ -51,9 +50,9 @@ namespace KComicReader
             comicSeleccionado = (Comic)sender;
 
             //Obtengo los valores del nombre de las claves ajenas.
-            if(Config.CompruebaConexion())
+            if (Config.CompruebaConexion())
             {
-                using (MySqlConnection connection = DataBaseConnectivity.getConnection())
+                using (MySqlConnection connection = DataBaseConnectivity.GetConnection())
                 {
                     try
                     {
@@ -82,7 +81,7 @@ namespace KComicReader
                     }
                 }
             }
-            
+
 
             //Defino las propiedades en el panel de información.
             lblInfoTituloValue.Text = comicSeleccionado.Titulo;
@@ -100,7 +99,7 @@ namespace KComicReader
             panelRightInfo.BringToFront();
 
             //Cambio el color del fondo para todos los cómics.
-            foreach( Control c in fwpComics.Controls)
+            foreach (Control c in fwpComics.Controls)
             {
                 c.BackColor = Color.Transparent;
                 c.ForeColor = Color.Black;
@@ -161,10 +160,10 @@ namespace KComicReader
             panelRightVacia.Visible = true;
 
             //Agrego un eventHandler al botón de agregar cómic dentro del fwp.
-            agregarComicBtn.eventoClick += pbBtnAgregar_Click;
+            agregarComicBtn.EventoClick += pbBtnAgregar_Click;
 
             //Muestro la ventana de bienvenida.
-            if(Config.MostrarBienvenida)
+            if (Config.MostrarBienvenida)
             {
                 FormBienvenida formBienvenida = new FormBienvenida();
                 formBienvenida.ShowDialog();
@@ -175,7 +174,7 @@ namespace KComicReader
         private void btnLeer_Click(object sender, EventArgs e)
         {
             //Creo un formulario con el cómic seleccionado.
-            if(File.Exists(comicSeleccionado.ArchivoURL))
+            if (File.Exists(comicSeleccionado.ArchivoURL))
             {
                 FormLeer formLeer = new FormLeer(comicSeleccionado);
                 formLeer.Show();
@@ -219,9 +218,9 @@ namespace KComicReader
             foreach (Control c in fwpComics.Controls.OfType<Comic>().ToList())
                 fwpComics.Controls.Remove(c);
 
-            if(Config.CompruebaConexion())
+            if (Config.CompruebaConexion())
             {
-                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                 {
                     try
                     {
@@ -272,9 +271,9 @@ namespace KComicReader
         //Método que carga en el listBox todas las categorías dadas de alta.
         private void cargaCategorias()
         {
-            if(Config.CompruebaConexion())
+            if (Config.CompruebaConexion())
             {
-                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                 {
                     try
                     {
@@ -300,9 +299,9 @@ namespace KComicReader
         //Método que carga en el listBox todas las series dadas de alta.
         private void cargaSeries()
         {
-            if(Config.CompruebaConexion())
+            if (Config.CompruebaConexion())
             {
-                using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                 {
                     try
                     {
@@ -342,15 +341,15 @@ namespace KComicReader
         private void lbCategorias_Click(object sender, EventArgs e)
         {
             //Si la categoría seleccionada no es nula y es igual a 1 se muestran todos los cómics.
-            if(lbCategorias.SelectedValue!=null && (int)lbCategorias.SelectedValue == 1)
+            if (lbCategorias.SelectedValue != null && (int)lbCategorias.SelectedValue == 1)
             {
                 cargaTodosComics();
             }
             else
             {
-                if(Config.CompruebaConexion())
+                if (Config.CompruebaConexion())
                 {
-                    using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                    using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                     {
                         try
                         {
@@ -382,15 +381,15 @@ namespace KComicReader
         private void lbSeries_Click(object sender, EventArgs e)
         {
             //Si la serie seleccionada es igual a 1 se muestran todos los cómics.
-            if (lbSeries.SelectedValue!=null && (int)lbSeries.SelectedValue == 1)
+            if (lbSeries.SelectedValue != null && (int)lbSeries.SelectedValue == 1)
             {
                 cargaTodosComics();
             }
             else
             {
-                if(Config.CompruebaConexion())
+                if (Config.CompruebaConexion())
                 {
-                    using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                    using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                     {
                         try
                         {
@@ -423,7 +422,7 @@ namespace KComicReader
             //Creo un nuevo formulario Config.
             FormConfig formConfig = new FormConfig();
             //Si el usuario acepta, se actualiza la información en la base de datos.
-            if(formConfig.ShowDialog()==DialogResult.OK)
+            if (formConfig.ShowDialog() == DialogResult.OK)
             {
                 //Si e directorio no es nulo se define.
                 Config.DirectorioInstalacion = formConfig.DirectorioInstalacion;
@@ -445,7 +444,7 @@ namespace KComicReader
             String[] Tema = Config.Tema;
 
             if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
-            { 
+            {
                 //El fondo se establece como un degradado entre el color 1 y el color 2.
                 LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle,
                     ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
@@ -496,9 +495,9 @@ namespace KComicReader
         {
             if (MessageBox.Show("¿Estás segurx de querer eliminar el cómic " + comicSeleccionado.Titulo + "?", "Confirmación de eliminación", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                if(Config.CompruebaConexion())
+                if (Config.CompruebaConexion())
                 {
-                    using (MySqlConnection con = DataBaseConnectivity.getConnection())
+                    using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                     {
                         try
                         {
@@ -541,6 +540,13 @@ namespace KComicReader
 
                 }
             }
+        }
+
+        //Método que se ejecuta cuando el usuario pulsa el botón de ayuda.
+        private void pbBtnAyuda_Click(object sender, EventArgs e)
+        {
+            FormAyuda formAyuda = new FormAyuda();
+            formAyuda.Show();
         }
     }
 }

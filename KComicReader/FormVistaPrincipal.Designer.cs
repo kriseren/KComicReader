@@ -48,6 +48,7 @@ namespace KComicReader
             this.pbBtnLeer = new System.Windows.Forms.PictureBox();
             this.pbBtnEditar = new System.Windows.Forms.PictureBox();
             this.fwpComics = new System.Windows.Forms.FlowLayoutPanel();
+            this.agregarComicBtn = new KComicReader.AgregarComicBtn();
             this.panelLeftCategorias = new System.Windows.Forms.Panel();
             this.lbCategorias = new System.Windows.Forms.ListBox();
             this.lblSpecCategorias = new System.Windows.Forms.Label();
@@ -87,9 +88,7 @@ namespace KComicReader
             this.ToolStripMenuItemConfiguraciónBasica = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAcciones = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemAtajos = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipGeneral = new System.Windows.Forms.ToolTip(this.components);
-            this.agregarComicBtn = new KComicReader.AgregarComicBtn();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbThemeIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnAyuda)).BeginInit();
@@ -179,6 +178,7 @@ namespace KComicReader
             this.pbBtnAyuda.TabIndex = 11;
             this.pbBtnAyuda.TabStop = false;
             this.toolTipGeneral.SetToolTip(this.pbBtnAyuda, "Haz click para abrir la ventana de ayuda.");
+            this.pbBtnAyuda.Click += new System.EventHandler(this.pbBtnAyuda_Click);
             this.pbBtnAyuda.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.pbBtnAyuda.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
@@ -389,6 +389,21 @@ namespace KComicReader
             this.fwpComics.Name = "fwpComics";
             this.fwpComics.Size = new System.Drawing.Size(693, 644);
             this.fwpComics.TabIndex = 0;
+            // 
+            // agregarComicBtn
+            // 
+            this.agregarComicBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.agregarComicBtn.BackColor = System.Drawing.Color.Transparent;
+            this.agregarComicBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.agregarComicBtn.Id = 0;
+            this.agregarComicBtn.Location = new System.Drawing.Point(5, 5);
+            this.agregarComicBtn.Margin = new System.Windows.Forms.Padding(5);
+            this.agregarComicBtn.Name = "agregarComicBtn";
+            this.agregarComicBtn.Portada = ((System.Drawing.Image)(resources.GetObject("agregarComicBtn.Portada")));
+            this.agregarComicBtn.Size = new System.Drawing.Size(204, 346);
+            this.agregarComicBtn.TabIndex = 0;
+            this.agregarComicBtn.Titulo = "Agregar un nuevo cómic";
+            this.toolTipGeneral.SetToolTip(this.agregarComicBtn, "Haz click para agregar un nuevo cómic.");
             // 
             // panelLeftCategorias
             // 
@@ -855,8 +870,7 @@ namespace KComicReader
             // ayudaToolStripMenuItem
             // 
             this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemAcciones,
-            this.toolStripMenuItemAtajos});
+            this.toolStripMenuItemAcciones});
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(65, 26);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
@@ -867,43 +881,14 @@ namespace KComicReader
             this.toolStripMenuItemAcciones.Name = "toolStripMenuItemAcciones";
             this.toolStripMenuItemAcciones.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.A)));
-            this.toolStripMenuItemAcciones.Size = new System.Drawing.Size(314, 26);
+            this.toolStripMenuItemAcciones.Size = new System.Drawing.Size(310, 26);
             this.toolStripMenuItemAcciones.Text = "&Acciones básicas";
-            // 
-            // toolStripMenuItemAtajos
-            // 
-            this.toolStripMenuItemAtajos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemAtajos.Image")));
-            this.toolStripMenuItemAtajos.Name = "toolStripMenuItemAtajos";
-            this.toolStripMenuItemAtajos.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.T)));
-            this.toolStripMenuItemAtajos.Size = new System.Drawing.Size(314, 26);
-            this.toolStripMenuItemAtajos.Text = "A&tajos de teclado";
+            this.toolStripMenuItemAcciones.Click += new System.EventHandler(this.pbBtnAyuda_Click);
             // 
             // toolTipGeneral
             // 
             this.toolTipGeneral.AutomaticDelay = 700;
             this.toolTipGeneral.IsBalloon = true;
-            // 
-            // agregarComicBtn
-            // 
-            this.agregarComicBtn.ArchivoURL = null;
-            this.agregarComicBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.agregarComicBtn.BackColor = System.Drawing.Color.Transparent;
-            this.agregarComicBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.agregarComicBtn.Dibujante = null;
-            this.agregarComicBtn.Editorial = null;
-            this.agregarComicBtn.eventoClick = null;
-            this.agregarComicBtn.Guionista = null;
-            this.agregarComicBtn.Id = 0;
-            this.agregarComicBtn.Location = new System.Drawing.Point(5, 5);
-            this.agregarComicBtn.Margin = new System.Windows.Forms.Padding(5);
-            this.agregarComicBtn.Name = "agregarComicBtn";
-            this.agregarComicBtn.Portada = ((System.Drawing.Image)(resources.GetObject("agregarComicBtn.Portada")));
-            this.agregarComicBtn.PortadaURL = null;
-            this.agregarComicBtn.Size = new System.Drawing.Size(204, 346);
-            this.agregarComicBtn.TabIndex = 0;
-            this.agregarComicBtn.Titulo = "Agregar un nuevo cómic";
-            this.toolTipGeneral.SetToolTip(this.agregarComicBtn, "Haz click para agregar un nuevo cómic.");
             // 
             // FormVistaPrincipal
             // 
@@ -998,7 +983,6 @@ namespace KComicReader
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAcciones;
         private System.Windows.Forms.ToolStripMenuItem ajustesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemConfiguraciónBasica;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAtajos;
         private System.Windows.Forms.Label lblAyuda;
         private System.Windows.Forms.PictureBox pbBtnAyuda;
         private System.Windows.Forms.Label lblThemeIcon;
