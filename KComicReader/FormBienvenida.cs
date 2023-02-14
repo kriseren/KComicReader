@@ -6,20 +6,35 @@ using System.Windows.Forms;
 
 namespace KComicReader
 {
+    /// <summary>
+    /// Formulario que muestra la bienvenida al programa.
+    /// </summary>
     public partial class FormBienvenida : Form
     {
+        /// <summary>
+        /// Constructor sin parámetros que inicializa el componente.
+        /// </summary>
         public FormBienvenida()
         {
             InitializeComponent();
         }
 
 
+        /// <summary>
+        /// Método que se ejecuta cuando se carga el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormBienvenida_Load(object sender, EventArgs e)
         {
             checkBoxMostrarInicio.Checked = Config.MostrarBienvenida;
         }
 
-        //Método que se ejecuta cuando se pinta el formulario.
+        /// <summary>
+        /// Método que se ejecuta cuando se pinta el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormBienvenida_Paint(object sender, PaintEventArgs e)
         {
             //Si tiene conexión, se define el tema.
@@ -48,7 +63,11 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el usuario hace click en el botón de cerrar.
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario hace click en el botón de cerrar.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Config.MostrarBienvenida = checkBoxMostrarInicio.Checked;

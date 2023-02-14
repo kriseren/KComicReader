@@ -102,7 +102,7 @@
             this.btnMarcador.TabIndex = 2;
             this.btnMarcador.TabStop = false;
             this.toolTipGeneral.SetToolTip(this.btnMarcador, "Haz click para marcar la página.");
-            this.btnMarcador.Click += new System.EventHandler(this.btnMarcador_Click);
+            this.btnMarcador.Click += new System.EventHandler(this.BtnMarcador_Click);
             this.btnMarcador.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.btnMarcador.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
@@ -136,7 +136,7 @@
             this.btnSiguientePagina.TabIndex = 0;
             this.btnSiguientePagina.TabStop = false;
             this.toolTipGeneral.SetToolTip(this.btnSiguientePagina, "Haz click para pasar a la página siguiente.");
-            this.btnSiguientePagina.Click += new System.EventHandler(this.btnSiguiente_Click);
+            this.btnSiguientePagina.Click += new System.EventHandler(this.BtnSiguiente_Click);
             this.btnSiguientePagina.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.btnSiguientePagina.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 

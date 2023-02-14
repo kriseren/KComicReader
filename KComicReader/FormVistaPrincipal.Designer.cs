@@ -178,7 +178,7 @@ namespace KComicReader
             this.pbBtnAyuda.TabIndex = 11;
             this.pbBtnAyuda.TabStop = false;
             this.toolTipGeneral.SetToolTip(this.pbBtnAyuda, "Haz click para abrir la ventana de ayuda.");
-            this.pbBtnAyuda.Click += new System.EventHandler(this.pbBtnAyuda_Click);
+            this.pbBtnAyuda.Click += new System.EventHandler(this.PbBtnAyuda_Click);
             this.pbBtnAyuda.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.pbBtnAyuda.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
@@ -208,7 +208,7 @@ namespace KComicReader
             this.pbBtnConfig.TabIndex = 9;
             this.pbBtnConfig.TabStop = false;
             this.toolTipGeneral.SetToolTip(this.pbBtnConfig, "Haz click para abrir la ventana de ajustes.");
-            this.pbBtnConfig.Click += new System.EventHandler(this.pbBtnConfig_Click);
+            this.pbBtnConfig.Click += new System.EventHandler(this.PbBtnConfig_Click);
             this.pbBtnConfig.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.pbBtnConfig.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
@@ -279,7 +279,7 @@ namespace KComicReader
             this.pbBtnAgregar.TabIndex = 1;
             this.pbBtnAgregar.TabStop = false;
             this.toolTipGeneral.SetToolTip(this.pbBtnAgregar, "Haz click para agregar un nuevo cómic.");
-            this.pbBtnAgregar.Click += new System.EventHandler(this.pbBtnAgregar_Click);
+            this.pbBtnAgregar.Click += new System.EventHandler(this.PbBtnAgregar_Click);
             this.pbBtnAgregar.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.pbBtnAgregar.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
@@ -294,7 +294,7 @@ namespace KComicReader
             this.lblAgregar.TabIndex = 5;
             this.lblAgregar.Text = "Agregar";
             this.lblAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblAgregar.Click += new System.EventHandler(this.pbBtnAgregar_Click);
+            this.lblAgregar.Click += new System.EventHandler(this.PbBtnAgregar_Click);
             // 
             // lblEditar
             // 
@@ -309,7 +309,7 @@ namespace KComicReader
             this.lblEditar.Text = "Editar";
             this.lblEditar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblEditar.Visible = false;
-            this.lblEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.lblEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // pbBtnEliminar
             // 
@@ -328,7 +328,7 @@ namespace KComicReader
             this.pbBtnEliminar.Tag = "Editar comic";
             this.toolTipGeneral.SetToolTip(this.pbBtnEliminar, "Haz click para eliminar el cómic seleccionado.");
             this.pbBtnEliminar.Visible = false;
-            this.pbBtnEliminar.Click += new System.EventHandler(this.pbBtnEliminar_Click);
+            this.pbBtnEliminar.Click += new System.EventHandler(this.PbBtnEliminar_Click);
             this.pbBtnEliminar.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.pbBtnEliminar.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
@@ -349,7 +349,7 @@ namespace KComicReader
             this.pbBtnLeer.Tag = "Editar comic";
             this.toolTipGeneral.SetToolTip(this.pbBtnLeer, "Haz click para leer el cómic seleccionado.");
             this.pbBtnLeer.Visible = false;
-            this.pbBtnLeer.Click += new System.EventHandler(this.btnLeer_Click);
+            this.pbBtnLeer.Click += new System.EventHandler(this.BtnLeer_Click);
             this.pbBtnLeer.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.pbBtnLeer.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
@@ -370,7 +370,7 @@ namespace KComicReader
             this.pbBtnEditar.Tag = "Editar comic";
             this.toolTipGeneral.SetToolTip(this.pbBtnEditar, "Haz click para editar el cómic seleccionado.");
             this.pbBtnEditar.Visible = false;
-            this.pbBtnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.pbBtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             this.pbBtnEditar.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.pbBtnEditar.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
@@ -435,7 +435,7 @@ namespace KComicReader
             this.lbCategorias.Sorted = true;
             this.lbCategorias.TabIndex = 4;
             this.toolTipGeneral.SetToolTip(this.lbCategorias, "Haz click para filtrar los cómics por categoría.");
-            this.lbCategorias.Click += new System.EventHandler(this.lbCategorias_Click);
+            this.lbCategorias.Click += new System.EventHandler(this.LbCategorias_Click);
             // 
             // lblSpecCategorias
             // 
@@ -770,7 +770,7 @@ namespace KComicReader
             this.lbSeries.Size = new System.Drawing.Size(261, 324);
             this.lbSeries.TabIndex = 3;
             this.toolTipGeneral.SetToolTip(this.lbSeries, "Haz click para filtrar los cómics por serie.");
-            this.lbSeries.Click += new System.EventHandler(this.lbSeries_Click);
+            this.lbSeries.Click += new System.EventHandler(this.LbSeries_Click);
             // 
             // lblSpecSeries
             // 
@@ -820,7 +820,7 @@ namespace KComicReader
             this.toolStripMenuItemAgregar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.toolStripMenuItemAgregar.Size = new System.Drawing.Size(334, 26);
             this.toolStripMenuItemAgregar.Text = "&Agregar cómic";
-            this.toolStripMenuItemAgregar.Click += new System.EventHandler(this.pbBtnAgregar_Click);
+            this.toolStripMenuItemAgregar.Click += new System.EventHandler(this.PbBtnAgregar_Click);
             // 
             // toolStripMenuItemEditar
             // 
@@ -829,7 +829,7 @@ namespace KComicReader
             this.toolStripMenuItemEditar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.toolStripMenuItemEditar.Size = new System.Drawing.Size(334, 26);
             this.toolStripMenuItemEditar.Text = "&Editar cómic seleccionado";
-            this.toolStripMenuItemEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.toolStripMenuItemEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // toolStripMenuItemEliminar
             // 
@@ -838,7 +838,7 @@ namespace KComicReader
             this.toolStripMenuItemEliminar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.toolStripMenuItemEliminar.Size = new System.Drawing.Size(334, 26);
             this.toolStripMenuItemEliminar.Text = "&E&liminar cómic seleccionado";
-            this.toolStripMenuItemEliminar.Click += new System.EventHandler(this.pbBtnEliminar_Click);
+            this.toolStripMenuItemEliminar.Click += new System.EventHandler(this.PbBtnEliminar_Click);
             // 
             // toolStripMenuItemLeer
             // 
@@ -847,7 +847,7 @@ namespace KComicReader
             this.toolStripMenuItemLeer.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
             this.toolStripMenuItemLeer.Size = new System.Drawing.Size(334, 26);
             this.toolStripMenuItemLeer.Text = "&Leer cómic seleccionado";
-            this.toolStripMenuItemLeer.Click += new System.EventHandler(this.btnLeer_Click);
+            this.toolStripMenuItemLeer.Click += new System.EventHandler(this.BtnLeer_Click);
             // 
             // ajustesToolStripMenuItem
             // 
@@ -865,7 +865,7 @@ namespace KComicReader
             | System.Windows.Forms.Keys.C)));
             this.ToolStripMenuItemConfiguraciónBasica.Size = new System.Drawing.Size(337, 26);
             this.ToolStripMenuItemConfiguraciónBasica.Text = "&Configuración básica";
-            this.ToolStripMenuItemConfiguraciónBasica.Click += new System.EventHandler(this.pbBtnConfig_Click);
+            this.ToolStripMenuItemConfiguraciónBasica.Click += new System.EventHandler(this.PbBtnConfig_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -883,7 +883,7 @@ namespace KComicReader
             | System.Windows.Forms.Keys.A)));
             this.toolStripMenuItemAcciones.Size = new System.Drawing.Size(310, 26);
             this.toolStripMenuItemAcciones.Text = "&Acciones básicas";
-            this.toolStripMenuItemAcciones.Click += new System.EventHandler(this.pbBtnAyuda_Click);
+            this.toolStripMenuItemAcciones.Click += new System.EventHandler(this.PbBtnAyuda_Click);
             // 
             // toolTipGeneral
             // 

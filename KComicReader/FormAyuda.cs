@@ -11,14 +11,25 @@ using System.Windows.Forms;
 
 namespace KComicReader
 {
+    /// <summary>
+    /// Formulario que permite visualizar la ayuda.
+    /// </summary>
     public partial class FormAyuda : Form
     {
+        /// <summary>
+        /// Constructor sin parámetros que inicializa el componente.
+        /// </summary>
         public FormAyuda()
         {
             InitializeComponent();
         }
 
 
+        /// <summary>
+        /// Método que se ejecuta cuando se pinta el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormAyuda_Paint(object sender, PaintEventArgs e)
         {
             //Si tiene conexión, se define el tema.
@@ -59,6 +70,11 @@ namespace KComicReader
             }
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de cerrar.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Dispose();

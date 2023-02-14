@@ -9,18 +9,39 @@ using System.Windows.Forms;
 
 namespace KComicReader
 {
+    /// <summary>
+    /// Formulario que permite definir la configuración del programa.
+    /// </summary>
     public partial class FormConfig : Form
     {
-        //Definición de propiedades.
+        /// <summary>
+        /// La ruta del directorio de instalación del programa.
+        /// </summary>
         public string DirectorioInstalacion { get; set; }
+
+        /// <summary>
+        /// El identificador del tema definido en la configuracíón.
+        /// </summary>
         public int Tema_id { get; set; }
+
+        /// <summary>
+        /// Define si se ha de mostrar el formulario de bienvenida al inicio del programa.
+        /// </summary>
         public bool MostrarBienvenida { get; set; }
+
+        /// <summary>
+        /// Constructor sin parámtros que inicializa el componente.
+        /// </summary>
         public FormConfig()
         {
             InitializeComponent();
         }
 
-        //Método que se ejecuta cuando se carga el formulario.
+        /// <summary>
+        /// Método que se ejecuta cuando se carga el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormConfig_Load(object sender, EventArgs e)
         {
             //Se define la configuración y el valor del campo.
@@ -40,6 +61,11 @@ namespace KComicReader
             checkBoxMostrarInicio.Checked = MostrarBienvenida;
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se pinta el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormConfig_Paint(object sender, PaintEventArgs e)
         {
             Config.DefineTema();
@@ -71,21 +97,31 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el ratón entra en el área visible del botón.
+        /// <summary>
+        /// Método que se ejecuta cuando el ratón entra en el área visible del botón.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Btn_MouseEnter(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackgroundImage = Config.Hover;
         }
 
-        //Método que se ejecuta cuando el ratón sale del área visible del botón.
+        /// <summary>
+        /// Método que se ejecuta cuando el ratón sale del área visible del botón.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Btn_MouseLeave(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackgroundImage = null;
         }
 
-
+        /// <summary>
+        /// Método que se conecta a la base de datos para definir las opciones del comboBox.
+        /// </summary>
         private void DefineTemas()
         {
             //Obtengo la conexión y los objetos necesarios.
@@ -112,7 +148,11 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el usuario pulsa en el botón de seleccionar carpeta.
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa en el botón de seleccionar carpeta.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void btnSeleccionarCarpeta_Click(object sender, EventArgs e)
         {
             //Creo un OpenDirectoryDialog.
@@ -125,7 +165,11 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el usuario pulsa el botón de guardar.
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de guardar.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (Config.CompruebaConexion())

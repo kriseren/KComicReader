@@ -9,16 +9,40 @@ using Image = System.Drawing.Image;
 
 namespace KComicReader
 {
+    /// <summary>
+    /// Formulario que implementa toda la funcionalidad para leer un cómic.
+    /// </summary>
     public partial class FormLeer : Form
     {
-        //Definición de atributos.
+        /// <summary>
+        /// El control personalizado del cómic que se va a leer.
+        /// </summary>
         public Comic comic;
-        private uint numPag = 0;
-        private IArchive archive; //Contiene el archivo descomprimido.
-        private bool zoomOn = false;
-        private Image imgOriginal;
 
-        //Constructor general de la clase.
+        /// <summary>
+        /// El número de página que se está leyendo.
+        /// </summary>
+        private uint numPag = 0;
+
+        /// <summary>
+        /// Objeto que contiene el archivo CBR descomprimido.
+        /// </summary>
+        private IArchive archive;
+
+        /// <summary>
+        /// Define si el zoom está activado o desactivado.
+        /// </summary>
+        private bool zoomOn = false;
+
+        /// <summary>
+        /// La imagen original de la página actual sin zoom.
+        /// </summary>
+        private Image img;
+
+        /// <summary>
+        /// Constructor con parámetros que inicializa el componente.
+        /// </summary>
+        /// <param name="comic">El control personalizado del cómic que se va a leer.</param>
         public FormLeer(Comic comic)
         {
             InitializeComponent();
@@ -29,80 +53,104 @@ namespace KComicReader
             this.Text = comic.Titulo;
         }
 
-        //Método que se ejecuta cuando el formulario es cargado.
+        /// <summary>
+        /// Método que se ejecuta cuando el formulario es cargado.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormLeer_Load(object sender, EventArgs e)
         {
-            definePagina();
+            DefinePagina();
             lblNumPaginas.Text = "Página " + (numPag + 1) + " de " + comic.NumPaginasTotales;
         }
 
-        //Método que define la página que se está visualizando.
-        private void definePagina()
+        /// <summary>
+        /// Método que define la imagen de la página que se está visualizando.
+        /// </summary>
+        private void DefinePagina()
         {
             //Obtengo el primer elemento y lo almaceno en la variable imagen.
             IArchiveEntry portada = archive.Entries.ElementAt(Convert.ToInt32(numPag));
             //Defino la imagen de la página actual.
             pbPagina.Image = Image.FromStream(portada.OpenEntryStream());
-            imgOriginal = pbPagina.Image;
+            img = pbPagina.Image;
         }
 
-        //Método que se ejecuta cuando el usuario pulsa el botón de "Siguiente página".
-        private void btnSiguiente_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de "Siguiente página".
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void BtnSiguiente_Click(object sender, EventArgs e)
         {
-            siguientePagina();
+            SiguientePagina();
         }
 
-        //Método que se ejecuta cuando el usuario pulsa el botón de "Anterior página".
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de "Anterior página".
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            anteriorPagina();
+            AnteriorPagina();
         }
 
 
-        //Método que se ejecuta cuando el usuario pulsa cualquier tecla dentro del formulario.
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa cualquier tecla dentro del formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void key_Down(object sender, KeyEventArgs e)
         {
             //Dependiendo de la tecla pulsada.
             switch (e.KeyCode)
             {
                 case Keys.Right:
-                case Keys.D: siguientePagina(); break;
+                case Keys.D: SiguientePagina(); break;
 
                 case Keys.Left:
-                case Keys.A: anteriorPagina(); break;
+                case Keys.A: AnteriorPagina(); break;
 
-                case Keys.Z: zoom(); break;
+                case Keys.Z: Zoom(); break;
 
-                case Keys.M: marcar(); break;
+                case Keys.M: Marcar(); break;
             }
         }
 
-        //Método que carga la página anterior.
-        private void anteriorPagina()
+        /// <summary>
+        /// Método que carga la página anterior.
+        /// </summary>
+        private void AnteriorPagina()
         {
             //Si el número de página es distinto de 0, se carga.
             if (numPag > 0)
             {
                 numPag--;
-                definePagina();
+                DefinePagina();
             }
-            cambiaPaginaComun();
+            CambiaPaginaComun();
         }
 
-        //Método que carga la página siguiente.
-        private void siguientePagina()
+        /// <summary>
+        /// Método que carga la página siguiente.
+        /// </summary>
+        private void SiguientePagina()
         {
             //Si el número de página no es el último, se carga.
             if (numPag < archive.Entries.Count() - 1)
             {
                 numPag++;
-                definePagina();
+                DefinePagina();
             }
-            cambiaPaginaComun();
+            CambiaPaginaComun();
         }
 
-        //Método que realiza las líneas de código comunes cuando se cambia de página.
-        private void cambiaPaginaComun()
+        /// <summary>
+        /// Método que realiza las líneas de código comunes cuando se cambia de página.
+        /// </summary>
+        private void CambiaPaginaComun()
         {
             //Cambio el texto que indica las páginas.
             lblNumPaginas.Text = "Página " + (numPag + 1) + " de " + comic.NumPaginasTotales;
@@ -110,21 +158,27 @@ namespace KComicReader
             //Si el zoom está activo, se define el zoom.
             if (zoomOn)
             {
-                zoomIn();
+                ZoomIn();
             }
 
             //Defino la imagen del botón del marcador.
             btnMarcador.Image = Image.FromFile(@"..\..\imgs\icons\mark.png");
         }
 
-        //Método que se ejecuta cuando el usuario pulsa en el botón de zoom.
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa en el botón de zoom.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Zoom_Click(object sender, EventArgs e)
         {
-            zoom();
+            Zoom();
         }
 
-        //Método que aplica el zoom a la imagen.
-        private void zoom()
+        /// <summary>
+        /// Método que aplica el zoom a la imagen.
+        /// </summary>
+        private void Zoom()
         {
             //Invierto el valor del zoom.
             zoomOn = !zoomOn;
@@ -133,51 +187,65 @@ namespace KComicReader
             if (zoomOn)
             {
                 btnZoom.Image = Image.FromFile(@"..\..\imgs\icons\zoomOut.png");
-                zoomIn();
+                ZoomIn();
             }
             else
             {
                 btnZoom.Image = Image.FromFile(@"..\..\imgs\icons\zoomIn.png");
-                zoomOut();
+                ZoomOut();
             }
         }
 
-        //Método que redimensiona la imagen dependiendo del ancho del panel tamaño del formulario.
-        private void zoomIn()
+        /// <summary>
+        /// Método que redimensiona la imagen dependiendo del ancho del panel tamaño del formulario para hacer un zoom.
+        /// </summary>
+        private void ZoomIn()
         {
             pbPagina.Anchor = AnchorStyles.Top;
             pbPagina.SizeMode = PictureBoxSizeMode.AutoSize;
             int anchoNuevo = panelImage.Width;
-            int altoOriginal = imgOriginal.Height;
+            int altoOriginal = img.Height;
 
             //Defino un nuevo tamaño calculando el alto con la proporción original.
-            Size newSize = new Size((int)(anchoNuevo), (int)((altoOriginal * anchoNuevo) / imgOriginal.Width));
+            Size newSize = new Size(anchoNuevo, (altoOriginal * anchoNuevo) / img.Width);
             pbPagina.Image = new Bitmap(pbPagina.Image, newSize);
         }
 
-        //Método que devuelve la imagen al estado inicial, sin el zoom.
-        private void zoomOut()
+        /// <summary>
+        /// Método que devuelve la imagen al estado inicial, sin el zoom.
+        /// </summary>
+        private void ZoomOut()
         {
-            pbPagina.Image = imgOriginal;
+            pbPagina.Image = img;
             pbPagina.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
             pbPagina.Dock = DockStyle.Fill;
             pbPagina.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
-        //Método que se ejecuta cuando el usuario redimensiona el formulario.
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario redimensiona el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Form_Resize(object sender, EventArgs e)
         {
-            zoomOut();
+            ZoomOut();
         }
 
-        //Método que se ejecuta cuando el usuario pulsa el botón de marcar página.
-        private void btnMarcador_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de marcar página.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void BtnMarcador_Click(object sender, EventArgs e)
         {
-            marcar();
+            Marcar();
         }
 
-        //Método que marca la página actual y la almacena.
-        private void marcar()
+        /// <summary>
+        /// Método que marca la página actual y la almacena.
+        /// </summary>
+        private void Marcar()
         {
             //Defino la imagen.
             btnMarcador.Image = Image.FromFile(@"..\..\imgs\icons\marked.png");
@@ -202,20 +270,33 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el ratón entra en el área visible del botón.
+        /// <summary>
+        /// Método que se ejecuta cuando el ratón entra en el área visible del botón.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Btn_MouseEnter(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackgroundImage = Config.Hover;
         }
 
-        //Método que se ejecuta cuando el ratón sale del área visible del botón.
+        /// <summary>
+        /// Método que se ejecuta cuando el ratón sale del área visible del botón.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Btn_MouseLeave(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackgroundImage = null;
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se pinta el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormLeer_Paint(object sender, PaintEventArgs e)
         {
             //Si tiene conexión, se define el tema.

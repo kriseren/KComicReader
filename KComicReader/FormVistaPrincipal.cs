@@ -10,18 +10,30 @@ using System.Windows.Forms;
 
 namespace KComicReader
 {
+    /// <summary>
+    /// Formulario que contiene la vista principal del programa.
+    /// </summary>
     public partial class FormVistaPrincipal : Form
     {
-        //Definición de atributos.
+        /// <summary>
+        /// El control personalizado del cómic seleccionado por el usuario.
+        /// </summary>
         private Comic comicSeleccionado;
 
+        /// <summary>
+        /// Constructor sin parámetros que inicializa el componente.
+        /// </summary>
         public FormVistaPrincipal()
         {
             InitializeComponent();
         }
 
-        //Método que se ejecuta cuando el usuario pulsa el botón de agregar.
-        private void pbBtnAgregar_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de agregar.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void PbBtnAgregar_Click(object sender, EventArgs e)
         {
             FormAgregarComic formAgregar = new FormAgregarComic();
             if (formAgregar.ShowDialog() == DialogResult.OK)
@@ -29,21 +41,25 @@ namespace KComicReader
                 //Obtengo el comic, defino un controlador de eventos click y lo agrego al flowLayout.
                 Comic comic = formAgregar.comic;
                 comic.eventoClick += new EventHandler(Comic_Click);
-                comic.eventoDobleClick += new EventHandler(btnLeer_Click);
+                comic.eventoDobleClick += new EventHandler(BtnLeer_Click);
                 //Almaceno el comic en la base de datos.
                 comic.Guarda();
                 //Agrego el cómic al fwp.
                 this.fwpComics.Controls.Add(comic);
                 //Ordeno los cómics por título.
-                ordenaComicsPorTitulo();
+                OrdenaComicsPorTitulo();
                 //Cargo todas las categorías.
-                cargaCategorias();
+                CargaCategorias();
                 //Cargo todas las series.
-                cargaSeries();
+                CargaSeries();
             }
         }
 
-        //Método que se ejecuta cuando el usuario pulsa encima de un cómic.
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa encima de un cómic.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Comic_Click(object sender, EventArgs e)
         {
             //Creo el objeto cómic y defino todas las etiquetas de información.
@@ -126,8 +142,10 @@ namespace KComicReader
             lblLeer.Enabled = true;
         }
 
-        //Método que ordena los cómics del FlowLayoutPanel por título, para ello almaceno.
-        private void ordenaComicsPorTitulo()
+        /// <summary>
+        /// Método que ordena los cómics del FlowLayoutPanel por título, para ello almaceno.
+        /// </summary>
+        private void OrdenaComicsPorTitulo()
         {
             //Creo una variable que almacena los cómics ordenados por título.
             var comics = fwpComics.Controls.OfType<Comic>().OrderBy(x => x.Titulo).ToList();
@@ -141,26 +159,30 @@ namespace KComicReader
         }
 
 
-        //Método que se ejecuta cuando se carga el formulario.
+        /// <summary>
+        /// Método que se ejecuta cuando se carga el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormVistaPrincipal_Load(object sender, EventArgs e)
         {
             //Defino la configuración y el eventHandler.
             Config.DefineConfiguracion();
             //Obtengo todos los comics dados de alta en la base de datos.
-            cargaTodosComics();
+            CargaTodosComics();
             //Los ordeno por título.
-            ordenaComicsPorTitulo();
+            OrdenaComicsPorTitulo();
             //Cargo todas las categorías.
-            cargaCategorias();
+            CargaCategorias();
             //Cargo todas las series.
-            cargaSeries();
+            CargaSeries();
 
             //Muestro la vista vacía.
             panelRightVacia.BringToFront();
             panelRightVacia.Visible = true;
 
             //Agrego un eventHandler al botón de agregar cómic dentro del fwp.
-            agregarComicBtn.EventoClick += pbBtnAgregar_Click;
+            agregarComicBtn.EventoClick += PbBtnAgregar_Click;
 
             //Muestro la ventana de bienvenida.
             if (Config.MostrarBienvenida)
@@ -170,8 +192,12 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el usuario pulsa el botón de leer cómic.
-        private void btnLeer_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de leer cómic.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void BtnLeer_Click(object sender, EventArgs e)
         {
             //Creo un formulario con el cómic seleccionado.
             if (File.Exists(comicSeleccionado.ArchivoURL))
@@ -185,8 +211,12 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el usuario pulsa el botón de editar un cómic.
-        private void btnEditar_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de editar un cómic.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void BtnEditar_Click(object sender, EventArgs e)
         {
             //Creo el formulario y defino sus propiedades.
             FormAgregarComic formEditar = new FormAgregarComic(comicSeleccionado);
@@ -207,12 +237,70 @@ namespace KComicReader
                 //ordenaComicsPorTitulo();
 
                 //Recargo los valores del filtro de categorías o series.
-                lbCategorias_Click(sender, e);
+                LbCategorias_Click(sender, e);
             }
         }
 
-        //Método que carga en el fwp todos los cómics dados de alta en la base de datos.
-        private void cargaTodosComics()
+        /// <summary>
+        /// Método que se ejecuta cuando el usuaro pulsa el botón de eliminar cómic.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void PbBtnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Estás segurx de querer eliminar el cómic " + comicSeleccionado.Titulo + "?", "Confirmación de eliminación", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                if (Config.CompruebaConexion())
+                {
+                    using (MySqlConnection con = DataBaseConnectivity.GetConnection())
+                    {
+                        try
+                        {
+                            con.Open();
+                            MySqlCommand cmd = con.CreateCommand();
+                            cmd.CommandText = "DELETE FROM comics WHERE id = @id";
+                            cmd.Parameters.AddWithValue("@id", comicSeleccionado.Id);
+                            cmd.Prepare();
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (MySqlException)
+                        {
+                            MessageBox.Show("No se ha podido eliminar el producto. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                //Elimino el cómic del fwp.
+                fwpComics.Controls.Remove(comicSeleccionado);
+
+                //Elimino el fichero del cómic relizando 5 intentos de medio segundo cada uno.
+                if (comicSeleccionado.ArchivoURL != "")
+                {
+                    int intentos = 0;
+                    bool exito = false;
+                    while (!exito && intentos < 5)
+                    {
+                        try
+                        {
+                            File.Delete(comicSeleccionado.ArchivoURL);
+                            exito = true;
+                        }
+                        catch (Exception)
+                        {
+                            intentos++;
+                            Thread.Sleep(500);
+                        }
+                    }
+                    if (intentos == 5)
+                        MessageBox.Show("No se ha podido eliminar el archivo del cómic. Prueba a eliminarlo a mano desde el directorio de instalación", "Error al eliminar el archivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Método que carga en el fwp todos los cómics dados de alta en la base de datos.
+        /// </summary>
+        private void CargaTodosComics()
         {
             //Elimino los comics que haya en el fwp.
             foreach (Control c in fwpComics.Controls.OfType<Comic>().ToList())
@@ -254,7 +342,7 @@ namespace KComicReader
 
                             //Defino los controladores de los eventos.
                             c.eventoClick += new EventHandler(Comic_Click);
-                            c.eventoDobleClick += new EventHandler(btnLeer_Click);
+                            c.eventoDobleClick += new EventHandler(BtnLeer_Click);
 
                             //Lo agrego al fwp.
                             fwpComics.Controls.Add(c);
@@ -268,8 +356,10 @@ namespace KComicReader
             }
         }
 
-        //Método que carga en el listBox todas las categorías dadas de alta.
-        private void cargaCategorias()
+        /// <summary>
+        /// Método que carga en el listBox todas las categorías dadas de alta.
+        /// </summary>
+        private void CargaCategorias()
         {
             if (Config.CompruebaConexion())
             {
@@ -296,8 +386,10 @@ namespace KComicReader
             }
         }
 
-        //Método que carga en el listBox todas las series dadas de alta.
-        private void cargaSeries()
+        /// <summary>
+        /// Método que carga en el listBox todas las series dadas de alta.
+        /// </summary>
+        private void CargaSeries()
         {
             if (Config.CompruebaConexion())
             {
@@ -323,27 +415,39 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el ratón entra en el área visible del botón.
+        /// <summary>
+        /// Método que se ejecuta cuando el ratón entra en el área visible del botón.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Btn_MouseEnter(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackgroundImage = Config.Hover;
         }
 
-        //Método que se ejecuta cuando el ratón sale del área visible del botón.
+        /// <summary>
+        /// Método que se ejecuta cuando el ratón sale del área visible del botón.s
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void Btn_MouseLeave(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
             pb.BackgroundImage = null;
         }
 
-        //Método que se ejecuta cuando se hace doble click encima del ListBox de categorías.
-        private void lbCategorias_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se ejecuta cuando se hace doble click encima del ListBox de categorías.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void LbCategorias_Click(object sender, EventArgs e)
         {
             //Si la categoría seleccionada no es nula y es igual a 1 se muestran todos los cómics.
             if (lbCategorias.SelectedValue != null && (int)lbCategorias.SelectedValue == 1)
             {
-                cargaTodosComics();
+                CargaTodosComics();
             }
             else
             {
@@ -366,7 +470,7 @@ namespace KComicReader
                             }
 
                             //Ordeno los cómics agregados por título.
-                            ordenaComicsPorTitulo();
+                            OrdenaComicsPorTitulo();
                         }
                         catch (MySqlException)
                         {
@@ -377,13 +481,17 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el usuario hace doble click en el listBox de Series.
-        private void lbSeries_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario hace doble click en el listBox de Series.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void LbSeries_Click(object sender, EventArgs e)
         {
             //Si la serie seleccionada es igual a 1 se muestran todos los cómics.
             if (lbSeries.SelectedValue != null && (int)lbSeries.SelectedValue == 1)
             {
-                cargaTodosComics();
+                CargaTodosComics();
             }
             else
             {
@@ -405,7 +513,7 @@ namespace KComicReader
                             }
 
                             //Ordeno los cómics agregados por título.
-                            ordenaComicsPorTitulo();
+                            OrdenaComicsPorTitulo();
                         }
                         catch (MySqlException)
                         {
@@ -416,8 +524,12 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el usuario pulsa el botón de Ajustes.
-        private void pbBtnConfig_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de Ajustes.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void PbBtnConfig_Click(object sender, EventArgs e)
         {
             //Creo un nuevo formulario Config.
             FormConfig formConfig = new FormConfig();
@@ -434,7 +546,11 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando se pinta el formulario.
+        /// <summary>
+        /// Método que se ejecuta cuando se pinta el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormVistaPrincipal_Paint(object sender, PaintEventArgs e)
         {
             Config.DefineTema();
@@ -490,60 +606,14 @@ namespace KComicReader
             }
         }
 
-        //Método que se ejecuta cuando el usuaro pulsa el botón de eliminar cómic.
-        private void pbBtnEliminar_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("¿Estás segurx de querer eliminar el cómic " + comicSeleccionado.Titulo + "?", "Confirmación de eliminación", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
-            {
-                if (Config.CompruebaConexion())
-                {
-                    using (MySqlConnection con = DataBaseConnectivity.GetConnection())
-                    {
-                        try
-                        {
-                            con.Open();
-                            MySqlCommand cmd = con.CreateCommand();
-                            cmd.CommandText = "DELETE FROM comics WHERE id = @id";
-                            cmd.Parameters.AddWithValue("@id", comicSeleccionado.Id);
-                            cmd.Prepare();
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch (MySqlException)
-                        {
-                            MessageBox.Show("No se ha podido eliminar el producto. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-                //Elimino el cómic del fwp.
-                fwpComics.Controls.Remove(comicSeleccionado);
+        
 
-                //Elimino el fichero del cómic relizando 5 intentos de medio segundo cada uno.
-                if (comicSeleccionado.ArchivoURL != "")
-                {
-                    int intentos = 0;
-                    bool exito = false;
-                    while (!exito && intentos < 5)
-                    {
-                        try
-                        {
-                            File.Delete(comicSeleccionado.ArchivoURL);
-                            exito = true;
-                        }
-                        catch (Exception)
-                        {
-                            intentos++;
-                            Thread.Sleep(500);
-                        }
-                    }
-                    if (intentos == 5)
-                        MessageBox.Show("No se ha podido eliminar el archivo del cómic. Prueba a eliminarlo a mano desde el directorio de instalación", "Error al eliminar el archivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                }
-            }
-        }
-
-        //Método que se ejecuta cuando el usuario pulsa el botón de ayuda.
-        private void pbBtnAyuda_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de ayuda.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void PbBtnAyuda_Click(object sender, EventArgs e)
         {
             FormAyuda formAyuda = new FormAyuda();
             formAyuda.Show();

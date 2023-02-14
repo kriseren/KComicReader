@@ -8,28 +8,47 @@ using System.Windows.Forms;
 
 namespace KComicReader
 {
+    /// <summary>
+    /// Formulario que permite agregar una serie a la base de datos.
+    /// </summary>
     public partial class FormAgregarSerie : Form
     {
-        //Definición de variables.
-        private int editorial_id;
+        /// <summary>
+        /// El identificador de la editorial a la que pertenece la serie.
+        /// </summary>
+        public int Editorial_id;
+
+        /// <summary>
+        /// Constructor con parámetros.
+        /// </summary>
+        /// <param name="editorial_id">El identificador de la editorial a la que pertenece la serie.</param>
         public FormAgregarSerie(int editorial_id)
         {
             InitializeComponent();
-            this.editorial_id = editorial_id;
+            this.Editorial_id = editorial_id;
         }
 
-        //Método que se ejecuta cuando el usuario pulsa el botón de agregar.
+
+
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de agregar.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (existe())
+            if (Existe())
             {
                 MessageBox.Show("La serie que intentas crear ya existe.", "Error al crear la serie", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
             }
         }
 
-        //Método que comprueba si la serie existe en la base de datos.
-        private bool existe()
+        /// <summary>
+        /// Método que comprueba si la serie existe en la base de datos.
+        /// </summary>
+        /// <returns>Devuelve 'true' si existe y 'false' si no existe.</returns>
+        private bool Existe()
         {
             bool existe = false;
             //Obtengo la conexión y los objetos necesarios.
@@ -43,7 +62,7 @@ namespace KComicReader
 
                     cmd.CommandText = $"SELECT COUNT(*) FROM SERIES WHERE nombre LIKE @nombre AND editorial_id = @editorial_id";
                     cmd.Parameters.AddWithValue("@nombre", tbNombre.Text);
-                    cmd.Parameters.AddWithValue("@editorial_id", editorial_id);
+                    cmd.Parameters.AddWithValue("@editorial_id", Editorial_id);
                     cmd.Prepare();
 
                     //Verifico si la editorial o la categoria existe.
@@ -59,7 +78,11 @@ namespace KComicReader
             return existe;
         }
 
-        //Método que se ejecuta cuando se carga el formulario.
+        /// <summary>
+        /// Método que se ejecuta cuando se carga el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormAgregarSerie_Load(object sender, EventArgs e)
         {
             //Obtengo el nombre de la editorial.
@@ -72,7 +95,7 @@ namespace KComicReader
 
                 //Realizo la consulta.
                 cmd.CommandText = $"SELECT NOMBRE FROM EDITORIALES WHERE id = @editorial_id";
-                cmd.Parameters.AddWithValue("@editorial_id", editorial_id);
+                cmd.Parameters.AddWithValue("@editorial_id", Editorial_id);
                 cmd.Prepare();
                 var reader = cmd.ExecuteReader();
                 reader.Read();
@@ -87,6 +110,11 @@ namespace KComicReader
             }
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se pinta el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
         private void FormAgregarSerie_Paint(object sender, PaintEventArgs e)
         {
             Config.DefineTema();
