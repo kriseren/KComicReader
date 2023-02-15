@@ -30,18 +30,51 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAyuda));
             this.lblBienvenidaTitulo = new System.Windows.Forms.Label();
-            this.panelContenido = new System.Windows.Forms.Panel();
-            this.lblContenido = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.pbImg = new System.Windows.Forms.PictureBox();
             this.panelLeftApartados = new System.Windows.Forms.Panel();
-            this.lbCategorias = new System.Windows.Forms.ListBox();
+            this.lbApartados = new System.Windows.Forms.ListBox();
             this.lblSpecApartados = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panelContenido.SuspendLayout();
+            this.tabControlContenido = new System.Windows.Forms.TabControl();
+            this.tabPageInicio = new System.Windows.Forms.TabPage();
+            this.lblContenido = new System.Windows.Forms.Label();
+            this.lblTitInicio = new System.Windows.Forms.Label();
+            this.tabPageAgregarComic = new System.Windows.Forms.TabPage();
+            this.tabPageAjustes = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblTitAjustes = new System.Windows.Forms.Label();
+            this.tabPageAtajos = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTitAtajos = new System.Windows.Forms.Label();
+            this.tabPageEditar = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblTitEditar = new System.Windows.Forms.Label();
+            this.tabPageEliminar = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblTitEliminar = new System.Windows.Forms.Label();
+            this.tabPageLeer = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblTitLeer = new System.Windows.Forms.Label();
+            this.panelContenido = new System.Windows.Forms.Panel();
+            this.panelAgregar = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitAgregarComic = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbImg)).BeginInit();
             this.panelLeftApartados.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabControlContenido.SuspendLayout();
+            this.tabPageInicio.SuspendLayout();
+            this.tabPageAgregarComic.SuspendLayout();
+            this.tabPageAjustes.SuspendLayout();
+            this.tabPageAtajos.SuspendLayout();
+            this.tabPageEditar.SuspendLayout();
+            this.tabPageEliminar.SuspendLayout();
+            this.tabPageLeer.SuspendLayout();
+            this.panelContenido.SuspendLayout();
+            this.panelAgregar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblBienvenidaTitulo
@@ -50,38 +83,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBienvenidaTitulo.BackColor = System.Drawing.Color.Transparent;
             this.lblBienvenidaTitulo.Font = new System.Drawing.Font("Bahnschrift Condensed", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBienvenidaTitulo.Location = new System.Drawing.Point(10, 7);
+            this.lblBienvenidaTitulo.Location = new System.Drawing.Point(13, 9);
+            this.lblBienvenidaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBienvenidaTitulo.Name = "lblBienvenidaTitulo";
-            this.lblBienvenidaTitulo.Size = new System.Drawing.Size(836, 57);
+            this.lblBienvenidaTitulo.Size = new System.Drawing.Size(1330, 70);
             this.lblBienvenidaTitulo.TabIndex = 41;
             this.lblBienvenidaTitulo.Text = "CENTRO DE AYUDA";
             this.lblBienvenidaTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // panelContenido
-            // 
-            this.panelContenido.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelContenido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelContenido.Controls.Add(this.lblContenido);
-            this.panelContenido.Location = new System.Drawing.Point(175, 76);
-            this.panelContenido.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(672, 413);
-            this.panelContenido.TabIndex = 43;
-            // 
-            // lblContenido
-            // 
-            this.lblContenido.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblContenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContenido.Location = new System.Drawing.Point(5, 3);
-            this.lblContenido.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblContenido.Name = "lblContenido";
-            this.lblContenido.Size = new System.Drawing.Size(662, 408);
-            this.lblContenido.TabIndex = 0;
-            this.lblContenido.Text = resources.GetString("lblContenido.Text");
             // 
             // btnCerrar
             // 
@@ -89,9 +97,10 @@
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(758, 499);
+            this.btnCerrar.Location = new System.Drawing.Point(1226, 614);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(88, 27);
+            this.btnCerrar.Size = new System.Drawing.Size(117, 33);
             this.btnCerrar.TabIndex = 42;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
@@ -101,9 +110,10 @@
             // 
             this.pbImg.BackColor = System.Drawing.Color.Transparent;
             this.pbImg.Image = ((System.Drawing.Image)(resources.GetObject("pbImg.Image")));
-            this.pbImg.Location = new System.Drawing.Point(3, 3);
+            this.pbImg.Location = new System.Drawing.Point(4, 4);
+            this.pbImg.Margin = new System.Windows.Forms.Padding(4);
             this.pbImg.Name = "pbImg";
-            this.pbImg.Size = new System.Drawing.Size(152, 155);
+            this.pbImg.Size = new System.Drawing.Size(203, 191);
             this.pbImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbImg.TabIndex = 40;
             this.pbImg.TabStop = false;
@@ -114,45 +124,49 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panelLeftApartados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(140)))), ((int)(((byte)(217)))));
             this.panelLeftApartados.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelLeftApartados.Controls.Add(this.lbCategorias);
+            this.panelLeftApartados.Controls.Add(this.lbApartados);
             this.panelLeftApartados.Controls.Add(this.lblSpecApartados);
-            this.panelLeftApartados.Location = new System.Drawing.Point(10, 246);
+            this.panelLeftApartados.Location = new System.Drawing.Point(13, 303);
+            this.panelLeftApartados.Margin = new System.Windows.Forms.Padding(4);
             this.panelLeftApartados.Name = "panelLeftApartados";
-            this.panelLeftApartados.Size = new System.Drawing.Size(160, 242);
+            this.panelLeftApartados.Size = new System.Drawing.Size(213, 297);
             this.panelLeftApartados.TabIndex = 44;
             // 
-            // lbCategorias
+            // lbApartados
             // 
-            this.lbCategorias.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lbApartados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbCategorias.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.lbCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCategorias.FormattingEnabled = true;
-            this.lbCategorias.HorizontalExtent = 20;
-            this.lbCategorias.HorizontalScrollbar = true;
-            this.lbCategorias.ItemHeight = 16;
-            this.lbCategorias.Items.AddRange(new object[] {
+            this.lbApartados.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.lbApartados.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbApartados.FormattingEnabled = true;
+            this.lbApartados.HorizontalExtent = 20;
+            this.lbApartados.HorizontalScrollbar = true;
+            this.lbApartados.ItemHeight = 22;
+            this.lbApartados.Items.AddRange(new object[] {
             "Agregar un nuevo cómic",
             "Ajustes",
             "Atajos de teclado",
             "Editar un cómic",
             "Eliminar un cómic",
             "Leer un cómic"});
-            this.lbCategorias.Location = new System.Drawing.Point(3, 32);
-            this.lbCategorias.Name = "lbCategorias";
-            this.lbCategorias.Size = new System.Drawing.Size(153, 196);
-            this.lbCategorias.Sorted = true;
-            this.lbCategorias.TabIndex = 4;
+            this.lbApartados.Location = new System.Drawing.Point(4, 39);
+            this.lbApartados.Margin = new System.Windows.Forms.Padding(4);
+            this.lbApartados.Name = "lbApartados";
+            this.lbApartados.Size = new System.Drawing.Size(203, 246);
+            this.lbApartados.Sorted = true;
+            this.lbApartados.TabIndex = 4;
+            this.lbApartados.SelectedIndexChanged += new System.EventHandler(this.lbApartados_SelectedIndexChanged);
             // 
             // lblSpecApartados
             // 
             this.lblSpecApartados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(214)))), ((int)(((byte)(255)))));
             this.lblSpecApartados.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblSpecApartados.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSpecApartados.Location = new System.Drawing.Point(3, 3);
+            this.lblSpecApartados.Location = new System.Drawing.Point(4, 4);
+            this.lblSpecApartados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSpecApartados.Name = "lblSpecApartados";
-            this.lblSpecApartados.Size = new System.Drawing.Size(153, 26);
+            this.lblSpecApartados.Size = new System.Drawing.Size(203, 32);
             this.lblSpecApartados.TabIndex = 0;
             this.lblSpecApartados.Text = "APARTADOS";
             this.lblSpecApartados.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -162,43 +176,396 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(140)))), ((int)(((byte)(217)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.pbImg);
-            this.panel1.Location = new System.Drawing.Point(10, 76);
+            this.panel1.Location = new System.Drawing.Point(13, 94);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(160, 164);
+            this.panel1.Size = new System.Drawing.Size(213, 201);
             this.panel1.TabIndex = 45;
+            // 
+            // tabControlContenido
+            // 
+            this.tabControlContenido.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControlContenido.Controls.Add(this.tabPageInicio);
+            this.tabControlContenido.Controls.Add(this.tabPageAgregarComic);
+            this.tabControlContenido.Controls.Add(this.tabPageAjustes);
+            this.tabControlContenido.Controls.Add(this.tabPageAtajos);
+            this.tabControlContenido.Controls.Add(this.tabPageEditar);
+            this.tabControlContenido.Controls.Add(this.tabPageEliminar);
+            this.tabControlContenido.Controls.Add(this.tabPageLeer);
+            this.tabControlContenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControlContenido.ItemSize = new System.Drawing.Size(30, 30);
+            this.tabControlContenido.Location = new System.Drawing.Point(-1, -1);
+            this.tabControlContenido.Multiline = true;
+            this.tabControlContenido.Name = "tabControlContenido";
+            this.tabControlContenido.SelectedIndex = 0;
+            this.tabControlContenido.Size = new System.Drawing.Size(1106, 506);
+            this.tabControlContenido.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControlContenido.TabIndex = 0;
+            // 
+            // tabPageInicio
+            // 
+            this.tabPageInicio.Controls.Add(this.lblContenido);
+            this.tabPageInicio.Controls.Add(this.lblTitInicio);
+            this.tabPageInicio.Location = new System.Drawing.Point(4, 34);
+            this.tabPageInicio.Name = "tabPageInicio";
+            this.tabPageInicio.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageInicio.Size = new System.Drawing.Size(883, 468);
+            this.tabPageInicio.TabIndex = 0;
+            this.tabPageInicio.Text = "tabPage1";
+            this.tabPageInicio.UseVisualStyleBackColor = true;
+            // 
+            // lblContenido
+            // 
+            this.lblContenido.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblContenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContenido.Location = new System.Drawing.Point(8, 68);
+            this.lblContenido.Name = "lblContenido";
+            this.lblContenido.Size = new System.Drawing.Size(868, 393);
+            this.lblContenido.TabIndex = 47;
+            this.lblContenido.Text = resources.GetString("lblContenido.Text");
+            // 
+            // lblTitInicio
+            // 
+            this.lblTitInicio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitInicio.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitInicio.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitInicio.Location = new System.Drawing.Point(4, 3);
+            this.lblTitInicio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitInicio.Name = "lblTitInicio";
+            this.lblTitInicio.Size = new System.Drawing.Size(872, 51);
+            this.lblTitInicio.TabIndex = 46;
+            this.lblTitInicio.Text = "INICIO";
+            // 
+            // tabPageAgregarComic
+            // 
+            this.tabPageAgregarComic.Controls.Add(this.panelAgregar);
+            this.tabPageAgregarComic.Location = new System.Drawing.Point(4, 34);
+            this.tabPageAgregarComic.Name = "tabPageAgregarComic";
+            this.tabPageAgregarComic.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAgregarComic.Size = new System.Drawing.Size(1098, 468);
+            this.tabPageAgregarComic.TabIndex = 1;
+            this.tabPageAgregarComic.Text = "tabPage2";
+            this.tabPageAgregarComic.UseVisualStyleBackColor = true;
+            // 
+            // tabPageAjustes
+            // 
+            this.tabPageAjustes.Controls.Add(this.label3);
+            this.tabPageAjustes.Controls.Add(this.lblTitAjustes);
+            this.tabPageAjustes.Location = new System.Drawing.Point(4, 34);
+            this.tabPageAjustes.Name = "tabPageAjustes";
+            this.tabPageAjustes.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAjustes.Size = new System.Drawing.Size(883, 468);
+            this.tabPageAjustes.TabIndex = 2;
+            this.tabPageAjustes.Text = "tabPage1";
+            this.tabPageAjustes.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(8, 68);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(868, 393);
+            this.label3.TabIndex = 49;
+            this.label3.Text = resources.GetString("label3.Text");
+            // 
+            // lblTitAjustes
+            // 
+            this.lblTitAjustes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitAjustes.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitAjustes.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitAjustes.Location = new System.Drawing.Point(4, 3);
+            this.lblTitAjustes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitAjustes.Name = "lblTitAjustes";
+            this.lblTitAjustes.Size = new System.Drawing.Size(872, 51);
+            this.lblTitAjustes.TabIndex = 48;
+            this.lblTitAjustes.Text = "AJUSTES";
+            // 
+            // tabPageAtajos
+            // 
+            this.tabPageAtajos.Controls.Add(this.label2);
+            this.tabPageAtajos.Controls.Add(this.lblTitAtajos);
+            this.tabPageAtajos.Location = new System.Drawing.Point(4, 34);
+            this.tabPageAtajos.Name = "tabPageAtajos";
+            this.tabPageAtajos.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAtajos.Size = new System.Drawing.Size(883, 468);
+            this.tabPageAtajos.TabIndex = 3;
+            this.tabPageAtajos.Text = "tabPage3";
+            this.tabPageAtajos.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(8, 68);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(868, 393);
+            this.label2.TabIndex = 51;
+            this.label2.Text = resources.GetString("label2.Text");
+            // 
+            // lblTitAtajos
+            // 
+            this.lblTitAtajos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitAtajos.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitAtajos.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitAtajos.Location = new System.Drawing.Point(4, 3);
+            this.lblTitAtajos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitAtajos.Name = "lblTitAtajos";
+            this.lblTitAtajos.Size = new System.Drawing.Size(872, 51);
+            this.lblTitAtajos.TabIndex = 50;
+            this.lblTitAtajos.Text = "ATAJOS DE TECLADO";
+            // 
+            // tabPageEditar
+            // 
+            this.tabPageEditar.Controls.Add(this.label5);
+            this.tabPageEditar.Controls.Add(this.lblTitEditar);
+            this.tabPageEditar.Location = new System.Drawing.Point(4, 34);
+            this.tabPageEditar.Name = "tabPageEditar";
+            this.tabPageEditar.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageEditar.Size = new System.Drawing.Size(883, 468);
+            this.tabPageEditar.TabIndex = 4;
+            this.tabPageEditar.Text = "tabPage4";
+            this.tabPageEditar.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(8, 68);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(868, 393);
+            this.label5.TabIndex = 51;
+            this.label5.Text = resources.GetString("label5.Text");
+            // 
+            // lblTitEditar
+            // 
+            this.lblTitEditar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitEditar.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitEditar.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitEditar.Location = new System.Drawing.Point(4, 3);
+            this.lblTitEditar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitEditar.Name = "lblTitEditar";
+            this.lblTitEditar.Size = new System.Drawing.Size(872, 51);
+            this.lblTitEditar.TabIndex = 50;
+            this.lblTitEditar.Text = "EDITAR UN CÓMIC";
+            // 
+            // tabPageEliminar
+            // 
+            this.tabPageEliminar.Controls.Add(this.label7);
+            this.tabPageEliminar.Controls.Add(this.lblTitEliminar);
+            this.tabPageEliminar.Location = new System.Drawing.Point(4, 34);
+            this.tabPageEliminar.Name = "tabPageEliminar";
+            this.tabPageEliminar.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageEliminar.Size = new System.Drawing.Size(883, 468);
+            this.tabPageEliminar.TabIndex = 5;
+            this.tabPageEliminar.Text = "tabPage5";
+            this.tabPageEliminar.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(8, 68);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(868, 393);
+            this.label7.TabIndex = 51;
+            this.label7.Text = resources.GetString("label7.Text");
+            // 
+            // lblTitEliminar
+            // 
+            this.lblTitEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitEliminar.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitEliminar.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitEliminar.Location = new System.Drawing.Point(4, 3);
+            this.lblTitEliminar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitEliminar.Name = "lblTitEliminar";
+            this.lblTitEliminar.Size = new System.Drawing.Size(872, 51);
+            this.lblTitEliminar.TabIndex = 50;
+            this.lblTitEliminar.Text = "ELIMINAR UN CÓMIC";
+            // 
+            // tabPageLeer
+            // 
+            this.tabPageLeer.Controls.Add(this.label9);
+            this.tabPageLeer.Controls.Add(this.lblTitLeer);
+            this.tabPageLeer.Location = new System.Drawing.Point(4, 34);
+            this.tabPageLeer.Name = "tabPageLeer";
+            this.tabPageLeer.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageLeer.Size = new System.Drawing.Size(883, 468);
+            this.tabPageLeer.TabIndex = 6;
+            this.tabPageLeer.Text = "tabPage6";
+            this.tabPageLeer.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(8, 68);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(868, 393);
+            this.label9.TabIndex = 51;
+            this.label9.Text = resources.GetString("label9.Text");
+            // 
+            // lblTitLeer
+            // 
+            this.lblTitLeer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitLeer.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitLeer.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitLeer.Location = new System.Drawing.Point(4, 3);
+            this.lblTitLeer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitLeer.Name = "lblTitLeer";
+            this.lblTitLeer.Size = new System.Drawing.Size(872, 51);
+            this.lblTitLeer.TabIndex = 50;
+            this.lblTitLeer.Text = "LEER UN CÓMIC";
+            // 
+            // panelContenido
+            // 
+            this.panelContenido.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelContenido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelContenido.Controls.Add(this.tabControlContenido);
+            this.panelContenido.Location = new System.Drawing.Point(233, 94);
+            this.panelContenido.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelContenido.Name = "panelContenido";
+            this.panelContenido.Size = new System.Drawing.Size(1110, 508);
+            this.panelContenido.TabIndex = 43;
+            // 
+            // panelAgregar
+            // 
+            this.panelAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelAgregar.AutoScroll = true;
+            this.panelAgregar.Controls.Add(this.pictureBox1);
+            this.panelAgregar.Controls.Add(this.label1);
+            this.panelAgregar.Controls.Add(this.lblTitAgregarComic);
+            this.panelAgregar.Location = new System.Drawing.Point(6, 6);
+            this.panelAgregar.Name = "panelAgregar";
+            this.panelAgregar.Size = new System.Drawing.Size(1089, 459);
+            this.panelAgregar.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(5, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1041, 263);
+            this.label1.TabIndex = 51;
+            this.label1.Text = resources.GetString("label1.Text");
+            // 
+            // lblTitAgregarComic
+            // 
+            this.lblTitAgregarComic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitAgregarComic.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitAgregarComic.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitAgregarComic.Location = new System.Drawing.Point(1, 0);
+            this.lblTitAgregarComic.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitAgregarComic.Name = "lblTitAgregarComic";
+            this.lblTitAgregarComic.Size = new System.Drawing.Size(1045, 51);
+            this.lblTitAgregarComic.TabIndex = 50;
+            this.lblTitAgregarComic.Text = "AGREGAR UN NUEVO CÓMIC";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(10, 333);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1055, 575);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 53;
+            this.pictureBox1.TabStop = false;
             // 
             // FormAyuda
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 536);
+            this.ClientSize = new System.Drawing.Size(1355, 660);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelLeftApartados);
             this.Controls.Add(this.lblBienvenidaTitulo);
             this.Controls.Add(this.panelContenido);
             this.Controls.Add(this.btnCerrar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "FormAyuda";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ayuda de KComicReader";
+            this.Load += new System.EventHandler(this.FormAyuda_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormAyuda_Paint);
-            this.panelContenido.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbImg)).EndInit();
             this.panelLeftApartados.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.tabControlContenido.ResumeLayout(false);
+            this.tabPageInicio.ResumeLayout(false);
+            this.tabPageAgregarComic.ResumeLayout(false);
+            this.tabPageAjustes.ResumeLayout(false);
+            this.tabPageAtajos.ResumeLayout(false);
+            this.tabPageEditar.ResumeLayout(false);
+            this.tabPageEliminar.ResumeLayout(false);
+            this.tabPageLeer.ResumeLayout(false);
+            this.panelContenido.ResumeLayout(false);
+            this.panelAgregar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Label lblBienvenidaTitulo;
-        private System.Windows.Forms.Panel panelContenido;
-        private System.Windows.Forms.Label lblContenido;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.PictureBox pbImg;
         private System.Windows.Forms.Panel panelLeftApartados;
-        private System.Windows.Forms.ListBox lbCategorias;
+        private System.Windows.Forms.ListBox lbApartados;
         private System.Windows.Forms.Label lblSpecApartados;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TabControl tabControlContenido;
+        private System.Windows.Forms.TabPage tabPageInicio;
+        private System.Windows.Forms.TabPage tabPageAgregarComic;
+        private System.Windows.Forms.TabPage tabPageAjustes;
+        private System.Windows.Forms.TabPage tabPageAtajos;
+        private System.Windows.Forms.TabPage tabPageEditar;
+        private System.Windows.Forms.TabPage tabPageEliminar;
+        private System.Windows.Forms.TabPage tabPageLeer;
+        private System.Windows.Forms.Panel panelContenido;
+        private System.Windows.Forms.Label lblTitInicio;
+        private System.Windows.Forms.Label lblContenido;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTitAjustes;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblTitEditar;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblTitEliminar;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblTitLeer;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTitAtajos;
+        private System.Windows.Forms.Panel panelAgregar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitAgregarComic;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -17,7 +17,7 @@ namespace KComicReader
             Config.IniciaMySQL();
 
             //Se comprueba que la base de datos exista En caso contrario se crea mediante un script.
-            if (existeDB())
+            if (ExisteDB())
             {
                 //Carga la configuración de la base de datos.
                 Config.DefineConfiguracion();
@@ -47,8 +47,11 @@ namespace KComicReader
             Application.Run(new FormVistaPrincipal());
         }
 
-        //Método que comprueba si la base de datos existe, de lo contrario se crea.
-        private static bool existeDB()
+        /// <summary>
+        /// Método que comprueba si la base de datos existe, de lo contrario se crea.
+        /// </summary>
+        /// <returns>Devuelve 'true' si existe y 'false' si no existe.</returns>
+        private static bool ExisteDB()
         {
             bool existe = false;
             string connectionString = "Server=localhost;Database=information_schema;Uid=root;Pwd=;";

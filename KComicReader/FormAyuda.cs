@@ -79,5 +79,27 @@ namespace KComicReader
         {
             this.Dispose();
         }
+
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario hace click en un apartado dentro del listBox.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void lbApartados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Cambio la pestaña en el TabControl según el índice seleccionado.
+            tabControlContenido.SelectedIndex = lbApartados.SelectedIndex+1;
+        }
+
+        /// <summary>
+        /// Método que se ejecuta cuando se carga el formulario.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void FormAyuda_Load(object sender, EventArgs e)
+        {
+            tabControlContenido.Appearance = TabAppearance.FlatButtons;
+            tabControlContenido.ItemSize = new Size(0, 1);
+        }
     }
 }

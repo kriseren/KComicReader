@@ -184,6 +184,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormLeer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormLeer";
             this.Load += new System.EventHandler(this.FormLeer_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormLeer_Paint);
