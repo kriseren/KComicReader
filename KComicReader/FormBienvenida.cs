@@ -68,7 +68,7 @@ namespace KComicReader
         /// </summary>
         /// <param name="sender">El objeto que envía el evento.</param>
         /// <param name="e">Los argumentos del evento.</param>
-        private void btnCerrar_Click(object sender, EventArgs e)
+        private void BtnCerrar_Click(object sender, EventArgs e)
         {
             Config.MostrarBienvenida = checkBoxMostrarInicio.Checked;
             Config.GuardaConfiguracion();

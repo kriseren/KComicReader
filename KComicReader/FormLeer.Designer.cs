@@ -186,6 +186,7 @@
             this.Name = "FormLeer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormLeer";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormLeer_FormClosed);
             this.Load += new System.EventHandler(this.FormLeer_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormLeer_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.key_Down);

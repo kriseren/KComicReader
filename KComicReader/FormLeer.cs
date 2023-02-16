@@ -60,6 +60,7 @@ namespace KComicReader
         /// <param name="e">Los argumentos del evento.</param>
         private void FormLeer_Load(object sender, EventArgs e)
         {
+            Config.LeyendoComic = true;
             DefinePagina();
             lblNumPaginas.Text = "Página " + (numPag + 1) + " de " + comic.NumPaginasTotales;
         }
@@ -317,6 +318,16 @@ namespace KComicReader
                     panelButtons.BackColor = ColorTranslator.FromHtml(Tema[2]);
                 }
             }
+        }
+
+        /// <summary>
+        /// Método que se ejecuta cuando el formulario es cerrado.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void FormLeer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Config.LeyendoComic = false;
         }
     }
 }

@@ -41,40 +41,46 @@
             this.lblContenido = new System.Windows.Forms.Label();
             this.lblTitInicio = new System.Windows.Forms.Label();
             this.tabPageAgregarComic = new System.Windows.Forms.TabPage();
+            this.pbAgregar = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitAgregarComic = new System.Windows.Forms.Label();
             this.tabPageAjustes = new System.Windows.Forms.TabPage();
+            this.pbAjustes = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTitAjustes = new System.Windows.Forms.Label();
             this.tabPageAtajos = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblTitAtajos = new System.Windows.Forms.Label();
             this.tabPageEditar = new System.Windows.Forms.TabPage();
+            this.pbEditar = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblTitEditar = new System.Windows.Forms.Label();
             this.tabPageEliminar = new System.Windows.Forms.TabPage();
+            this.pbEliminar = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.lblTitEliminar = new System.Windows.Forms.Label();
             this.tabPageLeer = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.lblTitLeer = new System.Windows.Forms.Label();
             this.panelContenido = new System.Windows.Forms.Panel();
-            this.panelAgregar = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblTitAgregarComic = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTitAtajos = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbImg)).BeginInit();
             this.panelLeftApartados.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControlContenido.SuspendLayout();
             this.tabPageInicio.SuspendLayout();
             this.tabPageAgregarComic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAgregar)).BeginInit();
             this.tabPageAjustes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAjustes)).BeginInit();
             this.tabPageAtajos.SuspendLayout();
             this.tabPageEditar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEditar)).BeginInit();
             this.tabPageEliminar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEliminar)).BeginInit();
             this.tabPageLeer.SuspendLayout();
-            this.panelContenido.SuspendLayout();
-            this.panelAgregar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelContenido.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblBienvenidaTitulo
@@ -86,7 +92,7 @@
             this.lblBienvenidaTitulo.Location = new System.Drawing.Point(13, 9);
             this.lblBienvenidaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBienvenidaTitulo.Name = "lblBienvenidaTitulo";
-            this.lblBienvenidaTitulo.Size = new System.Drawing.Size(1330, 70);
+            this.lblBienvenidaTitulo.Size = new System.Drawing.Size(1331, 70);
             this.lblBienvenidaTitulo.TabIndex = 41;
             this.lblBienvenidaTitulo.Text = "CENTRO DE AYUDA";
             this.lblBienvenidaTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -97,7 +103,7 @@
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(1226, 614);
+            this.btnCerrar.Location = new System.Drawing.Point(1227, 614);
             this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(117, 33);
@@ -113,7 +119,7 @@
             this.pbImg.Location = new System.Drawing.Point(4, 4);
             this.pbImg.Margin = new System.Windows.Forms.Padding(4);
             this.pbImg.Name = "pbImg";
-            this.pbImg.Size = new System.Drawing.Size(203, 191);
+            this.pbImg.Size = new System.Drawing.Size(231, 191);
             this.pbImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbImg.TabIndex = 40;
             this.pbImg.TabStop = false;
@@ -129,7 +135,7 @@
             this.panelLeftApartados.Location = new System.Drawing.Point(13, 303);
             this.panelLeftApartados.Margin = new System.Windows.Forms.Padding(4);
             this.panelLeftApartados.Name = "panelLeftApartados";
-            this.panelLeftApartados.Size = new System.Drawing.Size(213, 297);
+            this.panelLeftApartados.Size = new System.Drawing.Size(241, 297);
             this.panelLeftApartados.TabIndex = 44;
             // 
             // lbApartados
@@ -153,7 +159,7 @@
             this.lbApartados.Location = new System.Drawing.Point(4, 39);
             this.lbApartados.Margin = new System.Windows.Forms.Padding(4);
             this.lbApartados.Name = "lbApartados";
-            this.lbApartados.Size = new System.Drawing.Size(203, 246);
+            this.lbApartados.Size = new System.Drawing.Size(231, 246);
             this.lbApartados.Sorted = true;
             this.lbApartados.TabIndex = 4;
             this.lbApartados.SelectedIndexChanged += new System.EventHandler(this.lbApartados_SelectedIndexChanged);
@@ -166,7 +172,7 @@
             this.lblSpecApartados.Location = new System.Drawing.Point(4, 4);
             this.lblSpecApartados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSpecApartados.Name = "lblSpecApartados";
-            this.lblSpecApartados.Size = new System.Drawing.Size(203, 32);
+            this.lblSpecApartados.Size = new System.Drawing.Size(230, 32);
             this.lblSpecApartados.TabIndex = 0;
             this.lblSpecApartados.Text = "APARTADOS";
             this.lblSpecApartados.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -179,7 +185,7 @@
             this.panel1.Location = new System.Drawing.Point(13, 94);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(213, 201);
+            this.panel1.Size = new System.Drawing.Size(241, 201);
             this.panel1.TabIndex = 45;
             // 
             // tabControlContenido
@@ -196,11 +202,12 @@
             this.tabControlContenido.Controls.Add(this.tabPageLeer);
             this.tabControlContenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControlContenido.ItemSize = new System.Drawing.Size(30, 30);
-            this.tabControlContenido.Location = new System.Drawing.Point(-1, -1);
+            this.tabControlContenido.Location = new System.Drawing.Point(3, -1);
+            this.tabControlContenido.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControlContenido.Multiline = true;
             this.tabControlContenido.Name = "tabControlContenido";
             this.tabControlContenido.SelectedIndex = 0;
-            this.tabControlContenido.Size = new System.Drawing.Size(1106, 506);
+            this.tabControlContenido.Size = new System.Drawing.Size(1075, 506);
             this.tabControlContenido.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControlContenido.TabIndex = 0;
             // 
@@ -209,9 +216,10 @@
             this.tabPageInicio.Controls.Add(this.lblContenido);
             this.tabPageInicio.Controls.Add(this.lblTitInicio);
             this.tabPageInicio.Location = new System.Drawing.Point(4, 34);
+            this.tabPageInicio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageInicio.Name = "tabPageInicio";
-            this.tabPageInicio.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageInicio.Size = new System.Drawing.Size(883, 468);
+            this.tabPageInicio.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageInicio.Size = new System.Drawing.Size(1067, 468);
             this.tabPageInicio.TabIndex = 0;
             this.tabPageInicio.Text = "tabPage1";
             this.tabPageInicio.UseVisualStyleBackColor = true;
@@ -224,7 +232,7 @@
             this.lblContenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContenido.Location = new System.Drawing.Point(8, 68);
             this.lblContenido.Name = "lblContenido";
-            this.lblContenido.Size = new System.Drawing.Size(868, 393);
+            this.lblContenido.Size = new System.Drawing.Size(836, 393);
             this.lblContenido.TabIndex = 47;
             this.lblContenido.Text = resources.GetString("lblContenido.Text");
             // 
@@ -234,45 +242,100 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitInicio.BackColor = System.Drawing.Color.Transparent;
             this.lblTitInicio.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitInicio.Location = new System.Drawing.Point(4, 3);
+            this.lblTitInicio.Location = new System.Drawing.Point(4, 2);
             this.lblTitInicio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitInicio.Name = "lblTitInicio";
-            this.lblTitInicio.Size = new System.Drawing.Size(872, 51);
+            this.lblTitInicio.Size = new System.Drawing.Size(840, 50);
             this.lblTitInicio.TabIndex = 46;
             this.lblTitInicio.Text = "INICIO";
             // 
             // tabPageAgregarComic
             // 
-            this.tabPageAgregarComic.Controls.Add(this.panelAgregar);
+            this.tabPageAgregarComic.AutoScroll = true;
+            this.tabPageAgregarComic.Controls.Add(this.pbAgregar);
+            this.tabPageAgregarComic.Controls.Add(this.label1);
+            this.tabPageAgregarComic.Controls.Add(this.lblTitAgregarComic);
             this.tabPageAgregarComic.Location = new System.Drawing.Point(4, 34);
+            this.tabPageAgregarComic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageAgregarComic.Name = "tabPageAgregarComic";
-            this.tabPageAgregarComic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAgregarComic.Size = new System.Drawing.Size(1098, 468);
+            this.tabPageAgregarComic.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageAgregarComic.Size = new System.Drawing.Size(1067, 468);
             this.tabPageAgregarComic.TabIndex = 1;
             this.tabPageAgregarComic.Text = "tabPage2";
             this.tabPageAgregarComic.UseVisualStyleBackColor = true;
             // 
+            // pbAgregar
+            // 
+            this.pbAgregar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbAgregar.Image = ((System.Drawing.Image)(resources.GetObject("pbAgregar.Image")));
+            this.pbAgregar.Location = new System.Drawing.Point(11, 331);
+            this.pbAgregar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbAgregar.Name = "pbAgregar";
+            this.pbAgregar.Size = new System.Drawing.Size(1055, 576);
+            this.pbAgregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbAgregar.TabIndex = 53;
+            this.pbAgregar.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(5, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1288, 263);
+            this.label1.TabIndex = 51;
+            this.label1.Text = resources.GetString("label1.Text");
+            // 
+            // lblTitAgregarComic
+            // 
+            this.lblTitAgregarComic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitAgregarComic.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitAgregarComic.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitAgregarComic.Location = new System.Drawing.Point(0, 0);
+            this.lblTitAgregarComic.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitAgregarComic.Name = "lblTitAgregarComic";
+            this.lblTitAgregarComic.Size = new System.Drawing.Size(1292, 50);
+            this.lblTitAgregarComic.TabIndex = 50;
+            this.lblTitAgregarComic.Text = "AGREGAR UN NUEVO CÓMIC";
+            // 
             // tabPageAjustes
             // 
+            this.tabPageAjustes.AutoScroll = true;
+            this.tabPageAjustes.Controls.Add(this.pbAjustes);
             this.tabPageAjustes.Controls.Add(this.label3);
             this.tabPageAjustes.Controls.Add(this.lblTitAjustes);
             this.tabPageAjustes.Location = new System.Drawing.Point(4, 34);
+            this.tabPageAjustes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageAjustes.Name = "tabPageAjustes";
-            this.tabPageAjustes.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAjustes.Size = new System.Drawing.Size(883, 468);
+            this.tabPageAjustes.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageAjustes.Size = new System.Drawing.Size(1067, 468);
             this.tabPageAjustes.TabIndex = 2;
             this.tabPageAjustes.Text = "tabPage1";
             this.tabPageAjustes.UseVisualStyleBackColor = true;
             // 
+            // pbAjustes
+            // 
+            this.pbAjustes.BackColor = System.Drawing.Color.Transparent;
+            this.pbAjustes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbAjustes.Image = ((System.Drawing.Image)(resources.GetObject("pbAjustes.Image")));
+            this.pbAjustes.Location = new System.Drawing.Point(11, 286);
+            this.pbAjustes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbAjustes.Name = "pbAjustes";
+            this.pbAjustes.Size = new System.Drawing.Size(705, 534);
+            this.pbAjustes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbAjustes.TabIndex = 54;
+            this.pbAjustes.TabStop = false;
+            // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(8, 68);
+            this.label3.Location = new System.Drawing.Point(5, 69);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(868, 393);
+            this.label3.Size = new System.Drawing.Size(964, 214);
             this.label3.TabIndex = 49;
             this.label3.Text = resources.GetString("label3.Text");
             // 
@@ -282,61 +345,53 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitAjustes.BackColor = System.Drawing.Color.Transparent;
             this.lblTitAjustes.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitAjustes.Location = new System.Drawing.Point(4, 3);
+            this.lblTitAjustes.Location = new System.Drawing.Point(4, 2);
             this.lblTitAjustes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitAjustes.Name = "lblTitAjustes";
-            this.lblTitAjustes.Size = new System.Drawing.Size(872, 51);
+            this.lblTitAjustes.Size = new System.Drawing.Size(968, 50);
             this.lblTitAjustes.TabIndex = 48;
             this.lblTitAjustes.Text = "AJUSTES";
             // 
             // tabPageAtajos
             // 
-            this.tabPageAtajos.Controls.Add(this.label2);
+            this.tabPageAtajos.AutoScroll = true;
             this.tabPageAtajos.Controls.Add(this.lblTitAtajos);
+            this.tabPageAtajos.Controls.Add(this.label2);
             this.tabPageAtajos.Location = new System.Drawing.Point(4, 34);
+            this.tabPageAtajos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageAtajos.Name = "tabPageAtajos";
-            this.tabPageAtajos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAtajos.Size = new System.Drawing.Size(883, 468);
+            this.tabPageAtajos.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageAtajos.Size = new System.Drawing.Size(1067, 468);
             this.tabPageAtajos.TabIndex = 3;
             this.tabPageAtajos.Text = "tabPage3";
             this.tabPageAtajos.UseVisualStyleBackColor = true;
             // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(868, 393);
-            this.label2.TabIndex = 51;
-            this.label2.Text = resources.GetString("label2.Text");
-            // 
-            // lblTitAtajos
-            // 
-            this.lblTitAtajos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitAtajos.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitAtajos.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitAtajos.Location = new System.Drawing.Point(4, 3);
-            this.lblTitAtajos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTitAtajos.Name = "lblTitAtajos";
-            this.lblTitAtajos.Size = new System.Drawing.Size(872, 51);
-            this.lblTitAtajos.TabIndex = 50;
-            this.lblTitAtajos.Text = "ATAJOS DE TECLADO";
-            // 
             // tabPageEditar
             // 
+            this.tabPageEditar.AutoScroll = true;
+            this.tabPageEditar.Controls.Add(this.pbEditar);
             this.tabPageEditar.Controls.Add(this.label5);
             this.tabPageEditar.Controls.Add(this.lblTitEditar);
             this.tabPageEditar.Location = new System.Drawing.Point(4, 34);
+            this.tabPageEditar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageEditar.Name = "tabPageEditar";
-            this.tabPageEditar.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageEditar.Size = new System.Drawing.Size(883, 468);
+            this.tabPageEditar.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageEditar.Size = new System.Drawing.Size(1067, 468);
             this.tabPageEditar.TabIndex = 4;
             this.tabPageEditar.Text = "tabPage4";
             this.tabPageEditar.UseVisualStyleBackColor = true;
+            // 
+            // pbEditar
+            // 
+            this.pbEditar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbEditar.Image = ((System.Drawing.Image)(resources.GetObject("pbEditar.Image")));
+            this.pbEditar.Location = new System.Drawing.Point(13, 293);
+            this.pbEditar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbEditar.Name = "pbEditar";
+            this.pbEditar.Size = new System.Drawing.Size(1055, 539);
+            this.pbEditar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbEditar.TabIndex = 55;
+            this.pbEditar.TabStop = false;
             // 
             // label5
             // 
@@ -344,9 +399,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(8, 68);
+            this.label5.Location = new System.Drawing.Point(8, 70);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(868, 393);
+            this.label5.Size = new System.Drawing.Size(1318, 1113);
             this.label5.TabIndex = 51;
             this.label5.Text = resources.GetString("label5.Text");
             // 
@@ -356,24 +411,39 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitEditar.BackColor = System.Drawing.Color.Transparent;
             this.lblTitEditar.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitEditar.Location = new System.Drawing.Point(4, 3);
+            this.lblTitEditar.Location = new System.Drawing.Point(4, 2);
             this.lblTitEditar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitEditar.Name = "lblTitEditar";
-            this.lblTitEditar.Size = new System.Drawing.Size(872, 51);
+            this.lblTitEditar.Size = new System.Drawing.Size(1320, 50);
             this.lblTitEditar.TabIndex = 50;
             this.lblTitEditar.Text = "EDITAR UN CÓMIC";
             // 
             // tabPageEliminar
             // 
+            this.tabPageEliminar.AutoScroll = true;
+            this.tabPageEliminar.Controls.Add(this.pbEliminar);
             this.tabPageEliminar.Controls.Add(this.label7);
             this.tabPageEliminar.Controls.Add(this.lblTitEliminar);
             this.tabPageEliminar.Location = new System.Drawing.Point(4, 34);
+            this.tabPageEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageEliminar.Name = "tabPageEliminar";
-            this.tabPageEliminar.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageEliminar.Size = new System.Drawing.Size(883, 468);
+            this.tabPageEliminar.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageEliminar.Size = new System.Drawing.Size(1067, 468);
             this.tabPageEliminar.TabIndex = 5;
             this.tabPageEliminar.Text = "tabPage5";
             this.tabPageEliminar.UseVisualStyleBackColor = true;
+            // 
+            // pbEliminar
+            // 
+            this.pbEliminar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbEliminar.Image = ((System.Drawing.Image)(resources.GetObject("pbEliminar.Image")));
+            this.pbEliminar.Location = new System.Drawing.Point(13, 299);
+            this.pbEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbEliminar.Name = "pbEliminar";
+            this.pbEliminar.Size = new System.Drawing.Size(1055, 539);
+            this.pbEliminar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbEliminar.TabIndex = 56;
+            this.pbEliminar.TabStop = false;
             // 
             // label7
             // 
@@ -383,7 +453,7 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(8, 68);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(868, 393);
+            this.label7.Size = new System.Drawing.Size(1331, 1523);
             this.label7.TabIndex = 51;
             this.label7.Text = resources.GetString("label7.Text");
             // 
@@ -393,24 +463,39 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitEliminar.BackColor = System.Drawing.Color.Transparent;
             this.lblTitEliminar.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitEliminar.Location = new System.Drawing.Point(4, 3);
+            this.lblTitEliminar.Location = new System.Drawing.Point(4, 2);
             this.lblTitEliminar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitEliminar.Name = "lblTitEliminar";
-            this.lblTitEliminar.Size = new System.Drawing.Size(872, 51);
+            this.lblTitEliminar.Size = new System.Drawing.Size(1120, 50);
             this.lblTitEliminar.TabIndex = 50;
             this.lblTitEliminar.Text = "ELIMINAR UN CÓMIC";
             // 
             // tabPageLeer
             // 
+            this.tabPageLeer.AutoScroll = true;
+            this.tabPageLeer.Controls.Add(this.pictureBox1);
             this.tabPageLeer.Controls.Add(this.label9);
             this.tabPageLeer.Controls.Add(this.lblTitLeer);
             this.tabPageLeer.Location = new System.Drawing.Point(4, 34);
+            this.tabPageLeer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageLeer.Name = "tabPageLeer";
-            this.tabPageLeer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLeer.Size = new System.Drawing.Size(883, 468);
+            this.tabPageLeer.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageLeer.Size = new System.Drawing.Size(1067, 468);
             this.tabPageLeer.TabIndex = 6;
             this.tabPageLeer.Text = "tabPage6";
             this.tabPageLeer.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(13, 255);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1055, 539);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 57;
+            this.pictureBox1.TabStop = false;
             // 
             // label9
             // 
@@ -420,7 +505,7 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(8, 68);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(868, 393);
+            this.label9.Size = new System.Drawing.Size(1331, 1329);
             this.label9.TabIndex = 51;
             this.label9.Text = resources.GetString("label9.Text");
             // 
@@ -430,10 +515,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitLeer.BackColor = System.Drawing.Color.Transparent;
             this.lblTitLeer.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitLeer.Location = new System.Drawing.Point(4, 3);
+            this.lblTitLeer.Location = new System.Drawing.Point(4, 2);
             this.lblTitLeer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitLeer.Name = "lblTitLeer";
-            this.lblTitLeer.Size = new System.Drawing.Size(872, 51);
+            this.lblTitLeer.Size = new System.Drawing.Size(1120, 50);
             this.lblTitLeer.TabIndex = 50;
             this.lblTitLeer.Text = "LEER UN CÓMIC";
             // 
@@ -444,59 +529,35 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContenido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelContenido.Controls.Add(this.tabControlContenido);
-            this.panelContenido.Location = new System.Drawing.Point(233, 94);
+            this.panelContenido.Location = new System.Drawing.Point(261, 94);
             this.panelContenido.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(1110, 508);
+            this.panelContenido.Size = new System.Drawing.Size(1082, 508);
             this.panelContenido.TabIndex = 43;
             // 
-            // panelAgregar
+            // label2
             // 
-            this.panelAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.label2.AutoEllipsis = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(1040, 575);
+            this.label2.TabIndex = 51;
+            this.label2.Text = resources.GetString("label2.Text");
+            // 
+            // lblTitAtajos
+            // 
+            this.lblTitAtajos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelAgregar.AutoScroll = true;
-            this.panelAgregar.Controls.Add(this.pictureBox1);
-            this.panelAgregar.Controls.Add(this.label1);
-            this.panelAgregar.Controls.Add(this.lblTitAgregarComic);
-            this.panelAgregar.Location = new System.Drawing.Point(6, 6);
-            this.panelAgregar.Name = "panelAgregar";
-            this.panelAgregar.Size = new System.Drawing.Size(1089, 459);
-            this.panelAgregar.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(5, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1041, 263);
-            this.label1.TabIndex = 51;
-            this.label1.Text = resources.GetString("label1.Text");
-            // 
-            // lblTitAgregarComic
-            // 
-            this.lblTitAgregarComic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitAgregarComic.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitAgregarComic.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitAgregarComic.Location = new System.Drawing.Point(1, 0);
-            this.lblTitAgregarComic.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTitAgregarComic.Name = "lblTitAgregarComic";
-            this.lblTitAgregarComic.Size = new System.Drawing.Size(1045, 51);
-            this.lblTitAgregarComic.TabIndex = 50;
-            this.lblTitAgregarComic.Text = "AGREGAR UN NUEVO CÓMIC";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(10, 333);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1055, 575);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 53;
-            this.pictureBox1.TabStop = false;
+            this.lblTitAtajos.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitAtajos.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitAtajos.Location = new System.Drawing.Point(4, 2);
+            this.lblTitAtajos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitAtajos.Name = "lblTitAtajos";
+            this.lblTitAtajos.Size = new System.Drawing.Size(1034, 50);
+            this.lblTitAtajos.TabIndex = 50;
+            this.lblTitAtajos.Text = "ATAJOS DE TECLADO";
             // 
             // FormAyuda
             // 
@@ -510,7 +571,7 @@
             this.Controls.Add(this.btnCerrar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(799, 598);
             this.Name = "FormAyuda";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ayuda de KComicReader";
@@ -522,14 +583,17 @@
             this.tabControlContenido.ResumeLayout(false);
             this.tabPageInicio.ResumeLayout(false);
             this.tabPageAgregarComic.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbAgregar)).EndInit();
             this.tabPageAjustes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbAjustes)).EndInit();
             this.tabPageAtajos.ResumeLayout(false);
             this.tabPageEditar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbEditar)).EndInit();
             this.tabPageEliminar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbEliminar)).EndInit();
             this.tabPageLeer.ResumeLayout(false);
-            this.panelContenido.ResumeLayout(false);
-            this.panelAgregar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelContenido.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -561,11 +625,14 @@
         private System.Windows.Forms.Label lblTitEliminar;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblTitLeer;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblTitAtajos;
-        private System.Windows.Forms.Panel panelAgregar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTitAgregarComic;
+        private System.Windows.Forms.PictureBox pbAgregar;
+        private System.Windows.Forms.PictureBox pbAjustes;
+        private System.Windows.Forms.PictureBox pbEditar;
+        private System.Windows.Forms.PictureBox pbEliminar;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblTitAtajos;
+        private System.Windows.Forms.Label label2;
     }
 }

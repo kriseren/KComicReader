@@ -79,7 +79,7 @@ namespace KComicReader
             this.btnCerrar.TabIndex = 14;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            this.btnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
             // panelPag1
             // 

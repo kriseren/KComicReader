@@ -48,6 +48,11 @@ namespace KComicReader
         /// </summary>
         public static bool MostrarBienvenida { get; set; }
 
+        /// <summary>
+        /// Define si el usuario tiene abierta la ventana de leer cómic.
+        /// </summary>
+        public static bool LeyendoComic { get; set; }
+
 
         /// <summary>
         /// Método que inicia el servidor de MySQL dentro de XAMPP.

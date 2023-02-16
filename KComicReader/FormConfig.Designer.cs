@@ -85,7 +85,7 @@
             this.btnGuardar.TabIndex = 15;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.btnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // btnSeleccionarCarpeta
             // 
@@ -103,7 +103,7 @@
             this.btnSeleccionarCarpeta.TabStop = false;
             this.btnSeleccionarCarpeta.Tag = "Agregar Editorial";
             this.toolTipGeneral.SetToolTip(this.btnSeleccionarCarpeta, "Haz click para seleccionar el directorio de instalación.");
-            this.btnSeleccionarCarpeta.Click += new System.EventHandler(this.btnSeleccionarCarpeta_Click);
+            this.btnSeleccionarCarpeta.Click += new System.EventHandler(this.BtnSeleccionarCarpeta_Click);
             this.btnSeleccionarCarpeta.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.btnSeleccionarCarpeta.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 

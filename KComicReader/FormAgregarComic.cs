@@ -91,8 +91,9 @@ namespace KComicReader
                 //Extraigo la portada y la muestro. 
                 pbPortada.Image = ExtraePortada(comic.ArchivoURL);
 
-                //Defino el título del cómic para ayudar al usuario.
-                tbTitulo.Text = ofd_FicheroComic.SafeFileName.Split('.')[0];
+                //Defino el título del cómic para ayudar al usuario si éste no ha definido un título.
+                if(tbTitulo.Text.Length < 1)
+                    tbTitulo.Text = ofd_FicheroComic.SafeFileName.Split('.')[0];
             }
         }
 
@@ -478,7 +479,6 @@ namespace KComicReader
             Config.DefineTema();
 
             String[] Tema = Config.Tema;
-
 
             if (this.ClientRectangle.Width != 0 || this.ClientRectangle.Height != 0)
             {

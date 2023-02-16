@@ -156,6 +156,12 @@ namespace KComicReader
 
             //Agrego de nuevo todos los cómics ordenados por título.
             fwpComics.Controls.AddRange(comics.ToArray());
+
+            //Si hay cómics se muestra la ayuda para agrear el primer comic, sino no.
+            if (fwpComics.Controls.OfType<Comic>().Count() > 0)
+                fwpComics.Controls[1].Visible = false;
+            else
+                fwpComics.Controls[1].Visible = true;
         }
 
 
@@ -233,9 +239,6 @@ namespace KComicReader
                 fwpComics.Controls.Remove(comicSeleccionado);
                 fwpComics.Controls.Add(formEditar.comic);
 
-                //Ordeno los cómics por título.
-                //ordenaComicsPorTitulo();
-
                 //Recargo los valores del filtro de categorías o series.
                 LbCategorias_Click(sender, e);
             }
@@ -248,52 +251,63 @@ namespace KComicReader
         /// <param name="e">Los argumentos del evento.</param>
         private void PbBtnEliminar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Estás segurx de querer eliminar el cómic " + comicSeleccionado.Titulo + "?", "Confirmación de eliminación", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            //Si no se está leyendo se elimina.
+            if (!Config.LeyendoComic)
             {
-                if (Config.CompruebaConexion())
+                if (MessageBox.Show("¿Estás segurx de querer eliminar el cómic " + comicSeleccionado.Titulo + "?", "Confirmación de eliminación", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
-                    using (MySqlConnection con = DataBaseConnectivity.GetConnection())
+                    if (Config.CompruebaConexion())
                     {
-                        try
+                        using (MySqlConnection con = DataBaseConnectivity.GetConnection())
                         {
-                            con.Open();
-                            MySqlCommand cmd = con.CreateCommand();
-                            cmd.CommandText = "DELETE FROM comics WHERE id = @id";
-                            cmd.Parameters.AddWithValue("@id", comicSeleccionado.Id);
-                            cmd.Prepare();
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch (MySqlException)
-                        {
-                            MessageBox.Show("No se ha podido eliminar el producto. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            try
+                            {
+                                con.Open();
+                                MySqlCommand cmd = con.CreateCommand();
+                                cmd.CommandText = "DELETE FROM comics WHERE id = @id";
+                                cmd.Parameters.AddWithValue("@id", comicSeleccionado.Id);
+                                cmd.Prepare();
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (MySqlException)
+                            {
+                                MessageBox.Show("No se ha podido eliminar el producto. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
-                }
-                //Elimino el cómic del fwp.
-                fwpComics.Controls.Remove(comicSeleccionado);
+                    //Elimino el cómic del fwp.
+                    fwpComics.Controls.Remove(comicSeleccionado);
 
-                //Elimino el fichero del cómic relizando 5 intentos de medio segundo cada uno.
-                if (comicSeleccionado.ArchivoURL != "")
-                {
-                    int intentos = 0;
-                    bool exito = false;
-                    while (!exito && intentos < 5)
+                    //Elimino el fichero del cómic relizando 5 intentos de medio segundo cada uno.
+                    if (comicSeleccionado.ArchivoURL != "")
                     {
-                        try
+                        int intentos = 0;
+                        bool exito = false;
+                        while (!exito && intentos < 5)
                         {
-                            File.Delete(comicSeleccionado.ArchivoURL);
-                            exito = true;
+                            try
+                            {
+                                File.Delete(comicSeleccionado.ArchivoURL);
+                                exito = true;
+                            }
+                            catch (Exception)
+                            {
+                                intentos++;
+                                Thread.Sleep(500);
+                            }
                         }
-                        catch (Exception)
-                        {
-                            intentos++;
-                            Thread.Sleep(500);
-                        }
-                    }
-                    if (intentos == 5)
-                        MessageBox.Show("No se ha podido eliminar el archivo del cómic. Prueba a eliminarlo a mano desde el directorio de instalación", "Error al eliminar el archivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (intentos == 5)
+                            MessageBox.Show("No se ha podido eliminar el archivo del cómic. Prueba a eliminarlo a mano desde el directorio de instalación", "Error al eliminar el archivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                    }
+
+                    //Ordeno los cómics por título.
+                    OrdenaComicsPorTitulo();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Para poder eliminar un cómic, primero cierra la ventana de leer.", "Error al eliminar el archivo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -323,6 +337,7 @@ namespace KComicReader
                         Comic c;
                         while (reader.Read())
                         {
+                            fwpComics.Controls[1].Visible = false;
                             //Creo el cómic.
                             c = new Comic();
                             //Defino las propiedades.
@@ -346,7 +361,7 @@ namespace KComicReader
 
                             //Lo agrego al fwp.
                             fwpComics.Controls.Add(c);
-                        }
+                        }  
                     }
                     catch (MySqlException)
                     {
@@ -604,6 +619,12 @@ namespace KComicReader
                         comicSeleccionado.ForeColor = Color.Black;
                 }
             }
+
+            //Si hay cómics se muestra la ayuda, sino no.
+            if(fwpComics.Controls.OfType<Comic>().Count()>0)
+                fwpComics.Controls[1].Visible = false;
+            else
+                fwpComics.Controls[1].Visible = true;
         }
 
         

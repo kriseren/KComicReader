@@ -153,7 +153,7 @@ namespace KComicReader
         /// </summary>
         /// <param name="sender">El objeto que envía el evento.</param>
         /// <param name="e">Los argumentos del evento.</param>
-        private void btnSeleccionarCarpeta_Click(object sender, EventArgs e)
+        private void BtnSeleccionarCarpeta_Click(object sender, EventArgs e)
         {
             //Creo un OpenDirectoryDialog.
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -170,7 +170,7 @@ namespace KComicReader
         /// </summary>
         /// <param name="sender">El objeto que envía el evento.</param>
         /// <param name="e">Los argumentos del evento.</param>
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void BtnGuardar_Click(object sender, EventArgs e)
         {
             if (Config.CompruebaConexion())
             {
