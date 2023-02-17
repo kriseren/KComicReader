@@ -125,21 +125,34 @@ namespace KComicReader
             if (Config.Tema_id == 8)
                 comicSeleccionado.ForeColor = ColorTranslator.FromHtml(Config.Tema[2]);
 
-            //Activo los botones de acciones.
-            pbBtnEditar.Visible = true;
-            pbBtnEditar.Enabled = true;
-            pbBtnLeer.Visible = true;
-            pbBtnLeer.Enabled = true;
-            pbBtnEliminar.Visible = true;
-            pbBtnEliminar.Enabled = true;
-            lblAgregar.Visible = true;
-            lblAgregar.Enabled = true;
-            lblEditar.Visible = true;
-            lblEditar.Enabled = true;
-            lblEliminar.Visible = true;
-            lblEliminar.Enabled = true;
-            lblLeer.Visible = true;
-            lblLeer.Enabled = true;
+            //Activo o desactivo los botones de acciones.
+            DefineBotonesAcciones();
+        }
+
+        private void DefineBotonesAcciones()
+        {
+            if(comicSeleccionado!=null)
+            {
+                //Activo los botones de acciones.
+                pbBtnEditar.Visible = true;
+                pbBtnLeer.Visible = true;
+                pbBtnEliminar.Visible = true;
+                lblAgregar.Visible = true;
+                lblEditar.Visible = true;
+                lblEliminar.Visible = true;
+                lblLeer.Visible = true;
+            }
+            else
+            {
+                //Activo los botones de acciones.
+                pbBtnEditar.Visible = false;
+                pbBtnLeer.Visible = false;
+                pbBtnEliminar.Visible = false;
+                lblEditar.Visible = false;
+                lblEliminar.Visible = false;
+                lblLeer.Visible = false;
+                lblAgregar.Visible = true;
+            }
         }
 
         /// <summary>
@@ -239,6 +252,10 @@ namespace KComicReader
                 fwpComics.Controls.Remove(comicSeleccionado);
                 fwpComics.Controls.Add(formEditar.comic);
 
+                //Cargo las categorías y las series.
+                CargaCategorias();
+                CargaSeries();
+
                 //Recargo los valores del filtro de categorías o series.
                 LbCategorias_Click(sender, e);
             }
@@ -251,6 +268,7 @@ namespace KComicReader
         /// <param name="e">Los argumentos del evento.</param>
         private void PbBtnEliminar_Click(object sender, EventArgs e)
         {
+            
             //Si no se está leyendo se elimina.
             if (!Config.LeyendoComic)
             {
@@ -264,19 +282,22 @@ namespace KComicReader
                             {
                                 con.Open();
                                 MySqlCommand cmd = con.CreateCommand();
-                                cmd.CommandText = "DELETE FROM comics WHERE id = @id";
-                                cmd.Parameters.AddWithValue("@id", comicSeleccionado.Id);
+                                cmd.CommandText = "DELETE FROM comics WHERE titulo = @titulo and serie_id=@serie and editorial_id=@editorial";
+                                cmd.Parameters.AddWithValue("@titulo", comicSeleccionado.Titulo);
+                                cmd.Parameters.AddWithValue("@serie", comicSeleccionado.SerieID);
+                                cmd.Parameters.AddWithValue("@editorial", comicSeleccionado.EditorialID);
                                 cmd.Prepare();
                                 cmd.ExecuteNonQuery();
                             }
                             catch (MySqlException)
                             {
-                                MessageBox.Show("No se ha podido eliminar el producto. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("No se ha podido eliminar el comic. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
                     //Elimino el cómic del fwp.
                     fwpComics.Controls.Remove(comicSeleccionado);
+                    
 
                     //Elimino el fichero del cómic relizando 5 intentos de medio segundo cada uno.
                     if (comicSeleccionado.ArchivoURL != "")
@@ -303,6 +324,15 @@ namespace KComicReader
 
                     //Ordeno los cómics por título.
                     OrdenaComicsPorTitulo();
+                    //Cargo las categorías y las series.
+                    CargaCategorias();
+                    CargaSeries();
+                    //Muevo el panel al frente para mostrar el de vista vacía.
+                    panelRightVacia.Visible = true;
+                    panelRightInfo.SendToBack();
+                    //Defino los botones de acciones.
+                    comicSeleccionado = null;
+                    DefineBotonesAcciones();
                 }
             }
             else
@@ -385,7 +415,17 @@ namespace KComicReader
                         con.Open();
                         MySqlCommand cmd = con.CreateCommand();
                         //Categoría.
-                        string query = "SELECT id, nombre FROM CATEGORIAS ORDER BY nombre";
+                        string query = @"SELECT id, nombre 
+                                        FROM (
+                                            SELECT DISTINCT ca.id, ca.nombre 
+                                            FROM CATEGORIAS ca  
+                                            INNER JOIN comics c ON c.categoria_id = ca.id
+                                            UNION
+                                            SELECT cat.id, cat.nombre 
+                                            FROM CATEGORIAS cat 
+                                            WHERE cat.id = 1
+                                        ) AS CATEGORIA
+                                        ORDER BY nombre;";
                         MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
                         DataSet ds = new DataSet();
                         adapter.Fill(ds);
@@ -414,7 +454,18 @@ namespace KComicReader
                     {
                         con.Open();
                         MySqlCommand cmd = con.CreateCommand();
-                        string query = "SELECT id, nombre FROM SERIES ORDER BY nombre";
+                        string query = @"SELECT id, nombre 
+                                        FROM (
+                                            SELECT DISTINCT s.id, s.nombre 
+                                            FROM SERIES s  
+                                            INNER JOIN comics c ON c.serie_id = s.id
+                                            UNION
+                                            SELECT se.id, se.nombre 
+                                            FROM SERIES se 
+                                            WHERE se.id = 1
+                                        ) AS serie
+                                        ORDER BY nombre;
+                                        ";
                         MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
                         DataSet ds = new DataSet();
                         adapter.Fill(ds);
@@ -453,7 +504,7 @@ namespace KComicReader
         }
 
         /// <summary>
-        /// Método que se ejecuta cuando se hace doble click encima del ListBox de categorías.
+        /// Método que se ejecuta cuando se hace click encima del ListBox de categorías.
         /// </summary>
         /// <param name="sender">El objeto que envía el evento.</param>
         /// <param name="e">Los argumentos del evento.</param>
@@ -466,32 +517,25 @@ namespace KComicReader
             }
             else
             {
-                if (Config.CompruebaConexion())
+                try
                 {
-                    using (MySqlConnection con = DataBaseConnectivity.GetConnection())
+                    //Hago no visibles todos los comics del fwp.
+                    foreach (Control co in fwpComics.Controls.OfType<Comic>().ToList())
+                        co.Visible = false;
+                    //Obtengo todos los cómics con esa categoría y los muestro.
+                    foreach (Control co in fwpComics.Controls.OfType<Comic>().ToList())
                     {
-                        try
-                        {
-                            //Hago no visibles todos los comics del fwp.
-                            foreach (Control co in fwpComics.Controls.OfType<Comic>().ToList())
-                                co.Visible = false;
-                            //Obtengo todos los cómics con esa categoría y los muestro.
-                            foreach (Control co in fwpComics.Controls.OfType<Comic>().ToList())
-                            {
-                                Comic c = (Comic)co;
-                                if (c.CategoriaID == (int)lbCategorias.SelectedValue)
-                                    c.Visible = true;
-
-                            }
-
-                            //Ordeno los cómics agregados por título.
-                            OrdenaComicsPorTitulo();
-                        }
-                        catch (MySqlException)
-                        {
-                            MessageBox.Show("No se han podido recuperar las series dadas de alta. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        Comic c = (Comic)co;
+                        if (c.CategoriaID == (int)lbCategorias.SelectedValue)
+                            c.Visible = true;
                     }
+
+                    //Ordeno los cómics agregados por título.
+                    OrdenaComicsPorTitulo();
+                }
+                catch (MySqlException)
+                {
+                    MessageBox.Show("No se han podido recuperar las series dadas de alta. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

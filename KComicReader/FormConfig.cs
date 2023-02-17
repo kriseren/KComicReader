@@ -86,6 +86,10 @@ namespace KComicReader
                     {
                         c.ForeColor = ColorTranslator.FromHtml(Tema[2]);
                     }
+                    foreach (Control c in this.Controls.OfType<CheckBox>().ToList())
+                    {
+                        c.ForeColor = ColorTranslator.FromHtml(Tema[2]);
+                    }
                 }
                 else
                 {

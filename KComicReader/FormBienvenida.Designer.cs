@@ -34,8 +34,8 @@ namespace KComicReader
             this.lblBienvenidaTitulo = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.panelPag1 = new System.Windows.Forms.Panel();
-            this.lblContenido = new System.Windows.Forms.Label();
             this.pbWelcome = new System.Windows.Forms.PictureBox();
+            this.lblContenido = new System.Windows.Forms.Label();
             this.checkBoxMostrarInicio = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.panelPag1.SuspendLayout();
@@ -46,10 +46,9 @@ namespace KComicReader
             // 
             this.pbLogo.BackColor = System.Drawing.Color.Transparent;
             this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
-            this.pbLogo.Location = new System.Drawing.Point(16, 100);
-            this.pbLogo.Margin = new System.Windows.Forms.Padding(4);
+            this.pbLogo.Location = new System.Drawing.Point(12, 81);
             this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(364, 392);
+            this.pbLogo.Size = new System.Drawing.Size(273, 318);
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLogo.TabIndex = 0;
             this.pbLogo.TabStop = false;
@@ -58,10 +57,9 @@ namespace KComicReader
             // 
             this.lblBienvenidaTitulo.BackColor = System.Drawing.Color.Transparent;
             this.lblBienvenidaTitulo.Font = new System.Drawing.Font("Bahnschrift Condensed", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBienvenidaTitulo.Location = new System.Drawing.Point(16, 15);
-            this.lblBienvenidaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBienvenidaTitulo.Location = new System.Drawing.Point(12, 12);
             this.lblBienvenidaTitulo.Name = "lblBienvenidaTitulo";
-            this.lblBienvenidaTitulo.Size = new System.Drawing.Size(1027, 70);
+            this.lblBienvenidaTitulo.Size = new System.Drawing.Size(770, 57);
             this.lblBienvenidaTitulo.TabIndex = 1;
             this.lblBienvenidaTitulo.Text = "¡Bienvenidx a KComicReader!";
             this.lblBienvenidaTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -72,10 +70,9 @@ namespace KComicReader
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(926, 517);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCerrar.Location = new System.Drawing.Point(694, 420);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(117, 33);
+            this.btnCerrar.Size = new System.Drawing.Size(88, 27);
             this.btnCerrar.TabIndex = 14;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
@@ -86,29 +83,32 @@ namespace KComicReader
             this.panelPag1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelPag1.Controls.Add(this.pbWelcome);
             this.panelPag1.Controls.Add(this.lblContenido);
-            this.panelPag1.Location = new System.Drawing.Point(387, 100);
+            this.panelPag1.Location = new System.Drawing.Point(290, 81);
+            this.panelPag1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelPag1.Name = "panelPag1";
-            this.panelPag1.Size = new System.Drawing.Size(656, 392);
+            this.panelPag1.Size = new System.Drawing.Size(492, 319);
             this.panelPag1.TabIndex = 15;
-            // 
-            // lblContenido
-            // 
-            this.lblContenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContenido.Location = new System.Drawing.Point(4, 4);
-            this.lblContenido.Name = "lblContenido";
-            this.lblContenido.Size = new System.Drawing.Size(647, 183);
-            this.lblContenido.TabIndex = 0;
-            this.lblContenido.Text = resources.GetString("lblContenido.Text");
             // 
             // pbWelcome
             // 
             this.pbWelcome.Image = ((System.Drawing.Image)(resources.GetObject("pbWelcome.Image")));
-            this.pbWelcome.Location = new System.Drawing.Point(9, 202);
+            this.pbWelcome.Location = new System.Drawing.Point(7, 164);
+            this.pbWelcome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbWelcome.Name = "pbWelcome";
-            this.pbWelcome.Size = new System.Drawing.Size(219, 180);
+            this.pbWelcome.Size = new System.Drawing.Size(164, 146);
             this.pbWelcome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbWelcome.TabIndex = 1;
             this.pbWelcome.TabStop = false;
+            // 
+            // lblContenido
+            // 
+            this.lblContenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContenido.Location = new System.Drawing.Point(3, 3);
+            this.lblContenido.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblContenido.Name = "lblContenido";
+            this.lblContenido.Size = new System.Drawing.Size(485, 149);
+            this.lblContenido.TabIndex = 0;
+            this.lblContenido.Text = resources.GetString("lblContenido.Text");
             // 
             // checkBoxMostrarInicio
             // 
@@ -116,19 +116,19 @@ namespace KComicReader
             this.checkBoxMostrarInicio.BackColor = System.Drawing.Color.Transparent;
             this.checkBoxMostrarInicio.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBoxMostrarInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxMostrarInicio.Location = new System.Drawing.Point(16, 517);
-            this.checkBoxMostrarInicio.Margin = new System.Windows.Forms.Padding(4, 4, 8, 4);
+            this.checkBoxMostrarInicio.Location = new System.Drawing.Point(12, 420);
+            this.checkBoxMostrarInicio.Margin = new System.Windows.Forms.Padding(3, 3, 6, 3);
             this.checkBoxMostrarInicio.Name = "checkBoxMostrarInicio";
-            this.checkBoxMostrarInicio.Size = new System.Drawing.Size(377, 28);
+            this.checkBoxMostrarInicio.Size = new System.Drawing.Size(295, 22);
             this.checkBoxMostrarInicio.TabIndex = 39;
             this.checkBoxMostrarInicio.Text = "Mostrar la ventana de bienvenida al inicio";
             this.checkBoxMostrarInicio.UseVisualStyleBackColor = false;
             // 
             // FormBienvenida
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1054, 563);
+            this.ClientSize = new System.Drawing.Size(790, 457);
             this.Controls.Add(this.checkBoxMostrarInicio);
             this.Controls.Add(this.lblBienvenidaTitulo);
             this.Controls.Add(this.panelPag1);
@@ -136,7 +136,7 @@ namespace KComicReader
             this.Controls.Add(this.pbLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "FormBienvenida";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bienvenida a KComicReader";

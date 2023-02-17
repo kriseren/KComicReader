@@ -32,7 +32,6 @@ namespace KComicReader
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVistaPrincipal));
             this.panelTop = new System.Windows.Forms.Panel();
-            this.lblThemeIcon = new System.Windows.Forms.Label();
             this.pbThemeIcon = new System.Windows.Forms.PictureBox();
             this.lblAyuda = new System.Windows.Forms.Label();
             this.pbBtnAyuda = new System.Windows.Forms.PictureBox();
@@ -48,6 +47,7 @@ namespace KComicReader
             this.pbBtnLeer = new System.Windows.Forms.PictureBox();
             this.pbBtnEditar = new System.Windows.Forms.PictureBox();
             this.fwpComics = new System.Windows.Forms.FlowLayoutPanel();
+            this.pbAyuda = new System.Windows.Forms.PictureBox();
             this.panelLeftCategorias = new System.Windows.Forms.Panel();
             this.lbCategorias = new System.Windows.Forms.ListBox();
             this.lblSpecCategorias = new System.Windows.Forms.Label();
@@ -88,7 +88,6 @@ namespace KComicReader
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAcciones = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipGeneral = new System.Windows.Forms.ToolTip(this.components);
-            this.pbAyuda = new System.Windows.Forms.PictureBox();
             this.agregarComicBtn = new KComicReader.AgregarComicBtn();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbThemeIcon)).BeginInit();
@@ -100,13 +99,13 @@ namespace KComicReader
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnLeer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnEditar)).BeginInit();
             this.fwpComics.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAyuda)).BeginInit();
             this.panelLeftCategorias.SuspendLayout();
             this.panelRight.SuspendLayout();
             this.panelRightInfo.SuspendLayout();
             this.panelRightVacia.SuspendLayout();
             this.panelLeftSeries.SuspendLayout();
             this.menuStripPrincipal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbAyuda)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -115,7 +114,6 @@ namespace KComicReader
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(140)))), ((int)(((byte)(217)))));
             this.panelTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTop.Controls.Add(this.lblThemeIcon);
             this.panelTop.Controls.Add(this.pbThemeIcon);
             this.panelTop.Controls.Add(this.lblAyuda);
             this.panelTop.Controls.Add(this.pbBtnAyuda);
@@ -126,19 +124,6 @@ namespace KComicReader
             this.panelTop.Size = new System.Drawing.Size(204, 81);
             this.panelTop.TabIndex = 0;
             // 
-            // lblThemeIcon
-            // 
-            this.lblThemeIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblThemeIcon.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.lblThemeIcon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThemeIcon.Location = new System.Drawing.Point(9, 62);
-            this.lblThemeIcon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblThemeIcon.Name = "lblThemeIcon";
-            this.lblThemeIcon.Size = new System.Drawing.Size(68, 19);
-            this.lblThemeIcon.TabIndex = 12;
-            this.lblThemeIcon.Text = "Tema";
-            this.lblThemeIcon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // pbThemeIcon
             // 
             this.pbThemeIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -146,7 +131,7 @@ namespace KComicReader
             this.pbThemeIcon.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pbThemeIcon.Image = ((System.Drawing.Image)(resources.GetObject("pbThemeIcon.Image")));
             this.pbThemeIcon.Location = new System.Drawing.Point(9, 4);
-            this.pbThemeIcon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbThemeIcon.Margin = new System.Windows.Forms.Padding(2);
             this.pbThemeIcon.Name = "pbThemeIcon";
             this.pbThemeIcon.Size = new System.Drawing.Size(68, 57);
             this.pbThemeIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -174,7 +159,7 @@ namespace KComicReader
             this.pbBtnAyuda.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbBtnAyuda.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnAyuda.Image")));
             this.pbBtnAyuda.Location = new System.Drawing.Point(81, 4);
-            this.pbBtnAyuda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbBtnAyuda.Margin = new System.Windows.Forms.Padding(2);
             this.pbBtnAyuda.Name = "pbBtnAyuda";
             this.pbBtnAyuda.Size = new System.Drawing.Size(52, 57);
             this.pbBtnAyuda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -205,7 +190,7 @@ namespace KComicReader
             this.pbBtnConfig.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbBtnConfig.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnConfig.Image")));
             this.pbBtnConfig.Location = new System.Drawing.Point(146, 4);
-            this.pbBtnConfig.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbBtnConfig.Margin = new System.Windows.Forms.Padding(2);
             this.pbBtnConfig.Name = "pbBtnConfig";
             this.pbBtnConfig.Size = new System.Drawing.Size(52, 57);
             this.pbBtnConfig.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -234,7 +219,7 @@ namespace KComicReader
             this.panelCenter.Controls.Add(this.pbBtnEditar);
             this.panelCenter.Controls.Add(this.fwpComics);
             this.panelCenter.Location = new System.Drawing.Point(228, 36);
-            this.panelCenter.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.panelCenter.Margin = new System.Windows.Forms.Padding(10);
             this.panelCenter.Name = "panelCenter";
             this.panelCenter.Size = new System.Drawing.Size(586, 533);
             this.panelCenter.TabIndex = 1;
@@ -244,7 +229,6 @@ namespace KComicReader
             // 
             this.lblLeer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLeer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblLeer.Enabled = false;
             this.lblLeer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeer.Location = new System.Drawing.Point(527, 310);
             this.lblLeer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -260,7 +244,6 @@ namespace KComicReader
             // 
             this.lblEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblEliminar.Enabled = false;
             this.lblEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEliminar.Location = new System.Drawing.Point(526, 227);
             this.lblEliminar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -278,7 +261,7 @@ namespace KComicReader
             this.pbBtnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbBtnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnAgregar.Image")));
             this.pbBtnAgregar.Location = new System.Drawing.Point(527, 3);
-            this.pbBtnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbBtnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.pbBtnAgregar.Name = "pbBtnAgregar";
             this.pbBtnAgregar.Size = new System.Drawing.Size(52, 57);
             this.pbBtnAgregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -307,7 +290,6 @@ namespace KComicReader
             // 
             this.lblEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEditar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblEditar.Enabled = false;
             this.lblEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEditar.Location = new System.Drawing.Point(527, 146);
             this.lblEditar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -324,7 +306,6 @@ namespace KComicReader
             this.pbBtnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbBtnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbBtnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbBtnEliminar.Enabled = false;
             this.pbBtnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnEliminar.Image")));
             this.pbBtnEliminar.Location = new System.Drawing.Point(527, 169);
             this.pbBtnEliminar.Margin = new System.Windows.Forms.Padding(2, 24, 2, 2);
@@ -345,7 +326,6 @@ namespace KComicReader
             this.pbBtnLeer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbBtnLeer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbBtnLeer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbBtnLeer.Enabled = false;
             this.pbBtnLeer.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnLeer.Image")));
             this.pbBtnLeer.Location = new System.Drawing.Point(527, 252);
             this.pbBtnLeer.Margin = new System.Windows.Forms.Padding(2, 24, 2, 2);
@@ -366,7 +346,6 @@ namespace KComicReader
             this.pbBtnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbBtnEditar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbBtnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbBtnEditar.Enabled = false;
             this.pbBtnEditar.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnEditar.Image")));
             this.pbBtnEditar.Location = new System.Drawing.Point(527, 86);
             this.pbBtnEditar.Margin = new System.Windows.Forms.Padding(2, 24, 2, 2);
@@ -397,6 +376,17 @@ namespace KComicReader
             this.fwpComics.Name = "fwpComics";
             this.fwpComics.Size = new System.Drawing.Size(520, 524);
             this.fwpComics.TabIndex = 0;
+            // 
+            // pbAyuda
+            // 
+            this.pbAyuda.Image = ((System.Drawing.Image)(resources.GetObject("pbAyuda.Image")));
+            this.pbAyuda.Location = new System.Drawing.Point(164, 3);
+            this.pbAyuda.Name = "pbAyuda";
+            this.pbAyuda.Size = new System.Drawing.Size(224, 500);
+            this.pbAyuda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbAyuda.TabIndex = 1;
+            this.pbAyuda.TabStop = false;
+            this.pbAyuda.Click += new System.EventHandler(this.PbBtnAgregar_Click);
             // 
             // panelLeftCategorias
             // 
@@ -475,7 +465,7 @@ namespace KComicReader
             this.panelRightInfo.Controls.Add(this.lblInfoEditorialValue);
             this.panelRightInfo.Controls.Add(this.lblInfoEditorial);
             this.panelRightInfo.Location = new System.Drawing.Point(3, 31);
-            this.panelRightInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelRightInfo.Margin = new System.Windows.Forms.Padding(2);
             this.panelRightInfo.Name = "panelRightInfo";
             this.panelRightInfo.Size = new System.Drawing.Size(197, 528);
             this.panelRightInfo.TabIndex = 1;
@@ -700,7 +690,7 @@ namespace KComicReader
             // 
             this.panelRightVacia.Controls.Add(this.lblInfo);
             this.panelRightVacia.Location = new System.Drawing.Point(3, 31);
-            this.panelRightVacia.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelRightVacia.Margin = new System.Windows.Forms.Padding(2);
             this.panelRightVacia.Name = "panelRightVacia";
             this.panelRightVacia.Size = new System.Drawing.Size(196, 576);
             this.panelRightVacia.TabIndex = 11;
@@ -876,17 +866,6 @@ namespace KComicReader
             this.toolTipGeneral.AutomaticDelay = 700;
             this.toolTipGeneral.IsBalloon = true;
             // 
-            // pbAyuda
-            // 
-            this.pbAyuda.Image = ((System.Drawing.Image)(resources.GetObject("pbAyuda.Image")));
-            this.pbAyuda.Location = new System.Drawing.Point(164, 3);
-            this.pbAyuda.Name = "pbAyuda";
-            this.pbAyuda.Size = new System.Drawing.Size(224, 500);
-            this.pbAyuda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbAyuda.TabIndex = 1;
-            this.pbAyuda.TabStop = false;
-            this.pbAyuda.Click += new System.EventHandler(this.PbBtnAgregar_Click);
-            // 
             // agregarComicBtn
             // 
             this.agregarComicBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -935,6 +914,7 @@ namespace KComicReader
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnLeer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnEditar)).EndInit();
             this.fwpComics.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbAyuda)).EndInit();
             this.panelLeftCategorias.ResumeLayout(false);
             this.panelRight.ResumeLayout(false);
             this.panelRightInfo.ResumeLayout(false);
@@ -942,7 +922,6 @@ namespace KComicReader
             this.panelLeftSeries.ResumeLayout(false);
             this.menuStripPrincipal.ResumeLayout(false);
             this.menuStripPrincipal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbAyuda)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -998,7 +977,6 @@ namespace KComicReader
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemConfiguraciónBasica;
         private System.Windows.Forms.Label lblAyuda;
         private System.Windows.Forms.PictureBox pbBtnAyuda;
-        private System.Windows.Forms.Label lblThemeIcon;
         private System.Windows.Forms.PictureBox pbThemeIcon;
         private System.Windows.Forms.Label lblInfoNumero;
         private System.Windows.Forms.Label lblInfoNumeroValue;

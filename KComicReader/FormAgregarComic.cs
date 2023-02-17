@@ -121,7 +121,7 @@ namespace KComicReader
 
                 //Defino las propiedades del cómic si los valores no son nulos.
                 comic.Titulo = tbTitulo.Text;
-                comic.Editorial = cbEditorial.Text;
+                comic.Editorial = cbEditorial.Text; 
                 comic.EditorialID = (int)cbEditorial.SelectedValue;
                 comic.Serie = cbSerie.Text;
                 comic.SerieID = (int)cbSerie.SelectedValue;
