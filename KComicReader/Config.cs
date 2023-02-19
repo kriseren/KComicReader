@@ -53,25 +53,35 @@ namespace KComicReader
         /// </summary>
         public static bool LeyendoComic { get; set; }
 
+        /// <summary>
+        /// Define la ruta que se deberá seguir para acceder a los recursos como imágenes y scripts.
+        /// </summary>
+        public static string Recursos = Path.Combine(Application.StartupPath, "Recursos");
+
 
         /// <summary>
         /// Método que inicia el servidor de MySQL dentro de XAMPP.
         /// </summary>
         public static void IniciaMySQL()
         {
-            //Inicia el servidor de MYSQL.
-            try
+            if(File.Exists("C:\\xampp\\mysql\\bin\\mysqld.exe"))
             {
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.FileName = "cmd.exe";
-                startInfo.Arguments = "/C C:\\xampp\\mysql\\bin\\mysqld";
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                Process.Start(startInfo);
+                //Inicia el servidor de MYSQL.
+                try
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.FileName = "cmd.exe";
+                    startInfo.Arguments = "/C C:\\xampp\\mysql\\bin\\mysqld";
+                    startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    Process.Start(startInfo);
+                }
+                catch (Win32Exception)
+                {
+                    MessageBox.Show("Ha ocurrido un error al iniciar MySQL.\nSeguramente sea debido a que la ruta de instalación de XAMPP no es la correcta.", "Error al iniciar MySQL", MessageBoxButtons.OK);
+                }
             }
-            catch (Win32Exception)
-            {
+            else
                 MessageBox.Show("Ha ocurrido un error al iniciar MySQL.\nSeguramente sea debido a que la ruta de instalación de XAMPP no es la correcta.", "Error al iniciar MySQL", MessageBoxButtons.OK);
-            }
         }
 
         /// <summary>
@@ -165,14 +175,14 @@ namespace KComicReader
                         Tema[2] = reader.GetString("color3");
                         try
                         {
-                            Hover = Image.FromFile("..\\..\\imgs\\hover\\" + reader.GetString("seleccionador"));
-                            ThemeIcon = Image.FromFile("..\\..\\imgs\\themeIcons\\" + reader.GetString("seleccionador"));
+                            Hover = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "hover", reader.GetString("seleccionador")));
+                            ThemeIcon = Image.FromFile(Path.Combine(Recursos, "imgs", "themeIcons", reader.GetString("seleccionador")));
 
                         }
                         catch (IOException)
                         {
-                            Hover = Image.FromFile("..\\..\\imgs\\hover\\1.png");
-                            ThemeIcon = Image.FromFile("..\\..\\imgs\\themeicons\\1.png");
+                            Hover = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "hover", "1.png"));
+                            ThemeIcon = Image.FromFile(Path.Combine(Config.Recursos, "themeIcons", "hover", "1.png"));
                         }
                     }
                     catch (MySqlException)

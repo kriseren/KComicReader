@@ -3,6 +3,7 @@ using SharpCompress.Archives;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Image = System.Drawing.Image;
@@ -163,7 +164,7 @@ namespace KComicReader
             }
 
             //Defino la imagen del botón del marcador.
-            btnMarcador.Image = Image.FromFile(@"..\..\imgs\icons\mark.png");
+            btnMarcador.Image = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "icons", "mark.png"));
         }
 
         /// <summary>
@@ -187,12 +188,12 @@ namespace KComicReader
             //Cambia la imagen dependiendo del zoom.
             if (zoomOn)
             {
-                btnZoom.Image = Image.FromFile(@"..\..\imgs\icons\zoomOut.png");
+                btnZoom.Image = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "icons", "zoomOut.png"));
                 ZoomIn();
             }
             else
             {
-                btnZoom.Image = Image.FromFile(@"..\..\imgs\icons\zoomIn.png");
+                btnZoom.Image = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "icons", "zoomIn.png"));
                 ZoomOut();
             }
         }
@@ -249,7 +250,8 @@ namespace KComicReader
         private void Marcar()
         {
             //Defino la imagen.
-            btnMarcador.Image = Image.FromFile(@"..\..\imgs\icons\marked.png");
+            btnMarcador.Image = Image.FromFile(@"
+\icons\marked.png");
             //Defino la página actual y la almaceno en la base de datos.
             comic.NumPaginaActual = numPag;
             using (MySqlConnection connection = DataBaseConnectivity.GetConnection())

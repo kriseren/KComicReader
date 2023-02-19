@@ -175,7 +175,7 @@ namespace KComicReader
                 }
                 catch (ArgumentException)
                 {
-                    imagen = Image.FromFile(@"..\..\imgs\icons\comicCover.jpg");
+                    imagen = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "icons", "comicCover.png"));
                     MessageBox.Show("Ha ocurrido un error al abrir el archivo. Por favor, selecciona otro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
