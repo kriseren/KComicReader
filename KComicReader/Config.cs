@@ -175,14 +175,13 @@ namespace KComicReader
                         Tema[2] = reader.GetString("color3");
                         try
                         {
-                            Hover = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "hover", reader.GetString("seleccionador")));
                             ThemeIcon = Image.FromFile(Path.Combine(Recursos, "imgs", "themeIcons", reader.GetString("seleccionador")));
-
+                            Hover = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "hover", reader.GetString("seleccionador")));
                         }
                         catch (IOException)
                         {
-                            Hover = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "hover", "1.png"));
-                            ThemeIcon = Image.FromFile(Path.Combine(Config.Recursos, "themeIcons", "hover", "1.png"));
+                            Hover = Image.FromFile(Path.Combine(Recursos, "imgs", "hover", "1.png"));
+                            ThemeIcon = Image.FromFile(Path.Combine(Recursos, "imgs", "themeIcons", "1.png"));
                         }
                     }
                     catch (MySqlException)

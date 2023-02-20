@@ -31,7 +31,7 @@ namespace KComicReader
                     {
                         connection.Open();
                         //Creo el script cargando el fichero y lo ejecuto.
-                        MySqlScript script = new MySqlScript(connection, File.ReadAllText(Config.Recursos+@"scripts\scriptCreacion.sql"));
+                        MySqlScript script = new MySqlScript(connection, File.ReadAllText(Path.Combine(Config.Recursos, "scripts", "scriptCreacion.sql")));
                         script.Execute();
                     }
                     catch (MySqlException)

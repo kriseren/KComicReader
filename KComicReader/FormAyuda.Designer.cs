@@ -49,6 +49,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblTitAjustes = new System.Windows.Forms.Label();
             this.tabPageAtajos = new System.Windows.Forms.TabPage();
+            this.lblTitAtajos = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabPageEditar = new System.Windows.Forms.TabPage();
             this.pbEditar = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,8 +64,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lblTitLeer = new System.Windows.Forms.Label();
             this.panelContenido = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblTitAtajos = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbImg)).BeginInit();
             this.panelLeftApartados.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -88,7 +88,7 @@
             this.lblBienvenidaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBienvenidaTitulo.BackColor = System.Drawing.Color.Transparent;
-            this.lblBienvenidaTitulo.Font = new System.Drawing.Font("Bahnschrift Condensed", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBienvenidaTitulo.Font = new System.Drawing.Font("Classic Comic Medium", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBienvenidaTitulo.Location = new System.Drawing.Point(13, 9);
             this.lblBienvenidaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBienvenidaTitulo.Name = "lblBienvenidaTitulo";
@@ -168,7 +168,7 @@
             // 
             this.lblSpecApartados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(214)))), ((int)(((byte)(255)))));
             this.lblSpecApartados.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblSpecApartados.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpecApartados.Font = new System.Drawing.Font("Classic Comic Medium", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpecApartados.Location = new System.Drawing.Point(4, 4);
             this.lblSpecApartados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSpecApartados.Name = "lblSpecApartados";
@@ -241,7 +241,7 @@
             this.lblTitInicio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitInicio.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitInicio.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitInicio.Font = new System.Drawing.Font("Classic Comic Medium", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitInicio.Location = new System.Drawing.Point(4, 2);
             this.lblTitInicio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitInicio.Name = "lblTitInicio";
@@ -283,7 +283,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(5, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1288, 263);
+            this.label1.Size = new System.Drawing.Size(1287, 263);
             this.label1.TabIndex = 51;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -292,11 +292,11 @@
             this.lblTitAgregarComic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitAgregarComic.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitAgregarComic.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitAgregarComic.Font = new System.Drawing.Font("Classic Comic Medium", 25.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitAgregarComic.Location = new System.Drawing.Point(0, 0);
             this.lblTitAgregarComic.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitAgregarComic.Name = "lblTitAgregarComic";
-            this.lblTitAgregarComic.Size = new System.Drawing.Size(1292, 50);
+            this.lblTitAgregarComic.Size = new System.Drawing.Size(1291, 50);
             this.lblTitAgregarComic.TabIndex = 50;
             this.lblTitAgregarComic.Text = "AGREGAR UN NUEVO CÓMIC";
             // 
@@ -335,7 +335,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(5, 69);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(964, 214);
+            this.label3.Size = new System.Drawing.Size(943, 214);
             this.label3.TabIndex = 49;
             this.label3.Text = resources.GetString("label3.Text");
             // 
@@ -344,11 +344,11 @@
             this.lblTitAjustes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitAjustes.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitAjustes.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitAjustes.Font = new System.Drawing.Font("Classic Comic Medium", 25.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitAjustes.Location = new System.Drawing.Point(4, 2);
             this.lblTitAjustes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitAjustes.Name = "lblTitAjustes";
-            this.lblTitAjustes.Size = new System.Drawing.Size(968, 50);
+            this.lblTitAjustes.Size = new System.Drawing.Size(947, 50);
             this.lblTitAjustes.TabIndex = 48;
             this.lblTitAjustes.Text = "AJUSTES";
             // 
@@ -365,6 +365,30 @@
             this.tabPageAtajos.TabIndex = 3;
             this.tabPageAtajos.Text = "tabPage3";
             this.tabPageAtajos.UseVisualStyleBackColor = true;
+            // 
+            // lblTitAtajos
+            // 
+            this.lblTitAtajos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitAtajos.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitAtajos.Font = new System.Drawing.Font("Classic Comic Medium", 25.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitAtajos.Location = new System.Drawing.Point(4, 2);
+            this.lblTitAtajos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitAtajos.Name = "lblTitAtajos";
+            this.lblTitAtajos.Size = new System.Drawing.Size(1013, 50);
+            this.lblTitAtajos.TabIndex = 50;
+            this.lblTitAtajos.Text = "ATAJOS DE TECLADO";
+            // 
+            // label2
+            // 
+            this.label2.AutoEllipsis = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(1040, 575);
+            this.label2.TabIndex = 51;
+            this.label2.Text = resources.GetString("label2.Text");
             // 
             // tabPageEditar
             // 
@@ -401,7 +425,7 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(8, 70);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(1318, 1113);
+            this.label5.Size = new System.Drawing.Size(1319, 1477);
             this.label5.TabIndex = 51;
             this.label5.Text = resources.GetString("label5.Text");
             // 
@@ -410,11 +434,11 @@
             this.lblTitEditar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitEditar.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitEditar.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitEditar.Font = new System.Drawing.Font("Classic Comic Medium", 25.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitEditar.Location = new System.Drawing.Point(4, 2);
             this.lblTitEditar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitEditar.Name = "lblTitEditar";
-            this.lblTitEditar.Size = new System.Drawing.Size(1320, 50);
+            this.lblTitEditar.Size = new System.Drawing.Size(1321, 50);
             this.lblTitEditar.TabIndex = 50;
             this.lblTitEditar.Text = "EDITAR UN CÓMIC";
             // 
@@ -453,7 +477,7 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(8, 68);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(1331, 1523);
+            this.label7.Size = new System.Drawing.Size(1332, 1893);
             this.label7.TabIndex = 51;
             this.label7.Text = resources.GetString("label7.Text");
             // 
@@ -462,11 +486,11 @@
             this.lblTitEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitEliminar.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitEliminar.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitEliminar.Font = new System.Drawing.Font("Classic Comic Medium", 25.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitEliminar.Location = new System.Drawing.Point(4, 2);
             this.lblTitEliminar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitEliminar.Name = "lblTitEliminar";
-            this.lblTitEliminar.Size = new System.Drawing.Size(1120, 50);
+            this.lblTitEliminar.Size = new System.Drawing.Size(1121, 50);
             this.lblTitEliminar.TabIndex = 50;
             this.lblTitEliminar.Text = "ELIMINAR UN CÓMIC";
             // 
@@ -505,7 +529,7 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(8, 68);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(1331, 1329);
+            this.label9.Size = new System.Drawing.Size(1332, 1655);
             this.label9.TabIndex = 51;
             this.label9.Text = resources.GetString("label9.Text");
             // 
@@ -514,11 +538,11 @@
             this.lblTitLeer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitLeer.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitLeer.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitLeer.Font = new System.Drawing.Font("Classic Comic Medium", 25.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitLeer.Location = new System.Drawing.Point(4, 2);
             this.lblTitLeer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitLeer.Name = "lblTitLeer";
-            this.lblTitLeer.Size = new System.Drawing.Size(1120, 50);
+            this.lblTitLeer.Size = new System.Drawing.Size(1121, 50);
             this.lblTitLeer.TabIndex = 50;
             this.lblTitLeer.Text = "LEER UN CÓMIC";
             // 
@@ -534,30 +558,6 @@
             this.panelContenido.Name = "panelContenido";
             this.panelContenido.Size = new System.Drawing.Size(1082, 508);
             this.panelContenido.TabIndex = 43;
-            // 
-            // label2
-            // 
-            this.label2.AutoEllipsis = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1040, 575);
-            this.label2.TabIndex = 51;
-            this.label2.Text = resources.GetString("label2.Text");
-            // 
-            // lblTitAtajos
-            // 
-            this.lblTitAtajos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitAtajos.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitAtajos.Font = new System.Drawing.Font("Bahnschrift Condensed", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitAtajos.Location = new System.Drawing.Point(4, 2);
-            this.lblTitAtajos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTitAtajos.Name = "lblTitAtajos";
-            this.lblTitAtajos.Size = new System.Drawing.Size(1034, 50);
-            this.lblTitAtajos.TabIndex = 50;
-            this.lblTitAtajos.Text = "ATAJOS DE TECLADO";
             // 
             // FormAyuda
             // 

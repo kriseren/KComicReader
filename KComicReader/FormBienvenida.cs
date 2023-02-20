@@ -51,7 +51,7 @@ namespace KComicReader
                 c.BackColor = ColorTranslator.FromHtml(Tema[2]);
             }
             //Si el tema es oscuro cambia el color del label y el checkbox.
-            if (Config.Tema_id == 8)
+            if (Config.Tema_id == 8 || Config.Tema_id == 11)
             {
                 checkBoxMostrarInicio.ForeColor = ColorTranslator.FromHtml(Tema[2]);
                 lblBienvenidaTitulo.ForeColor = ColorTranslator.FromHtml(Tema[2]);

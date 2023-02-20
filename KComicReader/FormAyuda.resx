@@ -121,7 +121,7 @@
   <data name="pbImg.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAIQZSURBVHhe7d0F
+        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAIQZSURBVHhe7d0F
         2FVV2gZgJT66u7u7U5BOBZSUlgalEelO6Q4BCZFuQQUEpKQVsRBnRp1Rxx4LA13/+54Z/D/ggW+fHSef
         57ruf/4L4Zy199lnv+vsvfZa9zEMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAM
         wzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAMwzAM
@@ -698,7 +698,7 @@ Pulsa en los apartados de la izquierda para visualizarlos ;)</value>
   <data name="pbAgregar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB4AAAAQQCAYAAAADLEYYAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAA/7JJREFUeF7snQecFOX5x08FG/YYSzS2mKLGEhXDafxr7FFjjDVirAjG3rtiL4nl
+        wQAADsEBuJFr7QAA/7JJREFUeF7snQecFOX5x08FG/YYSzS2mKLGEhXDafxr7FFjjDVirAjG3rtiL4nl
         ULHdAUevKv2kK6ioNEEBhaMpCEgVBAuW57/P7M7ezOyzu7N7u3d7t9/v5/OV2533feedd2f2/Mzv3ndK
         BAAAAAAAABwWL16M9WjJnZ80aK1jwroVAAAAAAAARAiAAQAAAAAAAAAAAAAAAAAaCQTAAAAAAAAAAAAA
         AAAAAACNBF8AfN8998g9t98u90f+De1998VqAwAAAAAAAAAAAAAAAABAfeIPgO+6S9o98bg8fN6FcsdZ
@@ -1855,7 +1855,7 @@ Una vez tengas descargado el archivo, deberás realizar alguna de las siguientes
   <data name="pbAjustes.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAeMAAAGJCAYAAAC5GFsEAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAP8pJREFUeF7t3Qm8ZUVh5/GXaGIyZlGzxySCEu0BZYAnxjQSxxBiI5iRrVseCGmV
+        wAAADsABataJCQAAP8pJREFUeF7t3Qm8ZUVh5/GXaGIyZlGzxySCEu0BZYAnxjQSxxBiI5iRrVseCGmV
         lq2RRdZufN10szRGNgW1G+Q1CGIr0AiiuD8NQRzQ0UgcbWOCxiSTZBLNRJOZTFKp5dQ5VXWqznKXc+59
         /avP5/vh3VPLqVP3vvq/c95rnTnrrLMEAADojw5jCoVCoVAo/RTCmEKhUCiUngthTKFQKBRKz4UwplAo
         FAql50IYUygUCoXScyGMKRQKhULpubQK40vWrRPrzj9fzMv/NnbJJVlvCoVCoVAosdIujC+6SFx75RVi
@@ -2167,7 +2167,7 @@ Dentro del lector de un cómic, puedes realizar las siguientes acciones mediante
   <data name="pbEditar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB4AAAAQQCAYAAAADLEYYAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAA/7JJREFUeF7snQV8FMcCxtu+Uoic5i7u7gmSQHB3d3d3d/fiTotL8eJStGhxL1Lc
+        wQAADsEBuJFr7QAA/7JJREFUeF7snQV8FMcCxtu+Uoic5i7u7gmSQHB3d3d3d/fiTotL8eJStGhxL1Lc
         3VoK9fZ7Oxsu3CWbkEACAb7/+/17d7szs7N7e5c8vszMJyCEEEIIIYQQInP79m36Dv2k+9n3WqVzom9X
         QgghhBBCCCEAA2BCCCGEEEIIIYQQQgghhBBCCPlAYABMCCGEEEIIIYQQQgghhBBCCCEfCBYBcJ9evdCr
         a1f0kx6TbZ8+L2oTQgghhBBCCCGEEEIIIYQQQgh5l1gGwD16YNzwYRhUtRa6VayKqhWKoH+virJdOjTG
@@ -5145,7 +5145,7 @@ Una vez tengas seleccionado el cómic, deberás realizar alguna de las siguiente
   <data name="pbEliminar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB4AAAAQQCAYAAAADLEYYAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAA/7JJREFUeF7snQV8FEfDxtu+bSFymru4uycQEgju7u4uxd29aHF3p3hxp1CsuFOk
+        wQAADsEBuJFr7QAA/7JJREFUeF7snQV8FEfDxtu+bSFymru4uycQEgju7u4uxd29aHF3p3hxp1CsuFOk
         OMWttKW01J93Z5MLd8kmJJBAgOf//f7v3e3OzM7KhXx9MjMfgBBCCCGEEEKIzJ07d+gb9IMe599qlc6J
         vl4JIYQQQgghhAAMgAkhhBBCCCGEEEIIIYQQQggh5B2BATAhhBBCCCGEEEIIIYQQQgghhLwjWATAfXv3
         Ru9u3dBfek21ffvG1yaEEEIIIYQQQgghhBBCCCGEEPImsQyAe/bEuOHDMKh6HXSvXB3VKxXDgN6VZbt2
@@ -8127,7 +8127,7 @@ Una vez tengas seleccionado el cómic, deberás realizar alguna de las siguiente
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB4AAAAQQCAYAAAADLEYYAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAA/7JJREFUeF7snQV8FEfDxtu+bSFymru4uycQEgju7u4uxd29aHF3p3hxp1CsuFOk
+        wQAADsEBuJFr7QAA/7JJREFUeF7snQV8FEfDxtu+bSFymru4uycQEgju7u4uxd29aHF3p3hxp1CsuFOk
         OMWttKW01J93Z5MLd8kmJJBAgOf//f7v3e3OzM7KhXx9MjMfgBBCCCGEEEKIzJ07d+gb9IMe599qlc6J
         vl4JIYQQQgghhAAMgAkhhBBCCCGEEEIIIYQQQggh5B2BATAhhBBCCCGEEEIIIYQQQgghhLwjWATAfXv3
         Ru9u3dBfek21ffvG1yaEEEIIIYQQQgghhBBCCCGEEPImsQyAe/bEuOHDMKh6HXSvXB3VKxXDgN6VZbt2

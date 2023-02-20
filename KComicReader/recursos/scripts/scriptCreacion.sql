@@ -128,7 +128,8 @@ INSERT INTO TEMAS (nombre, color1, color2, color3,seleccionador,icono) VALUES
 ('Lobezno', '#074562', '#1985AD', '#FBC543', '7.png', '7.png'),
 ('Batman', '#000000', '#200D08', '#FBF0A3', '8.png', '8.png'),
 ('One Piece', '#0563B1', '#00B6EE', '#DC7B47', '9.png', '9.png'),
-('Joker', '#554278', '#9E66B1', '#95CE60', '10.png', '10.png');
+('Joker', '#554278', '#9E66B1', '#95CE60', '10.png', '10.png'),
+('Flash', '#AD062B', '#C10834', '#FAF0B8', '11.png', '11.png');
 
 
 /*INSERCIÓN DE LOS AJUSTES*/

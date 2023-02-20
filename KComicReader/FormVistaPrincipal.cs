@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -122,7 +123,7 @@ namespace KComicReader
             }
             //Defino el color del fondo para el cómic seleccionado dependiendo del tema.
             comicSeleccionado.BackColor = ColorTranslator.FromHtml(Config.Tema[1]);
-            if (Config.Tema_id == 8)
+            if (Config.Tema_id == 8 || Config.Tema_id == 11)
                 comicSeleccionado.ForeColor = ColorTranslator.FromHtml(Config.Tema[2]);
 
             //Activo o desactivo los botones de acciones.
@@ -185,6 +186,13 @@ namespace KComicReader
         /// <param name="e">Los argumentos del evento.</param>
         private void FormVistaPrincipal_Load(object sender, EventArgs e)
         {
+            //Cargo en memoria la fuente del programa.
+            var fontData = Properties.Resources.ClassicComic_Medium;
+            var privateFonts = new PrivateFontCollection();
+            IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocHGlobal(fontData.Length);
+            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+            privateFonts.AddMemoryFont(fontPtr, fontData.Length);
+
             //Defino la configuración y el eventHandler.
             Config.DefineConfiguracion();
             //Obtengo todos los comics dados de alta en la base de datos.
@@ -640,7 +648,7 @@ namespace KComicReader
                             co.BackColor = ColorTranslator.FromHtml(Tema[1]);
 
                             //Si el tema es alguno oscuro.
-                            if (Config.Tema_id == 8)
+                            if(Config.Tema_id == 8 || Config.Tema_id == 11)
                             {
                                 co.ForeColor = ColorTranslator.FromHtml(Tema[2]);
                             }
@@ -660,7 +668,7 @@ namespace KComicReader
                 {
                     comicSeleccionado.BackColor = ColorTranslator.FromHtml(Config.Tema[1]);
                     //Si el tema es alguno oscuro.
-                    if (Config.Tema_id == 8)
+                    if (Config.Tema_id == 8 || Config.Tema_id == 11)
                         comicSeleccionado.ForeColor = ColorTranslator.FromHtml(Config.Tema[2]);
                     else
                         comicSeleccionado.ForeColor = Color.Black;

@@ -44,7 +44,7 @@
             this.tbNombre.Location = new System.Drawing.Point(145, 94);
             this.tbNombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 2);
             this.tbNombre.Name = "tbNombre";
-            this.tbNombre.Size = new System.Drawing.Size(247, 28);
+            this.tbNombre.Size = new System.Drawing.Size(314, 28);
             this.tbNombre.TabIndex = 13;
             this.toolTipGeneral.SetToolTip(this.tbNombre, "Escribe aquí el nombre de la nueva editorial.");
             // 
@@ -63,11 +63,11 @@
             // lblTituloFormulario
             // 
             this.lblTituloFormulario.BackColor = System.Drawing.Color.Transparent;
-            this.lblTituloFormulario.Font = new System.Drawing.Font("Bahnschrift Condensed", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloFormulario.Font = new System.Drawing.Font("Classic Comic Medium", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloFormulario.Location = new System.Drawing.Point(13, 9);
             this.lblTituloFormulario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTituloFormulario.Name = "lblTituloFormulario";
-            this.lblTituloFormulario.Size = new System.Drawing.Size(605, 71);
+            this.lblTituloFormulario.Size = new System.Drawing.Size(621, 71);
             this.lblTituloFormulario.TabIndex = 12;
             this.lblTituloFormulario.Text = "AGREGAR UNA NUEVA EDITORIAL";
             this.lblTituloFormulario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -78,7 +78,7 @@
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(462, 144);
+            this.btnCancelar.Location = new System.Drawing.Point(517, 144);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(117, 33);
@@ -92,7 +92,7 @@
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(336, 144);
+            this.btnAgregar.Location = new System.Drawing.Point(391, 144);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(117, 33);
@@ -111,7 +111,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(592, 190);
+            this.ClientSize = new System.Drawing.Size(647, 190);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.tbNombre);

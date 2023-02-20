@@ -49,7 +49,7 @@
             // lblTituloFormulario
             // 
             this.lblTituloFormulario.BackColor = System.Drawing.Color.Transparent;
-            this.lblTituloFormulario.Font = new System.Drawing.Font("Bahnschrift Condensed", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloFormulario.Font = new System.Drawing.Font("Classic Comic Medium", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloFormulario.Location = new System.Drawing.Point(13, 9);
             this.lblTituloFormulario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTituloFormulario.Name = "lblTituloFormulario";
@@ -65,7 +65,7 @@
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Location = new System.Drawing.Point(511, 399);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(117, 33);
             this.btnCancelar.TabIndex = 16;
@@ -79,7 +79,7 @@
             this.btnGuardar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Location = new System.Drawing.Point(385, 399);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(117, 33);
             this.btnGuardar.TabIndex = 15;
@@ -145,7 +145,7 @@
             // lblTituloInstalacion
             // 
             this.lblTituloInstalacion.BackColor = System.Drawing.Color.Transparent;
-            this.lblTituloInstalacion.Font = new System.Drawing.Font("Bahnschrift Condensed", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloInstalacion.Font = new System.Drawing.Font("Classic Comic Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloInstalacion.Location = new System.Drawing.Point(21, 82);
             this.lblTituloInstalacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTituloInstalacion.Name = "lblTituloInstalacion";
@@ -157,7 +157,7 @@
             // lblTituloTema
             // 
             this.lblTituloTema.BackColor = System.Drawing.Color.Transparent;
-            this.lblTituloTema.Font = new System.Drawing.Font("Bahnschrift Condensed", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloTema.Font = new System.Drawing.Font("Classic Comic Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloTema.Location = new System.Drawing.Point(21, 182);
             this.lblTituloTema.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTituloTema.Name = "lblTituloTema";
@@ -172,7 +172,7 @@
             this.cbTema.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTema.FormattingEnabled = true;
             this.cbTema.Location = new System.Drawing.Point(371, 231);
-            this.cbTema.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTema.Margin = new System.Windows.Forms.Padding(4);
             this.cbTema.Name = "cbTema";
             this.cbTema.Size = new System.Drawing.Size(212, 30);
             this.cbTema.TabIndex = 35;
@@ -181,7 +181,7 @@
             // lblTituloExtra
             // 
             this.lblTituloExtra.BackColor = System.Drawing.Color.Transparent;
-            this.lblTituloExtra.Font = new System.Drawing.Font("Bahnschrift Condensed", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloExtra.Font = new System.Drawing.Font("Classic Comic Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloExtra.Location = new System.Drawing.Point(21, 278);
             this.lblTituloExtra.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTituloExtra.Name = "lblTituloExtra";
@@ -197,7 +197,7 @@
             this.checkBoxMostrarInicio.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBoxMostrarInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxMostrarInicio.Location = new System.Drawing.Point(24, 331);
-            this.checkBoxMostrarInicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxMostrarInicio.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxMostrarInicio.Name = "checkBoxMostrarInicio";
             this.checkBoxMostrarInicio.Size = new System.Drawing.Size(377, 28);
             this.checkBoxMostrarInicio.TabIndex = 38;

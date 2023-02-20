@@ -85,7 +85,7 @@ namespace KComicReader
                 ColorTranslator.FromHtml(Tema[0]), ColorTranslator.FromHtml(Tema[1]), 90f);
                 e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
                 //Si el tema es oscuro se cambia el color de la fuente.
-                if (Config.Tema_id == 8)
+                if (Config.Tema_id == 8 || Config.Tema_id == 11)
                 {
                     foreach (Control c in this.Controls.OfType<Label>().ToList())
                         c.ForeColor = ColorTranslator.FromHtml(Tema[2]);

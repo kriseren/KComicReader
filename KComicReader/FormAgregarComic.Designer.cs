@@ -65,11 +65,11 @@ namespace KComicReader
             // lblTituloFormulario
             // 
             this.lblTituloFormulario.BackColor = System.Drawing.Color.Transparent;
-            this.lblTituloFormulario.Font = new System.Drawing.Font("Bahnschrift Condensed", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloFormulario.Font = new System.Drawing.Font("Classic Comic Medium", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloFormulario.Location = new System.Drawing.Point(15, 11);
             this.lblTituloFormulario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTituloFormulario.Name = "lblTituloFormulario";
-            this.lblTituloFormulario.Size = new System.Drawing.Size(643, 71);
+            this.lblTituloFormulario.Size = new System.Drawing.Size(783, 71);
             this.lblTituloFormulario.TabIndex = 0;
             this.lblTituloFormulario.Text = "AGREGAR UN NUEVO CÓMIC";
             this.lblTituloFormulario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -79,7 +79,7 @@ namespace KComicReader
             this.pbPortada.BackColor = System.Drawing.Color.Transparent;
             this.pbPortada.Image = ((System.Drawing.Image)(resources.GetObject("pbPortada.Image")));
             this.pbPortada.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbPortada.InitialImage")));
-            this.pbPortada.Location = new System.Drawing.Point(505, 86);
+            this.pbPortada.Location = new System.Drawing.Point(546, 84);
             this.pbPortada.Margin = new System.Windows.Forms.Padding(4);
             this.pbPortada.Name = "pbPortada";
             this.pbPortada.Size = new System.Drawing.Size(252, 390);
@@ -95,7 +95,7 @@ namespace KComicReader
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(517, 510);
+            this.btnAgregar.Location = new System.Drawing.Point(555, 510);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(117, 33);
@@ -214,7 +214,7 @@ namespace KComicReader
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(643, 510);
+            this.btnCancelar.Location = new System.Drawing.Point(681, 510);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(117, 33);
@@ -381,7 +381,7 @@ namespace KComicReader
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(771, 555);
+            this.ClientSize = new System.Drawing.Size(809, 555);
             this.Controls.Add(this.btnAgregarSerie);
             this.Controls.Add(this.btnAgregarEditorial);
             this.Controls.Add(this.nbNumero);

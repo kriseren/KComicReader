@@ -56,7 +56,7 @@ namespace KComicReader
                             co.BackColor = ColorTranslator.FromHtml(Tema[1]);
 
                             //Si el tema es alguno oscuro.
-                            if (Config.Tema_id == 8)
+                            if (Config.Tema_id == 8 || Config.Tema_id == 11)
                             {
                                 co.ForeColor = ColorTranslator.FromHtml(Tema[2]);
                             }

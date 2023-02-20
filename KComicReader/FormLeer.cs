@@ -259,8 +259,7 @@ namespace KComicReader
         private void Marcar()
         {
             //Defino la imagen.
-            btnMarcador.Image = Image.FromFile(@"
-\icons\marked.png");
+            btnMarcador.Image = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "icons", "marked.png"));
             //Defino la página actual y la almaceno en la base de datos.
             comic.NumPaginaActual = numPag;
             using (MySqlConnection connection = DataBaseConnectivity.GetConnection())
@@ -324,7 +323,7 @@ namespace KComicReader
                 e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
 
                 //Si el tema es oscuro se define un color de fondo para el panel de los botones.
-                if (Config.Tema_id == 8)
+                if (Config.Tema_id == 8 || Config.Tema_id == 11)
                 {
                     panelButtons.BackColor = ColorTranslator.FromHtml(Tema[2]);
                 }
