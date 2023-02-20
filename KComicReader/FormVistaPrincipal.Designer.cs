@@ -47,6 +47,7 @@ namespace KComicReader
             this.pbBtnLeer = new System.Windows.Forms.PictureBox();
             this.pbBtnEditar = new System.Windows.Forms.PictureBox();
             this.fwpComics = new System.Windows.Forms.FlowLayoutPanel();
+            this.agregarComicBtn = new KComicReader.AgregarComicBtn();
             this.pbAyuda = new System.Windows.Forms.PictureBox();
             this.panelLeftCategorias = new System.Windows.Forms.Panel();
             this.lbCategorias = new System.Windows.Forms.ListBox();
@@ -88,7 +89,6 @@ namespace KComicReader
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAcciones = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipGeneral = new System.Windows.Forms.ToolTip(this.components);
-            this.agregarComicBtn = new KComicReader.AgregarComicBtn();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbThemeIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBtnAyuda)).BeginInit();
@@ -377,6 +377,22 @@ namespace KComicReader
             this.fwpComics.Size = new System.Drawing.Size(520, 524);
             this.fwpComics.TabIndex = 0;
             // 
+            // agregarComicBtn
+            // 
+            this.agregarComicBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.agregarComicBtn.BackColor = System.Drawing.Color.Transparent;
+            this.agregarComicBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.agregarComicBtn.EventoClick = null;
+            this.agregarComicBtn.Id = 0;
+            this.agregarComicBtn.Location = new System.Drawing.Point(4, 4);
+            this.agregarComicBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.agregarComicBtn.Name = "agregarComicBtn";
+            this.agregarComicBtn.Portada = ((System.Drawing.Image)(resources.GetObject("agregarComicBtn.Portada")));
+            this.agregarComicBtn.Size = new System.Drawing.Size(153, 281);
+            this.agregarComicBtn.TabIndex = 0;
+            this.agregarComicBtn.Titulo = "Agregar un nuevo cómic";
+            this.toolTipGeneral.SetToolTip(this.agregarComicBtn, "Haz click para agregar un nuevo cómic.");
+            // 
             // pbAyuda
             // 
             this.pbAyuda.Image = ((System.Drawing.Image)(resources.GetObject("pbAyuda.Image")));
@@ -413,7 +429,6 @@ namespace KComicReader
             this.lbCategorias.Location = new System.Drawing.Point(3, 32);
             this.lbCategorias.Name = "lbCategorias";
             this.lbCategorias.Size = new System.Drawing.Size(197, 180);
-            this.lbCategorias.Sorted = true;
             this.lbCategorias.TabIndex = 4;
             this.toolTipGeneral.SetToolTip(this.lbCategorias, "Haz click para filtrar los cómics por categoría.");
             this.lbCategorias.Click += new System.EventHandler(this.LbCategorias_Click);
@@ -865,22 +880,6 @@ namespace KComicReader
             // 
             this.toolTipGeneral.AutomaticDelay = 700;
             this.toolTipGeneral.IsBalloon = true;
-            // 
-            // agregarComicBtn
-            // 
-            this.agregarComicBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.agregarComicBtn.BackColor = System.Drawing.Color.Transparent;
-            this.agregarComicBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.agregarComicBtn.EventoClick = null;
-            this.agregarComicBtn.Id = 0;
-            this.agregarComicBtn.Location = new System.Drawing.Point(4, 4);
-            this.agregarComicBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.agregarComicBtn.Name = "agregarComicBtn";
-            this.agregarComicBtn.Portada = ((System.Drawing.Image)(resources.GetObject("agregarComicBtn.Portada")));
-            this.agregarComicBtn.Size = new System.Drawing.Size(153, 281);
-            this.agregarComicBtn.TabIndex = 0;
-            this.agregarComicBtn.Titulo = "Agregar un nuevo cómic";
-            this.toolTipGeneral.SetToolTip(this.agregarComicBtn, "Haz click para agregar un nuevo cómic.");
             // 
             // FormVistaPrincipal
             // 

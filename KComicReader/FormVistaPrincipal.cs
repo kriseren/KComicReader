@@ -425,7 +425,9 @@ namespace KComicReader
                                             FROM CATEGORIAS cat 
                                             WHERE cat.id = 1
                                         ) AS CATEGORIA
-                                        ORDER BY nombre;";
+                                        WHERE id = 1
+                                        OR id <> 1
+                                        ORDER BY id <> 1, nombre;";
                         MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
                         DataSet ds = new DataSet();
                         adapter.Fill(ds);
@@ -463,9 +465,10 @@ namespace KComicReader
                                             SELECT se.id, se.nombre 
                                             FROM SERIES se 
                                             WHERE se.id = 1
-                                        ) AS serie
-                                        ORDER BY nombre;
-                                        ";
+                                        ) AS SERIE
+                                        WHERE id = 1
+                                        OR id <> 1
+                                        ORDER BY id <> 1, nombre;";
                         MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
                         DataSet ds = new DataSet();
                         adapter.Fill(ds);
