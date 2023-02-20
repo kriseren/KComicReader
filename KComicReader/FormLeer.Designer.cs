@@ -119,7 +119,7 @@
             this.btnAnteriorPagina.TabIndex = 1;
             this.btnAnteriorPagina.TabStop = false;
             this.toolTipGeneral.SetToolTip(this.btnAnteriorPagina, "Haz click para pasar a la página anterior.");
-            this.btnAnteriorPagina.Click += new System.EventHandler(this.btnAnterior_Click);
+            this.btnAnteriorPagina.Click += new System.EventHandler(this.BtnAnterior_Click);
             this.btnAnteriorPagina.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
             this.btnAnteriorPagina.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
@@ -189,7 +189,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormLeer_FormClosed);
             this.Load += new System.EventHandler(this.FormLeer_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormLeer_Paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.key_Down);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Key_Down);
             this.Resize += new System.EventHandler(this.Form_Resize);
             this.panelButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnZoom)).EndInit();

@@ -71,11 +71,20 @@ namespace KComicReader
         /// </summary>
         private void DefinePagina()
         {
-            //Obtengo el primer elemento y lo almaceno en la variable imagen.
-            IArchiveEntry portada = archive.Entries.ElementAt(Convert.ToInt32(numPag));
-            //Defino la imagen de la página actual.
-            pbPagina.Image = Image.FromStream(portada.OpenEntryStream());
-            img = pbPagina.Image;
+            try
+            {
+                archive = ArchiveFactory.Open(comic.ArchivoURL);
+                //Obtengo el primer elemento y lo almaceno en la variable imagen.
+                var portada = archive.Entries.ElementAt(Convert.ToInt32(numPag));
+                //Defino la imagen de la página actual.
+                pbPagina.Image = Image.FromStream(portada.OpenEntryStream());
+                img = pbPagina.Image;
+            }
+            catch (Exception ex)
+            {
+                // Aquí se pueden agregar acciones para manejar la excepción, como mostrar un mensaje de error.
+                Console.WriteLine("Ocurrió una excepción: " + ex.Message);
+            }
         }
 
         /// <summary>
@@ -93,7 +102,7 @@ namespace KComicReader
         /// </summary>
         /// <param name="sender">El objeto que envía el evento.</param>
         /// <param name="e">Los argumentos del evento.</param>
-        private void btnAnterior_Click(object sender, EventArgs e)
+        private void BtnAnterior_Click(object sender, EventArgs e)
         {
             AnteriorPagina();
         }
@@ -104,7 +113,7 @@ namespace KComicReader
         /// </summary>
         /// <param name="sender">El objeto que envía el evento.</param>
         /// <param name="e">Los argumentos del evento.</param>
-        private void key_Down(object sender, KeyEventArgs e)
+        private void Key_Down(object sender, KeyEventArgs e)
         {
             //Dependiendo de la tecla pulsada.
             switch (e.KeyCode)
