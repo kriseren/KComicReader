@@ -33,28 +33,28 @@
             this.panelButtons = new System.Windows.Forms.Panel();
             this.btnZoom = new System.Windows.Forms.PictureBox();
             this.lblNumPaginas = new System.Windows.Forms.Label();
-            this.btnMarcador = new System.Windows.Forms.PictureBox();
             this.btnAnteriorPagina = new System.Windows.Forms.PictureBox();
             this.btnSiguientePagina = new System.Windows.Forms.PictureBox();
             this.panelImage = new System.Windows.Forms.Panel();
             this.pbPagina = new System.Windows.Forms.PictureBox();
             this.toolTipGeneral = new System.Windows.Forms.ToolTip(this.components);
+            this.pbBtnFavorito = new System.Windows.Forms.PictureBox();
             this.panelButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnZoom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMarcador)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAnteriorPagina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSiguientePagina)).BeginInit();
             this.panelImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPagina)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBtnFavorito)).BeginInit();
             this.SuspendLayout();
             // 
             // panelButtons
             // 
             this.panelButtons.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panelButtons.BackColor = System.Drawing.Color.Transparent;
+            this.panelButtons.Controls.Add(this.pbBtnFavorito);
             this.panelButtons.Controls.Add(this.btnZoom);
             this.panelButtons.Controls.Add(this.lblNumPaginas);
-            this.panelButtons.Controls.Add(this.btnMarcador);
             this.panelButtons.Controls.Add(this.btnAnteriorPagina);
             this.panelButtons.Controls.Add(this.btnSiguientePagina);
             this.panelButtons.Location = new System.Drawing.Point(12, 716);
@@ -88,23 +88,6 @@
             this.lblNumPaginas.TabIndex = 3;
             this.lblNumPaginas.Text = "Página 0 de 13";
             this.lblNumPaginas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnMarcador
-            // 
-            this.btnMarcador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnMarcador.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMarcador.Image = ((System.Drawing.Image)(resources.GetObject("btnMarcador.Image")));
-            this.btnMarcador.Location = new System.Drawing.Point(399, 11);
-            this.btnMarcador.Margin = new System.Windows.Forms.Padding(10);
-            this.btnMarcador.Name = "btnMarcador";
-            this.btnMarcador.Size = new System.Drawing.Size(63, 55);
-            this.btnMarcador.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnMarcador.TabIndex = 2;
-            this.btnMarcador.TabStop = false;
-            this.toolTipGeneral.SetToolTip(this.btnMarcador, "Haz click para marcar la página.");
-            this.btnMarcador.Click += new System.EventHandler(this.BtnMarcador_Click);
-            this.btnMarcador.MouseEnter += new System.EventHandler(this.Btn_MouseEnter);
-            this.btnMarcador.MouseLeave += new System.EventHandler(this.Btn_MouseLeave);
             // 
             // btnAnteriorPagina
             // 
@@ -172,6 +155,21 @@
             this.toolTipGeneral.AutomaticDelay = 700;
             this.toolTipGeneral.IsBalloon = true;
             // 
+            // pbBtnFavorito
+            // 
+            this.pbBtnFavorito.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbBtnFavorito.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbBtnFavorito.Image = ((System.Drawing.Image)(resources.GetObject("pbBtnFavorito.Image")));
+            this.pbBtnFavorito.Location = new System.Drawing.Point(399, 10);
+            this.pbBtnFavorito.Margin = new System.Windows.Forms.Padding(10);
+            this.pbBtnFavorito.Name = "pbBtnFavorito";
+            this.pbBtnFavorito.Size = new System.Drawing.Size(63, 55);
+            this.pbBtnFavorito.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbBtnFavorito.TabIndex = 5;
+            this.pbBtnFavorito.TabStop = false;
+            this.toolTipGeneral.SetToolTip(this.pbBtnFavorito, "Haz click para pasar a la página siguiente.");
+            this.pbBtnFavorito.Click += new System.EventHandler(this.PbBtnFavorito_Click);
+            // 
             // FormLeer
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -193,11 +191,11 @@
             this.Resize += new System.EventHandler(this.Form_Resize);
             this.panelButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnZoom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMarcador)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAnteriorPagina)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSiguientePagina)).EndInit();
             this.panelImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbPagina)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBtnFavorito)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -206,11 +204,11 @@
         private System.Windows.Forms.Panel panelButtons;
         private System.Windows.Forms.PictureBox btnAnteriorPagina;
         private System.Windows.Forms.PictureBox btnSiguientePagina;
-        private System.Windows.Forms.PictureBox btnMarcador;
         private System.Windows.Forms.Label lblNumPaginas;
         private System.Windows.Forms.PictureBox btnZoom;
         private System.Windows.Forms.Panel panelImage;
         private System.Windows.Forms.PictureBox pbPagina;
         private System.Windows.Forms.ToolTip toolTipGeneral;
+        private System.Windows.Forms.PictureBox pbBtnFavorito;
     }
 }

@@ -59,15 +59,5 @@ namespace KComicReader.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
-        /// </summary>
-        internal static byte[] ClassicComic_Medium {
-            get {
-                object obj = ResourceManager.GetObject("ClassicComic_Medium", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

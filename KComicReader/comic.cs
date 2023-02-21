@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
@@ -97,12 +98,12 @@ namespace KComicReader
         /// <summary>
         /// El evento invocado cuando se hace click en cualquier parte del control.
         /// </summary>
-        public EventHandler eventoClick { get; set; }
+        public EventHandler EventoClick { get; set; }
 
         /// <summary>
         /// El evento invocado cuando se hace doble click en cualquier parte del control.
         /// </summary>
-        public EventHandler eventoDobleClick { get; set; }
+        public EventHandler EventoDobleClick { get; set; }
 
         /// <summary>
         /// El número que indica la página por la que se está leyendo.
@@ -113,6 +114,16 @@ namespace KComicReader
         /// El número de páginas totales del cómic.
         /// </summary>
         public uint NumPaginasTotales { get; set; }
+
+        /// <summary>
+        /// Define la fuente que se usará en el texto del título de los cómics.
+        /// </summary>
+        private static readonly Font Fuente = new Font("Microsoft Sans Serif", 11, FontStyle.Regular);
+
+        /// <summary>
+        /// Define la fuente que se usará en el texto del título de los cómics.
+        /// </summary>
+        private static readonly Font FuenteNegrita = new Font("Microsoft Sans Serif", 11, FontStyle.Bold);
 
         /// <summary>
         /// Constructor sin parámetros que inicializa el componente y varias propiedades.
@@ -135,7 +146,7 @@ namespace KComicReader
         /// <param name="e">Los argumentos del evento.</param>
         private void Control_Click(object sender, EventArgs e)
         {
-            eventoClick.Invoke(this, e);
+            EventoClick.Invoke(this, e);
         }
 
         /// <summary>
@@ -145,7 +156,23 @@ namespace KComicReader
         /// <param name="e">Los argumentos del evento.</param>
         private void Control_DobleClick(object sender, EventArgs e)
         {
-            eventoDobleClick.Invoke(this, e);
+            EventoDobleClick.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Método que pone en negrita el texto del título.
+        /// </summary>
+        public void PoneNegrita()
+        {
+            lblTitulo.Font = FuenteNegrita;
+        }
+
+        /// <summary>
+        /// Método que elimina la negrita del texto del título.
+        /// </summary>
+        public void QuitaNegrita()
+        {
+            lblTitulo.Font = Fuente;
         }
 
         /// <summary>

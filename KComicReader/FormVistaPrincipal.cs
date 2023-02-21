@@ -41,8 +41,8 @@ namespace KComicReader
             {
                 //Obtengo el comic, defino un controlador de eventos click y lo agrego al flowLayout.
                 Comic comic = formAgregar.comic;
-                comic.eventoClick += new EventHandler(Comic_Click);
-                comic.eventoDobleClick += new EventHandler(BtnLeer_Click);
+                comic.EventoClick += new EventHandler(Comic_Click);
+                comic.EventoDobleClick += new EventHandler(BtnLeer_Click);
                 //Almaceno el comic en la base de datos.
                 comic.Guarda();
                 //Agrego el cómic al fwp.
@@ -104,14 +104,17 @@ namespace KComicReader
             DefineInfoPanel();
 
             //Cambio el color del fondo para todos los cómics.
-            foreach (Control c in fwpComics.Controls)
+            foreach (Control c in fwpComics.Controls.OfType<Comic>().ToList())
             {
-                c.BackColor = Color.Transparent;
-                c.ForeColor = Color.Black;
+                Comic co = (Comic)c;
+                co.BackColor = Color.Transparent;
+                co.ForeColor = Color.Black;
+                co.QuitaNegrita();
             }
-            //Defino el color del fondo para el cómic seleccionado dependiendo del tema.
+            //Defino el color del fondo y la fuente negrita para el cómic seleccionado dependiendo del tema.
             comicSeleccionado.BackColor = ColorTranslator.FromHtml(Config.Tema[1]);
-            if (Config.Tema_id == 8 || Config.Tema_id == 11)
+            comicSeleccionado.PoneNegrita();
+            if(Config.Tema_id==8 || Config.Tema_id==11)
                 comicSeleccionado.ForeColor = ColorTranslator.FromHtml(Config.Tema[2]);
 
             //Activo o desactivo los botones de acciones.
@@ -403,8 +406,8 @@ namespace KComicReader
                             c.Numero = (uint)reader.GetInt32("numero");
 
                             //Defino los controladores de los eventos.
-                            c.eventoClick += new EventHandler(Comic_Click);
-                            c.eventoDobleClick += new EventHandler(BtnLeer_Click);
+                            c.EventoClick += new EventHandler(Comic_Click);
+                            c.EventoDobleClick += new EventHandler(BtnLeer_Click);
 
                             //Lo agrego al fwp.
                             fwpComics.Controls.Add(c);

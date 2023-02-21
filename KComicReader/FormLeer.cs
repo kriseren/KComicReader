@@ -171,9 +171,6 @@ namespace KComicReader
             {
                 ZoomIn();
             }
-
-            //Defino la imagen del botón del marcador.
-            btnMarcador.Image = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "icons", "mark.png"));
         }
 
         /// <summary>
@@ -184,6 +181,16 @@ namespace KComicReader
         private void Zoom_Click(object sender, EventArgs e)
         {
             Zoom();
+        }
+
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa en el botón de añadir a favoritos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PbBtnFavorito_Click(object sender, EventArgs e)
+        {
+            pbBtnFavorito.Image = Image.FromFile(Path.Combine(Config.Recursos,"imgs","icons","favFull.png"));
         }
 
         /// <summary>
@@ -244,22 +251,10 @@ namespace KComicReader
         }
 
         /// <summary>
-        /// Método que se ejecuta cuando el usuario pulsa el botón de marcar página.
-        /// </summary>
-        /// <param name="sender">El objeto que envía el evento.</param>
-        /// <param name="e">Los argumentos del evento.</param>
-        private void BtnMarcador_Click(object sender, EventArgs e)
-        {
-            Marcar();
-        }
-
-        /// <summary>
         /// Método que marca la página actual y la almacena.
         /// </summary>
         private void Marcar()
         {
-            //Defino la imagen.
-            btnMarcador.Image = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "icons", "marked.png"));
             //Defino la página actual y la almaceno en la base de datos.
             comic.NumPaginaActual = numPag;
             using (MySqlConnection connection = DataBaseConnectivity.GetConnection())
@@ -338,6 +333,9 @@ namespace KComicReader
         private void FormLeer_FormClosed(object sender, FormClosedEventArgs e)
         {
             Config.LeyendoComic = false;
+
+            //Se marca la página actual.
+            Marcar();
         }
     }
 }
