@@ -163,6 +163,12 @@
     <Compile Include="FormBienvenida.Designer.cs">
       <DependentUpon>FormBienvenida.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormFavoritos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFavoritos.Designer.cs">
+      <DependentUpon>FormFavoritos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLeer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +209,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBienvenida.resx">
       <DependentUpon>FormBienvenida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFavoritos.es.resx">
+      <DependentUpon>FormFavoritos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFavoritos.resx">
+      <DependentUpon>FormFavoritos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLeer.resx">
       <DependentUpon>FormLeer.cs</DependentUpon>

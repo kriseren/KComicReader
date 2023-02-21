@@ -53,7 +53,7 @@
             this.lblTituloFormulario.Location = new System.Drawing.Point(13, 9);
             this.lblTituloFormulario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTituloFormulario.Name = "lblTituloFormulario";
-            this.lblTituloFormulario.Size = new System.Drawing.Size(571, 71);
+            this.lblTituloFormulario.Size = new System.Drawing.Size(615, 71);
             this.lblTituloFormulario.TabIndex = 12;
             this.lblTituloFormulario.Text = "CONFIGURACIÓN";
             this.lblTituloFormulario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

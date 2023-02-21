@@ -153,10 +153,12 @@ namespace KComicReader
                 pbBtnEditar.Visible = true;
                 pbBtnLeer.Visible = true;
                 pbBtnEliminar.Visible = true;
+                pbBtnAyuda.Visible = true;
                 lblAgregar.Visible = true;
                 lblEditar.Visible = true;
                 lblEliminar.Visible = true;
                 lblLeer.Visible = true;
+                lblAyuda.Visible = true;
             }
             else
             {
@@ -164,10 +166,12 @@ namespace KComicReader
                 pbBtnEditar.Visible = false;
                 pbBtnLeer.Visible = false;
                 pbBtnEliminar.Visible = false;
+                pbBtnAyuda.Visible = true;
                 lblEditar.Visible = false;
                 lblEliminar.Visible = false;
                 lblLeer.Visible = false;
                 lblAgregar.Visible = true;
+                lblAyuda.Visible = true;
             }
         }
 
@@ -309,9 +313,10 @@ namespace KComicReader
                                 cmd.Prepare();
                                 cmd.ExecuteNonQuery();
                             }
-                            catch (MySqlException)
+                            catch (MySqlException ex)
                             {
                                 MessageBox.Show("No se ha podido eliminar el comic. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Console.Write(ex.Message);
                             }
                         }
                     }
@@ -607,6 +612,17 @@ namespace KComicReader
         }
 
         /// <summary>
+        /// Método que se ejecuta cuando el usuario hace click en el botón de Viñetas Favoritas.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void PbBtnFavoritos_Click(object sender, EventArgs e)
+        {
+            FormFavoritos formFavoritos = new FormFavoritos();
+            formFavoritos.Show();
+        }
+
+        /// <summary>
         /// Método que se ejecuta cuando el usuario pulsa el botón de Ajustes.
         /// </summary>
         /// <param name="sender">El objeto que envía el evento.</param>
@@ -693,8 +709,6 @@ namespace KComicReader
             else
                 fwpComics.Controls[1].Visible = true;
         }
-
-        
 
         /// <summary>
         /// Método que se ejecuta cuando el usuario pulsa el botón de ayuda.
