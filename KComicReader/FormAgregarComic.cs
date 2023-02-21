@@ -143,13 +143,19 @@ namespace KComicReader
             }
             else
             {
-                //Se cambia el color de la fuente.
-                lblTitulo.ForeColor = Color.DarkRed;
-                lblIdioma.ForeColor = Color.DarkRed;
-                lblArchivo.ForeColor = Color.DarkRed;
-                lblEditorial.ForeColor = Color.DarkRed;
-                lblSerie.ForeColor = Color.DarkRed;
-                MessageBox.Show(this, "Los campos marcados en rojo son obligatorios.\nPor favor rellénalos antes de agregar un nuevo cómic.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //Se cambia la fuente, el color y se agrega un asterisco a todos los controles que sean requeridos.
+                foreach(Control c in this.Controls.OfType<Label>().ToList())
+                {
+                    Label l = (Label)c;
+
+                    if(l.Tag!=null && l.Tag.Equals("Required"))
+                    {
+                        l.ForeColor = Color.DarkRed;
+                        l.Font = new Font(l.Font, FontStyle.Bold);
+                        l.Text = l.Text + "*";
+                    }
+                }
+                MessageBox.Show(this, "Los campos marcados con un asterisco son obligatorios.\nPor favor rellénalos antes de agregar un nuevo cómic.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.None;
             }
         }
@@ -388,7 +394,7 @@ namespace KComicReader
         /// </summary>
         /// <param name="sender">El objeto que envía el evento.</param>
         /// <param name="e">Los argumentos del evento.</param>
-        private void btnAgregarSerie_Click(object sender, EventArgs e)
+        private void BtnAgregarSerie_Click(object sender, EventArgs e)
         {
             //Creo el formulario en modo agregar una serie.
             FormAgregarSerie formAgregarSerie = new FormAgregarSerie((int)cbEditorial.SelectedValue);
@@ -428,7 +434,7 @@ namespace KComicReader
         /// </summary>
         /// <param name="sender">El objeto que envía el evento.</param>
         /// <param name="e">Los argumentos del evento.</param>
-        private void cbEditorial_SelectionChangeCommitted(object sender, EventArgs e)
+        private void CbEditorial_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (Config.CompruebaConexion())
                 DefineSeries();

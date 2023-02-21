@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using KComicReader.Properties;
+using Microsoft.Win32;
+using MySql.Data.MySqlClient;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -57,7 +59,6 @@ namespace KComicReader
         /// Define la ruta que se deberá seguir para acceder a los recursos como imágenes y scripts.
         /// </summary>
         public static string Recursos = Path.Combine(Application.StartupPath, "Recursos");
-
 
         /// <summary>
         /// Método que inicia el servidor de MySQL dentro de XAMPP.

@@ -61,7 +61,7 @@ namespace KComicReader
             this.lblBienvenidaTitulo.Location = new System.Drawing.Point(16, 15);
             this.lblBienvenidaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBienvenidaTitulo.Name = "lblBienvenidaTitulo";
-            this.lblBienvenidaTitulo.Size = new System.Drawing.Size(1027, 70);
+            this.lblBienvenidaTitulo.Size = new System.Drawing.Size(1098, 70);
             this.lblBienvenidaTitulo.TabIndex = 1;
             this.lblBienvenidaTitulo.Text = "¡Bienvenidx a KComicReader!";
             this.lblBienvenidaTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -72,7 +72,7 @@ namespace KComicReader
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(925, 517);
+            this.btnCerrar.Location = new System.Drawing.Point(997, 517);
             this.btnCerrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(117, 33);
@@ -89,7 +89,7 @@ namespace KComicReader
             this.panelPag1.Location = new System.Drawing.Point(387, 100);
             this.panelPag1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelPag1.Name = "panelPag1";
-            this.panelPag1.Size = new System.Drawing.Size(655, 392);
+            this.panelPag1.Size = new System.Drawing.Size(726, 392);
             this.panelPag1.TabIndex = 15;
             // 
             // pbWelcome
@@ -108,7 +108,7 @@ namespace KComicReader
             this.lblContenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContenido.Location = new System.Drawing.Point(4, 4);
             this.lblContenido.Name = "lblContenido";
-            this.lblContenido.Size = new System.Drawing.Size(647, 183);
+            this.lblContenido.Size = new System.Drawing.Size(717, 183);
             this.lblContenido.TabIndex = 0;
             this.lblContenido.Text = resources.GetString("lblContenido.Text");
             // 
@@ -130,7 +130,7 @@ namespace KComicReader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1053, 562);
+            this.ClientSize = new System.Drawing.Size(1125, 562);
             this.Controls.Add(this.checkBoxMostrarInicio);
             this.Controls.Add(this.lblBienvenidaTitulo);
             this.Controls.Add(this.panelPag1);

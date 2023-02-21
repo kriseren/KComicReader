@@ -100,20 +100,8 @@ namespace KComicReader
             }
 
 
-            //Defino las propiedades en el panel de información.
-            lblInfoTituloValue.Text = comicSeleccionado.Titulo;
-            lblInfoGuionistaValue.Text = comicSeleccionado.Guionista;
-            lblInfoDibujanteValue.Text = comicSeleccionado.Dibujante;
-            lblInfoEditorialValue.Text = comicSeleccionado.Editorial;
-            lblInfoCategoriaValue.Text = comicSeleccionado.Categoria;
-            lblInfoIdiomaValue.Text = comicSeleccionado.Idioma;
-            lblInfoSerieValue.Text = comicSeleccionado.Serie;
-            lblInfoNumeroValue.Text = comicSeleccionado.Numero.ToString();
-            lblInfoNumPaginasValue.Text = comicSeleccionado.NumPaginasTotales.ToString();
-
-            //Muevo el panel al frente para ocultar el de vista vacía.
-            panelRightVacia.Visible = false;
-            panelRightInfo.BringToFront();
+            //Defino las propiedades del cómic en el panel de la derecha.
+            DefineInfoPanel();
 
             //Cambio el color del fondo para todos los cómics.
             foreach (Control c in fwpComics.Controls)
@@ -130,6 +118,30 @@ namespace KComicReader
             DefineBotonesAcciones();
         }
 
+        /// <summary>
+        /// Método que define las propiedades del panel de información de la derecha.
+        /// </summary>
+        private void DefineInfoPanel()
+        {
+            //Defino las propiedades en el panel de información.
+            lblInfoTituloValue.Text = comicSeleccionado.Titulo;
+            lblInfoGuionistaValue.Text = comicSeleccionado.Guionista;
+            lblInfoDibujanteValue.Text = comicSeleccionado.Dibujante;
+            lblInfoEditorialValue.Text = comicSeleccionado.Editorial;
+            lblInfoCategoriaValue.Text = comicSeleccionado.Categoria;
+            lblInfoIdiomaValue.Text = comicSeleccionado.Idioma;
+            lblInfoSerieValue.Text = comicSeleccionado.Serie;
+            lblInfoNumeroValue.Text = comicSeleccionado.Numero.ToString();
+            lblInfoNumPaginasValue.Text = comicSeleccionado.NumPaginasTotales.ToString();
+
+            //Muevo el panel al frente para ocultar el de vista vacía.
+            panelRightVacia.Visible = false;
+            panelRightInfo.BringToFront();
+        }
+
+        /// <summary>
+        /// Método que define los botones del panel de acciones.
+        /// </summary>
         private void DefineBotonesAcciones()
         {
             if(comicSeleccionado!=null)
@@ -186,13 +198,6 @@ namespace KComicReader
         /// <param name="e">Los argumentos del evento.</param>
         private void FormVistaPrincipal_Load(object sender, EventArgs e)
         {
-            //Cargo en memoria la fuente del programa.
-            var fontData = Properties.Resources.ClassicComic_Medium;
-            var privateFonts = new PrivateFontCollection();
-            IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocHGlobal(fontData.Length);
-            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
-            privateFonts.AddMemoryFont(fontPtr, fontData.Length);
-
             //Defino la configuración y el eventHandler.
             Config.DefineConfiguracion();
             //Obtengo todos los comics dados de alta en la base de datos.
@@ -255,6 +260,10 @@ namespace KComicReader
             {
                 //Obtengo el comic con los nuevos atributos y lo actualizo en la base de datos.
                 comicSeleccionado.Actualiza(formEditar.comic);
+                comicSeleccionado = formEditar.comic;
+
+                //Actualizo la información en el panel de info.
+                DefineInfoPanel();
 
                 //Elimino el cómic seleccionado del fwp y agrego el nuevo.
                 fwpComics.Controls.Remove(comicSeleccionado);
