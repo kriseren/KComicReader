@@ -3,6 +3,7 @@ using SharpCompress.Archives;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -64,6 +65,10 @@ namespace KComicReader
             Config.LeyendoComic = true;
             DefinePagina();
             lblNumPaginas.Text = "Página " + (numPag + 1) + " de " + comic.NumPaginasTotales;
+            if(comic.Id < 1)
+            {
+                pbBtnFavorito.Visible = false;
+            }
         }
 
         /// <summary>
@@ -126,7 +131,7 @@ namespace KComicReader
 
                 case Keys.Z: Zoom(); break;
 
-                case Keys.M: Marcar(); break;
+                case Keys.F: MarcarFavorito(); break;
             }
         }
 
@@ -190,7 +195,50 @@ namespace KComicReader
         /// <param name="e"></param>
         private void PbBtnFavorito_Click(object sender, EventArgs e)
         {
-            pbBtnFavorito.Image = Image.FromFile(Path.Combine(Config.Recursos,"imgs","icons","favFull.png"));
+            MarcarFavorito();
+        }
+
+        /// <summary>
+        /// Método que abre el formulario de agregación a favoritos.
+        /// </summary>
+        private void MarcarFavorito()
+        {
+            FormAgregarFavoritos formAgregarFavoritos = new FormAgregarFavoritos(comic.Id,img);
+            if(formAgregarFavoritos.ShowDialog()==DialogResult.OK)
+            {
+                if (Config.CompruebaConexion())
+                {
+                    //Creo la conexión y los objetos necesarios.
+                    using (MySqlConnection con = DataBaseConnectivity.GetConnection())
+                    {
+                        try
+                        {
+                            con.Open();
+                            MySqlCommand cmd = con.CreateCommand();
+
+                            //Defino la consulta para insertar la serie.
+                            cmd.CommandText = "INSERT INTO FAVORITOS (titulo,vinyeta,comic_id) VALUES (@titulo,@viñeta,@comic_id)";
+                            cmd.Parameters.AddWithValue("@titulo", formAgregarFavoritos.Titulo);
+                            cmd.Parameters.AddWithValue("@comic_id", formAgregarFavoritos.Comic_id);
+                            //Defino la viñeta.
+                            using (var memoryStream = new MemoryStream())
+                            {
+                                formAgregarFavoritos.Vinyeta.Save(memoryStream, ImageFormat.Jpeg);
+                                byte[] imageBytes = memoryStream.ToArray();
+                                cmd.Parameters.AddWithValue("@viñeta", imageBytes);
+                            }
+                            cmd.Prepare();
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (MySqlException)
+                        {
+                            MessageBox.Show("No se ha podido insertar la viñeta en favoritos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                //Cambio la imagen del botón para mostrar que se ha agregado a favoritos.
+                pbBtnFavorito.Image = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "icons", "favFull.png"));
+            }
         }
 
         /// <summary>

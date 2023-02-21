@@ -113,6 +113,12 @@
     <Compile Include="AgregarComicBtn.Designer.cs">
       <DependentUpon>AgregarComicBtn.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAgregarFavoritos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAgregarFavoritos.Designer.cs">
+      <DependentUpon>FormAgregarFavoritos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAyuda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AgregarComicBtn.resx">
       <DependentUpon>AgregarComicBtn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAgregarFavoritos.resx">
+      <DependentUpon>FormAgregarFavoritos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAyuda.resx">
       <DependentUpon>FormAyuda.cs</DependentUpon>

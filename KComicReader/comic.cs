@@ -121,7 +121,7 @@ namespace KComicReader
         private static readonly Font Fuente = new Font("Microsoft Sans Serif", 11, FontStyle.Regular);
 
         /// <summary>
-        /// Define la fuente que se usará en el texto del título de los cómics.
+        /// Define la fuente en negrita que se usará en el texto del título de los cómics.
         /// </summary>
         private static readonly Font FuenteNegrita = new Font("Microsoft Sans Serif", 11, FontStyle.Bold);
 
