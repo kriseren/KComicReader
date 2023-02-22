@@ -117,101 +117,128 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;dtgVinyetas.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Viñetas favoritas</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="dataGridView1.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="&gt;&gt;dataGridView1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="dtgVinyetas.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 83</value>
+  </data>
+  <data name="dataGridView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1142, 480</value>
+  </data>
+  <data name="lblTituloFormulario.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1167, 71</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCerrar.Name" xml:space="preserve">
+    <value>btnCerrar</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormFavoritos</value>
+  </data>
+  <data name="dtgVinyetas.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
   <data name="&gt;&gt;lblTituloFormulario.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1193, 598</value>
+  <data name="&gt;&gt;dataGridView1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lblTituloFormulario.Text" xml:space="preserve">
     <value>VIÑETAS FAVORITAS</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnCerrar.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;dataGridView1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;dtgVinyetas.Name" xml:space="preserve">
-    <value>dtgVinyetas</value>
-  </data>
   <data name="lblTituloFormulario.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
+  </data>
+  <data name="dataGridView1.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="btnCerrar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 33</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1193, 598</value>
+  </data>
+  <data name="btnCerrar.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 11pt</value>
   </data>
   <data name="lblTituloFormulario.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;btnCerrar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblTituloFormulario.Name" xml:space="preserve">
+    <value>lblTituloFormulario</value>
   </data>
-  <data name="lblTituloFormulario.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1167, 71</value>
+  <data name="lblTituloFormulario.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnCerrar.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+  <data name="&gt;&gt;btnCerrar.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Viñetas favoritas</value>
+  <data name="&gt;&gt;lblTituloFormulario.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;dataGridView1.Type" xml:space="preserve">
+  <data name="btnCerrar.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;dtgVinyetas.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="dataGridView1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 83</value>
   </data>
+  <data name="lblTituloFormulario.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="btnCerrar.Location" type="System.Drawing.Point, System.Drawing">
     <value>1063, 558</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FormFavoritos</value>
-  </data>
-  <data name="&gt;&gt;lblTituloFormulario.Parent" xml:space="preserve">
+  <data name="&gt;&gt;dataGridView1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;dataGridView1.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="btnCerrar.Text" xml:space="preserve">
+    <value>Cerrar</value>
   </data>
-  <data name="&gt;&gt;lblTituloFormulario.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnCerrar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 33</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="dtgVinyetas.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;lblTituloFormulario.Name" xml:space="preserve">
-    <value>lblTituloFormulario</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
-  </data>
-  <data name="&gt;&gt;btnCerrar.Name" xml:space="preserve">
-    <value>btnCerrar</value>
-  </data>
-  <data name="&gt;&gt;dtgVinyetas.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCerrar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="dtgVinyetas.RowHeadersWidth" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="dataGridView1.RowHeadersWidth" type="System.Int32, mscorlib">
-    <value>51</value>
+  <data name="lblTituloFormulario.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 9</value>
   </data>
   <data name="&gt;&gt;dataGridView1.Name" xml:space="preserve">
     <value>dataGridView1</value>
   </data>
-  <data name="dataGridView1.TabIndex" type="System.Int32, mscorlib">
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;dtgVinyetas.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dtgVinyetas.Name" xml:space="preserve">
+    <value>dtgVinyetas</value>
+  </data>
+  <data name="&gt;&gt;lblTituloFormulario.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="dtgVinyetas.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
+  </data>
+  <data name="lblTituloFormulario.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Classic Comic Medium, 30pt</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -289,41 +316,17 @@
         AAPAAAADwAAAA8AAAAPAAAADwAAAA8AAAAM=
 </value>
   </data>
-  <data name="dtgVinyetas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 83</value>
-  </data>
-  <data name="btnCerrar.Text" xml:space="preserve">
-    <value>Cerrar</value>
-  </data>
-  <data name="lblTituloFormulario.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;dtgVinyetas.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;dtgVinyetas.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="dataGridView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1142, 480</value>
-  </data>
-  <data name="btnCerrar.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
-  </data>
-  <data name="lblTituloFormulario.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="&gt;&gt;btnCerrar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnCerrar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="lblTituloFormulario.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Classic Comic Medium, 30pt</value>
+  <data name="&gt;&gt;btnCerrar.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="lblTituloFormulario.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 9</value>
-  </data>
-  <data name="&gt;&gt;btnCerrar.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="btnCerrar.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

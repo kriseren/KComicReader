@@ -1,14 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KComicReader
@@ -80,6 +74,22 @@ namespace KComicReader
             //Cambio el color del fondo del dataGridView
             dtgVinyetas.BackgroundColor = ColorTranslator.FromHtml(Tema[2]);
 
+        }
+
+        //TODO Hacer el click y controlar que se puedan crear dos favoritos en un mismo cómic.
+        private void dtgVinyetas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de cerrar.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

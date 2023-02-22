@@ -16,7 +16,7 @@ namespace KComicReader
         /// <summary>
         /// El identificador del cómic al que pertenece la viñeta.
         /// </summary>
-        public int Comic_id { get; set; }
+        public Comic Comic { get; set; }
 
         public string Titulo { get; set; }
 
@@ -25,16 +25,19 @@ namespace KComicReader
         /// </summary>
         public Image Vinyeta { get; set; }
 
+        public uint NumPag { get; set; }
+
         /// <summary>
         /// Constructor con parámetros.
         /// </summary>
-        /// <param name="comic_id">El identificador del comic al que pertenece la viñeta.</param>
-        /// <param name="viñeta">La iamgen de la viñeta que se va a </param>
-        public FormAgregarFavoritos(int comic_id, Image vinyeta)
+        /// <param name="comic">El comic al que pertenece la viñeta.</param>
+        /// <param name="vinyeta">La imagen de la viñeta que se va a </param>
+        public FormAgregarFavoritos(Comic Comic, Image vinyeta, uint numPag)
         {
             InitializeComponent();
-            this.Comic_id = comic_id;
+            this.Comic = Comic;
             this.Vinyeta = vinyeta;
+            this.NumPag = numPag;
         }
 
 
@@ -70,8 +73,9 @@ namespace KComicReader
                     con.Open();
                     MySqlCommand cmd = con.CreateCommand();
 
-                    cmd.CommandText = $"SELECT COUNT(*) FROM FAVORITOS WHERE comic_id = @comic_id";
-                    cmd.Parameters.AddWithValue("@comic_id", Comic_id);
+                    cmd.CommandText = $"SELECT COUNT(*) FROM FAVORITOS WHERE comic_id = @comic_id AND numPagina=@numPagina";
+                    cmd.Parameters.AddWithValue("@comic_id", Comic.Id);
+                    cmd.Parameters.AddWithValue("@numPagina", NumPag);
                     cmd.Prepare();
 
                     //Verifico si la viñeta existe.
@@ -94,35 +98,12 @@ namespace KComicReader
         /// <param name="e">Los argumentos del evento.</param>
         private void FormAgregarSerie_Load(object sender, EventArgs e)
         {
-            //Obtengo el nombre del comic.
-            try
-            {
-                using(MySqlConnection con = DataBaseConnectivity.GetConnection())
-                {
-                    //Obtengo la conexión y los objetos necesarios.
-                    con.Open();
-                    MySqlCommand cmd = con.CreateCommand();
-
-                    //Realizo la consulta.
-                    cmd.CommandText = $"SELECT titulo FROM COMICS WHERE id = @comic_id";
-                    cmd.Parameters.AddWithValue("@comic_id", Comic_id);
-                    cmd.Prepare();
-                    var reader = cmd.ExecuteReader();
-                    reader.Read();
-                    lblComicValue.Text = reader.GetString("titulo");
-
-                    //Cierro la conexión.
-                    con.Close();
-                }
-            }
-            catch (MySqlException)
-            {
-                MessageBox.Show("No se ha podido recuperar el título del comic asociado.\n Por favor reinicia el programa.", "Error en la base de datos", MessageBoxButtons.OK,MessageBoxIcon.Error);
-                this.Dispose();
-            }
-
+            //Cargo el título del cómic.
+            lblComicValue.Text = Comic.Titulo;
             //Cargo la imagen de la viñeta.
-            pictureBox1.Image = Vinyeta;
+            pbVinyeta.Image = Vinyeta;
+            //Cargo el número de página. Si lees esto Emilio te quiere (coger en latino) <3
+            lblNumPaginaValue.Text = (NumPag+1).ToString();
         }
 
         /// <summary>

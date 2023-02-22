@@ -90,6 +90,18 @@ namespace KComicReader
                 // Aquí se pueden agregar acciones para manejar la excepción, como mostrar un mensaje de error.
                 Console.WriteLine("Ocurrió una excepción: " + ex.Message);
             }
+
+            //Si la página está marcada en favoritos se cambia el botón.
+            if(Existe())
+            {
+                pbBtnFavorito.Enabled = false;
+                pbBtnFavorito.Image = pbBtnFavorito.Image = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "icons", "favFull.png"));
+            }
+            else
+            {
+                pbBtnFavorito.Enabled = true;
+                pbBtnFavorito.Image = pbBtnFavorito.Image = Image.FromFile(Path.Combine(Config.Recursos, "imgs", "icons", "fav.png"));
+            }
         }
 
         /// <summary>
@@ -203,7 +215,7 @@ namespace KComicReader
         /// </summary>
         private void MarcarFavorito()
         {
-            FormAgregarFavoritos formAgregarFavoritos = new FormAgregarFavoritos(comic.Id,img);
+            FormAgregarFavoritos formAgregarFavoritos = new FormAgregarFavoritos(comic,img,numPag);
             if(formAgregarFavoritos.ShowDialog()==DialogResult.OK)
             {
                 if (Config.CompruebaConexion())
@@ -217,9 +229,10 @@ namespace KComicReader
                             MySqlCommand cmd = con.CreateCommand();
 
                             //Defino la consulta para insertar la serie.
-                            cmd.CommandText = "INSERT INTO FAVORITOS (titulo,vinyeta,comic_id) VALUES (@titulo,@viñeta,@comic_id)";
+                            cmd.CommandText = "INSERT INTO FAVORITOS (titulo,vinyeta,comic_id,numPagina) VALUES (@titulo,@viñeta,@comic_id,@numPagina)";
                             cmd.Parameters.AddWithValue("@titulo", formAgregarFavoritos.Titulo);
-                            cmd.Parameters.AddWithValue("@comic_id", formAgregarFavoritos.Comic_id);
+                            cmd.Parameters.AddWithValue("@comic_id", formAgregarFavoritos.Comic.Id);
+                            cmd.Parameters.AddWithValue("@numPagina", formAgregarFavoritos.NumPag);
                             //Defino la viñeta.
                             using (var memoryStream = new MemoryStream())
                             {
@@ -322,6 +335,40 @@ namespace KComicReader
                     MessageBox.Show("Ha ocurrido un error al marcar la página.", "Error en la base de datos", MessageBoxButtons.OK);
                 }
             }
+        }
+
+        /// <summary>
+        /// Método que comprueba si la viñeta existe en la base de datos.
+        /// </summary>
+        /// <returns>Devuelve 'true' si existe y 'false' si no existe.</returns>
+        private bool Existe()
+        {
+            bool existe = false;
+            //Obtengo la conexión y los objetos necesarios.
+            using (MySqlConnection con = DataBaseConnectivity.GetConnection())
+            {
+                //Se comprueba que exista.
+                try
+                {
+                    con.Open();
+                    MySqlCommand cmd = con.CreateCommand();
+
+                    cmd.CommandText = $"SELECT COUNT(*) FROM FAVORITOS WHERE comic_id = @comic_id AND numPagina=@numPagina";
+                    cmd.Parameters.AddWithValue("@comic_id", comic.Id);
+                    cmd.Parameters.AddWithValue("@numPagina", numPag);
+                    cmd.Prepare();
+
+                    //Verifico si la viñeta existe.
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (count > 0)
+                        existe = true;
+                }
+                catch (MySqlException)
+                {
+                    MessageBox.Show("Ha ocurrido un error al comprobar la existencia de la viñeta.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            return existe;
         }
 
         /// <summary>

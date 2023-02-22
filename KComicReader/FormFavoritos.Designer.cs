@@ -51,6 +51,7 @@
             this.dtgVinyetas.Name = "dtgVinyetas";
             this.dtgVinyetas.ReadOnly = true;
             this.dtgVinyetas.RowTemplate.Height = 80;
+            this.dtgVinyetas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgVinyetas_CellContentClick);
             // 
             // btnCerrar
             // 
@@ -59,6 +60,7 @@
             this.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
             // FormFavoritos
             // 

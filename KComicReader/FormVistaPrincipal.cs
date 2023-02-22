@@ -170,8 +170,8 @@ namespace KComicReader
                 lblEditar.Visible = false;
                 lblEliminar.Visible = false;
                 lblLeer.Visible = false;
-                lblAgregar.Visible = true;
-                lblAyuda.Visible = true;
+                lblAgregar.Visible = false;
+                lblAyuda.Visible = false;
             }
         }
 
@@ -363,6 +363,50 @@ namespace KComicReader
             else
             {
                 MessageBox.Show("Para poder eliminar un cómic, primero cierra la ventana de leer.", "Error al eliminar el archivo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de ayuda.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void PbBtnAyuda_Click(object sender, EventArgs e)
+        {
+            FormAyuda formAyuda = new FormAyuda();
+            formAyuda.Show();
+        }
+
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario hace click en el botón de Viñetas Favoritas.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void PbBtnFavoritos_Click(object sender, EventArgs e)
+        {
+            FormFavoritos formFavoritos = new FormFavoritos();
+            formFavoritos.Show();
+        }
+
+        /// <summary>
+        /// Método que se ejecuta cuando el usuario pulsa el botón de Ajustes.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void PbBtnConfig_Click(object sender, EventArgs e)
+        {
+            //Creo un nuevo formulario Config.
+            FormConfig formConfig = new FormConfig();
+            //Si el usuario acepta, se actualiza la información en la base de datos.
+            if (formConfig.ShowDialog() == DialogResult.OK)
+            {
+                //Si e directorio no es nulo se define.
+                Config.DirectorioInstalacion = formConfig.DirectorioInstalacion;
+                Config.Tema_id = formConfig.Tema_id;
+                Config.MostrarBienvenida = formConfig.MostrarBienvenida;
+                Config.GuardaConfiguracion();
+                //Defino los colores de nuevo.
+                this.Refresh();
             }
         }
 
@@ -612,39 +656,6 @@ namespace KComicReader
         }
 
         /// <summary>
-        /// Método que se ejecuta cuando el usuario hace click en el botón de Viñetas Favoritas.
-        /// </summary>
-        /// <param name="sender">El objeto que envía el evento.</param>
-        /// <param name="e">Los argumentos del evento.</param>
-        private void PbBtnFavoritos_Click(object sender, EventArgs e)
-        {
-            FormFavoritos formFavoritos = new FormFavoritos();
-            formFavoritos.Show();
-        }
-
-        /// <summary>
-        /// Método que se ejecuta cuando el usuario pulsa el botón de Ajustes.
-        /// </summary>
-        /// <param name="sender">El objeto que envía el evento.</param>
-        /// <param name="e">Los argumentos del evento.</param>
-        private void PbBtnConfig_Click(object sender, EventArgs e)
-        {
-            //Creo un nuevo formulario Config.
-            FormConfig formConfig = new FormConfig();
-            //Si el usuario acepta, se actualiza la información en la base de datos.
-            if (formConfig.ShowDialog() == DialogResult.OK)
-            {
-                //Si e directorio no es nulo se define.
-                Config.DirectorioInstalacion = formConfig.DirectorioInstalacion;
-                Config.Tema_id = formConfig.Tema_id;
-                Config.MostrarBienvenida = formConfig.MostrarBienvenida;
-                Config.GuardaConfiguracion();
-                //Defino los colores de nuevo.
-                this.Refresh();
-            }
-        }
-
-        /// <summary>
         /// Método que se ejecuta cuando se pinta el formulario.
         /// </summary>
         /// <param name="sender">El objeto que envía el evento.</param>
@@ -708,17 +719,6 @@ namespace KComicReader
                 fwpComics.Controls[1].Visible = false;
             else
                 fwpComics.Controls[1].Visible = true;
-        }
-
-        /// <summary>
-        /// Método que se ejecuta cuando el usuario pulsa el botón de ayuda.
-        /// </summary>
-        /// <param name="sender">El objeto que envía el evento.</param>
-        /// <param name="e">Los argumentos del evento.</param>
-        private void PbBtnAyuda_Click(object sender, EventArgs e)
-        {
-            FormAyuda formAyuda = new FormAyuda();
-            formAyuda.Show();
         }
     }
 }
