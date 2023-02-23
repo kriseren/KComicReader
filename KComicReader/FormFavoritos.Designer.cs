@@ -51,7 +51,7 @@
             this.dtgVinyetas.Name = "dtgVinyetas";
             this.dtgVinyetas.ReadOnly = true;
             this.dtgVinyetas.RowTemplate.Height = 80;
-            this.dtgVinyetas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgVinyetas_CellContentClick);
+            this.dtgVinyetas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgVinyetas_CellContentClick);
             // 
             // btnCerrar
             // 

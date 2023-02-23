@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Windows.Forms;
 
 namespace KComicReader
@@ -45,7 +46,6 @@ namespace KComicReader
                         dtgVinyetas.Columns[2].HeaderText = "Título del comic";
                         dtgVinyetas.RowTemplate.Height = 450;
                         ((DataGridViewImageColumn)dtgVinyetas.Columns[1]).ImageLayout = DataGridViewImageCellLayout.Zoom;
-
                     }
                     catch (MySqlException)
                     {
@@ -76,9 +76,27 @@ namespace KComicReader
 
         }
 
-        //TODO Hacer el click y controlar que se puedan crear dos favoritos en un mismo cómic.
-        private void dtgVinyetas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// Método que se ejecuta cuando se pulsa una celda del dataGridView.
+        /// </summary>
+        /// <param name="sender">El objeto que envía el evento.</param>
+        /// <param name="e">Los argumentos del evento.</param>
+        private void DtgVinyetas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Obtengo la imagen de la fila actual.
+            byte[] bytes = (byte[])dtgVinyetas.CurrentRow.Cells[1].Value;
+            Image imagen;
+            using (MemoryStream ms = new MemoryStream(bytes))
+            {
+                imagen = Image.FromStream(ms);
+            }
+
+            //Obtengo el título de la viñeta.
+            String titulo = dtgVinyetas.CurrentRow.Cells[0].Value.ToString();
+
+            //Creo el formulario de detalle y lo ejecuto.
+            FormDetalleVinyetaFav formDetalleVinyetaFav = new FormDetalleVinyetaFav(imagen, titulo);
+            formDetalleVinyetaFav.ShowDialog();
 
         }
 
