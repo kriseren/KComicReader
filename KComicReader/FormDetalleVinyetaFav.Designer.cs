@@ -51,7 +51,7 @@
             this.panelButtons.Controls.Add(this.pbBtnDescargar);
             this.panelButtons.Controls.Add(this.btnZoom);
             this.panelButtons.Controls.Add(this.lblTituloVinyeta);
-            this.panelButtons.Location = new System.Drawing.Point(12, 716);
+            this.panelButtons.Location = new System.Drawing.Point(-60, 667);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Size = new System.Drawing.Size(555, 76);
             this.panelButtons.TabIndex = 12;
@@ -110,7 +110,7 @@
             this.panelImage.Controls.Add(this.pbPagina);
             this.panelImage.Location = new System.Drawing.Point(12, 12);
             this.panelImage.Name = "panelImage";
-            this.panelImage.Size = new System.Drawing.Size(555, 698);
+            this.panelImage.Size = new System.Drawing.Size(411, 649);
             this.panelImage.TabIndex = 13;
             // 
             // pbPagina
@@ -122,7 +122,7 @@
             this.pbPagina.Image = ((System.Drawing.Image)(resources.GetObject("pbPagina.Image")));
             this.pbPagina.Location = new System.Drawing.Point(7, 5);
             this.pbPagina.Name = "pbPagina";
-            this.pbPagina.Size = new System.Drawing.Size(545, 690);
+            this.pbPagina.Size = new System.Drawing.Size(401, 641);
             this.pbPagina.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPagina.TabIndex = 0;
             this.pbPagina.TabStop = false;
@@ -138,7 +138,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(579, 804);
+            this.ClientSize = new System.Drawing.Size(435, 755);
             this.Controls.Add(this.panelImage);
             this.Controls.Add(this.panelButtons);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

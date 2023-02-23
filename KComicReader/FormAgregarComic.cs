@@ -109,7 +109,7 @@ namespace KComicReader
             if (tbTitulo.Text != "" && cbIdioma.Text != "" && ofd_FicheroComic.FileName != "" && cbEditorial.Text != "" && cbSerie.Text != "")
             {
                 //Ruta del directorio donde se guardará el cómic.
-                string rutaDirectorio = Config.DirectorioInstalacion;
+                string rutaDirectorio = Path.Combine(Config.DirectorioInstalacion,"comics");
 
                 //Crea el directorio si no existe.
                 if (!Directory.Exists(rutaDirectorio))

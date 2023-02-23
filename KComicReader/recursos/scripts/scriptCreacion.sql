@@ -143,6 +143,6 @@ INSERT INTO TEMAS (nombre, color1, color2, color3,seleccionador,icono) VALUES
 
 
 /*INSERCIÓN DE LOS AJUSTES*/
-INSERT INTO AJUSTES (directorio_instalacion,tema_id,mostrar_bienvenida) VALUES ('C:\\KComicReader\\Comics',1,1);
+INSERT INTO AJUSTES (directorio_instalacion,tema_id,mostrar_bienvenida) VALUES ('C:\\KComicReader',1,1);
 
 

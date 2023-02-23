@@ -52,6 +52,7 @@ namespace KComicReader
         private void FormLeer_Load(object sender, EventArgs e)
         {
             pbPagina.Image = img;
+            lblTituloVinyeta.Text = titulo;
         }
 
         /// <summary>
@@ -116,7 +117,23 @@ namespace KComicReader
         /// </summary>
         private void Descarga()
         {
+            //Ruta del directorio donde se guardará la viñeta.
+            string rutaDirectorio = Path.Combine(Config.DirectorioInstalacion, "viñetasFavoritas");
+            //El nombre del archivo se saca reemplazando los espacios por barras bajas y añadiendo la extensión jpg.
+            string nombreArchivo = titulo.Replace(" ","_") + ".jpg";
 
+            //Crea el directorio si no existe.
+            if (!Directory.Exists(rutaDirectorio))
+                Directory.CreateDirectory(rutaDirectorio);
+
+
+            //TODO HACER QUE FUNCIONE EL MÉTODO, PUESTO QUE DA UN ERROR DE PARÁMETRO INVÁLIDO.
+            //Copio el archivo de cómic al directorio especificado si no existe ya.
+            if (!File.Exists(Path.Combine(rutaDirectorio, nombreArchivo)))
+            {
+                img.Dispose();
+                img.Save(Path.Combine(rutaDirectorio, nombreArchivo));
+            }
         }
 
         /// <summary>
