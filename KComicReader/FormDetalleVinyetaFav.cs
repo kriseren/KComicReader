@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using SharpCompress.Archives;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -125,7 +126,7 @@ namespace KComicReader
         private void Descarga()
         {
             //Ruta del directorio donde se guardará la viñeta.
-            string rutaDirectorio = Path.Combine(Config.DirectorioInstalacion, "Vieñetas Favoritas");
+            string rutaDirectorio = Path.Combine(Config.DirectorioInstalacion, "Viñetas Favoritas");
             string nombreArchivo = titulo + ".png";
             string rutaCompleta = Path.Combine(rutaDirectorio, nombreArchivo);
 
@@ -133,7 +134,7 @@ namespace KComicReader
             if (!Directory.Exists(rutaDirectorio))
                 Directory.CreateDirectory(rutaDirectorio);
             
-            // Guarda la imagen en el archivo descargándola de la base de datos.
+            //Guardo la imagen en el archivo descargándola de la base de datos.
             if(Config.CompruebaConexion())
             {
                 using (MySqlConnection con = DataBaseConnectivity.GetConnection())
@@ -143,31 +144,26 @@ namespace KComicReader
                     using (MySqlCommand command = new MySqlCommand(query, con))
                     {
                         command.Parameters.AddWithValue("@id", 1);
-                        // lee la imagen de la base de datos
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.Read())
                             {
                                 byte[] bytes = (byte[])reader["vinyeta"];
-
-                                // crea un MemoryStream a partir de los bytes
                                 using (MemoryStream ms = new MemoryStream(bytes))
                                 {
-                                    // crea un objeto Image a partir del MemoryStream
                                     Image image = Image.FromStream(ms);
-
-                                    // guarda la imagen en un archivo
                                     image.Save(rutaCompleta);
-
-                                    // libera recursos
                                     image.Dispose();
                                 }
                             }
                         }
-
                     }
                 }
             }
+
+            //Informo al usuario de la descarga de la imagen y abro el directorio.
+            MessageBox.Show("La viñeta ha sido descargada correctamente.","Descarga de la viñeta",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            Process.Start("explorer.exe", rutaDirectorio);
         }
 
         /// <summary>
