@@ -33,19 +33,29 @@ namespace KComicReader
                         //Obtengo los datos de la tabla.
                         connection.Open();
                         MySqlCommand cmd = connection.CreateCommand();
-                        cmd.CommandText = "SELECT f.titulo, f.vinyeta, c.titulo FROM FAVORITOS f JOIN COMICS c ON f.comic_id = c.id";
+                        cmd.CommandText = "SELECT f.id, f.titulo, f.vinyeta, c.titulo FROM FAVORITOS f JOIN COMICS c ON f.comic_id = c.id";
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
-                        dtgVinyetas.DataSource = dataTable;
+
+                        //Agrego el identificador como una nueva columna de datos.
+                        dataTable.Columns.Add("id_vinyeta", typeof(int));
+                        for (int i = 0; i < dataTable.Rows.Count; i++)
+                        {
+                            dataTable.Rows[i]["id_vinyeta"] = i + 1;
+                        }
 
                         //Configuro el aspecto visual del dataGridView.
+                        dtgVinyetas.DataSource = dataTable;
                         dtgVinyetas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                        dtgVinyetas.Columns[0].HeaderText = "Título";
-                        dtgVinyetas.Columns[1].HeaderText = "Imagen";
-                        dtgVinyetas.Columns[2].HeaderText = "Título del comic";
+                        dtgVinyetas.Columns[1].HeaderText = "Título";
+                        dtgVinyetas.Columns[2].HeaderText = "Imagen";
+                        dtgVinyetas.Columns[3].HeaderText = "Título del comic";
                         dtgVinyetas.RowTemplate.Height = 450;
-                        ((DataGridViewImageColumn)dtgVinyetas.Columns[1]).ImageLayout = DataGridViewImageCellLayout.Zoom;
+
+                        //Oculto la columna del identificador.
+                        dtgVinyetas.Columns[0].Visible = false;
+                        ((DataGridViewImageColumn)dtgVinyetas.Columns[2]).ImageLayout = DataGridViewImageCellLayout.Zoom;
                     }
                     catch (MySqlException)
                     {
@@ -83,21 +93,23 @@ namespace KComicReader
         /// <param name="e">Los argumentos del evento.</param>
         private void DtgVinyetas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Obtengo el identificador de la viñeta.
+            int id = (int)dtgVinyetas.CurrentRow.Cells[0].Value;
+
+            //Obtengo el título de la viñeta.
+            String titulo = dtgVinyetas.CurrentRow.Cells[1].Value.ToString();
+
             //Obtengo la imagen de la fila actual.
-            byte[] bytes = (byte[])dtgVinyetas.CurrentRow.Cells[1].Value;
+            byte[] bytes = (byte[])dtgVinyetas.CurrentRow.Cells[2].Value;
             Image imagen;
             using (MemoryStream ms = new MemoryStream(bytes))
             {
                 imagen = Image.FromStream(ms);
             }
 
-            //Obtengo el título de la viñeta.
-            String titulo = dtgVinyetas.CurrentRow.Cells[0].Value.ToString();
-
-            //Creo el formulario de detalle y lo ejecuto.
-            FormDetalleVinyetaFav formDetalleVinyetaFav = new FormDetalleVinyetaFav(imagen, titulo);
+            //Creo el formulario y lo muestro.
+            FormDetalleVinyetaFav formDetalleVinyetaFav = new FormDetalleVinyetaFav(imagen, titulo,id);
             formDetalleVinyetaFav.ShowDialog();
-
         }
 
         /// <summary>

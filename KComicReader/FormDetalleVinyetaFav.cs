@@ -6,6 +6,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Windows.Forms;
 using Image = System.Drawing.Image;
 
@@ -32,16 +33,22 @@ namespace KComicReader
         private String titulo;
 
         /// <summary>
+        /// El identificador de la viñeta favorita a mostrar.
+        /// </summary>
+        private int id;
+
+        /// <summary>
         /// Constructor con parámetros que inicializa el componente.
         /// </summary>
         /// <param name="img">La imagen de la viñeta a mostrar.</param>
         /// <param name="titulo">El título de la viñeta a mostrar.</param>
-        public FormDetalleVinyetaFav(Image img, String titulo)
+        public FormDetalleVinyetaFav(Image img, String titulo, int id)
         {
             InitializeComponent();
             this.CenterToParent();
             this.img = img;
             this.titulo = titulo;
+            this.id = id;
         }
 
         /// <summary>
@@ -118,21 +125,48 @@ namespace KComicReader
         private void Descarga()
         {
             //Ruta del directorio donde se guardará la viñeta.
-            string rutaDirectorio = Path.Combine(Config.DirectorioInstalacion, "viñetasFavoritas");
-            //El nombre del archivo se saca reemplazando los espacios por barras bajas y añadiendo la extensión jpg.
-            string nombreArchivo = titulo.Replace(" ","_") + ".jpg";
+            string rutaDirectorio = Path.Combine(Config.DirectorioInstalacion, "Vieñetas Favoritas");
+            string nombreArchivo = titulo + ".png";
+            string rutaCompleta = Path.Combine(rutaDirectorio, nombreArchivo);
 
             //Crea el directorio si no existe.
             if (!Directory.Exists(rutaDirectorio))
                 Directory.CreateDirectory(rutaDirectorio);
-
-
-            //TODO HACER QUE FUNCIONE EL MÉTODO, PUESTO QUE DA UN ERROR DE PARÁMETRO INVÁLIDO.
-            //Copio el archivo de cómic al directorio especificado si no existe ya.
-            if (!File.Exists(Path.Combine(rutaDirectorio, nombreArchivo)))
+            
+            // Guarda la imagen en el archivo descargándola de la base de datos.
+            if(Config.CompruebaConexion())
             {
-                img.Dispose();
-                img.Save(Path.Combine(rutaDirectorio, nombreArchivo));
+                using (MySqlConnection con = DataBaseConnectivity.GetConnection())
+                {
+                    con.Open();
+                    string query = "SELECT vinyeta FROM favoritos WHERE id = @id";
+                    using (MySqlCommand command = new MySqlCommand(query, con))
+                    {
+                        command.Parameters.AddWithValue("@id", 1);
+                        // lee la imagen de la base de datos
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                byte[] bytes = (byte[])reader["vinyeta"];
+
+                                // crea un MemoryStream a partir de los bytes
+                                using (MemoryStream ms = new MemoryStream(bytes))
+                                {
+                                    // crea un objeto Image a partir del MemoryStream
+                                    Image image = Image.FromStream(ms);
+
+                                    // guarda la imagen en un archivo
+                                    image.Save(rutaCompleta);
+
+                                    // libera recursos
+                                    image.Dispose();
+                                }
+                            }
+                        }
+
+                    }
+                }
             }
         }
 
