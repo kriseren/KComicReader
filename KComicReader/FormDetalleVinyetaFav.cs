@@ -143,7 +143,7 @@ namespace KComicReader
                     string query = "SELECT vinyeta FROM favoritos WHERE id = @id";
                     using (MySqlCommand command = new MySqlCommand(query, con))
                     {
-                        command.Parameters.AddWithValue("@id", 1);
+                        command.Parameters.AddWithValue("@id", id);
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.Read())

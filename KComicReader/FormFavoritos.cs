@@ -38,13 +38,6 @@ namespace KComicReader
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
 
-                        //Agrego el identificador como una nueva columna de datos.
-                        dataTable.Columns.Add("id_vinyeta", typeof(int));
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            dataTable.Rows[i]["id_vinyeta"] = i + 1;
-                        }
-
                         //Configuro el aspecto visual del dataGridView.
                         dtgVinyetas.DataSource = dataTable;
                         dtgVinyetas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -54,7 +47,7 @@ namespace KComicReader
                         dtgVinyetas.RowTemplate.Height = 450;
 
                         //Oculto la columna del identificador.
-                        dtgVinyetas.Columns[0].Visible = false;
+                        dtgVinyetas.Columns["id"].Visible = false;
                         ((DataGridViewImageColumn)dtgVinyetas.Columns[2]).ImageLayout = DataGridViewImageCellLayout.Zoom;
                     }
                     catch (MySqlException)
@@ -94,7 +87,7 @@ namespace KComicReader
         private void DtgVinyetas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Obtengo el identificador de la viñeta.
-            int id = (int)dtgVinyetas.CurrentRow.Cells[0].Value;
+            int id = (int)dtgVinyetas.CurrentRow.Cells["id"].Value;
 
             //Obtengo el título de la viñeta.
             String titulo = dtgVinyetas.CurrentRow.Cells[1].Value.ToString();

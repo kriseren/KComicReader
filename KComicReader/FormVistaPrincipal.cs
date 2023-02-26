@@ -166,11 +166,10 @@ namespace KComicReader
                 pbBtnEditar.Visible = false;
                 pbBtnLeer.Visible = false;
                 pbBtnEliminar.Visible = false;
-                pbBtnAyuda.Visible = true;
+                pbBtnAyuda.Visible = false;
                 lblEditar.Visible = false;
                 lblEliminar.Visible = false;
                 lblLeer.Visible = false;
-                lblAgregar.Visible = false;
                 lblAyuda.Visible = false;
             }
         }
