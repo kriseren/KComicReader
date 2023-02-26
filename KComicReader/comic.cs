@@ -220,7 +220,7 @@ namespace KComicReader
                         cmd.Prepare();
                         this.Id = (Int32)cmd.ExecuteScalar();
                     }
-                    catch (MySqlException ex)
+                    catch (MySqlException)
                     {
                         MessageBox.Show("No se ha podido dar de alta el cómic. Por favor, reinicia el servidor MySQL.\nSi continúas usando el programa puede que no se guarden los datos.", "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }

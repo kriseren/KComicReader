@@ -49,11 +49,19 @@ namespace KComicReader
         /// <param name="e">Los argumentos del evento.</param>
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            Titulo = tbTitulo.Text;
-            if (Existe())
+            if(tbTitulo.Text == "")
             {
-                MessageBox.Show("La viñeta que intentas agregar a favoritos ya existe.", "Error al agregar la viñeta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El título de la viñeta no pude estar vacío.", "Error al agregar la viñeta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.None;
+            }
+            else
+            {
+                Titulo = tbTitulo.Text;
+                if (Existe())
+                {
+                    MessageBox.Show("La viñeta que intentas agregar a favoritos ya existe.", "Error al agregar la viñeta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DialogResult = DialogResult.None;
+                }
             }
         }
 
